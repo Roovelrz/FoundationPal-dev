@@ -1,0 +1,20 @@
+version: '3.9'
+
+# Minimal compose file for the standalone landing/waitlist server (port 5173).
+# For full stack (API + Postgres + Redis + SPA dev), see app-compose.yml.
+# This file is intentionally small; production typically uses the single API image (api/Dockerfile) serving landing + SPA.
+services:
+  landing:
+    build: .
+    image: granterstellar-landing:latest
+    ports:
+      - "5173:5173"
+    restart: unless-stopped
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5173/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

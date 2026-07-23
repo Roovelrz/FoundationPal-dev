@@ -1,0 +1,29 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.1
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.11.0
+    hooks:
+        - id: eslint
+          additional_dependencies: ["eslint@9.11.1", "@eslint/js@9.11.1"]
+          files: "^web/src/.*\\.(js|jsx|ts|tsx)$"
+          args: ["--config","web/eslint.config.js"]
+  - repo: local
+    hooks:
+      - id: secret-scan
+        name: secret-scan (gitleaks)
+        entry: bash scripts/secret_scan.sh
+        language: system
+        pass_filenames: false

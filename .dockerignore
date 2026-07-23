@@ -1,0 +1,53 @@
+# Exclude VCS
+.git
+.gitignore
+
+# Documentation & markdown (shrink context)
+**/*.md
+docs/
+
+# Tests (any location)
+**/tests/**
+**/__tests__/**
+
+# Source maps & coverage artifacts
+**/*.map
+coverage/
+coverage.*
+.coverage
+htmlcov/
+
+# Caches
+.ruff_cache/
+.pytest_cache/
+web/.vite/
+
+# Node
+node_modules
+web/node_modules
+web/dist
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+
+# Env
+.env
+*.env
+.env.*
+
+# OS/IDE
+.DS_Store
+.vscode
+.idea
+
+# Logs
+*.log
+
+# Virtual environments / local tooling
+.venv/
+venv/
+pip-wheel-metadata/

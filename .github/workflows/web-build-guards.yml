@@ -1,0 +1,48 @@
+name: Web build guards
+
+on:
+  pull_request:
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-build-guards.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-build-guards.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        working-directory: web
+        run: |
+          if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+      - name: Build SPA
+        working-directory: web
+        run: npm run build
+      - name: Assert no source maps in dist
+        run: |
+          if find web/dist -type f -name "*.map" | grep -q .; then
+            echo "Error: Source maps found in web/dist" >&2
+            find web/dist -type f -name "*.map" >&2
+            exit 1
+          fi
+      - name: Assert no console/debugger strings in dist
+        run: |
+          if grep -R -E "\bconsole\.|\bdebugger\b" -n web/dist | grep -v -E "LICENSE|license|@license"; then
+            echo "Error: console/debugger statements found in dist" >&2
+            exit 1
+          fi
+      - name: Gzip size budget (total JS)
+        run: |
+          cd web
+          npm run --silent size:check
