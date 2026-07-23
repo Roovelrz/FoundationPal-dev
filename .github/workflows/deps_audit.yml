@@ -45,7 +45,7 @@ jobs:
         run: |
           cyclonedx-bom -o sbom-python.json || true
       - name: Upload Python artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: python-security-artifacts
           path: |
@@ -81,7 +81,7 @@ jobs:
         run: |
           npx @cyclonedx/cyclonedx-npm --output-format json --output-file sbom-node.json || true
       - name: Upload Node artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: node-security-artifacts
           path: |
