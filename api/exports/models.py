@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 class ExportJob(models.Model):
@@ -13,6 +14,7 @@ class ExportJob(models.Model):
     url = models.CharField(max_length=500, blank=True, default='')
     checksum = models.CharField(max_length=64, blank=True, default='')
     error = models.TextField(blank=True, default='')
+    run_id = models.UUIDField(null=True, blank=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

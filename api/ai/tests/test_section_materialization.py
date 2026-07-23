@@ -22,13 +22,12 @@ class SectionMaterializationTests(TestCase):
         pid = p_resp.json()['id']
         blueprint = [
             {
-                'id': 'Introduction',
+                'section_key': 'Introduction',
                 'title': 'Introduction',
                 'order': 0,
-                'draft': 'Intro draft',
                 'questions': ['What is the objective?', 'What is the impact?'],
             },
-            {'id': 'Objectives', 'title': 'Objectives', 'order': 1},
+            {'section_key': 'Objectives', 'title': 'Objectives', 'order': 1, 'questions': ['What will be delivered?']},
         ]
         from unittest.mock import patch
 
@@ -50,14 +49,13 @@ class SectionMaterializationTests(TestCase):
         sections = ProposalSection.objects.filter(proposal_id=pid).order_by('order').values_list('key', 'title')
         self.assertEqual(list(sections), [('introduction', 'Introduction'), ('objectives', 'Objectives')])
         intro = ProposalSection.objects.get(proposal_id=pid, key='introduction')
-        self.assertTrue(intro.draft_content.startswith('Intro draft'))
         self.assertEqual(
-            intro.metadata['inputs'],
+            intro.metadata['questions'],
             ['What is the objective?', 'What is the impact?'],
         )
         detail = self.client.get(f'/api/proposals/{pid}/')
         self.assertEqual(
-            detail.json()['sections'][0]['inputs'],
+            detail.json()['sections'][0]['questions'],
             ['What is the objective?', 'What is the impact?'],
         )
 
@@ -74,8 +72,8 @@ class SectionMaterializationTests(TestCase):
         p = Proposal.objects.get(id=p_id)
         ProposalSection.objects.create(proposal=p, key='intro', title='Old', order=5)
         new_blueprint = [
-            {'key': 'intro', 'title': 'New Intro', 'order': 0},
-            {'key': 'methods', 'title': 'Methods', 'order': 1},
+            {'section_key': 'intro', 'title': 'New Intro', 'order': 0, 'questions': ['What is new?']},
+            {'section_key': 'methods', 'title': 'Methods', 'order': 1, 'questions': ['How will it work?']},
         ]
         from unittest.mock import patch
 
@@ -122,3 +120,22 @@ class SectionMaterializationTests(TestCase):
 
         self.assertEqual(resp.status_code, 404)
         self.assertEqual(resp.json()['error'], 'proposal_not_found')
+
+    def test_invalid_planner_output_does_not_create_sections(self):
+        self.client.force_login(self.user)
+        proposal = Proposal.objects.create(author=self.user, org=Organization.objects.create(name='schema-org', admin=self.user), content={})
+        from unittest.mock import patch
+
+        with patch('ai.views.get_provider') as provider_factory:
+            provider_factory.return_value.plan.return_value = {
+                'schema_version': 'v1',
+                'sections': [{'id': 'legacy-key', 'title': 'Legacy', 'questions': ['Question']}],
+            }
+            response = self.client.post(
+                '/api/ai/plan',
+                data={'proposal_id': proposal.id, 'text_spec': 'Spec'},
+                content_type='application/json',
+            )
+
+        self.assertEqual(response.status_code, 502)
+        self.assertEqual(ProposalSection.objects.filter(proposal=proposal).count(), 0)

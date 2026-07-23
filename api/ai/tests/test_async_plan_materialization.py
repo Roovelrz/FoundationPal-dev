@@ -26,8 +26,8 @@ class AsyncPlanMaterializationTests(TestCase):
     def test_run_plan_creates_sections_and_persists_keys(self):
         pid = self._create_proposal()
         blueprint = [
-            {'key': 'Background', 'title': 'Background', 'order': 0, 'draft': 'Bg draft'},
-            {'key': 'Approach', 'title': 'Approach', 'order': 1},
+            {'section_key': 'Background', 'title': 'Background', 'questions': ['Why does it matter?']},
+            {'section_key': 'Approach', 'title': 'Approach', 'questions': ['How will it work?']},
         ]
         # Create pending job
         job = AIJob.objects.create(
@@ -51,7 +51,6 @@ class AsyncPlanMaterializationTests(TestCase):
         keys = list(ProposalSection.objects.filter(proposal_id=pid).order_by('order').values_list('key', flat=True))
         self.assertEqual(keys, ['background', 'approach'])
         bg = ProposalSection.objects.get(proposal_id=pid, key='background')
-        self.assertTrue(bg.draft_content.startswith('Bg draft'))
 
     @override_settings(AI_ASYNC=1, CELERY_BROKER_URL='memory://')
     def test_plan_endpoint_persists_request_proposal_id_in_job(self):

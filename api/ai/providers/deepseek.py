@@ -72,10 +72,10 @@ class DeepSeekProvider(BaseProvider):
             '  "yanjiujichu" -> "(四)研究基础:研究基础与可行性分析、工作条件"\n'
             "每个章节生成2-5个引导性问题。输出ONLY JSON，格式:\n"
             '{"schema_version":"v1","sections":['
-            '{"id":"lixiangyiju","title":"(一)立项依据","questions":["Q1","Q2"]},'
-            '{"id":"yanjiuneirong","title":"(二)研究内容","questions":["Q1","Q2"]},'
-            '{"id":"yanjiufangan","title":"(三)研究方案","questions":["Q1","Q2"]},'
-            '{"id":"yanjiujichu","title":"(四)研究基础","questions":["Q1","Q2"]}'
+            '{"section_key":"lixiangyiju","title":"(一)立项依据","questions":["Q1","Q2"]},'
+            '{"section_key":"yanjiuneirong","title":"(二)研究内容","questions":["Q1","Q2"]},'
+            '{"section_key":"yanjiufangan","title":"(三)研究方案","questions":["Q1","Q2"]},'
+            '{"section_key":"yanjiujichu","title":"(四)研究基础","questions":["Q1","Q2"]}'
             "]}"
         )
         user = f"研究方向: {source}"

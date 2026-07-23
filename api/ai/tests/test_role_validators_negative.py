@@ -9,7 +9,17 @@ class NegativeRoleValidatorsTests(SimpleTestCase):
 
     def test_writer_rejects_json_like(self):
         with self.assertRaises(SchemaError):
-            validate_role_output('write', {'draft': "{\n  'a': 1\n}"})
+            validate_role_output(
+                'write',
+                {
+                    'schema_version': 'v1',
+                    'section_key': 'summary',
+                    'draft_markdown': "{\n  'a': 1\n}",
+                    'evidence_ids': [],
+                    'warnings': [],
+                    'missing_evidence': [],
+                },
+            )
 
     def test_reviser_missing_diff(self):
         with self.assertRaises(SchemaError):

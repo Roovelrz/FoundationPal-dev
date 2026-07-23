@@ -5,9 +5,9 @@ from .base import BaseProvider, AIResult
 class LocalStubProvider(BaseProvider):
     def plan(self, *, grant_url: str | None, text_spec: str | None) -> Dict:
         sections = [
-            {'id': 'summary', 'title': 'Executive Summary', 'inputs': ['objective', 'impact']},
-            {'id': 'narrative', 'title': 'Project Narrative', 'inputs': ['background', 'approach']},
-            {'id': 'budget', 'title': 'Budget', 'inputs': ['items', 'total']},
+            {'section_key': 'summary', 'title': 'Executive Summary', 'questions': ['objective', 'impact']},
+            {'section_key': 'narrative', 'title': 'Project Narrative', 'questions': ['background', 'approach']},
+            {'section_key': 'budget', 'title': 'Budget', 'questions': ['items', 'total']},
         ]
         return {'schema_version': 'v1', 'source': grant_url or 'text', 'sections': sections}
 

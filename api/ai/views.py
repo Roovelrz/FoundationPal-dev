@@ -4,12 +4,14 @@ from rest_framework.response import Response
 from django.conf import settings
 from .sanitize import sanitize_text, sanitize_url, sanitize_answers, sanitize_file_refs
 import time
-from .models import AIJob
+from .models import AIJob, AIMetric, AIJobContext, WorkflowRun
 from .section_materializer import materialize_sections
 from .section_pipeline import apply_revision, get_section, save_write_result
 from .tasks import run_plan, run_write, run_revise, run_format
 from .provider import get_provider
 from .diff_engine import diff_texts
+from .validators import SchemaError, invalid_output_error, section_draft, validate_role_output
+from .workflow import resolve_run_id
 from django.db.models import QuerySet
 from typing import Optional
 from orgs.models import Organization
@@ -243,6 +245,7 @@ def plan(request):
     proposal = _get_accessible_proposal(request, proposal_id)
     if proposal is None:
         return Response({'error': 'proposal_not_found'}, status=404)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
     if async_enabled:
         job = AIJob.objects.create(
@@ -254,9 +257,10 @@ def plan(request):
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
+            run_id=run_id,
         )
         run_plan.delay(job.id)  # type: ignore[attr-defined]
-        return Response({'job_id': job.id, 'status': job.status})  # type: ignore[attr-defined]
+        return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     t0 = time.time()
     try:
@@ -270,18 +274,14 @@ def plan(request):
             },
             status=502,
         )
+    try:
+        validate_role_output('plan', plan_result)
+    except SchemaError as error:
+        return Response({'error': invalid_output_error(error).as_dict()}, status=502)
     dt_ms = int((time.time() - t0) * 1000)
     from .models import AIMetric
 
-    # Extract blueprint for materialization.
-    # Planner contract: plan_result may be a dict containing 'sections' or 'blueprint' list,
-    # or the planner could evolve to return a plain list directly.
-    blueprint = []
-    if isinstance(plan_result, dict):
-        if isinstance(plan_result.get('sections'), list):
-            blueprint = plan_result.get('sections')  # type: ignore[assignment]
-        elif isinstance(plan_result.get('blueprint'), list):
-            blueprint = plan_result.get('blueprint')  # type: ignore[assignment]
+    blueprint = plan_result['sections']
     created_sections: list[str] = []
     if blueprint:
         try:
@@ -297,12 +297,14 @@ def plan(request):
         created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
         org_id=request.META.get('HTTP_X_ORG_ID', ''),
         success=True,
+        run_id=run_id,
     )
     return Response(
         {
             'schema_version': plan_result.get('schema_version', 'v1') if isinstance(plan_result, dict) else 'v1',
             'sections': blueprint,
             'created_sections': created_sections,
+            'run_id': str(run_id),
         }
     )
 
@@ -328,6 +330,7 @@ def write(request):
             return Response({'error': 'section_not_found'}, status=404)
         if section.locked:
             return Response({'error': 'section_locked'}, status=409)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal_id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     answers = sanitize_answers(request.data.get('answers', {}))
     file_refs = sanitize_file_refs(request.data.get('file_refs', []))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
@@ -342,6 +345,7 @@ def write(request):
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
+            run_id=run_id,
         )
         # Ensure background path does not break test expecting second call limited (guard already set)
         try:  # pragma: no cover - safety
@@ -350,7 +354,7 @@ def write(request):
             # Fallback: run synchronously if Celery misconfigured in test
             provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
             provider.write(section_id=section_id, answers=answers, file_refs=file_refs or None)
-        return Response({'job_id': job.id, 'status': job.status})  # type: ignore[attr-defined]
+        return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     t0 = time.time()
     # Fetch memory suggestions (user or org scope) to enrich context (not persisted provider-side yet)
@@ -388,8 +392,12 @@ def write(request):
     except Exception:
         logger.exception('AI provider.write failed')
         return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
+    try:
+        draft = section_draft(section_id, res.text)
+    except SchemaError as error:
+        return Response({'error': invalid_output_error(error).as_dict()}, status=502)
     if section is not None:
-        save_write_result(section, res.text, answers)
+        save_write_result(section, draft['draft_markdown'], answers)
     # (single-write marker already set at entry)
     dt_ms = int((time.time() - t0) * 1000)
     from .models import AIMetric
@@ -415,8 +423,9 @@ def write(request):
         created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
         org_id=request.META.get('HTTP_X_ORG_ID', ''),
         success=True,
+        run_id=run_id,
     )
-    return Response({'draft_text': res.text, 'assets': [], 'tokens_used': res.usage_tokens})
+    return Response({'draft_text': draft['draft_markdown'], 'assets': [], 'tokens_used': res.usage_tokens, 'run_id': str(run_id)})
 
 
 @api_view(['POST'])
@@ -444,6 +453,7 @@ def revise(request):
         section = get_section(section_id)
     if section is not None and section.locked:
         return Response({'error': 'section_locked'}, status=409)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal_id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     file_refs = sanitize_file_refs(request.data.get('file_refs', []))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
     if async_enabled:
@@ -458,9 +468,10 @@ def revise(request):
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
+            run_id=run_id,
         )
         run_revise.delay(job.id)  # type: ignore[attr-defined]
-        return Response({'job_id': job.id, 'status': job.status})  # type: ignore[attr-defined]
+        return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     # --- Revision cap pre-check (sync path only; async handled in task) ---
     if section is not None:
@@ -576,8 +587,9 @@ def revise(request):
         created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
         org_id=request.META.get('HTTP_X_ORG_ID', ''),
         success=True,
+        run_id=run_id,
     )
-    return Response({'draft_text': res.text, 'diff': diff_res})
+    return Response({'draft_text': res.text, 'diff': diff_res, 'run_id': str(run_id)})
 
 
 @api_view(['POST'])
@@ -596,6 +608,7 @@ def format(request):
     proposal = _get_accessible_proposal(request, proposal_id)
     if proposal is None:
         return Response({'error': 'proposal_not_found'}, status=404)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     try:
         full_text = build_approved_markdown(proposal)
     except SectionsNotApproved:
@@ -613,9 +626,10 @@ def format(request):
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
+            run_id=run_id,
         )
         run_format.delay(job.id)  # type: ignore[attr-defined]
-        return Response({'job_id': job.id, 'status': job.status})  # type: ignore[attr-defined]
+        return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     t0 = time.time()
     # Deterministic sampling toggle (default on for stable exports)
@@ -656,8 +670,9 @@ def format(request):
         created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
         org_id=request.META.get('HTTP_X_ORG_ID', ''),
         success=True,
+        run_id=run_id,
     )
-    return Response({'formatted_text': res.text})
+    return Response({'formatted_text': res.text, 'run_id': str(run_id)})
 
 
 @api_view(['GET'])
@@ -675,8 +690,22 @@ def job_status(request, job_id: int):
             'error': job.error_text or None,
             'created_at': job.created_at,
             'updated_at': job.updated_at,
+            'run_id': str(job.run_id),
         }
     )
+
+
+@api_view(['GET'])
+@permission_classes([DebugOrAuthPermission])
+def run_timeline(request, run_id):
+    try:
+        run = WorkflowRun.objects.get(run_id=run_id)
+    except (WorkflowRun.DoesNotExist, ValueError):
+        return Response({'error': 'run_not_found'}, status=404)
+    jobs = list(AIJob.objects.filter(run_id=run.run_id).order_by('created_at').values('type', 'status', 'created_at', 'updated_at', 'error_text'))
+    metrics = list(AIMetric.objects.filter(run_id=run.run_id).order_by('created_at').values('type', 'success', 'duration_ms', 'error_text', 'model_id', 'created_at'))
+    contexts = list(AIJobContext.objects.filter(run_id=run.run_id).order_by('created_at').values('prompt_version', 'template_sha256', 'created_at'))
+    return Response({'run_id': str(run.run_id), 'proposal_id': run.proposal_id, 'jobs': jobs, 'metrics': metrics, 'contexts': contexts})
 
 
 @api_view(['GET'])  # lightweight, DEBUG-only metrics peek

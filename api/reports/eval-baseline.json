@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "anonymous grant brief",
+      "expected_sections": 3,
+      "expected_database_state": "approved_and_exported"
+    },
+    {
+      "id": "invalid_planner",
+      "input": "missing section_key",
+      "expected_sections": 0,
+      "expected_database_state": "unchanged"
+    },
+    {
+      "id": "writer_failure",
+      "input": "provider exception",
+      "expected_sections": 1,
+      "expected_database_state": "draft_preserved"
+    },
+    {
+      "id": "reviewer_rewrite",
+      "input": "unknown decision",
+      "expected_sections": 1,
+      "expected_database_state": "not_promoted"
+    },
+    {
+      "id": "export_failure",
+      "input": "unapproved proposal",
+      "expected_sections": 0,
+      "expected_database_state": "no_export_job"
+    }
+  ],
+  "passed": true,
+  "failure_count": 0
+}

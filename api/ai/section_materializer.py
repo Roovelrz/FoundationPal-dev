@@ -5,9 +5,8 @@ Consumes a planner blueprint (list of section descriptors) and ensures
 titles. Idempotent and non-destructive: existing sections not present in
 the new blueprint are left untouched (no deletion/archival yet).
 
-Blueprint item accepted shapes (lenient):
-  {"key": str, "title": str, "order": int?, "draft": str?, "inputs": list?}
-Unknown keys ignored.
+Blueprint item schema:
+  {"section_key": str, "title": str, "questions": list[str]}
 
 Rules:
   - Keys normalized to lowercase slug-ish (keep alnum + dashes/underscores).
@@ -46,7 +45,7 @@ def materialize_sections(*, proposal_id: int, blueprint: Iterable[dict[str, Any]
     for idx, item in enumerate(blueprint or []):
         if not isinstance(item, dict):
             continue
-        raw_key = item.get('key') or item.get('id') or ''
+        raw_key = item.get('section_key') or ''
         key = _normalize_key(str(raw_key))
         if not key or key in seen_keys:
             continue  # skip empties / duplicates
@@ -56,9 +55,8 @@ def materialize_sections(*, proposal_id: int, blueprint: Iterable[dict[str, Any]
             order_int = int(order_val) if order_val is not None else idx
         except (TypeError, ValueError):  # pragma: no cover - defensive
             order_int = idx
-        draft_seed = item.get('draft')
         title_val = (item.get('title') or '').strip()[:256]
-        raw_inputs = item.get('inputs') or item.get('questions') or []
+        raw_inputs = item.get('questions') or []
         inputs = [
             str(value).strip()[:500]
             for value in raw_inputs[:20]
@@ -72,8 +70,7 @@ def materialize_sections(*, proposal_id: int, blueprint: Iterable[dict[str, Any]
                 key=key,
                 title=title_val,
                 order=order_int,
-                draft_content=(draft_seed or '')[:20000],
-                metadata={'inputs': inputs},
+                metadata={'questions': inputs},
             )
             created = True
         else:
@@ -84,8 +81,8 @@ def materialize_sections(*, proposal_id: int, blueprint: Iterable[dict[str, Any]
                 updates['order'] = order_int
             if inputs:
                 metadata = dict(section.metadata or {})
-                if metadata.get('inputs') != inputs:
-                    metadata['inputs'] = inputs
+                if metadata.get('questions') != inputs:
+                    metadata['questions'] = inputs
                     updates['metadata'] = metadata
             if updates:
                 for k, v in updates.items():

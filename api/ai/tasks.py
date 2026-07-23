@@ -6,7 +6,7 @@ from .models import AIJob, AIMetric, AIJobContext
 from .prompting import render_role_prompt, PromptTemplateError
 from . import retrieval
 from .section_pipeline import get_section, save_write_result, apply_revision
-from .validators import validate_role_output, SchemaError
+from .validators import SchemaError, section_draft, validate_role_output
 from .diff_engine import diff_texts
 from .section_materializer import materialize_sections
 
@@ -25,12 +25,8 @@ def run_plan(job_id: int):
         t0 = time.time()
         snippets = retrieval.retrieve_for_plan(job.input_json.get('grant_url'), job.input_json.get('text_spec'))
         plan = prov.plan(grant_url=job.input_json.get('grant_url'), text_spec=job.input_json.get('text_spec'))
-        validation = {}
-        try:
-            validate_role_output('plan', plan)
-            validation = {'plan_valid': True}
-        except SchemaError as ve:  # pragma: no cover - simple failure path
-            validation = {'plan_valid': False, 'error': str(ve)[:200]}
+        validate_role_output('plan', plan)
+        validation = {'plan_valid': True}
         # Render and store prompt snapshot
         try:
             rp = render_role_prompt(
@@ -64,21 +60,13 @@ def run_plan(job_id: int):
                 snippet_ids=[s['chunk_id'] for s in snippets],
                 retrieval_metrics={'snippet_count': len(snippets), **validation},
             )
-        # Extract blueprint (same logic as sync endpoint) and materialize sections if proposal id present.
+        # Only validated Planner output may materialize ProposalSection rows.
         created_sections: list[str] = []
-        try:
-            blueprint = []
-            proposal_id_val = job.input_json.get('proposal_id')
-            if isinstance(plan, dict):
-                if isinstance(plan.get('sections'), list):
-                    blueprint = plan.get('sections')  # type: ignore[assignment]
-                elif isinstance(plan.get('blueprint'), list):
-                    blueprint = plan.get('blueprint')  # type: ignore[assignment]
-            if proposal_id_val and blueprint:
-                mat = materialize_sections(proposal_id=int(proposal_id_val), blueprint=blueprint)
-                created_sections = [s.key for (s, c) in mat if c]
-        except Exception as me:  # pragma: no cover - defensive
-            created_sections = ['error:' + str(me)[:120]]
+        blueprint = plan['sections']
+        proposal_id_val = job.input_json.get('proposal_id')
+        if proposal_id_val and blueprint:
+            mat = materialize_sections(proposal_id=int(proposal_id_val), blueprint=blueprint)
+            created_sections = [s.key for (s, c) in mat if c]
         job.result_json = {  # type: ignore[assignment]
             'schema_version': plan.get('schema_version', 'v1') if isinstance(plan, dict) else 'v1',
             'sections': blueprint,
@@ -95,6 +83,7 @@ def run_plan(job_id: int):
                 success=True,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
             )
         except Exception:
             pass
@@ -112,6 +101,7 @@ def run_plan(job_id: int):
                 error_text=job.error_text,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
             )
         except Exception:
             pass
@@ -156,12 +146,8 @@ def run_write(job_id: int):
         )
 
         # Validation
-        validation = {}
-        try:
-            validate_role_output('write', {'draft': res.text})
-            validation = {'write_valid': True}
-        except SchemaError as ve:  # pragma: no cover
-            validation = {'write_valid': False, 'error': str(ve)[:200]}
+        draft = section_draft(section_id, res.text)
+        validation = {'write_valid': True}
 
         # Persist prompt context
         try:
@@ -207,12 +193,12 @@ def run_write(job_id: int):
 
         # Result & persistence
         job.result_json = {  # type: ignore[assignment]
-            'draft_text': res.text,
+            'draft_text': draft['draft_markdown'],
             'assets': [],
             'tokens_used': res.usage_tokens,
         }
         if section_obj:
-            save_write_result(section_obj, res.text, job.input_json.get('answers') or {})
+            save_write_result(section_obj, draft['draft_markdown'], job.input_json.get('answers') or {})
         job.status = 'done'
 
         # Metrics
@@ -226,6 +212,7 @@ def run_write(job_id: int):
                 success=True,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
                 section_id=section_id,
             )
@@ -245,6 +232,7 @@ def run_write(job_id: int):
                 error_text=job.error_text,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
                 section_id=job.input_json.get('section_id') or '',
             )
@@ -399,6 +387,7 @@ def run_revise(job_id: int):
                 success=True,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
                 section_id=job.input_json.get('section_id') or '',
             )
@@ -418,6 +407,7 @@ def run_revise(job_id: int):
                 error_text=job.error_text,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
                 section_id=job.input_json.get('section_id') or '',
             )
@@ -497,6 +487,7 @@ def run_format(job_id: int):
                 success=True,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
             )
         except Exception:
@@ -515,6 +506,7 @@ def run_format(job_id: int):
                 error_text=job.error_text,
                 created_by=job.created_by,
                 org_id=job.org_id,
+                run_id=job.run_id,
                 proposal_id=job.input_json.get('proposal_id'),
             )
         except Exception:

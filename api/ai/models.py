@@ -1,6 +1,16 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
+import uuid
+
+
+class WorkflowRun(models.Model):
+    run_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
+    proposal_id = models.IntegerField(null=True, blank=True)
+    org_id = models.CharField(max_length=64, blank=True, default='')
+    provider = models.CharField(max_length=64, blank=True, default='')
+    schema_version = models.CharField(max_length=16, default='v1')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class AIPromptTemplate(models.Model):
@@ -79,6 +89,7 @@ class AIJob(models.Model):
     error_text = models.TextField(blank=True, default='')
     created_by = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
     org_id = models.CharField(max_length=64, blank=True, default='')
+    run_id = models.UUIDField(default=uuid.uuid4, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -94,6 +105,7 @@ class AIMetric(models.Model):
         ('revise', 'revise'),
         ('format', 'format'),
         ('promote', 'promote'),  # section promotion event
+        ('export', 'export'),
     ]
 
     type = models.CharField(max_length=16, choices=TYPE_CHOICES)
@@ -107,6 +119,7 @@ class AIMetric(models.Model):
     error_text = models.TextField(blank=True, default='')
     created_by = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
     org_id = models.CharField(max_length=64, blank=True, default='')
+    run_id = models.UUIDField(null=True, blank=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -213,6 +226,7 @@ class AIJobContext(models.Model):
     """
 
     job = models.ForeignKey(AIJob, on_delete=models.CASCADE, related_name='contexts')
+    run_id = models.UUIDField(null=True, blank=True, db_index=True)
     prompt_template = models.ForeignKey(AIPromptTemplate, null=True, blank=True, on_delete=models.SET_NULL)
     prompt_version = models.PositiveIntegerField(default=1)
     rendered_prompt_redacted = models.TextField()
@@ -233,6 +247,11 @@ class AIJobContext(models.Model):
 
     def __str__(self) -> str:  # pragma: no cover
         return f"AIJobContext(job={getattr(self.job, 'id', 'unsaved')},v={self.prompt_version})"
+
+    def save(self, *args, **kwargs):  # pragma: no cover
+        if self.run_id is None and self.job_id:
+            self.run_id = self.job.run_id
+        super().save(*args, **kwargs)
 
     @staticmethod
     def redact(text: str) -> str:

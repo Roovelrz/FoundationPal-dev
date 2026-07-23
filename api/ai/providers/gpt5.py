@@ -6,6 +6,7 @@ from ai.validators import (
     validate_reviser_output,
     validate_formatter_output,
     SchemaError,
+    section_draft,
 )
 from .util import summarize_file_refs
 from ai.context_budget import apply_context_budget
@@ -15,9 +16,9 @@ from ai.diff_engine import diff_texts
 class Gpt5Provider(BaseProvider):
     def plan(self, *, grant_url: str | None, text_spec: str | None) -> dict:
         sections = [
-            {'id': 'summary', 'title': 'Executive Summary', 'questions': ['objective', 'impact', 'outcomes']},
-            {'id': 'narrative', 'title': 'Project Narrative', 'questions': ['background', 'approach', 'risks']},
-            {'id': 'budget', 'title': 'Budget', 'questions': ['items', 'totals', 'justification']},
+            {'section_key': 'summary', 'title': 'Executive Summary', 'questions': ['objective', 'impact', 'outcomes']},
+            {'section_key': 'narrative', 'title': 'Project Narrative', 'questions': ['background', 'approach', 'risks']},
+            {'section_key': 'budget', 'title': 'Budget', 'questions': ['items', 'totals', 'justification']},
         ]
         payload = {'schema_version': 'v1', 'source': grant_url or 'text', 'sections': sections, 'model': 'gpt-5'}
         try:
@@ -44,9 +45,8 @@ class Gpt5Provider(BaseProvider):
         )
         draft = f'[gpt-5] Draft for {section_id}:\n' + '\n'.join(f'- {k}: {v}' for k, v in answers.items())
         ctx = summarize_file_refs(budget.file_refs)
-        payload = {'draft': draft + ctx}
-        validate_writer_output(payload)
-        return AIResult(text=payload['draft'], usage_tokens=0, model_id='gpt-5')
+        payload = section_draft(section_id, draft + ctx)
+        return AIResult(text=payload['draft_markdown'], usage_tokens=0, model_id='gpt-5')
 
     def revise(
         self,

@@ -103,6 +103,7 @@ urlpatterns = [
     path("api/ai/revise", ai_views.revise),
     path("api/ai/format", ai_views.format),
     path("api/ai/jobs/<int:job_id>", ai_views.job_status),
+    path("api/ai/runs/<uuid:run_id>", ai_views.run_timeline),
     path("api/ai/metrics/recent", ai_views.metrics_recent),
     path("api/ai/metrics/summary", ai_views.metrics_summary),
     path("api/ai/memory/suggestions", ai_views.memory_suggestions),

@@ -81,7 +81,7 @@ class ProposalSerializer(serializers.ModelSerializer):
                     'draft_content': s.draft_content,
                     'approved_content': s.approved_content,
                     'locked': s.locked,
-                    'inputs': list((s.metadata or {}).get('inputs') or [])[:20],
+                    'questions': list((s.metadata or {}).get('questions') or [])[:20],
                     'answers': dict((s.metadata or {}).get('answers') or {}),
                     'remaining_revision_slots': max(revision_cap - len(getattr(s, 'revisions', []) or []), 0),
                 }

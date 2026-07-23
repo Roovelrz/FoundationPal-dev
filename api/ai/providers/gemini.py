@@ -6,6 +6,7 @@ from ai.validators import (
     validate_writer_output,
     validate_reviser_output,
     validate_formatter_output,
+    section_draft,
 )
 from .util import summarize_file_refs
 from ai.context_budget import apply_context_budget
@@ -19,7 +20,13 @@ class GeminiProvider(BaseProvider):
         payload: dict[str, Any] = {
             'schema_version': 'v1',
             'source': grant_url or 'text',
-            'sections': [],  # Gemini stub returns no sections here (alternate planner)
+            'sections': [
+                {
+                    'section_key': 'summary',
+                    'title': 'Executive Summary',
+                    'questions': ['What is the proposed objective?'],
+                }
+            ],
             'model': 'gemini',
         }
         validate_planner_output(payload)
@@ -42,9 +49,8 @@ class GeminiProvider(BaseProvider):
         content = '\n'.join(f'- {k}: {v}' for k, v in answers.items())
         det = ' deterministic=1' if deterministic else ''
         ctx = summarize_file_refs(budget.file_refs)
-        payload = {'draft': f'[gemini:formatted{det}] {section_id}\n{content}' + ctx}
-        validate_writer_output(payload)
-        return AIResult(text=payload['draft'], usage_tokens=0, model_id='gemini')
+        payload = section_draft(section_id, f'[gemini:formatted{det}] {section_id}\n{content}' + ctx)
+        return AIResult(text=payload['draft_markdown'], usage_tokens=0, model_id='gemini')
 
     def revise(
         self,

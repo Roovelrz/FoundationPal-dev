@@ -13,6 +13,9 @@ from proposals.finalization import SectionsNotApproved, get_export_markdown
 from .models import ExportJob
 from .utils import render_pdf_from_text, render_docx_from_markdown
 from .tasks import perform_export
+from ai.models import AIMetric
+from ai.workflow import resolve_run_id
+import time
 
 
 def _accessible_proposals(request):
@@ -39,18 +42,20 @@ def create_export(request):
         proposal = _accessible_proposals(request).get(id=proposal_id)
     except Proposal.DoesNotExist:
         return Response({'error': 'not_found'}, status=status.HTTP_404_NOT_FOUND)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.headers.get('X-Org-ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
 
     try:
         md = get_export_markdown(proposal)
     except SectionsNotApproved:
         return Response({'error': 'sections_not_approved'}, status=status.HTTP_409_CONFLICT)
 
-    job = ExportJob.objects.create(proposal=proposal, format=fmt, status='pending')
+    job = ExportJob.objects.create(proposal=proposal, format=fmt, status='pending', run_id=run_id)
+    started_at = time.monotonic()
     # Async path when enabled and broker configured
     if getattr(settings, 'EXPORTS_ASYNC', False) and getattr(settings, 'CELERY_BROKER_URL', ''):
         try:
             perform_export.delay(job.id)
-            return Response({'id': job.id, 'status': job.status})
+            return Response({'id': job.id, 'status': job.status, 'run_id': str(run_id)})
         except Exception:
             # Fall through to sync if enqueue fails
             pass
@@ -82,13 +87,18 @@ def create_export(request):
     job.url = url
     job.checksum = checksum or ''
     job.save(update_fields=['status', 'url', 'checksum'])
+    AIMetric.objects.create(
+        type='export', model_id='deterministic_export', duration_ms=int((time.monotonic() - started_at) * 1000),
+        success=True, proposal_id=proposal.id, org_id=request.headers.get('X-Org-ID', ''), run_id=run_id,
+        created_by=request.user if getattr(request.user, 'is_authenticated', False) else None,
+    )
     # Increment proposal downloads counter
     try:
         proposal.downloads = (proposal.downloads or 0) + 1
         proposal.save(update_fields=['downloads'])
     except Exception:
         pass
-    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'checksum': job.checksum})
+    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'checksum': job.checksum, 'run_id': str(run_id)})
 
 
 @api_view(['GET'])
