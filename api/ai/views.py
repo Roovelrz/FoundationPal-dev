@@ -4,14 +4,13 @@ from rest_framework.response import Response
 from django.conf import settings
 from .sanitize import sanitize_text, sanitize_url, sanitize_answers, sanitize_file_refs
 import time
-from .models import AIJob, AIMetric, AIJobContext, WorkflowRun
-from .section_materializer import materialize_sections
-from .section_pipeline import apply_revision, get_section, save_write_result
+from .models import AIJob, AIMetric, AIJobContext, WorkflowRun, EvidenceUsage, HumanApprovalTask
+from .section_pipeline import get_section
 from .tasks import run_plan, run_write, run_revise, run_format
 from .provider import get_provider
 from .diff_engine import diff_texts
 from .validators import SchemaError, invalid_output_error, section_draft, validate_role_output
-from .workflow import resolve_run_id
+from .workflow import persist_graph_result, resolve_run_id
 from django.db.models import QuerySet
 from typing import Optional
 from orgs.models import Organization
@@ -20,8 +19,15 @@ from django.utils import timezone
 from .decorators import ai_protected
 from django.db import models
 from app.common.keys import t
-from proposals.models import Proposal
+from proposals.models import Proposal, ProposalSection
 from proposals.finalization import SectionsNotApproved, build_approved_markdown
+from .writer_evidence import parse_writer_result, persist_evidence_usage, render_evidence_context
+from .services import finalize_service, plan_service, revise_service, search_service, write_service
+from .grill import answer as answer_grill, confirm as confirm_grill, get_session, planning_context, serialize as serialize_grill
+from .grill import finish as finish_grill
+from .proposal_graph import run_proposal_graph
+from .hitl import HUMAN_ACTIONS, HUMAN_NODES, resume_human_task, start_human_task
+from django.db import transaction
 import logging
 
 
@@ -245,6 +251,12 @@ def plan(request):
     proposal = _get_accessible_proposal(request, proposal_id)
     if proposal is None:
         return Response({'error': 'proposal_not_found'}, status=404)
+    planning_session = dict((proposal.content or {}).get('grill', {}).get('planning') or {})
+    if planning_session and not planning_session.get('confirmed'):
+        return Response({'error': 'grill_confirmation_required'}, status=409)
+    confirmed_context = planning_context(proposal)
+    if confirmed_context:
+        text_spec = '\n\n[confirmed_grill_answers]\n' + confirmed_context + ('\n\n' + text_spec if text_spec else '')
     run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
     if async_enabled:
@@ -285,8 +297,7 @@ def plan(request):
     created_sections: list[str] = []
     if blueprint:
         try:
-            mat = materialize_sections(proposal_id=proposal.id, blueprint=blueprint)
-            created_sections = [s.key for (s, c) in mat if c]
+            created_sections = plan_service(proposal_id=proposal.id, blueprint=blueprint)
         except Exception as e:  # pragma: no cover
             created_sections = ['error:' + str(e)]
     AIMetric.objects.create(
@@ -307,6 +318,183 @@ def plan(request):
             'run_id': str(run_id),
         }
     )
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def grill(request):
+    proposal_id_raw = request.query_params.get('proposal_id') if request.method == 'GET' else request.data.get('proposal_id')
+    try:
+        proposal_id = int(proposal_id_raw)
+    except (TypeError, ValueError):
+        return Response({'error': 'proposal_id_invalid'}, status=400)
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    data = request.query_params if request.method == 'GET' else request.data
+    mode = data.get('mode', 'planning')
+    if mode not in ('planning', 'revision'):
+        return Response({'error': 'grill_mode_invalid'}, status=400)
+    section_key = sanitize_text(data.get('section_key'), max_len=128) if mode == 'revision' else ''
+    section = None
+    if mode == 'revision':
+        section = get_section(section_key, proposal_id=proposal.id)
+        if section is None:
+            return Response({'error': 'section_not_found'}, status=404)
+    session = get_session(proposal, mode=mode, section_key=section_key)
+    if request.method == 'POST':
+        if data.get('finish'):
+            finish_grill(session)
+        else:
+            raw_answers = data.get('answers') or {}
+            if not isinstance(raw_answers, dict):
+                return Response({'error': 'grill_answers_invalid'}, status=400)
+            answers = {str(key): sanitize_text(value, max_len=1000) for key, value in raw_answers.items()}
+            answer_grill(session, answers, skip=bool(data.get('skip')))
+        if data.get('confirm'):
+            confirm_grill(session)
+        proposal.save(update_fields=['content', 'last_edited'])
+    else:
+        proposal.save(update_fields=['content', 'last_edited'])
+    draft = (section.draft_content or section.approved_content) if section is not None else ''
+    return Response(serialize_grill(session, draft=draft))
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def workflow_run(request):
+    try:
+        proposal_id = int(request.data.get('proposal_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'proposal_id_invalid'}, status=400)
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    section_key = sanitize_text(request.data.get('section_key'), max_len=128)
+    if not section_key:
+        return Response({'error': 'section_key_required'}, status=400)
+    plan = request.data.get('plan') or []
+    if not isinstance(plan, list):
+        return Response({'error': 'plan_invalid'}, status=400)
+    if plan:
+        try:
+            validate_role_output('plan', {'schema_version': 'v1', 'sections': plan})
+        except SchemaError as error:
+            return Response({'error': invalid_output_error(error).as_dict()}, status=400)
+    review_queue = request.data.get('review_queue') or []
+    if not isinstance(review_queue, list) or not all(isinstance(item, dict) for item in review_queue):
+        return Response({'error': 'review_queue_invalid'}, status=400)
+    run_id = resolve_run_id(
+        request.data.get('run_id'),
+        proposal_id=proposal.id,
+        org_id=request.META.get('HTTP_X_ORG_ID', ''),
+    )
+    state = run_proposal_graph({
+        'run_id': str(run_id),
+        'thread_id': sanitize_text(request.data.get('thread_id'), max_len=128) or f'proposal-{proposal.id}',
+        'organization_id': str(proposal.org_id),
+        'proposal_id': proposal.id,
+        'section_key': section_key,
+        'plan': plan,
+        'answers': sanitize_answers(request.data.get('answers') or {}),
+        'evidence_ids': [str(item)[:128] for item in (request.data.get('evidence_ids') or [])[:20]],
+        'draft': sanitize_text(request.data.get('draft'), max_len=20000, neutralize_injection=False),
+        'review': request.data.get('review') if isinstance(request.data.get('review'), dict) else {},
+        'review_queue': review_queue[:5],
+        'max_revisions': max(1, min(int(request.data.get('max_revisions', 2) or 2), 5)),
+        'resume_after_approval': bool(request.data.get('resume_after_approval')),
+    })
+    persist_graph_result(run_id, state)
+    return Response({
+        'run_id': state['run_id'],
+        'status': state['status'],
+        'review': state.get('review') or {},
+        'error': state.get('error') or '',
+        'trace': state['trace'],
+        'final_markdown': state.get('final_markdown') or '',
+    })
+
+
+def _human_task_payload(task):
+    return {
+        'id': task.id,
+        'thread_id': task.thread_id,
+        'node': task.node,
+        'status': task.status,
+        'input': task.input_json,
+        'model_output': task.model_output_json,
+        'decision': task.decision_json,
+    }
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def human_tasks(request):
+    if request.method == 'GET':
+        try:
+            proposal_id = int(request.query_params.get('proposal_id'))
+        except (TypeError, ValueError):
+            return Response({'error': 'proposal_id_invalid'}, status=400)
+        if _get_accessible_proposal(request, proposal_id) is None:
+            return Response({'error': 'proposal_not_found'}, status=404)
+        tasks = HumanApprovalTask.objects.filter(proposal_id=proposal_id, status='pending').order_by('created_at')
+        return Response({'tasks': [_human_task_payload(task) for task in tasks]})
+    try:
+        proposal_id = int(request.data.get('proposal_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'proposal_id_invalid'}, status=400)
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    node = sanitize_text(request.data.get('node'), max_len=64)
+    if node not in HUMAN_NODES:
+        return Response({'error': 'human_node_invalid'}, status=400)
+    run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=str(proposal.org_id))
+    thread_id = sanitize_text(request.data.get('thread_id'), max_len=128) or f'{run_id}:{node}'
+    task, created = HumanApprovalTask.objects.get_or_create(
+        thread_id=thread_id,
+        defaults={
+            'workflow_run': WorkflowRun.objects.get(run_id=run_id),
+            'proposal_id': proposal.id,
+            'node': node,
+            'input_json': request.data.get('input') if isinstance(request.data.get('input'), dict) else {},
+            'model_output_json': request.data.get('model_output') if isinstance(request.data.get('model_output'), dict) else {},
+        },
+    )
+    if not created:
+        return Response(_human_task_payload(task))
+    start_human_task({
+        'thread_id': thread_id,
+        'human_node': node,
+        'human_input': task.input_json,
+        'model_output': task.model_output_json,
+    })
+    return Response(_human_task_payload(task), status=201)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def human_task_decision(request, task_id: int):
+    with transaction.atomic():
+        task = HumanApprovalTask.objects.select_for_update().filter(id=task_id).first()
+        if task is None or _get_accessible_proposal(request, task.proposal_id) is None:
+            return Response({'error': 'human_task_not_found'}, status=404)
+        if task.status != 'pending':
+            return Response({'error': 'human_task_already_decided'}, status=409)
+        thread_id = sanitize_text(request.data.get('thread_id'), max_len=128)
+        if thread_id != task.thread_id:
+            return Response({'error': 'thread_id_mismatch'}, status=400)
+        action = sanitize_text(request.data.get('action'), max_len=16)
+        if action not in HUMAN_ACTIONS:
+            return Response({'error': 'human_action_invalid'}, status=400)
+        edited_input = request.data.get('edited_input') if isinstance(request.data.get('edited_input'), dict) else {}
+        result = resume_human_task(task.thread_id, {'action': action, 'edited_input': edited_input})
+        task.status = result['status']
+        task.decision_json = {'action': action, 'edited_input': edited_input}
+        task.decided_by = request.user if request.user.is_authenticated else None
+        task.decided_at = timezone.now()
+        task.save(update_fields=['status', 'decision_json', 'decided_by', 'decided_at'])
+    return Response(_human_task_payload(task))
 
 
 @api_view(['POST'])
@@ -387,17 +575,45 @@ def write(request):
             deterministic = deterministic_default
     else:
         deterministic = deterministic_default
+    if section is not None:
+        review_evidence = list(EvidenceUsage.objects.filter(proposal_section=section, role='writer', used_in_prompt=True).order_by('-created_at', 'rank')[:5])
+        if review_evidence:
+            change_request += '\n\n[review_evidence]\n' + '\n'.join(
+                f'[{item.chunk_id}] {item.document_name_snapshot} p.{item.page_start_snapshot}-{item.page_end_snapshot}: {item.snapshot_text}'
+                for item in review_evidence
+            )
     try:
-        res = provider.write(section_id=section_id, answers=answers, file_refs=file_refs or None, deterministic=deterministic)  # type: ignore[arg-type]
+        retrieval_query, candidates = search_service(
+            section_key=section_id,
+            answers=answers,
+            organization_id=request.META.get('HTTP_X_ORG_ID', ''),
+            proposal_id=proposal_id,
+        )
+        res = provider.write(
+            section_id=section_id,
+            answers=answers,
+            file_refs=file_refs or None,
+            deterministic=deterministic,
+            evidence_context=render_evidence_context(candidates),
+        )  # type: ignore[arg-type]
     except Exception:
         logger.exception('AI provider.write failed')
         return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
     try:
-        draft = section_draft(section_id, res.text)
+        draft = parse_writer_result(section_id, res.text, [item['chunk_id'] for item in candidates])
     except SchemaError as error:
         return Response({'error': invalid_output_error(error).as_dict()}, status=502)
     if section is not None:
-        save_write_result(section, draft['draft_markdown'], answers)
+        write_service(section=section, draft_markdown=draft['draft_markdown'], answers=answers)
+        persist_evidence_usage(
+            section=section,
+            job=None,
+            run=WorkflowRun.objects.filter(run_id=run_id).first(),
+            role='writer',
+            query=retrieval_query,
+            candidates=candidates,
+            cited_chunk_ids=draft['evidence_ids'],
+        )
     # (single-write marker already set at entry)
     dt_ms = int((time.time() - t0) * 1000)
     from .models import AIMetric
@@ -425,7 +641,40 @@ def write(request):
         success=True,
         run_id=run_id,
     )
-    return Response({'draft_text': draft['draft_markdown'], 'assets': [], 'tokens_used': res.usage_tokens, 'run_id': str(run_id)})
+    evidence = [{
+        'chunk_id': item['chunk_id'],
+        'rank': item['final_rank'],
+        'document_name': item['document_name'],
+        'page_start': item['page_start'],
+        'page_end': item['page_end'],
+        'section_title': item['section_title'],
+        'text': item['text'],
+        'cited_by_model': item['chunk_id'] in draft['evidence_ids'],
+    } for item in candidates]
+    return Response({'draft_text': draft['draft_markdown'], 'assets': [], 'tokens_used': res.usage_tokens, 'evidence_ids': draft['evidence_ids'], 'missing_evidence': draft['missing_evidence'], 'evidence': evidence, 'run_id': str(run_id)})
+
+
+@api_view(['GET'])
+@permission_classes([DebugOrAuthPermission])
+def section_evidence(request, section_id: int):
+    section = ProposalSection.objects.select_related('proposal').filter(id=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    usages = EvidenceUsage.objects.filter(proposal_section=section, role='writer').order_by('-created_at', 'rank')
+    return Response({
+        'section_id': section.id,
+        'evidence': [{
+            'chunk_id': usage.chunk_id,
+            'rank': usage.rank,
+            'used_in_prompt': usage.used_in_prompt,
+            'cited_by_model': usage.cited_by_model,
+            'document_name': usage.document_name_snapshot,
+            'page_start': usage.page_start_snapshot,
+            'page_end': usage.page_end_snapshot,
+            'section_title': usage.section_title_snapshot,
+            'text': usage.snapshot_text,
+        } for usage in usages],
+    })
 
 
 @api_view(['POST'])
@@ -551,13 +800,12 @@ def revise(request):
         return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
     diff_res = diff_texts(base_text, res.text)
     if section is not None:
-        apply_revision(section, res.text, promote=False)
-        section.append_revision(
+        revise_service(
+            section=section,
+            revised_text=res.text,
             user_id=getattr(request.user, 'id', None),
             from_text=base_text,
-            to_text=res.text,
             diff=diff_res,
-            change_ratio=diff_res.get('change_ratio'),
         )
     dt_ms = int((time.time() - t0) * 1000)
     from .models import AIMetric
@@ -656,8 +904,7 @@ def format(request):
     except Exception:
         logger.exception('AI provider.format_final failed')
         return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
-    proposal.final_markdown = res.text
-    proposal.save(update_fields=['final_markdown', 'last_edited'])
+    finalize_service(proposal=proposal, final_markdown=res.text)
     dt_ms = int((time.time() - t0) * 1000)
     from .models import AIMetric
 
@@ -702,10 +949,60 @@ def run_timeline(request, run_id):
         run = WorkflowRun.objects.get(run_id=run_id)
     except (WorkflowRun.DoesNotExist, ValueError):
         return Response({'error': 'run_not_found'}, status=404)
+    if run.org_id:
+        user = getattr(request, 'user', None)
+        has_access = getattr(user, 'is_authenticated', False) and Organization.objects.filter(
+            id=run.org_id,
+        ).filter(
+            models.Q(admin=user) | models.Q(memberships__user=user),
+        ).exists()
+        if not has_access:
+            return Response({'error': 'run_not_found'}, status=404)
     jobs = list(AIJob.objects.filter(run_id=run.run_id).order_by('created_at').values('type', 'status', 'created_at', 'updated_at', 'error_text'))
-    metrics = list(AIMetric.objects.filter(run_id=run.run_id).order_by('created_at').values('type', 'success', 'duration_ms', 'error_text', 'model_id', 'created_at'))
+    metrics = list(AIMetric.objects.filter(run_id=run.run_id).order_by('created_at').values('type', 'success', 'duration_ms', 'tokens_used', 'error_text', 'model_id', 'created_at'))
     contexts = list(AIJobContext.objects.filter(run_id=run.run_id).order_by('created_at').values('prompt_version', 'template_sha256', 'created_at'))
-    return Response({'run_id': str(run.run_id), 'proposal_id': run.proposal_id, 'jobs': jobs, 'metrics': metrics, 'contexts': contexts})
+    evidence = list(run.evidence_usages.order_by('created_at').values(
+        'role', 'rank', 'similarity_score', 'used_in_prompt', 'cited_by_model',
+        'evidence_alias', 'prompt_version', 'created_at',
+    ))
+    tools = list(run.tool_invocations.order_by('created_at').values(
+        'tool_name', 'caller_role', 'status', 'error_code', 'created_at',
+    ))
+    human_tasks = list(run.human_tasks.order_by('created_at').values(
+        'node', 'status', 'created_at', 'decided_at',
+    ))
+    return Response({
+        'run_id': str(run.run_id),
+        'proposal_id': run.proposal_id,
+        'schema_version': run.schema_version,
+        'provider': run.provider,
+        'architecture': run.architecture,
+        'status': run.status,
+        'trace': run.trace_json,
+        'handoffs': run.handoffs_json,
+        'revision_count': run.revision_count,
+        'fallback_mode': run.fallback_mode,
+        'resumed_from_checkpoint': run.resumed_from_checkpoint,
+        'completed_at': run.completed_at,
+        'jobs': jobs,
+        'metrics': metrics,
+        'contexts': contexts,
+        'evidence': evidence,
+        'tools': tools,
+        'human_tasks': human_tasks,
+        'summary': {
+            'job_count': len(jobs),
+            'metric_count': len(metrics),
+            'token_usage': sum(item['tokens_used'] for item in metrics),
+            'evidence_count': len(evidence),
+            'evidence_used_in_prompt_count': sum(item['used_in_prompt'] for item in evidence),
+            'evidence_cited_by_model_count': sum(item['cited_by_model'] for item in evidence),
+            'tool_call_count': len(tools),
+            'tool_error_count': sum(item['status'] != 'done' for item in tools),
+            'human_task_count': len(human_tasks),
+            'pending_human_task_count': sum(item['status'] == 'pending' for item in human_tasks),
+        },
+    })
 
 
 @api_view(['GET'])  # lightweight, DEBUG-only metrics peek

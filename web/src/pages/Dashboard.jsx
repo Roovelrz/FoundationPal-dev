@@ -62,6 +62,152 @@ function GenerationFeedback({ action, status }) {
   return null
 }
 
+function EvidencePanel({ evidence }) {
+  if (!evidence?.length) return null
+  return (
+    <section className="fund-evidence-panel" aria-label="章节证据">
+      <h4>本章节检索证据</h4>
+      {evidence.map(item => (
+        <details key={`${item.chunk_id}-${item.rank}`}>
+          <summary>{item.cited_by_model ? '已引用' : '已注入'} 路 {item.document_name} 路 第 {item.page_start}-{item.page_end} 页</summary>
+          <p>{item.section_title || '未识别章节标题'}</p>
+          <p>{item.text}</p>
+        </details>
+      ))}
+    </section>
+  )
+}
+
+const grillFieldLabels = {
+  funding_category: '申报类别',
+  research_direction: '研究方向',
+  core_problem: '核心问题',
+  research_foundation: '已有研究基础',
+  available_equipment: '可使用设备',
+  project_duration: '项目周期',
+  budget_range: '预算范围',
+  expected_outcomes: '预期成果',
+  prohibited_content: '禁止生成的内容',
+  change_goal: '修改目标',
+  preserve: '必须保留的内容',
+  constraints: '修改限制',
+}
+
+function GrillPanel({ mode, proposal, section, token, orgId, onImport }) {
+  const [session, setSession] = useState(null)
+  const [answers, setAnswers] = useState({})
+  const [loading, setLoading] = useState(false)
+
+  const load = async () => {
+    if (!proposal?.id || (mode === 'revision' && !section?.key)) return
+    const query = new URLSearchParams({ proposal_id: proposal.id, mode })
+    if (mode === 'revision') query.set('section_key', section.key)
+    try {
+      const result = await api(`/ai/grill?${query.toString()}`, { token, orgId: orgId || undefined })
+      setSession(result)
+      setAnswers(result.collected_answers || {})
+    } catch {}
+  }
+
+  useEffect(() => { load() }, [mode, proposal?.id, section?.key, token, orgId])
+
+  const submit = async ({ skip = false, finish = false, confirm = false } = {}) => {
+    if (!proposal?.id) return
+    setLoading(true)
+    try {
+      const result = await api('/ai/grill', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          mode,
+          section_key: mode === 'revision' ? section?.key : undefined,
+          answers,
+          skip,
+          finish,
+          confirm,
+        },
+      })
+      setSession(result)
+      setAnswers(result.collected_answers || {})
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const question = session?.question
+  return (
+    <div className="fund-grill-panel" data-testid={`${mode}-grill`} style={{ margin: '12px 0', padding: 12, border: '1px solid #cbd5e1', borderRadius: 8, background: '#f8fafc' }}>
+      <strong>{mode === 'planning' ? '规划澄清' : '本章节修改澄清'}</strong>
+      {mode === 'revision' && <div style={{ marginTop: 4 }}>当前草稿已载入，仅生成修改建议。</div>}
+      {!session && <div style={{ marginTop: 6 }}>正在载入澄清状态</div>}
+      {question && (
+        <div style={{ marginTop: 8 }}>
+          <div>{question.index} / {session.max_questions}　{question.prompt}</div>
+          {question.fields.map(field => (
+            <label key={field} style={{ display: 'block', marginTop: 8 }}>
+              {grillFieldLabels[field] || field}
+              <textarea
+                style={{ display: 'block', width: '100%', marginTop: 4 }}
+                rows={2}
+                value={answers[field] || ''}
+                onChange={(event) => setAnswers(previous => ({ ...previous, [field]: event.target.value }))}
+              />
+            </label>
+          ))}
+          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+            <button onClick={() => submit()} disabled={loading}>保存并继续</button>
+            <button onClick={() => submit({ skip: true })} disabled={loading}>跳过本题</button>
+            <button onClick={() => submit({ finish: true })} disabled={loading}>结束澄清</button>
+          </div>
+        </div>
+      )}
+      {session?.completion_reason && (
+        <div style={{ marginTop: 8 }}>
+          <div>澄清结束：{session.completion_reason}</div>
+          {mode === 'planning' && !session.confirmed && <button onClick={() => submit({ confirm: true })} disabled={loading}>确认并用于章节规划</button>}
+          {mode === 'revision' && session.suggestion && (
+            <>
+              <textarea aria-label="修改建议" style={{ width: '100%', marginTop: 8 }} readOnly rows={4} value={session.suggestion} />
+              <button onClick={() => onImport?.(session.suggestion)} disabled={loading}>导入到整体修订要求</button>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function HumanTaskPanel({ tasks, onDecision, loading }) {
+  const [edits, setEdits] = useState({})
+  if (!tasks.length) return null
+  return (
+    <section style={{ margin: '12px 0', padding: 12, border: '1px solid #f59e0b', borderRadius: 8, background: '#fffbeb' }}>
+      <h4 style={{ marginTop: 0 }}>待人工确认</h4>
+      {tasks.map(task => (
+        <details key={task.id} open>
+          <summary>{task.node}</summary>
+          <div>中断前输入：{JSON.stringify(task.input)}</div>
+          <div>模型输出：{JSON.stringify(task.model_output)}</div>
+          <textarea
+            style={{ width: '100%', marginTop: 8 }}
+            rows={2}
+            placeholder="编辑后的确认内容，可选"
+            value={edits[task.id] || ''}
+            onChange={(event) => setEdits(previous => ({ ...previous, [task.id]: event.target.value }))}
+          />
+          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+            <button onClick={() => onDecision(task, 'approve')} disabled={loading}>批准</button>
+            <button onClick={() => onDecision(task, 'edit', { instruction: edits[task.id] || '' })} disabled={loading}>编辑后校验</button>
+            <button onClick={() => onDecision(task, 'reject')} disabled={loading}>拒绝</button>
+          </div>
+        </details>
+      ))}
+    </section>
+  )
+}
+
 function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   const [plan, setPlan] = useState(() => planFromProposal(proposal))
   const [activeStage, setActiveStage] = useState(1)
@@ -87,6 +233,8 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   const [proposalTitle, setProposalTitle] = useState(proposal?.content?.meta?.title || '')
   const [me, setMe] = useState(null)
   const [generationStatus, setGenerationStatus] = useState({ action: '', state: '' })
+  const [evidenceBySection, setEvidenceBySection] = useState({})
+  const [humanTasks, setHumanTasks] = useState([])
 
   const sections = plan?.sections || []
   const current = sections[sectionIndex]
@@ -120,6 +268,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     section => persistedByKey[section.id]?.state === 'approved'
   ).length
   const allApproved = sections.length > 0 && approvedSectionCount === sections.length
+  const currentEvidence = current ? (evidenceBySection[current.id] || []) : []
 
   useEffect(() => {
     const restored = planFromProposal(proposal)
@@ -145,6 +294,13 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   }, [proposal?.id, proposal?.sections])
 
   useEffect(() => {
+    if (!currentSection?.id || !current) return
+    api(`/ai/sections/${currentSection.id}/evidence`, { token, orgId: orgId || undefined })
+      .then(result => setEvidenceBySection(previous => ({ ...previous, [current.id]: result.evidence || [] })))
+      .catch(() => {})
+  }, [current?.id, currentSection?.id, orgId, token])
+
+  useEffect(() => {
     // Initialize note from proposal.content.meta.note
     const n = proposal?.content?.meta?.note
     setNote(typeof n === 'string' ? n : '')
@@ -154,6 +310,16 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   useEffect(() => {
     setFormattedText(proposal?.final_markdown || '')
   }, [proposal?.id, proposal?.final_markdown])
+
+  const refreshHumanTasks = async () => {
+    if (!proposal?.id) return
+    try {
+      const result = await api(`/ai/human-tasks?proposal_id=${proposal.id}`, { token, orgId: orgId || undefined })
+      setHumanTasks(result.tasks || [])
+    } catch {}
+  }
+
+  useEffect(() => { refreshHumanTasks() }, [proposal?.id, token, orgId])
 
   useEffect(() => {
     // Fetch current user (for display only)
@@ -238,6 +404,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
         },
       })
       setDraft(res?.draft_text || '')
+      if (res?.evidence) setEvidenceBySection(previous => ({ ...previous, [current.id]: res.evidence }))
       await onSaved?.()
       setActiveStage(3)
       setGenerationStatus({ action: 'write', state: 'done' })
@@ -373,6 +540,24 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     } finally { setLoading(false) }
   }
 
+  const decideHumanTask = async (task, action, editedInput = {}) => {
+    setLoading(true)
+    setError('')
+    try {
+      await api(`/ai/human-tasks/${task.id}/decision`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { thread_id: task.thread_id, action, edited_input: editedInput },
+      })
+      await refreshHumanTasks()
+    } catch {
+      setError('人工决策提交失败')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="fund-author-panel" style={{ marginTop: 16, padding: 20, border: '1px solid #d8dee9', borderRadius: 12, background: '#f7f9fc' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
@@ -417,6 +602,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           </button>
         ))}
       </div>
+      <HumanTaskPanel tasks={humanTasks} onDecision={decideHumanTask} loading={loading} />
       {generationStatus.state === 'done' && (
         (generationStatus.action === 'plan' && activeStage !== 1)
         || (generationStatus.action === 'write' && activeStage !== 2)
@@ -433,6 +619,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           <h4>规划申请书章节</h4>
           <input style={{ width: '100%', marginBottom: 8 }} value={grantUrl} onChange={(e) => setGrantUrl(e.target.value)} placeholder="基金指南网址，可选" />
           <textarea style={{ width: '100%' }} rows={5} value={textSpec} onChange={(e) => setTextSpec(e.target.value)} placeholder="粘贴基金指南、申报要求或研究方向说明" />
+          <GrillPanel mode="planning" proposal={proposal} token={token} orgId={orgId} />
           <div className="fund-generation-action">
             <button onClick={startPlan} disabled={loading}>生成章节规划</button>
             <GenerationFeedback action="plan" status={generationStatus} />
@@ -510,6 +697,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
               {currentSection?.locked && <span> 当前章节已审批锁定</span>}
               <h4>当前草稿</h4>
               <MarkdownPreview value={draft || prevText} testId="draft-text" />
+              <EvidencePanel evidence={currentEvidence} />
             </div>
           )}
 
@@ -517,6 +705,17 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
             <div>
               <h4>人工审核修改要求</h4>
               <textarea style={{ width: '100%' }} rows={3} placeholder="请输入需要修改、补充或删减的具体要求" value={changeReq} onChange={(e) => setChangeReq(e.target.value)} />
+              <details style={{ marginTop: 8 }}>
+                <summary>针对本章节澄清修改目标</summary>
+                <GrillPanel
+                  mode="revision"
+                  proposal={proposal}
+                  section={current}
+                  token={token}
+                  orgId={orgId}
+                  onImport={(suggestion) => setChangeReq(suggestion)}
+                />
+              </details>
               <div style={{ display: 'flex', gap: 8, margin: '8px 0 16px' }}>
                 <button onClick={applyChanges} disabled={loading || currentSection?.locked || !(draft || prevText)}>按要求修订</button>
                 <GenerationFeedback action="revise" status={generationStatus} />

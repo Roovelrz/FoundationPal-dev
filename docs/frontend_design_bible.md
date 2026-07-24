@@ -100,7 +100,7 @@ Auth & Registration
 App Shell
 
 - UI Experiments banner (when enabled): text "UI Experiments enabled…"
-- Header: ``<h1>Granterstellar</h1>``
+- Header: ``<h1>FoundationPal</h1>``
 - Buttons: ``<button>Logout</button>``, ``<button>Billing</button>``
 - Org tip: "Tip: Select an organization…" + ``<select>`` with org options + buttons
 - Global invite banner: container ``div[data-testid="invite-banner"][aria-label="org-invite"]`` with accept/dismiss buttons
@@ -113,7 +113,7 @@ Errors & Misc
 Static pages (landing)
 
 - `index.html`, `privacy.html`, `confirmed.html` share classes:
-  - `.container`, `.nav`, `.logo`, `.logo-pill[aria-label="Granterstellar"]`, `.brand`, `.caret`, `.cta`, `.pad`, `.section`, `.copy`, `.sub`, `.foot`
+  - `.container`, `.nav`, `.logo`, `.logo-pill[aria-label="FoundationPal"]`, `.brand`, `.caret`, `.cta`, `.pad`, `.section`, `.copy`, `.sub`, `.foot`
 - Footer year: `#year` in `privacy.html`
 
 Django error templates (api/templates)

@@ -21,8 +21,9 @@ class CompositeProvider(BaseProvider):
         answers: Dict[str, str],
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        evidence_context: str | None = None,
     ) -> AIResult:
-        return self.gpt.write(section_id=section_id, answers=answers, file_refs=file_refs, deterministic=deterministic)
+        return self.gpt.write(section_id=section_id, answers=answers, file_refs=file_refs, deterministic=deterministic, evidence_context=evidence_context)
 
     def revise(
         self,

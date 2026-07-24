@@ -1,4 +1,4 @@
-title = "Granterstellar Secret Scan Rules"
+title = "FoundationPal Secret Scan Rules"
 
 [extend]
 # You can extend built-in gitleaks rules if needed.

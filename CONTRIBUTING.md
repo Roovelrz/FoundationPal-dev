@@ -1,4 +1,4 @@
-# Contributing to Granterstellar
+# Contributing to FoundationPal
 
 Welcome! This project favors concise, accurate docs and tests. Start here:
 

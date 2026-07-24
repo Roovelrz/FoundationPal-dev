@@ -5,9 +5,9 @@ PURPOSE: ['Provide step-by-step deployment instructions', 'Ensure correct enviro
 PRIORITY: 'CRITICAL'
 [[/AI_CONFIG]]
 
-# Granterstellar — Deployment Guide (Coolify + Traefik)
+# FoundationPal — Deployment Guide (Coolify + Traefik)
 
-This guide tells you exactly what to click and what to paste to deploy Granterstellar using Coolify (with Traefik). No Linux or Docker knowledge required.
+This guide tells you exactly what to click and what to paste to deploy FoundationPal using Coolify (with Traefik). No Linux or Docker knowledge required.
 
 What you’ll get
 
@@ -243,14 +243,14 @@ If AI_PROVIDER is set but corresponding API key missing, requests will fail; gat
 Step 1 — Create PostgreSQL in Coolify
 
 1) New Resource → Application → pick a PostgreSQL 16 template.
-2) Name it “granterstellar-postgres”.
+2) Name it “foundationpal-postgres”.
 3) Set database name, username, password. Click Deploy.
 4) Copy the internal connection URL it shows. You will paste it as DATABASE_URL later.
 
 Step 2 — Create Redis in Coolify (optional but recommended)
 
 1) New Resource → Application → pick Redis 7.
-2) Name it “granterstellar-redis”.
+2) Name it “foundationpal-redis”.
 3) Deploy and copy the internal Redis URL (e.g., redis://redis:6379/0). You will paste it as REDIS_URL later.
 
 Step 3 — Deploy the App (API + SPA)

@@ -157,8 +157,21 @@ def reviewer_or_human_review(data: dict[str, Any]) -> dict[str, Any]:
 def validate_reviser_output(data: dict[str, Any]) -> dict[str, Any]:
     _require(data, 'revised', str)
     diff = _require(data, 'diff', dict)
-    if 'blocks' not in diff or not isinstance(diff['blocks'], list):
+    if 'blocks' not in diff:
+        if isinstance(diff.get('added'), list) and isinstance(diff.get('removed'), list):
+            return data
         raise SchemaError('diff must contain blocks list')
+    if not isinstance(diff['blocks'], list):
+        raise SchemaError('diff must contain blocks list')
+    for block in diff['blocks']:
+        if not isinstance(block, dict):
+            raise SchemaError('diff block must be object')
+        _require(block, 'type', str)
+        _require(block, 'before', str, allow_empty=True)
+        _require(block, 'after', str, allow_empty=True)
+        similarity = _require(block, 'similarity', (int, float))
+        if not 0 <= similarity <= 1:
+            raise SchemaError('diff block similarity must be between 0 and 1')
     return data
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Granterstellar — Media (uploads) backup helper
+# FoundationPal — Media (uploads) backup helper
 # Usage:
 #   bash scripts/media_backup.sh [SOURCE_DIR] [DEST_DIR]
 # Defaults:

@@ -19,7 +19,7 @@ export const KEYS = {
   'ui.account.labels.last_name': "Last name",
   'ui.account.labels.username': "Username",
   'ui.account.status.saved': "Saved",
-  'ui.auth.app_name': "Granterstellar",
+  'ui.auth.app_name': "FoundationPal",
   'ui.auth.choose_plan': "Choose a plan",
   'ui.auth.confirmation_stub': "Confirmation email sent to your address (stub). Name: {name}",
   'ui.auth.continue_button': "Continue",

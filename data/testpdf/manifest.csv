@@ -1,0 +1,11 @@
+﻿category,encrypted,expected,filename,fitz_open,fitz_page_count,native_text_chars_first_10_pages,notes,pypdf_error,pypdf_open,sha256,size_bytes,size_mb
+normal-small,False,accept,01_small_text_valid.pdf,True,1,254,Single-page native text baseline.,,True,88711687df7b608d7d2ea5a01fc6adf449bd15e00264efb9c18f4f5699fa4a33,1822,0.002
+normal-multipage,False,accept,02_multi_page_valid.pdf,True,12,15954,12 pages of native text.,,True,c2f1f40b2a71bedb5a45e4eb6e0f40bdf30b08e951d91378b0f3969ff087ec02,10596,0.01
+unicode-chinese,False,accept,03_chinese_unicode_valid.pdf,True,2,677,Chinese text and Unicode extraction.,,True,e10bcd2513892d0203ae67e30e28a628c068ef7749034f4537958ee8b0ba9484,3859,0.004
+table-form,False,accept,04_table_and_form_valid.pdf,True,2,1116,"Tables, checklist glyphs, structured layout.",,True,975b4cc44f692098066d1170b0d39932243f3e61a1ac387d61fa210899bdf86b,3052,0.003
+scanned,False,accept-or-ocr-required,05_scanned_image_only.pdf,True,2,0,Two raster pages with no native text layer.,,True,016386dc5e7565a8b8c1a751286bee3008fc79bbc205ad65be29c48fd03025fb,511748,0.488
+mixed,False,accept,06_mixed_text_and_scan.pdf,True,3,1292,"Native text, raster page, then native text.",,True,8ddb514a5719eb53dc8724f11844bdd7301acb1d09a5a66b776e3a1bf71291e7,413636,0.394
+encrypted,True,reject-with-structured-error-unless-password-supported,07_encrypted_password_mcp-test.pdf,True,1,,User password is mcp-test.,,True,073ee6b9081a96c6b62dddccbb08f56abaa504b49a10ebb7e2447739c531520c,1673,0.002
+corrupt,False,reject-with-structured-error,08_corrupt_truncated.pdf,True,1,0,Incomplete content stream and missing xref/trailer/EOF.,PdfReadError: EOF marker not found,False,2876a108e36caf841c29682f4688103310165833b39e0c09c0297224113ac500,261,0.0
+oversized,False,reject-if-over-size-limit,09_oversized_valid.pdf,True,2,50,Valid PDF containing two high-entropy images.,,True,f3bde2b0fdaad5c9ae664c3808dfc66b4edf2f1d84555fcd6a4b7efe8384a0a0,92426368,88.145
+many-pages,False,reject-or-limit-if-page-cap-enabled,10_many_pages_300.pdf,True,300,23081,300-page valid text PDF.,,True,44807a6cdfea9114a30d7f174bffd6458835413d8fd150148fc241ed4690b216,239004,0.228

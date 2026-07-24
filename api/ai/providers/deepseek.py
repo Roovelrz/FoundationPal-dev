@@ -11,6 +11,7 @@ from ai.validators import (
 from .util import summarize_file_refs
 from ai.context_budget import apply_context_budget
 from ai.diff_engine import diff_texts
+from ai.synthetic_eval import SyntheticEvalRequest
 
 NSFC_WRITER_SYSTEM = """你是一位NSFC基金申请书撰写专家，有多年成功申请经验。请撰写专业严谨的申请书内容。
 
@@ -52,6 +53,7 @@ class DeepSeekProvider(BaseProvider):
         self.base_url = os.getenv("LLM_BASE_URL", "https://api.deepseek.com")
         self.model = os.getenv("LLM_MODEL", "deepseek-chat")
         self.client = OpenAI(api_key=api_key, base_url=self.base_url)
+        self.last_usage = {'prompt_tokens': 0, 'completion_tokens': 0, 'cached_tokens': 0, 'total_tokens': 0}
 
     def _call(self, system_prompt: str, user_prompt: str, max_tokens: int = 4096) -> str:
         resp = self.client.chat.completions.create(
@@ -59,7 +61,43 @@ class DeepSeekProvider(BaseProvider):
             messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
             max_tokens=max_tokens, temperature=0.3,
         )
+        usage = resp.usage
+        details = getattr(usage, 'prompt_tokens_details', None)
+        self.last_usage = {
+            'prompt_tokens': getattr(usage, 'prompt_tokens', 0) or 0,
+            'completion_tokens': getattr(usage, 'completion_tokens', 0) or 0,
+            'cached_tokens': getattr(details, 'cached_tokens', 0) or 0,
+            'total_tokens': getattr(usage, 'total_tokens', 0) or 0,
+        }
         return resp.choices[0].message.content or ""
+
+    def generate_synthetic_eval_case(self, request: SyntheticEvalRequest) -> str:
+        system = (
+            '你是国家自然科学基金申请人评测集生成器。只根据给定证据生成一个可验证问题。'
+            '输出单个 JSON 对象，不要 Markdown。'
+            '字段必须为 usable、query、reference_answer、query_type。'
+            '问题不得复制证据原句，答案必须简洁且只能由证据支持。'
+            '必须保留证据中的年份、金额、期限、资格和否定条件。'
+            '若证据语义不完整或无法独立回答，返回 usable 为 false。'
+        )
+        user = (
+            f'资料类型：{request.source_type}\n'
+            f'指定问题类型：{request.query_type}\n'
+            f'证据：\n{request.evidence}'
+        )
+        return self._call(system, user, max_tokens=600)
+
+    def judge_rag_context(self, *, query: str, reference_answer: str, candidates: list[dict]) -> str:
+        context = '\n\n'.join(
+            f'[chunk_id={item["chunk_id"]}]\n{item["text"]}' for item in candidates[:5]
+        )
+        system = (
+            '你是 RAG 检索评测裁判。只依据给定上下文判断其能否完整支持参考答案。'
+            '输出单个 JSON 对象，字段为 answerable_from_context、supporting_chunk_ids、coverage、missing_information、irrelevant_chunk_ids。'
+            'coverage 只能是 complete、partial 或 none。'
+        )
+        user = f'问题：{query}\n参考答案：{reference_answer}\n上下文：\n{context}'
+        return self._call(system, user, max_tokens=500)
 
     def plan(self, *, grant_url: str | None, text_spec: str | None) -> dict:
         source = grant_url or text_spec or "N/A"
@@ -99,13 +137,22 @@ class DeepSeekProvider(BaseProvider):
         return payload
 
     def write(self, *, section_id: str, answers: dict[str, str],
-              file_refs: list[dict[str, Any]] | None = None, deterministic: bool = False) -> AIResult:
+              file_refs: list[dict[str, Any]] | None = None, deterministic: bool = False,
+              evidence_context: str | None = None) -> AIResult:
         budget = apply_context_budget(retrieval=[], memory=[], file_refs=file_refs or [], model_max_tokens=None)
         ctx = summarize_file_refs(budget.file_refs)
         user = f"章节: {section_id}\n\n用户回答:\n" + "\n".join(f"Q: {k}\nA: {v}" for k, v in answers.items())
         if ctx:
             user += f"\n\n参考资料:\n{ctx}"
-        draft = self._call(NSFC_WRITER_SYSTEM, user, max_tokens=8192)
+        system = NSFC_WRITER_SYSTEM
+        if evidence_context is not None:
+            system += (
+                '\n\n证据约束：只能依据 evidence_context 陈述事实。'
+                '输出单个 JSON 对象，字段为 schema_version、section_key、draft_markdown、evidence_ids、warnings、missing_evidence。'
+                'evidence_ids 必须是实际使用的整数 evidence_id；无证据时使用空列表并说明 missing_evidence。'
+            )
+            user += f"\n\nevidence_context:\n{evidence_context}"
+        draft = self._call(system, user, max_tokens=8192)
         return AIResult(text=draft, usage_tokens=len(draft.split()), model_id=self.model)
 
     def revise(self, *, base_text: str, change_request: str,

@@ -1,233 +1,156 @@
-"""Ingestion & chunking pipeline (Phase 2 scaffolding).
-
-NOTE: Lightweight implementation – HTML cleaning is now performed via a
-stateful HTMLParser that removes script/style/noscript and dangerous tags
-instead of brittle regex stripping. Only textual data from safe tags is
-retained; attributes are ignored. Whitespace is normalized. This mitigates
-potential bypasses (e.g., malformed tags, embedded <script> variants,
-inline event handlers) and reduces the risk of prompt‑injection via hidden
-content.
-"""
+"""Deterministic text and PDF ingestion for RAG evidence."""
 
 from __future__ import annotations
 
-import re
 import hashlib
+import re
+from dataclasses import dataclass
+from io import BytesIO
+
 import requests
 import yaml
-from html.parser import HTMLParser
 from django.db import transaction
 
-from .models import AIResource, AIChunk
-from .embedding_service import embed_texts
-from .retrieval import _cosine  # reuse cosine similarity
+from .embedding_service import EmbeddingService, embed_texts
+from .models import AIChunk, AIResource
+
+PARSER_VERSION = 'pdfminer-v1'
+TARGET_CHARS = 700
+MAX_CHARS = 1000
+OVERLAP_CHARS = 100
 
 
-class _SafeTextExtractor(HTMLParser):
-    """HTML → plain text extractor with a conservative allowlist.
-
-    Policy:
-      - Drop entirely: script, style, noscript, iframe, object, embed, svg, canvas, meta, link
-      - Ignore attributes
-      - Convert <br>, <p>, <div>, <li>, <section>, <article>, <h1>.. <h6> into line breaks
-    """
-
-    _BLOCK = {'script', 'style', 'noscript', 'iframe', 'object', 'embed', 'svg', 'canvas', 'meta', 'link'}
-    _BREAK = {'p', 'div', 'br', 'li', 'section', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
-
-    def __init__(self) -> None:
-        super().__init__(convert_charrefs=True)
-        self._out: list[str] = []
-        self._suppress_depth = 0
-
-    def handle_starttag(self, tag, attrs):  # noqa: D401 - inherited
-        t = tag.lower()
-        if t in self._BLOCK:
-            self._suppress_depth += 1
-            return
-        if self._suppress_depth:
-            return
-        if t in self._BREAK:
-            self._out.append('\n')
-
-    def handle_endtag(self, tag):
-        t = tag.lower()
-        if t in self._BLOCK and self._suppress_depth:
-            self._suppress_depth -= 1
-            return
-        if self._suppress_depth:
-            return
-        if t in self._BREAK:
-            self._out.append('\n')
-
-    def handle_data(self, data):
-        if self._suppress_depth:
-            return
-        # Minimal noise trimming; keep internal spaces to avoid word joins
-        if data.strip():
-            self._out.append(data)
-
-    def get_text(self) -> str:
-        # Join and normalize whitespace
-        raw = ' '.join(self._out)
-        raw = re.sub(r'[ \t\f\r\v]+', ' ', raw)
-        raw = re.sub(r'\n{2,}', '\n', raw)
-        return raw.strip()
+class IngestionError(ValueError):
+    def __init__(self, code: str):
+        super().__init__(code)
+        self.code = code
 
 
-def _clean_html(html: str) -> str:  # noqa: D401
-    parser = _SafeTextExtractor()
-    try:
-        parser.feed(html)
-        parser.close()
-    except Exception:
-        # Fallback to simple tag strip if parser fails (rare malformed input)
-        text = re.sub(r'<[^>]+>', ' ', html)
-        text = re.sub(r'\s+', ' ', text)
-        return text.strip()[:200000]
-    return parser.get_text()[:200000]
+@dataclass(frozen=True)
+class ParsedPage:
+    page_number: int
+    text: str
 
 
-def _chunk_text(text: str, *, max_chars: int = 800) -> list[str]:
-    parts: list[str] = []
-    buf: list[str] = []
-    current = 0
-    for para in re.split(r'\n+|(?<=\.)\s{2,}', text):
-        p = para.strip()
-        if not p:
+def _normalize_text(text: str) -> str:
+    return re.sub(r'\s+', ' ', text or '').strip()
+
+
+def _clean_html(html: str) -> str:
+    return _normalize_text(re.sub(r'<(script|style)[^>]*>.*?</\1>|<[^>]+>', ' ', html, flags=re.I | re.S))[:200000]
+
+
+def _chunk_text(text: str, *, target_chars: int = TARGET_CHARS, max_chars: int = MAX_CHARS, overlap_chars: int = OVERLAP_CHARS) -> list[str]:
+    units = [unit.strip() for unit in re.split(r'\n+|(?<=[。！？.!?])\s*', text) if unit.strip()]
+    chunks: list[str] = []
+    buffer: list[str] = []
+    size = 0
+    for unit in units:
+        if len(unit) > max_chars:
+            if buffer:
+                chunks.append(' '.join(buffer))
+                buffer, size = [], 0
+            chunks.append(unit)
             continue
-        if current + len(p) > max_chars and buf:
-            parts.append(' '.join(buf))
-            buf = []
-            current = 0
-        buf.append(p)
-        current += len(p) + 1
-    if buf:
-        parts.append(' '.join(buf))
-    return parts[:200]  # safety cap
+        if buffer and size + len(unit) + 1 > max_chars:
+            completed = ' '.join(buffer)
+            chunks.append(completed)
+            overlap = completed[-overlap_chars:].strip()
+            buffer, size = ([overlap] if overlap else []), len(overlap)
+        buffer.append(unit)
+        size += len(unit) + 1
+        if size >= target_chars:
+            completed = ' '.join(buffer)
+            chunks.append(completed)
+            overlap = completed[-overlap_chars:].strip()
+            buffer, size = ([overlap] if overlap else []), len(overlap)
+    if buffer:
+        candidate = ' '.join(buffer)
+        if not chunks or candidate != chunks[-1]:
+            chunks.append(candidate)
+    return chunks[:200]
 
 
-def _token_len(s: str) -> int:
-    # Approximate token length (placeholder): words * 1
-    return max(1, len(s.split()))
+def _token_count(text: str) -> int:
+    return max(1, len(re.findall(r'\S+', text)))
 
 
-def _dedup_key(text: str) -> str:
-    return hashlib.sha256(text.encode('utf-8')).hexdigest()[:32]
+def _sha256(text: str) -> str:
+    return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+
+def _stable_chunk_id(resource_sha256: str, parser_version: str, index: int, normalized_text: str) -> str:
+    return _sha256(f'{resource_sha256}:{parser_version}:{index}:{_sha256(normalized_text)}')
 
 
 @transaction.atomic
-def create_resource_with_chunks(
-    *,
-    type_: str,
-    title: str,
-    source_url: str,
-    full_text: str,
-    similarity_threshold: float = 0.97,
-) -> AIResource:
-    sha256 = AIResource.compute_sha256(full_text)
-    existing = AIResource.objects.filter(sha256=sha256, type=type_).first()
+def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full_text: str, organization_id: str = '', proposal_id: int | None = None, evidence_purpose: str = 'fact', original_filename: str = '', mime_type: str = 'text/plain', parser_version: str = PARSER_VERSION, page_chunks: list[tuple[int, str, str]] | None = None, resource_sha256: str | None = None) -> AIResource:
+    full_text = _normalize_text(full_text)
+    if not full_text:
+        raise IngestionError('empty_document')
+    sha256 = resource_sha256 or AIResource.compute_sha256(full_text)
+    existing = AIResource.objects.filter(organization_id=organization_id, sha256=sha256, parser_version=parser_version).first()
     if existing:
         return existing
-
-    # Similarity-based dedupe (phase 1 heuristic): compare first chunk embedding to existing
-    # resources of same type. If cosine >= threshold → reuse existing resource.
-    # Lightweight: only embed first prospective chunk before full processing.
-    prospective_chunks = _chunk_text(full_text)
-    if not prospective_chunks:
-        prospective_chunks = [full_text[:800]]
-    first_chunk = prospective_chunks[0]
-    first_vec = embed_texts([first_chunk])[0]
-    # Adjust threshold for deterministic hash backend (coarse). Hash vectors can
-    # yield lower cosine for small textual variants; widen window slightly.
-    from .embedding_service import EmbeddingService  # local import to avoid cycle in apps
-
-    if EmbeddingService.instance().backend == 'hash' and similarity_threshold >= 0.95:
-        adj_threshold = 0.90
-    else:
-        adj_threshold = similarity_threshold
-    if adj_threshold < 1.0:  # allow disabling by passing 1.0
-        # Iterate limited candidate set (same type, last 200 for recency bias)
-        candidate_qs = AIResource.objects.filter(type=type_).order_by('-id')[:200]
-        candidate_ids = list(candidate_qs.values_list('id', flat=True))
-        if candidate_ids:
-            chunk_map: dict[int, AIChunk] = {}
-            for c in AIChunk.objects.filter(resource_id__in=candidate_ids, ord=0):  # type: ignore[attr-defined]
-                if c.embedding:  # ensure embedding present
-                    chunk_map[c.resource_id] = c  # type: ignore[attr-defined]
-            for cand_id in candidate_ids:
-                ch0 = chunk_map.get(cand_id)
-                if not ch0:
-                    continue
-                # Fast textual near-duplicate heuristic (prefix delta <32 chars)
-                t_existing = ch0.text or ''
-                s1, s2 = t_existing.strip(), first_chunk.strip()
-                shorter, longer = (s1, s2) if len(s1) <= len(s2) else (s2, s1)
-                if shorter and longer.startswith(shorter) and (len(longer) - len(shorter) < 32):
-                    existing_sim = next((r for r in candidate_qs if getattr(r, 'id', None) == cand_id), None)
-                    if existing_sim:
-                        return existing_sim
-                if not ch0.embedding:  # defensive
-                    continue
-                sim = _cosine(first_vec, ch0.embedding)
-                if sim >= adj_threshold:
-                    existing_sim = next((r for r in candidate_qs if getattr(r, 'id', None) == cand_id), None)
-                    if existing_sim:
-                        return existing_sim
+    rows = page_chunks or [(1, chunk, '') for chunk in _chunk_text(full_text)]
+    if not rows:
+        raise IngestionError('empty_document')
+    service = EmbeddingService.instance()
     resource = AIResource.objects.create(
-        type=type_,
-        title=title[:256],
-        source_url=source_url,
-        sha256=sha256,
-        metadata={'dedup': True},
+        organization_id=organization_id, proposal_id=proposal_id, source_type=type_, evidence_purpose=evidence_purpose,
+        title=title[:256], display_name=(title or original_filename)[:256], original_filename=original_filename[:512],
+        mime_type=mime_type, source_url=source_url, sha256=sha256, parser_version=parser_version, metadata={'dedup': True},
     )
-    chunks = prospective_chunks  # reuse already chunked result
-    embeddings = embed_texts(chunks)
-    created = 0
-    for idx, (chunk_text, vec) in enumerate(zip(chunks, embeddings)):
+    for index, ((page, text, section_title), embedding) in enumerate(zip(rows, embed_texts([row[1] for row in rows]))):
+        normalized = _normalize_text(text)
         AIChunk.objects.create(
-            resource=resource,
-            ord=idx,
-            text=chunk_text,
-            token_len=_token_len(chunk_text),
-            embedding_key=_dedup_key(chunk_text + str(len(vec))),
-            embedding=vec,
-            metadata={},
+            resource=resource, stable_chunk_id=_stable_chunk_id(sha256, parser_version, index, normalized), chunk_index=index,
+            text=text, normalized_text=normalized, text_sha256=_sha256(normalized), page_start=page, page_end=page,
+            section_title=section_title, token_count=_token_count(text), embedding_key=_sha256(normalized + str(len(embedding))),
+            embedding=embedding, embedding_model=service.model_name, embedding_dimension=service.dim, metadata={},
         )
-        created += 1
-    # Attach simple ingestion stats
-    if created:
-        AIResource.objects.filter(pk=resource.pk).update(metadata={'chunks': created})
+    AIResource.objects.filter(pk=resource.pk).update(
+        embedding_model=service.model_name, embedding_revision=service.model_name, embedding_dimension=service.dim,
+        page_count=max(row[0] for row in rows), metadata={'chunks': len(rows)},
+    )
     return resource
 
 
-def ingest_grant_call(url: str) -> AIResource:
-    resp = requests.get(url, timeout=15)
-    resp.raise_for_status()
-    cleaned = _clean_html(resp.text)
+def ingest_pdf(*, content: bytes, filename: str, organization_id: str, proposal_id: int | None = None, source_type: str = 'guideline', evidence_purpose: str = 'constraint', resource_sha256: str | None = None) -> AIResource:
+    if not content.startswith(b'%PDF'):
+        raise IngestionError('pdf_parse_failed')
+    try:
+        from pdfminer.high_level import extract_pages
+        from pdfminer.layout import LTTextContainer
+        pages = [ParsedPage(number, _normalize_text(''.join(item.get_text() for item in layout if isinstance(item, LTTextContainer)))) for number, layout in enumerate(extract_pages(BytesIO(content)), start=1)]
+    except Exception as exc:
+        raise IngestionError('pdf_parse_failed') from exc
+    pages = [page for page in pages if page.text]
+    if not pages:
+        raise IngestionError('ocr_required')
+    rows = [(page.page_number, chunk, '') for page in pages for chunk in _chunk_text(page.text)]
+    if not rows:
+        raise IngestionError('empty_document')
     return create_resource_with_chunks(
-        type_='call_snapshot',
-        title='Grant Call',
-        source_url=url,
-        full_text=cleaned,
+        type_=source_type, title=filename, source_url='', full_text='\n'.join(page.text for page in pages),
+        organization_id=organization_id, proposal_id=proposal_id, evidence_purpose=evidence_purpose,
+        original_filename=filename, mime_type='application/pdf', page_chunks=rows, resource_sha256=resource_sha256,
     )
 
 
+def ingest_grant_call(url: str) -> AIResource:
+    response = requests.get(url, timeout=15)
+    response.raise_for_status()
+    return create_resource_with_chunks(type_='call_snapshot', title='Grant Call', source_url=url, full_text=_clean_html(response.text))
+
+
 def ingest_manifest(yaml_text: str) -> list[AIResource]:
-    data = yaml.safe_load(yaml_text) or {}
-    items = data.get('items', [])
-    created: list[AIResource] = []
-    for it in items:
-        try:
-            type_ = it.get('type')
-            title = it.get('title', type_)
-            text = it.get('text')
-            url = it.get('source_url', '')
-            if not type_ or not text:
-                continue
-            res = create_resource_with_chunks(type_=type_, title=title, source_url=url, full_text=text)
-            if res not in created:  # avoid duplicates in return list
-                created.append(res)
-        except Exception:
+    items = (yaml.safe_load(yaml_text) or {}).get('items', [])
+    resources: list[AIResource] = []
+    for item in items:
+        if not item.get('type') or not item.get('text'):
             continue
-    return created
+        resource = create_resource_with_chunks(type_=item['type'], title=item.get('title', item['type']), source_url=item.get('source_url', ''), full_text=item['text'])
+        if resource not in resources:
+            resources.append(resource)
+    return resources

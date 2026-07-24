@@ -1,18 +1,18 @@
 ﻿from django.contrib import admin
-from .models import AIResource, AIChunk, AIJob, AIMetric, AIPromptTemplate, AIJobContext, AIMemory
+from .models import AIResource, AIChunk, AIJob, AIMetric, AIPromptTemplate, AIJobContext, AIMemory, EvidenceUsage, ToolInvocation
 
 
 @admin.register(AIResource)
 class AIResourceAdmin(admin.ModelAdmin):
-    list_display = ("id", "type", "title", "source_url", "created_at")
-    search_fields = ("title", "source_url", "type", "sha256")
-    list_filter = ("type", "created_at")
+    list_display = ("id", "source_type", "display_name", "organization_id", "status", "created_at")
+    search_fields = ("title", "display_name", "source_url", "source_type", "sha256")
+    list_filter = ("source_type", "status", "created_at")
     date_hierarchy = "created_at"
 
 
 @admin.register(AIChunk)
 class AIChunkAdmin(admin.ModelAdmin):
-    list_display = ("id", "resource", "ord", "token_len", "created_at")
+    list_display = ("id", "resource", "chunk_index", "token_count", "created_at")
     search_fields = ("text", "embedding_key")
     list_filter = ("created_at",)
     raw_id_fields = ("resource",)
@@ -51,3 +51,17 @@ class AIJobContextAdmin(admin.ModelAdmin):
 class AIMemoryAdmin(admin.ModelAdmin):
     list_display = ("id", "org_id", "section_id", "usage_count")
     search_fields = ("text",)
+
+
+@admin.register(EvidenceUsage)
+class EvidenceUsageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'ai_job', 'proposal_section', 'chunk', 'used_in_prompt', 'cited_by_model', 'created_at')
+    list_filter = ('role', 'used_in_prompt', 'cited_by_model')
+
+
+@admin.register(ToolInvocation)
+class ToolInvocationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'tool_name', 'caller_role', 'organization_id', 'proposal_id', 'status', 'created_at')
+    list_filter = ('tool_name', 'caller_role', 'status')
+    search_fields = ('organization_id', 'idempotency_key', 'error_code')
+    readonly_fields = ('created_at', 'updated_at', 'request_hash', 'result_json')

@@ -28,7 +28,7 @@ ui:
   cancel_at_period_end_flag: "Cancel at period end: yes"
   seats_line: "Seats: {count}"
   auth:
-    app_name: "Granterstellar"
+    app_name: "FoundationPal"
     login_heading: "Login"
     username_placeholder: "username"
     password_placeholder: "password"

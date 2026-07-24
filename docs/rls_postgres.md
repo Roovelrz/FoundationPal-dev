@@ -22,16 +22,16 @@ Create a dedicated DB role used by the API with minimal rights:
 
 ```sql
 -- Create roles
-CREATE ROLE granterstellar_app LOGIN PASSWORD 'REDACTED' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
-CREATE ROLE granterstellar_rw NOLOGIN;
+CREATE ROLE foundationpal_app LOGIN PASSWORD 'REDACTED' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+CREATE ROLE foundationpal_rw NOLOGIN;
 
 -- Grant table privileges (future tables controlled via migrations)
-GRANT USAGE ON SCHEMA public, app TO granterstellar_app;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO granterstellar_app;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO granterstellar_app;
+GRANT USAGE ON SCHEMA public, app TO foundationpal_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO foundationpal_app;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO foundationpal_app;
 
 -- Ensure RLS is active and cannot be bypassed
-ALTER ROLE granterstellar_app NOBYPASSRLS;
+ALTER ROLE foundationpal_app NOBYPASSRLS;
 ```
 
 Notes:
@@ -111,7 +111,7 @@ Two predefined tasks simplify starting Postgres and running the RLS test suite w
     ```bash
     docker compose -f app-compose.yml up -d db \
      && for i in $(seq 1 30); do pg_isready -h 127.0.0.1 -p 5432 -U appuser >/dev/null 2>&1 && break || sleep 1; done \
-     && DEBUG=1 SECRET_KEY=test DATABASE_URL=postgresql://appuser:changeme2@127.0.0.1:5432/granterstellar \
+     && DEBUG=1 SECRET_KEY=test DATABASE_URL=postgresql://appuser:changeme2@127.0.0.1:5432/foundationpal \
        python manage.py test -v 2 db_policies.tests \
      && docker compose -f app-compose.yml down -v --remove-orphans
     ```
@@ -138,8 +138,8 @@ Environment assumptions for tasks:
 
 For stricter separation of duties in production:
 
-- Create a distinct migration/ddl owner role (e.g. `granterstellar_migrator`) that owns schemas & tables.
-- Application runtime role (`granterstellar_app`) receives only DML (SELECT/INSERT/UPDATE/DELETE) and USAGE on schemas; no CREATE on schema.
+- Create a distinct migration/ddl owner role (e.g. `foundationpal_migrator`) that owns schemas & tables.
+- Application runtime role (`foundationpal_app`) receives only DML (SELECT/INSERT/UPDATE/DELETE) and USAGE on schemas; no CREATE on schema.
 - CI/CD runs `manage.py migrate` using the migrator role credentials; the application container uses the app role.
 - Enforce `NOBYPASSRLS` on both roles; avoid granting table ownership to the app role to prevent implicit privilege escalation.
 
@@ -147,29 +147,29 @@ Example (augmenting earlier snippet):
 
 ```sql
 -- Migration owner
-CREATE ROLE granterstellar_migrator LOGIN PASSWORD 'REDACTED' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
-ALTER ROLE granterstellar_migrator NOBYPASSRLS;
+CREATE ROLE foundationpal_migrator LOGIN PASSWORD 'REDACTED' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+ALTER ROLE foundationpal_migrator NOBYPASSRLS;
 
 -- Transfer ownership (run once after initial bootstrap)
-ALTER SCHEMA public OWNER TO granterstellar_migrator;
+ALTER SCHEMA public OWNER TO foundationpal_migrator;
 -- For each table created prior (or run a generated script):
--- ALTER TABLE public.mytable OWNER TO granterstellar_migrator;
+-- ALTER TABLE public.mytable OWNER TO foundationpal_migrator;
 
 -- Grant DML to app role
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO granterstellar_app;
-ALTER DEFAULT PRIVILEGES FOR ROLE granterstellar_migrator IN SCHEMA public
-  GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO granterstellar_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO foundationpal_app;
+ALTER DEFAULT PRIVILEGES FOR ROLE foundationpal_migrator IN SCHEMA public
+  GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO foundationpal_app;
 ```
 
 ### Change Management Checklist
 
 1. Apply new migrations in staging with migrator role; run RLS matrix tests against Postgres.
-2. Confirm no table is accidentally owned by `granterstellar_app`:
+2. Confirm no table is accidentally owned by `foundationpal_app`:
 
   ```sql
   SELECT relname, rolname AS owner
   FROM pg_class c JOIN pg_roles r ON c.relowner = r.oid
-  WHERE relkind='r' AND r.rolname = 'granterstellar_app';
+  WHERE relkind='r' AND r.rolname = 'foundationpal_app';
   ```
 
   Expect 0 rows.

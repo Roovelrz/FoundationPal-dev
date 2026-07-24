@@ -208,6 +208,8 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = int(os.getenv('FILE_UPLOAD_MAX_MEMORY_SIZE', str(1
 FILE_UPLOAD_MAX_BYTES = int(os.getenv('FILE_UPLOAD_MAX_BYTES', str(FILE_UPLOAD_MAX_MEMORY_SIZE)))
 # Max bytes to attempt best-effort text/OCR extraction; larger files will skip extraction for safety.
 TEXT_EXTRACTION_MAX_BYTES = int(os.getenv('TEXT_EXTRACTION_MAX_BYTES', str(8 * 1024 * 1024)))  # 8 MB default
+MCP_MAX_PDF_BYTES = int(os.getenv('MCP_MAX_PDF_BYTES', str(50 * 1024 * 1024)))
+MCP_MAX_PDF_PAGES = int(os.getenv('MCP_MAX_PDF_PAGES', '100'))
 # Optional virus scan hook. If set, the command is executed against the file path.
 # Use a template with {path} placeholder or a plain command to which the path will be appended.
 VIRUSSCAN_CMD = os.getenv('VIRUSSCAN_CMD', '').strip()

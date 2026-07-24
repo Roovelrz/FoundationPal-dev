@@ -5,7 +5,8 @@ from celery import shared_task
 
 from .models import ExportJob
 from .utils import render_pdf_from_text, render_docx_from_markdown
-from proposals.finalization import SectionsNotApproved, get_export_markdown
+from proposals.finalization import SectionsNotApproved
+from ai.services import export_service
 
 
 @shared_task
@@ -13,7 +14,7 @@ def perform_export(job_id: int):
     job = ExportJob.objects.select_related('proposal').get(id=job_id)
     proposal = job.proposal
     try:
-        md = get_export_markdown(proposal)
+        md = export_service(proposal=proposal)
     except SectionsNotApproved:
         job.status = 'error'
         job.error = 'sections_not_approved'

@@ -10,7 +10,64 @@ class WorkflowRun(models.Model):
     org_id = models.CharField(max_length=64, blank=True, default='')
     provider = models.CharField(max_length=64, blank=True, default='')
     schema_version = models.CharField(max_length=16, default='v1')
+    architecture = models.CharField(max_length=32, default='sequential')
+    status = models.CharField(max_length=32, default='running')
+    trace_json = models.JSONField(default=list)
+    handoffs_json = models.JSONField(default=list)
+    revision_count = models.PositiveIntegerField(default=0)
+    fallback_mode = models.CharField(max_length=32, blank=True, default='')
+    resumed_from_checkpoint = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+
+class HumanApprovalTask(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'pending'),
+        ('approved', 'approved'),
+        ('ready_after_edit', 'ready_after_edit'),
+        ('rejected', 'rejected'),
+    ]
+    workflow_run = models.ForeignKey(WorkflowRun, on_delete=models.CASCADE, related_name='human_tasks')
+    proposal_id = models.IntegerField(db_index=True)
+    thread_id = models.CharField(max_length=128, unique=True)
+    node = models.CharField(max_length=64)
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='pending')
+    input_json = models.JSONField(default=dict)
+    model_output_json = models.JSONField(default=dict)
+    decision_json = models.JSONField(default=dict)
+    decided_by = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    decided_at = models.DateTimeField(null=True, blank=True)
+
+
+class ToolInvocation(models.Model):
+    '''Auditable tool call with an idempotency boundary for side effects.'''
+
+    tool_name = models.CharField(max_length=64, db_index=True)
+    caller_role = models.CharField(max_length=32)
+    caller = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
+    organization_id = models.CharField(max_length=64, blank=True, default='')
+    proposal_id = models.IntegerField(null=True, blank=True)
+    workflow_run = models.ForeignKey(WorkflowRun, null=True, blank=True, on_delete=models.SET_NULL, related_name='tool_invocations')
+    idempotency_key = models.CharField(max_length=128, blank=True, default='')
+    request_hash = models.CharField(max_length=64, blank=True, default='')
+    status = models.CharField(max_length=16, default='done')
+    result_json = models.JSONField(default=dict)
+    error_code = models.CharField(max_length=64, blank=True, default='')
+    duration_ms = models.IntegerField(default=0)
+    replay_count = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['tool_name', 'caller_role', 'caller', 'organization_id', 'idempotency_key'],
+                name='toolinvocation_idempotency_unique',
+            )
+        ]
+        indexes = [models.Index(fields=['organization_id', 'tool_name', 'created_at'])]
 
 
 class AIPromptTemplate(models.Model):
@@ -106,6 +163,7 @@ class AIMetric(models.Model):
         ('format', 'format'),
         ('promote', 'promote'),  # section promotion event
         ('export', 'export'),
+        ('evaluation', 'evaluation'),
     ]
 
     type = models.CharField(max_length=16, choices=TYPE_CHOICES)
@@ -115,6 +173,7 @@ class AIMetric(models.Model):
     section_id = models.CharField(max_length=128, blank=True, default='')
     duration_ms = models.IntegerField(default=0)
     tokens_used = models.IntegerField(default=0)
+    estimated_cost_usd = models.FloatField(default=0.0)
     success = models.BooleanField(default=True)
     error_text = models.TextField(blank=True, default='')
     created_by = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
@@ -303,28 +362,68 @@ class AIJobContext(models.Model):
 
 
 class AIResource(models.Model):
-    """Source document for RAG (template, sample, or call snapshot)."""
+    """Versioned source document for RAG evidence."""
 
-    TYPE_CHOICES = [
-        ('template', 'template'),
-        ('sample', 'sample'),
+    SOURCE_TYPE_CHOICES = [
+        ('guideline', 'guideline'),
         ('call_snapshot', 'call_snapshot'),
+        ('successful_case', 'successful_case'),
+        ('team_profile', 'team_profile'),
+        ('template', 'template'),
+        ('review_criteria', 'review_criteria'),
+        ('sample', 'sample'),
     ]
-    type = models.CharField(max_length=32, choices=TYPE_CHOICES)
-    title = models.CharField(max_length=256, blank=True, default='')
+    PURPOSE_CHOICES = [
+        ('constraint', 'constraint'),
+        ('fact', 'fact'),
+        ('style', 'style'),
+        ('template', 'template'),
+    ]
+    STATUS_CHOICES = [('ready', 'ready'), ('error', 'error'), ('deleted', 'deleted')]
+
+    organization_id = models.CharField(max_length=64, db_index=True, default='')
+    proposal_id = models.IntegerField(null=True, blank=True, db_index=True)
+    source_type = models.CharField(max_length=32, choices=SOURCE_TYPE_CHOICES)
+    evidence_purpose = models.CharField(max_length=16, choices=PURPOSE_CHOICES, default='fact')
+    title = models.CharField(max_length=256, blank=True, default='')  # legacy display fallback
+    original_filename = models.CharField(max_length=512, blank=True, default='')
+    display_name = models.CharField(max_length=256, blank=True, default='')
+    mime_type = models.CharField(max_length=128, blank=True, default='')
     source_url = models.URLField(blank=True, default='')
     sha256 = models.CharField(max_length=64, db_index=True)
+    parser_version = models.CharField(max_length=64, default='pdfminer-v1')
+    embedding_model = models.CharField(max_length=128, blank=True, default='')
+    embedding_revision = models.CharField(max_length=128, blank=True, default='')
+    embedding_dimension = models.PositiveIntegerField(default=0)
+    page_count = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=16, choices=STATUS_CHOICES, default='ready')
+    error_code = models.CharField(max_length=64, blank=True, default='')
+    is_deleted = models.BooleanField(default=False, db_index=True)
     metadata = models.JSONField(default=dict)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['organization_id', 'sha256', 'parser_version'],
+                name='airesource_org_sha_parser_unique',
+            ),
+        ]
         indexes = [
-            models.Index(fields=['type']),
+            models.Index(fields=['organization_id', 'proposal_id', 'source_type'], name='ai_airesour_orgpsrc_idx'),
             models.Index(fields=['created_at']),
         ]
 
     def __str__(self) -> str:  # pragma: no cover
-        return f'AIResource({self.type},{self.id})'  # type: ignore[attr-defined]
+        return f'AIResource({self.source_type},{self.id})'  # type: ignore[attr-defined]
+
+    def delete(self, *args, **kwargs):  # pragma: no cover - exercised through integration tests
+        if self.chunks.filter(evidence_usages__isnull=False).exists():
+            self.is_deleted = True
+            self.status = 'deleted'
+            self.save(update_fields=['is_deleted', 'status'])
+            return
+        return super().delete(*args, **kwargs)
 
     @staticmethod
     def compute_sha256(text: str) -> str:
@@ -337,18 +436,27 @@ class AIChunk(models.Model):
     """Embedded chunk of an AIResource."""
 
     resource = models.ForeignKey(AIResource, on_delete=models.CASCADE, related_name='chunks')
-    ord = models.IntegerField()
+    stable_chunk_id = models.CharField(max_length=64, db_index=True)
+    chunk_index = models.IntegerField()
     text = models.TextField()
-    token_len = models.IntegerField(default=0)
+    normalized_text = models.TextField(blank=True, default='')
+    text_sha256 = models.CharField(max_length=64, db_index=True, default='')
+    page_start = models.PositiveIntegerField(default=1)
+    page_end = models.PositiveIntegerField(default=1)
+    section_title = models.CharField(max_length=512, blank=True, default='')
+    heading_path = models.JSONField(default=list)
+    token_count = models.IntegerField(default=0)
     embedding_key = models.CharField(max_length=64, blank=True, default='')  # placeholder until vector store integration
     # Cached embedding vector (list[float]) for naive in-DB retrieval; replace with external vector store later
     embedding = models.JSONField(null=True, blank=True)
+    embedding_model = models.CharField(max_length=128, blank=True, default='')
+    embedding_dimension = models.PositiveIntegerField(default=0)
     metadata = models.JSONField(default=dict)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['resource', 'ord'], name='aichunk_resource_ord_unique'),
+            models.UniqueConstraint(fields=['resource', 'chunk_index'], name='aichunk_resource_index_unique'),
         ]
         indexes = [
             models.Index(fields=['resource']),
@@ -356,4 +464,35 @@ class AIChunk(models.Model):
         ]
 
     def __str__(self) -> str:  # pragma: no cover
-        return f"AIChunk(res={getattr(self.resource, 'id', 'unsaved')},ord={self.ord})"
+        return f"AIChunk(res={getattr(self.resource, 'id', 'unsaved')},ord={self.chunk_index})"
+
+
+class EvidenceUsage(models.Model):
+    """Immutable snapshot of evidence made available to one model invocation."""
+
+    ROLE_CHOICES = [('planner', 'planner'), ('writer', 'writer'), ('reviser', 'reviser'), ('formatter', 'formatter')]
+
+    workflow_run = models.ForeignKey(WorkflowRun, null=True, blank=True, on_delete=models.SET_NULL, related_name='evidence_usages')
+    ai_job = models.ForeignKey(AIJob, null=True, blank=True, on_delete=models.SET_NULL, related_name='evidence_usages')
+    proposal_section = models.ForeignKey('proposals.ProposalSection', null=True, blank=True, on_delete=models.SET_NULL, related_name='evidence_usages')
+    chunk = models.ForeignKey(AIChunk, on_delete=models.PROTECT, related_name='evidence_usages')
+    role = models.CharField(max_length=16, choices=ROLE_CHOICES)
+    retrieval_query = models.TextField(blank=True, default='')
+    rank = models.PositiveIntegerField(default=0)
+    similarity_score = models.FloatField(default=0.0)
+    used_in_prompt = models.BooleanField(default=False)
+    cited_by_model = models.BooleanField(default=False)
+    evidence_alias = models.CharField(max_length=32, blank=True, default='')
+    snapshot_text = models.TextField()
+    document_name_snapshot = models.CharField(max_length=256, blank=True, default='')
+    page_start_snapshot = models.PositiveIntegerField(default=1)
+    page_end_snapshot = models.PositiveIntegerField(default=1)
+    section_title_snapshot = models.CharField(max_length=512, blank=True, default='')
+    prompt_version = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['ai_job', 'chunk', 'role'], name='evidenceusage_job_chunk_role_unique'),
+        ]
+        indexes = [models.Index(fields=['proposal_section', 'created_at'], name='ai_evidence_propcrt_idx')]

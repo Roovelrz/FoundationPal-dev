@@ -1,11 +1,13 @@
 from django.conf import settings
 from rest_framework.decorators import api_view, permission_classes, parser_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 
 from .models import FileUpload
+from orgs.models import Organization, OrgUser
+from proposals.models import Proposal
 import os
 import re
 import mimetypes
@@ -14,6 +16,11 @@ import subprocess
 import tempfile
 from shlex import split as shlex_split
 from django.core.exceptions import SuspiciousOperation
+
+
+class DebugOrAuthPermission(BasePermission):
+    def has_permission(self, request, view):  # type: ignore[override]
+        return settings.DEBUG or IsAuthenticated().has_permission(request, view)
 
 
 def _ocr_image_if_enabled(path: str, content_type: str) -> str:
@@ -188,7 +195,7 @@ def _extract_text_stub(path: str, content_type: str) -> str:
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny if settings.DEBUG else IsAuthenticated])
+@permission_classes([DebugOrAuthPermission])
 @parser_classes([MultiPartParser, FormParser])
 def upload(request):
     f = request.FILES.get('file')
@@ -211,9 +218,32 @@ def upload(request):
             {'error': 'file_too_large', 'limit': MAX_BYTES},
             status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
         )
+    org_raw = request.headers.get('X-Org-ID') or request.data.get('organization_id')
+    proposal_raw = request.data.get('proposal_id')
+    organization = None
+    proposal = None
+    if proposal_raw is not None and not org_raw:
+        return Response({'error': 'organization_id_required'}, status=status.HTTP_400_BAD_REQUEST)
+    if org_raw:
+        if not str(org_raw).isdigit() or not getattr(request.user, 'is_authenticated', False):
+            return Response({'error': 'organization_forbidden'}, status=status.HTTP_403_FORBIDDEN)
+        organization = Organization.objects.filter(id=int(org_raw)).first()
+        is_member = organization is not None and (
+            organization.admin_id == request.user.id or OrgUser.objects.filter(org=organization, user=request.user).exists()
+        )
+        if not is_member:
+            return Response({'error': 'organization_forbidden'}, status=status.HTTP_403_FORBIDDEN)
+    if proposal_raw is not None:
+        if not str(proposal_raw).isdigit():
+            return Response({'error': 'proposal_id_invalid'}, status=status.HTTP_400_BAD_REQUEST)
+        proposal = Proposal.objects.filter(id=int(proposal_raw), org=organization).first()
+        if proposal is None:
+            return Response({'error': 'proposal_forbidden'}, status=status.HTTP_403_FORBIDDEN)
 
     upload = FileUpload.objects.create(
         owner=request.user if request.user.is_authenticated else None,
+        organization=organization,
+        proposal=proposal,
         file=f,
         content_type=f.content_type or '',
         size=size,
@@ -315,6 +345,8 @@ def upload(request):
             'content_type': upload.content_type,
             'size': upload.size,
             'ocr_text': upload.ocr_text[:2000],
+            'organization_id': upload.organization_id,
+            'proposal_id': upload.proposal_id,
         }
     )
 

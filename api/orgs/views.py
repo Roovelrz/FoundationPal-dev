@@ -169,7 +169,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
             # Attempt to send email (best-effort)
             try:
                 send_mail(
-                    subject=f"You're invited to join {org.name} on Granterstellar",
+                    subject=f"You're invited to join {org.name} on FoundationPal",
                     message=(
                         f'Hello,\n\n'
                         f"You've been invited to join the organization '{org.name}' as {role}.\n\n"

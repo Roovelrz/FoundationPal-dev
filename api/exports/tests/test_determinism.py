@@ -71,8 +71,8 @@ class ExportDeterminismTests(TestCase):
         pdf, checksum = render_pdf_from_text(md)
         normalized = _normalize_pdf_for_checksum(pdf)
         # Spot-check presence of deterministic metadata tokens (after normalization pass)
-        self.assertIn(b'Granterstellar Export', normalized)
-        self.assertIn(b'Granterstellar', normalized)
+        self.assertIn(b'FoundationPal Export', normalized)
+        self.assertIn(b'FoundationPal', normalized)
         # Creation / Mod date normalized to epoch (pattern D:19700101000000Z) after normalization
         self.assertIn(b'/CreationDate (D:19700101000000Z)', normalized)
         self.assertIn(b'/ModDate (D:19700101000000Z)', normalized)

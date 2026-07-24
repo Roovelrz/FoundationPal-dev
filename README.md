@@ -7,9 +7,20 @@ PRIORITY: 'HIGH'
 
 <!-- User-facing product README -->
 
-# ForGranted (codename: Granterstellar)
+# ForGranted (codename: FoundationPal)
 
 AI-assisted grant proposal writing for organizations that can't afford a full-time grant writer.
+
+## 工程演示入口
+
+这是一个受控的基金申报 Agent：ProposalSection 是章节唯一事实来源，RAG 证据、工具调用、Graph 运行和人工审批均可按 run_id 追溯。
+
+- 一键启动：`docker compose -f app-compose.yml up --build`
+- 后端最小验证：`cd api; F:\Anaconda\envs\fundagent\python.exe manage.py test ai.tests.test_main_workflow_e2e ai.tests.test_proposal_graph ai.tests.test_observability --verbosity 1`
+- Phase 10 自动基准：`cd api; F:\Anaconda\envs\fundagent\python.exe manage.py run_phase10_auto_eval --output-dir reports`
+- 演示案例、指标和敏感资料边界见 [Phase 11 交付指南](docs/phase11_delivery.md)
+
+当前自动基准使用匿名冻结案例与 DeepSeek 自动裁判。它用于验证工程链路和架构比较，不能替代真实申报材料上的人工质量结论。
 
 Live Dev: <https://grants.intelfy.dk>
 Planned Production: <https://forgranted.io>
@@ -162,7 +173,7 @@ Security disclosures: see `SECURITY.md` for coordinated disclosure instructions.
 
 ## 16. Trademarks & Naming
 
-"ForGranted" is the public-facing product name; "Granterstellar" may appear in code/internal docs during transition.
+"ForGranted" is the public-facing product name; "FoundationPal" may appear in code/internal docs during transition.
 
 ---
 

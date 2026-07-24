@@ -37,6 +37,11 @@ class Proposal(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['call_url'], name='proposal_call_url_idx'),
+        ]
+
     def __str__(self) -> str:  # pragma: no cover
         return f'Proposal {self.pk} ({self.state})'
 

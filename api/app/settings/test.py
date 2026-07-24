@@ -8,3 +8,4 @@ for k, v in base.__dict__.items():
 DEBUG = True
 AI_TEST_OPEN = True
 CELERY_TASK_ALWAYS_EAGER = True  # ensure tasks run inline for assertions
+AI_PROVIDER = 'stub'

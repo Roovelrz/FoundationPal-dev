@@ -1,4 +1,4 @@
-# Granterstellar API — Developer Quickstart and Smoke Tests
+# FoundationPal API — Developer Quickstart and Smoke Tests
 
 This README helps you spin up the Django API locally, seed a demo user, and run quick smoke tests without starting a server.
 
@@ -26,8 +26,10 @@ python manage.py migrate
 Optional: use Postgres by setting `DATABASE_URL` before `migrate`, e.g.
 
 ```sh
-export DATABASE_URL=postgresql://user:pass@localhost:5432/granterstellar
+export DATABASE_URL=postgresql://user:pass@localhost:5432/foundationpal
 ```
+
+For LangGraph human-task recovery in production, set `LANGGRAPH_CHECKPOINT_DSN` to a PostgreSQL connection string. The application creates LangGraph checkpoint tables on first use. Leave it unset only for local development and tests, where an in-memory checkpointer is used.
 
 ## Seed a demo user + proposal (optional)
 

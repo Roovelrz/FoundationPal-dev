@@ -102,7 +102,7 @@ async function addToMailingList(email, opts = {}) {
   const postData = new URLSearchParams(
     hasList
       ? { address: email, subscribed: opts.subscribed ?? 'no', upsert: 'yes', vars: JSON.stringify(opts.vars || {}) }
-      : { from: `Waitlist <mailgun@${MAILGUN_DOMAIN}>`, to: email, subject: 'Granterstellar waitlist', text: 'Thanks for joining!' }
+      : { from: `Waitlist <mailgun@${MAILGUN_DOMAIN}>`, to: email, subject: 'FoundationPal waitlist', text: 'Thanks for joining!' }
   ).toString();
 
   const options = {
@@ -229,7 +229,7 @@ async function handle(req, res) {
         await addToMailingList(email, { subscribed: 'no', vars: { token } });
 
         // Send confirmation email
-        await sendMail(email, 'Confirm your Granterstellar waitlist subscription', `Please confirm your email by visiting: ${confirmLink}\n\nIf you didn't request this, ignore this email.`);
+        await sendMail(email, 'Confirm your FoundationPal waitlist subscription', `Please confirm your email by visiting: ${confirmLink}\n\nIf you didn't request this, ignore this email.`);
     return sendJson(res, 200, { ok: true, pending: true });
       } catch (e) {
         logError('[waitlist] Error handling request', e);
@@ -401,7 +401,7 @@ function setSecurityHeaders(res) {
 async function sendMail(to, subject, text) {
   if (!MAILGUN_API_KEY || !MAILGUN_DOMAIN) throw new Error('Mailgun not configured');
   const postData = new URLSearchParams({
-    from: `Granterstellar <mailgun@${MAILGUN_DOMAIN}>`,
+    from: `FoundationPal <mailgun@${MAILGUN_DOMAIN}>`,
     to,
     subject,
     text,

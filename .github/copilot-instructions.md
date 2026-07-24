@@ -248,7 +248,7 @@ privacy:
 product:
   stage: PRE_RELEASE
   name: "ForGranted.io"
-  working_title: Granterstellar
+  working_title: FoundationPal
   brief: "SaaS for assisted grant writing."
   goal: "Help users write better grant proposals faster using AI."
   model: "FREEMIUM + PAID SUBSCRIPTION"

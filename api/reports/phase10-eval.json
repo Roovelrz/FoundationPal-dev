@@ -1,0 +1,88 @@
+{
+  "scope": {
+    "organization_id": "",
+    "run_count": 1
+  },
+  "frozen_case_set": null,
+  "rag": {
+    "context_recall_at_k": {},
+    "no_answer_correctness": null,
+    "faithfulness": null,
+    "evidence_coverage_rate": null,
+    "incorrect_evidence_citation_rate": null,
+    "not_measured": [
+      "no_answer_correctness_requires_answer_annotations",
+      "faithfulness_requires_claim_level_annotations"
+    ]
+  },
+  "tools": {
+    "tool_call_success_rate": null,
+    "authorization_rejection_correctness": null,
+    "idempotent_retry_success_rate": null,
+    "average_tool_latency_ms": null,
+    "not_measured": [
+      "authorization_rejection_correctness_requires_rejected_call_audit_rows"
+    ]
+  },
+  "workflow_and_agents": {
+    "sequential": {
+      "run_count": 0,
+      "workflow_task_success_rate": null,
+      "reviewer_regression_rate": null,
+      "average_fallback_count": null,
+      "human_intervention_rate": null,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": null
+    },
+    "langgraph_single": {
+      "run_count": 0,
+      "workflow_task_success_rate": null,
+      "reviewer_regression_rate": null,
+      "average_fallback_count": null,
+      "human_intervention_rate": null,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": null
+    },
+    "multi_agent": {
+      "run_count": 1,
+      "workflow_task_success_rate": 1.0,
+      "reviewer_regression_rate": 0.0,
+      "average_fallback_count": 1.0,
+      "human_intervention_rate": 1.0,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": 45.23
+    }
+  },
+  "comparison": {
+    "architectures": {
+      "sequential": {
+        "run_count": 0,
+        "workflow_task_success_rate": null,
+        "reviewer_regression_rate": null,
+        "average_fallback_count": null,
+        "human_intervention_rate": null,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": null
+      },
+      "langgraph_single": {
+        "run_count": 0,
+        "workflow_task_success_rate": null,
+        "reviewer_regression_rate": null,
+        "average_fallback_count": null,
+        "human_intervention_rate": null,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": null
+      },
+      "multi_agent": {
+        "run_count": 1,
+        "workflow_task_success_rate": 1.0,
+        "reviewer_regression_rate": 0.0,
+        "average_fallback_count": 1.0,
+        "human_intervention_rate": 1.0,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": 45.23
+      }
+    },
+    "failure_cases": []
+  }
+}

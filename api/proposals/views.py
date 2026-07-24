@@ -11,7 +11,8 @@ from billing.permissions import CanCreateProposal
 from orgs.models import Organization, OrgUser
 from .models import Proposal
 from .serializers import ProposalSerializer
-from ai.section_pipeline import promote_section, get_section
+from ai.section_pipeline import get_section
+from ai.services import promote_service
 from ai.models import AIMetric
 from rest_framework.views import APIView
 from billing.quota import can_unarchive
@@ -177,7 +178,7 @@ class SectionPromotionView(APIView):
                 return Response({'error': 'forbidden'}, status=403)
         if section.locked:
             return Response({'error': 'already_locked'}, status=409)
-        promote_section(section)
+        promote_service(section=section)
         # Record promotion metric (lightweight observability of lifecycle transitions)
         try:  # best-effort; failures shouldn't block response
             AIMetric.objects.create(  # type: ignore[arg-type]

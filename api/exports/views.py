@@ -9,7 +9,8 @@ from django.conf import settings
 from django.db import models
 
 from proposals.models import Proposal
-from proposals.finalization import SectionsNotApproved, get_export_markdown
+from proposals.finalization import SectionsNotApproved
+from ai.services import export_service
 from .models import ExportJob
 from .utils import render_pdf_from_text, render_docx_from_markdown
 from .tasks import perform_export
@@ -45,7 +46,7 @@ def create_export(request):
     run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.headers.get('X-Org-ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
 
     try:
-        md = get_export_markdown(proposal)
+        md = export_service(proposal=proposal)
     except SectionsNotApproved:
         return Response({'error': 'sections_not_approved'}, status=status.HTTP_409_CONFLICT)
 

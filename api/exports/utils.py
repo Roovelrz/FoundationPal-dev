@@ -135,9 +135,9 @@ def render_pdf_from_text(text: str) -> tuple[bytes, str]:
     # Deterministic metadata (guarded: ReportLab internals may differ across versions)
     try:  # Accessing protected internals for deterministic metadata; ignore type
         info = c._doc.info  # type: ignore[attr-defined]
-        info.title = 'Granterstellar Export'
-        info.author = 'Granterstellar'
-        info.creator = 'Granterstellar'
+        info.title = 'FoundationPal Export'
+        info.author = 'FoundationPal'
+        info.creator = 'FoundationPal'
         info.producer = 'ReportLab'
         info.creationDate = 'D:19700101000000Z'
         info.modDate = 'D:19700101000000Z'
@@ -224,8 +224,8 @@ def render_docx_from_markdown(md: str) -> tuple[bytes, str]:
     # Deterministic core properties
     try:
         core = doc.core_properties
-        core.title = 'Granterstellar Export'
-        core.author = 'Granterstellar'
+        core.title = 'FoundationPal Export'
+        core.author = 'FoundationPal'
         from datetime import datetime, timezone
 
         epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)

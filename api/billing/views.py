@@ -261,7 +261,7 @@ def checkout(request):
             logger.debug('[billing.checkout] No price_id provided; attempting to auto-create test product/price…')
         try:
             stripe.api_key = settings.STRIPE_SECRET_KEY  # type: ignore[attr-defined]
-            prod = stripe.Product.create(name='Granterstellar Local Pro (Dev)', description='Local dev subscription')  # type: ignore[attr-defined]
+            prod = stripe.Product.create(name='FoundationPal Local Pro (Dev)', description='Local dev subscription')  # type: ignore[attr-defined]
             pr = stripe.Price.create(product=prod.id, unit_amount=500, currency='usd', recurring={'interval': 'month'})  # type: ignore[attr-defined]
             price_id = pr.get('id') if isinstance(pr, dict) else getattr(pr, 'id', '')
             if settings.DEBUG:

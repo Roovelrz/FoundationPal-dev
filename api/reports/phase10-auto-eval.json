@@ -1,0 +1,99 @@
+{
+  "scope": {
+    "organization_id": "3",
+    "run_count": 28
+  },
+  "frozen_case_set": null,
+  "rag": {
+    "context_recall_at_k": {},
+    "no_answer_correctness": 0.3333,
+    "faithfulness": 0.6667,
+    "evidence_coverage_rate": 1.0,
+    "incorrect_evidence_citation_rate": 0.0,
+    "not_measured": [],
+    "context_recall_at_3": 0.6667,
+    "case_count": 3,
+    "judge_token_usage": 897,
+    "judge_estimated_cost_usd": 0.00043508
+  },
+  "tools": {
+    "tool_call_success_rate": 0.6,
+    "authorization_rejection_correctness": 1.0,
+    "idempotent_retry_success_rate": null,
+    "average_tool_latency_ms": 0.6,
+    "not_measured": []
+  },
+  "workflow_and_agents": {
+    "sequential": {
+      "run_count": 10,
+      "workflow_task_success_rate": 1.0,
+      "reviewer_regression_rate": null,
+      "average_fallback_count": 0.0,
+      "human_intervention_rate": 0.0,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": 31.75
+    },
+    "langgraph_single": {
+      "run_count": 9,
+      "workflow_task_success_rate": 1.0,
+      "reviewer_regression_rate": null,
+      "average_fallback_count": 0.0,
+      "human_intervention_rate": 0.0,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": 34.56
+    },
+    "multi_agent": {
+      "run_count": 9,
+      "workflow_task_success_rate": 1.0,
+      "reviewer_regression_rate": 0.0,
+      "average_fallback_count": 0.0,
+      "human_intervention_rate": 0.0,
+      "checkpoint_recovery_success_rate": null,
+      "average_end_to_end_ms": 38.18
+    }
+  },
+  "cost": {
+    "estimated_cost_usd": 0.00090972,
+    "token_usage": 1776
+  },
+  "comparison": {
+    "architectures": {
+      "sequential": {
+        "run_count": 10,
+        "workflow_task_success_rate": 1.0,
+        "reviewer_regression_rate": null,
+        "average_fallback_count": 0.0,
+        "human_intervention_rate": 0.0,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": 31.75
+      },
+      "langgraph_single": {
+        "run_count": 9,
+        "workflow_task_success_rate": 1.0,
+        "reviewer_regression_rate": null,
+        "average_fallback_count": 0.0,
+        "human_intervention_rate": 0.0,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": 34.56
+      },
+      "multi_agent": {
+        "run_count": 9,
+        "workflow_task_success_rate": 1.0,
+        "reviewer_regression_rate": 0.0,
+        "average_fallback_count": 0.0,
+        "human_intervention_rate": 0.0,
+        "checkpoint_recovery_success_rate": null,
+        "average_end_to_end_ms": 38.18
+      }
+    },
+    "failure_cases": []
+  },
+  "automatic_eval": {
+    "context_recall_at_3": 0.6667,
+    "no_answer_correctness": 0.3333,
+    "faithfulness": 0.6667,
+    "case_count": 3,
+    "judge_token_usage": 897,
+    "judge_estimated_cost_usd": 0.00043508
+  }
+}

@@ -20,6 +20,7 @@ class BaseProvider:
         answers: dict[str, str],
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
+        evidence_context: str | None = None,
     ):
         raise NotImplementedError
 

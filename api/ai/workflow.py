@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from uuid import UUID, uuid4
 
+from django.utils import timezone
+
 from .models import WorkflowRun
 
 
@@ -20,3 +22,22 @@ def resolve_run_id(value, *, proposal_id=None, org_id='', provider='', schema_ve
         },
     )
     return run_id
+
+
+def persist_graph_result(run_id, state) -> None:
+    run = WorkflowRun.objects.filter(run_id=run_id).first()
+    if run is None:
+        return
+    status = state.get('status') or 'error'
+    run.architecture = 'multi_agent'
+    run.status = status
+    run.trace_json = list(state.get('trace') or [])
+    run.handoffs_json = list(state.get('handoffs') or [])
+    run.revision_count = int(state.get('revision_count') or 0)
+    run.fallback_mode = 'human' if status == 'awaiting_human_approval' else ''
+    run.resumed_from_checkpoint = bool(state.get('resume_after_approval'))
+    run.completed_at = timezone.now()
+    run.save(update_fields=[
+        'architecture', 'status', 'trace_json', 'handoffs_json', 'revision_count',
+        'fallback_mode', 'resumed_from_checkpoint', 'completed_at',
+    ])

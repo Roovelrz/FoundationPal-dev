@@ -1,6 +1,6 @@
 # Security Policy
 
-Thank you for helping keep Granterstellar and its users safe.
+Thank you for helping keep FoundationPal and its users safe.
 
 ## Supported versions
 

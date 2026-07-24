@@ -2,13 +2,14 @@ from celery import shared_task
 from django.conf import settings
 from .provider import get_provider
 import time
-from .models import AIJob, AIMetric, AIJobContext
+from .models import AIJob, AIMetric, AIJobContext, WorkflowRun
 from .prompting import render_role_prompt, PromptTemplateError
 from . import retrieval
-from .section_pipeline import get_section, save_write_result, apply_revision
+from .section_pipeline import get_section
 from .validators import SchemaError, section_draft, validate_role_output
 from .diff_engine import diff_texts
-from .section_materializer import materialize_sections
+from .writer_evidence import parse_writer_result, persist_evidence_usage, render_evidence_context
+from .services import finalize_service, plan_service, revise_service, search_service, write_service
 
 
 def _provider():
@@ -65,8 +66,7 @@ def run_plan(job_id: int):
         blueprint = plan['sections']
         proposal_id_val = job.input_json.get('proposal_id')
         if proposal_id_val and blueprint:
-            mat = materialize_sections(proposal_id=int(proposal_id_val), blueprint=blueprint)
-            created_sections = [s.key for (s, c) in mat if c]
+            created_sections = plan_service(proposal_id=int(proposal_id_val), blueprint=blueprint)
         job.result_json = {  # type: ignore[assignment]
             'schema_version': plan.get('schema_version', 'v1') if isinstance(plan, dict) else 'v1',
             'sections': blueprint,
@@ -133,9 +133,13 @@ def run_write(job_id: int):
             job.save(update_fields=['status', 'error_text'])
             return
 
-        # Retrieval & (future) budgeting
-        res_snippets = retrieval.retrieve_for_section(section_id, job.input_json.get('answers') or {})
-        allocation = {'snippets': res_snippets}  # placeholder until context budgeting integrated here
+        retrieval_query, res_snippets = search_service(
+            section_key=section_id,
+            answers=job.input_json.get('answers') or {},
+            organization_id=job.org_id,
+            proposal_id=proposal_id,
+        )
+        allocation = {'snippets': res_snippets}
 
         # Provider call
         res = prov.write(
@@ -143,10 +147,11 @@ def run_write(job_id: int):
             answers=job.input_json.get('answers') or {},
             file_refs=job.input_json.get('file_refs') or None,
             deterministic=det_default,
+            evidence_context=render_evidence_context(res_snippets),
         )
 
         # Validation
-        draft = section_draft(section_id, res.text)
+        draft = parse_writer_result(section_id, res.text, [item['chunk_id'] for item in res_snippets])
         validation = {'write_valid': True}
 
         # Persist prompt context
@@ -198,7 +203,16 @@ def run_write(job_id: int):
             'tokens_used': res.usage_tokens,
         }
         if section_obj:
-            save_write_result(section_obj, draft['draft_markdown'], job.input_json.get('answers') or {})
+            write_service(section=section_obj, draft_markdown=draft['draft_markdown'], answers=job.input_json.get('answers') or {})
+            persist_evidence_usage(
+                section=section_obj,
+                job=job,
+                run=WorkflowRun.objects.filter(run_id=job.run_id).first(),
+                role='writer',
+                query=retrieval_query,
+                candidates=res_snippets,
+                cited_chunk_ids=draft['evidence_ids'],
+            )
         job.status = 'done'
 
         # Metrics
@@ -364,18 +378,13 @@ def run_revise(job_id: int):
         job.result_json = {'draft_text': res.text, 'diff': diff_res}  # type: ignore[assignment]
         # Apply revision to section (keep as draft, don't auto-promote)
         if sec_obj:
-            apply_revision(sec_obj, res.text, promote=False)
-            try:
-                # Append revision log (user context optional if job.created_by absent)
-                sec_obj.append_revision(
-                    user_id=getattr(job.created_by, 'id', None),
-                    from_text=base_text,
-                    to_text=res.text,
-                    diff=diff_res,
-                    change_ratio=diff_res.get('change_ratio'),
-                )
-            except Exception:  # pragma: no cover - logging suppressed
-                pass
+            revise_service(
+                section=sec_obj,
+                revised_text=res.text,
+                user_id=getattr(job.created_by, 'id', None),
+                from_text=base_text,
+                diff=diff_res,
+            )
         job.status = 'done'
         dt_ms = int((time.time() - t0) * 1000)
         try:
@@ -474,8 +483,7 @@ def run_format(job_id: int):
             from proposals.models import Proposal
 
             proposal = Proposal.objects.get(id=proposal_id)
-            proposal.final_markdown = res.text
-            proposal.save(update_fields=['final_markdown', 'last_edited'])
+            finalize_service(proposal=proposal, final_markdown=res.text)
         job.status = 'done'
         dt_ms = int((time.time() - t0) * 1000)
         try:

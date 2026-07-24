@@ -1,3 +1,4 @@
+import json
 from typing import Dict, Optional, List, Any
 from .base import BaseProvider, AIResult
 
@@ -18,10 +19,20 @@ class LocalStubProvider(BaseProvider):
         answers: Dict[str, str],
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        evidence_context: str | None = None,
     ) -> AIResult:
         draft = f'Draft for {section_id}:\n' + '\n'.join(f'- {k}: {v}' for k, v in answers.items())
         if deterministic:
             draft = '[deterministic]\n' + draft
+        if evidence_context is not None:
+            return AIResult(text=json.dumps({
+                'schema_version': 'v1',
+                'section_key': section_id,
+                'draft_markdown': draft,
+                'evidence_ids': [],
+                'warnings': [],
+                'missing_evidence': ['no_retrieved_evidence'] if evidence_context.startswith('无可用证据') else [],
+            }), usage_tokens=0)
         return AIResult(text=draft, usage_tokens=0)
 
     def revise(

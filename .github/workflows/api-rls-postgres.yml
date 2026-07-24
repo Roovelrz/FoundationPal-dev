@@ -22,11 +22,11 @@ jobs:
         image: postgres:16
         ports: ["5432:5432"]
         env:
-          POSTGRES_DB: granterstellar
+          POSTGRES_DB: foundationpal
           POSTGRES_USER: appuser
           POSTGRES_PASSWORD: changeme2
         options: >-
-          --health-cmd "pg_isready -U appuser -d granterstellar"
+          --health-cmd "pg_isready -U appuser -d foundationpal"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -47,7 +47,7 @@ jobs:
           DEBUG: '1'
           SECRET_KEY: test
           DJANGO_SETTINGS_MODULE: app.settings
-          DATABASE_URL: postgresql://appuser:changeme2@127.0.0.1:5432/granterstellar
+          DATABASE_URL: postgresql://appuser:changeme2@127.0.0.1:5432/foundationpal
         run: .venv/bin/python manage.py migrate --noinput
       - name: Run RLS tests
         working-directory: api
@@ -55,5 +55,5 @@ jobs:
           DEBUG: '1'
           SECRET_KEY: test
           DJANGO_SETTINGS_MODULE: app.settings
-          DATABASE_URL: postgresql://appuser:changeme2@127.0.0.1:5432/granterstellar
+          DATABASE_URL: postgresql://appuser:changeme2@127.0.0.1:5432/foundationpal
         run: .venv/bin/python manage.py test -v 2 db_policies.tests

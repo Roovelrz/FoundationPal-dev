@@ -12,7 +12,7 @@ class IngestionRetrievalDedupeTests(TestCase):
         r2 = create_resource_with_chunks(type_='sample', title='Sample 2', source_url='', full_text=text)
         # Dedup should return first resource again
         self.assertEqual(r1.id, r2.id)  # type: ignore[attr-defined]
-        self.assertEqual(AIResource.objects.filter(type='sample').count(), 1)
+        self.assertEqual(AIResource.objects.filter(source_type='sample').count(), 1)
 
     def test_retrieval_deterministic_ordering(self):
         # create two simple resources differing slightly

@@ -1,0 +1,509 @@
+{
+  "target_sample_size": 30,
+  "sample_size": 30,
+  "complete": true,
+  "complete_answer_rate": 0.8667,
+  "results": [
+    {
+      "case_id": "synthetic_0064",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "170"
+        ],
+        "coverage": "complete",
+        "missing_information": [],
+        "irrelevant_chunk_ids": [
+          "169",
+          "168",
+          "152",
+          "166"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0115",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          107,
+          108
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          140,
+          106,
+          94
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0128",
+      "verdict": {
+        "answerable_from_context": false,
+        "supporting_chunk_ids": [],
+        "coverage": "none",
+        "missing_information": "上下文未提及创新研究群体项目、卓越研究群体项目或代表作个人贡献信息的相关内容。",
+        "irrelevant_chunk_ids": [
+          "5",
+          "36",
+          "31",
+          "32",
+          "7"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0144",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "206",
+          "207"
+        ],
+        "coverage": "complete",
+        "missing_information": [],
+        "irrelevant_chunk_ids": [
+          "193",
+          "184",
+          "204"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0133",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "184",
+          "174"
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          "204",
+          "203",
+          "185"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0026",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          130,
+          98
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          140,
+          129,
+          97
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0116",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          50
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          55,
+          49,
+          53,
+          56
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0139",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          203
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          208,
+          212,
+          213,
+          194
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0102",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "244"
+        ],
+        "coverage": "complete",
+        "missing_information": [],
+        "irrelevant_chunk_ids": [
+          "233",
+          "243",
+          "236",
+          "240"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0120",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "136"
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          "134",
+          "137",
+          "106",
+          "135"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0063",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          245
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          238,
+          231,
+          232,
+          247
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0060",
+      "verdict": {
+        "answerable_from_context": false,
+        "supporting_chunk_ids": [],
+        "coverage": "none",
+        "missing_information": "上下文中没有关于填报系统中单位归类的任何信息，也没有提及香港中文大学或境外单位的填报类别。",
+        "irrelevant_chunk_ids": [
+          "140",
+          "124",
+          "126",
+          "138",
+          "76"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0038",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          132
+        ],
+        "coverage": "complete",
+        "missing_information": [],
+        "irrelevant_chunk_ids": [
+          133,
+          89,
+          131,
+          90
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0100",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          227
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          228,
+          230,
+          212,
+          210
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0137",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          66
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          68,
+          60,
+          117,
+          71
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0034",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          199
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          185,
+          195,
+          184,
+          198
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0084",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          98
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          64,
+          82,
+          124,
+          127
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0029",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          11
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          15,
+          57,
+          46,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0054",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          230
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          227,
+          228,
+          210,
+          229
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0032",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          172
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          176,
+          192,
+          205,
+          190
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0125",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "89"
+        ],
+        "coverage": "complete",
+        "missing_information": [],
+        "irrelevant_chunk_ids": [
+          "110",
+          "113",
+          "112",
+          "111"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0009",
+      "verdict": {
+        "answerable_from_context": false,
+        "supporting_chunk_ids": [],
+        "coverage": "none",
+        "missing_information": "上下文未提及境外人员作为主要参与者时需上传有其本人签字的“知情同意书”扫描件。",
+        "irrelevant_chunk_ids": [
+          141,
+          126,
+          124,
+          77,
+          123
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0076",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "191"
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": []
+      }
+    },
+    {
+      "case_id": "synthetic_0057",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "129",
+          "81"
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          "94",
+          "99",
+          "97"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0126",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          111
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          112,
+          110,
+          113,
+          89
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0033",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          90
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          91,
+          131,
+          132,
+          133
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0123",
+      "verdict": {
+        "answerable_from_context": false,
+        "supporting_chunk_ids": [],
+        "coverage": "none",
+        "missing_information": "上下文均为国家自然科学基金申请书表格片段，未包含任何关于获得资助后必须在中国全职工作年限的承诺或规定。",
+        "irrelevant_chunk_ids": [
+          "238",
+          "247",
+          "232",
+          "241",
+          "242"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0113",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          "19"
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          "38",
+          "20",
+          "6",
+          "59"
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0110",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          177,
+          176
+        ],
+        "coverage": "complete",
+        "missing_information": "",
+        "irrelevant_chunk_ids": [
+          196,
+          172,
+          190
+        ]
+      }
+    },
+    {
+      "case_id": "synthetic_0086",
+      "verdict": {
+        "answerable_from_context": true,
+        "supporting_chunk_ids": [
+          104
+        ],
+        "coverage": "complete",
+        "missing_information": null,
+        "irrelevant_chunk_ids": [
+          116,
+          125,
+          126,
+          64
+        ]
+      }
+    }
+  ]
+}

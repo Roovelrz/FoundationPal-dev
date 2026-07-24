@@ -2,6 +2,7 @@ import io
 import os
 from django.test import TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from reportlab.pdfgen import canvas
 
@@ -18,6 +19,7 @@ def make_simple_pdf_bytes(text: str) -> bytes:
 class PdfExtractionTests(TestCase):
     def setUp(self):
         self.client = APIClient()
+        self.client.force_authenticate(user=get_user_model().objects.create_user(username='pdf-user', password='pass'))
 
     def test_digital_pdf_text_is_extracted(self):
         data = make_simple_pdf_bytes('Hello PDF')
