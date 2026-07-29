@@ -12,7 +12,7 @@ from django.db import transaction
 
 from proposals.models import Proposal
 
-from .models import AIResource, ToolInvocation, WorkflowRun
+from .models import AIResource, Claim, ClaimEvidenceBinding, GrantPackVersion, GrantRequirement, ProposalBrief, ToolInvocation, UserEvidence, WorkflowRun
 from .section_pipeline import get_section
 from .services import (
     ServiceError,
@@ -22,6 +22,9 @@ from .services import (
     write_service,
 )
 from .validators import SCHEMA_VERSION, ToolResult, WorkflowError
+from .claim_planning import coverage
+from .domain_retrieval import EvidenceQuery, RuleQuery
+from .query_router import search_grant_rules, search_user_evidence
 
 
 TOOL_ACCESS = {
@@ -33,9 +36,19 @@ TOOL_ACCESS = {
     'submit_review': {'reviewer'},
     'promote_section': {'user'},
     'export_proposal': {'user'},
+    'search_grant_rules': {'planner', 'writer', 'reviewer'},
+    'search_user_evidence': {'writer', 'reviewer'},
+    'get_grant_pack_schema': {'planner', 'writer', 'reviewer'},
+    'get_requirement_source': {'planner', 'writer', 'reviewer'},
+    'get_user_evidence_source': {'writer', 'reviewer'},
+    'get_proposal_brief': {'planner', 'writer', 'reviewer'},
+    'get_work_policy': {'planner', 'writer', 'reviewer'},
+    'validate_rule_coverage': {'reviewer'},
+    'validate_claim_support': {'reviewer'},
+    'save_claim_binding': {'reviewer'},
 }
 
-SIDE_EFFECT_TOOLS = {'save_section_draft', 'submit_review', 'promote_section', 'export_proposal'}
+SIDE_EFFECT_TOOLS = {'save_section_draft', 'submit_review', 'promote_section', 'export_proposal', 'save_claim_binding'}
 
 TOOL_ARGUMENTS = {
     'search_guideline': {'proposal_id', 'query'},
@@ -46,6 +59,16 @@ TOOL_ARGUMENTS = {
     'submit_review': {'proposal_id', 'section_id', 'review', 'idempotency_key'},
     'promote_section': {'proposal_id', 'section_id', 'idempotency_key'},
     'export_proposal': {'proposal_id', 'format', 'idempotency_key'},
+    'search_grant_rules': {'proposal_id', 'pack_version_id', 'query'},
+    'search_user_evidence': {'proposal_id', 'query'},
+    'get_grant_pack_schema': {'proposal_id', 'pack_version_id'},
+    'get_requirement_source': {'proposal_id', 'requirement_id'},
+    'get_user_evidence_source': {'proposal_id', 'user_evidence_id'},
+    'get_proposal_brief': {'proposal_id'},
+    'get_work_policy': {'proposal_id'},
+    'validate_rule_coverage': {'proposal_id', 'claim_plan_id'},
+    'validate_claim_support': {'proposal_id', 'claim_id'},
+    'save_claim_binding': {'proposal_id', 'claim_id', 'user_evidence_id', 'idempotency_key'},
 }
 
 
@@ -87,6 +110,11 @@ def _validate_input(tool_name: str, arguments: Any) -> str | None:
         return 'proposal_id_wrong_type'
     if tool_name in {'search_guideline', 'search_successful_cases'} and not isinstance(arguments['query'], str):
         return 'query_wrong_type'
+    if tool_name in {'search_grant_rules', 'search_user_evidence'} and not isinstance(arguments['query'], str):
+        return 'query_wrong_type'
+    for name in ('search_grant_rules', 'get_grant_pack_schema'):
+        if tool_name == name and not isinstance(arguments['pack_version_id'], int):
+            return 'pack_version_id_wrong_type'
     if tool_name == 'save_section_draft':
         if not isinstance(arguments['section_id'], str) or not isinstance(arguments['draft_markdown'], str) or not isinstance(arguments['answers'], dict):
             return 'draft_arguments_wrong_type'
@@ -97,7 +125,7 @@ def _validate_input(tool_name: str, arguments: Any) -> str | None:
         return 'section_id_wrong_type'
     if tool_name == 'export_proposal' and arguments['format'] not in {'md', 'pdf', 'docx'}:
         return 'format_invalid'
-    if tool_name in SIDE_EFFECT_TOOLS:
+    if tool_name in SIDE_EFFECT_TOOLS or tool_name == 'save_claim_binding':
         key = arguments.get('idempotency_key')
         if not isinstance(key, str) or not key.strip() or len(key) > 128:
             return 'idempotency_key_invalid'
@@ -142,6 +170,54 @@ def _execute(tool_name: str, arguments: dict[str, Any], proposal: Proposal) -> d
         return {'section_id': section.id, 'status': 'promoted'}
     if tool_name == 'export_proposal':
         return {'format': arguments['format'], 'markdown': export_service(proposal=proposal)}
+    if tool_name == 'search_grant_rules':
+        return {'knowledge_domain': 'grant_rule', **search_grant_rules(RuleQuery(pack_version_id=arguments['pack_version_id'], user_question=arguments['query']))}
+    if tool_name == 'search_user_evidence':
+        return {'knowledge_domain': 'user_evidence', **search_user_evidence(EvidenceQuery(organization_id=str(proposal.org_id), proposal_id=proposal.id, user_question=arguments['query']))}
+    if tool_name == 'get_grant_pack_schema':
+        version = GrantPackVersion.objects.filter(pk=arguments['pack_version_id'], status='published').first()
+        if version is None:
+            raise ServiceError('published_grant_pack_required')
+        return {'knowledge_domain': 'grant_rule', 'pack_version_id': version.id, 'sections': list(version.section_schemas.values('section_key', 'title', 'order', 'word_limit'))}
+    if tool_name == 'get_requirement_source':
+        requirement = GrantRequirement.objects.filter(pk=arguments['requirement_id'], pack_version__status='published').select_related('source_chunk__resource').first()
+        if requirement is None:
+            raise ServiceError('requirement_not_found')
+        return {'knowledge_domain': 'grant_rule', 'requirement_id': requirement.id, 'source': requirement.source_chunk.resource.display_name, 'excerpt': requirement.source_excerpt or requirement.text}
+    if tool_name == 'get_user_evidence_source':
+        evidence = UserEvidence.objects.filter(pk=arguments['user_evidence_id'], organization_id=str(proposal.org_id)).select_related('chunk__resource').first()
+        if evidence is None or (evidence.proposal_id and evidence.proposal_id != proposal.id):
+            raise ServiceError('user_evidence_not_found')
+        return {'knowledge_domain': 'user_evidence', 'user_evidence_id': evidence.id, 'source': evidence.chunk.resource.display_name, 'excerpt': evidence.controlled_summary or evidence.chunk.text[:1000]}
+    if tool_name == 'get_proposal_brief':
+        brief = ProposalBrief.objects.filter(proposal=proposal, confirmed=True).order_by('-id').first()
+        if brief is None:
+            raise ServiceError('confirmed_proposal_brief_required')
+        return {'proposal_brief_version': brief.version, 'content': brief.content}
+    if tool_name == 'get_work_policy':
+        brief = ProposalBrief.objects.filter(proposal=proposal, confirmed=True).select_related('session__policy').order_by('-id').first()
+        if brief is None:
+            raise ServiceError('confirmed_proposal_brief_required')
+        policy = brief.session.policy
+        return {'policy_version': policy.version, 'grill_mode': policy.grill_mode, 'question_budget': policy.question_budget, 'preserve_user_structure': policy.preserve_user_structure}
+    if tool_name == 'validate_rule_coverage':
+        from .models import ClaimPlan
+        plan = ClaimPlan.objects.filter(pk=arguments['claim_plan_id'], proposal=proposal).first()
+        if plan is None:
+            raise ServiceError('claim_plan_not_found')
+        return {'knowledge_domain': 'grant_rule', **coverage(plan)}
+    if tool_name == 'validate_claim_support':
+        claim = Claim.objects.filter(pk=arguments['claim_id'], proposal=proposal).first()
+        if claim is None:
+            raise ServiceError('claim_not_found')
+        return {'knowledge_domain': 'user_evidence', 'claim_id': claim.id, 'support_count': claim.evidence_bindings.filter(user_evidence__isnull=False).count(), 'status': claim.status}
+    if tool_name == 'save_claim_binding':
+        claim = Claim.objects.filter(pk=arguments['claim_id'], proposal=proposal).first()
+        evidence = UserEvidence.objects.filter(pk=arguments['user_evidence_id'], organization_id=str(proposal.org_id)).first()
+        if claim is None or evidence is None:
+            raise ServiceError('claim_or_evidence_not_found')
+        binding, _ = ClaimEvidenceBinding.objects.get_or_create(claim=claim, user_evidence=evidence, defaults={'support_type': 'reviewer_confirmed', 'support_strength': 'partial', 'reviewer_status': 'pending'})
+        return {'claim_id': claim.id, 'user_evidence_id': evidence.id, 'binding_id': binding.id}
     raise ServiceError('unknown_tool')
 
 

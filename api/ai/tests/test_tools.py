@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ai.models import ToolInvocation
+from ai.ingestion import create_resource_with_chunks
+from ai.models import GrantPack, GrantPackVersion, GrantProgram, GrantRequirement, ToolInvocation
 from ai.services import promote_service
 from ai.tools import execute_tool
 from ai.workflow import resolve_run_id
@@ -115,3 +116,24 @@ class ToolExecutionTests(TestCase):
             self.assertTrue(result.success)
             self.assertEqual(result.data['markdown'], '# Proposal\n\n## Introduction\nApproved content')
         self.assertEqual(ToolInvocation.objects.filter(tool_name='export_proposal').count(), 1)
+
+    def test_domain_tool_returns_domain_and_writer_cannot_save_claim_binding(self):
+        program = GrantProgram.objects.create(name='Tool Fund', program_type='test', authority='Tool')
+        pack = GrantPack.objects.create(program=program, code='tool-fund', name='Tool Fund')
+        version = GrantPackVersion.objects.create(pack=pack, year=2026, version='v1', status='published')
+        resource = create_resource_with_chunks(type_='guideline', title='Guide', source_url='', full_text='Rule.', knowledge_domain='grant_rule')
+        GrantRequirement.objects.create(pack_version=version, source_chunk=resource.chunks.get(), requirement_type='content', text='Rule.', source_excerpt='Rule.')
+        result = execute_tool(
+            schema_version='v1', tool_name='search_grant_rules',
+            arguments={'proposal_id': self.proposal.id, 'pack_version_id': version.id, 'query': 'Rule'},
+            caller_role='planner', caller=self.user, organization_id=str(self.org.id), run_id=self.run_id,
+        )
+        self.assertTrue(result.success)
+        self.assertEqual(result.data['knowledge_domain'], 'grant_rule')
+        forbidden = execute_tool(
+            schema_version='v1', tool_name='save_claim_binding',
+            arguments={'proposal_id': self.proposal.id, 'claim_id': 1, 'user_evidence_id': 1, 'idempotency_key': 'binding-1'},
+            caller_role='writer', caller=self.user, organization_id=str(self.org.id), run_id=self.run_id,
+        )
+        self.assertFalse(forbidden.success)
+        self.assertEqual(forbidden.error.error_code, 'tool_not_authorized')

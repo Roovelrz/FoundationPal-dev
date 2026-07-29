@@ -1,0 +1,429 @@
+{
+  "target_count": 46,
+  "cases": [
+    {
+      "case_id": "no_applicable_rule_year:001",
+      "annotation_status": "human_confirmed",
+      "query": "2025年度国自然青年C类申请人的年龄条件是什么？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_year": 2025,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:002",
+      "annotation_status": "human_confirmed",
+      "query": "2024年度国自然青年C类是否采用2026版正文三部分结构？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_year": 2024,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:003",
+      "annotation_status": "human_confirmed",
+      "query": "2027年度国自然青年C类集中接收截止时间是什么？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_year": 2027,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:004",
+      "annotation_status": "human_confirmed",
+      "query": "2023年度国自然青年C类是否执行2026年人工智能使用要求？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_year": 2023,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:005",
+      "annotation_status": "human_confirmed",
+      "query": "2025年度四川省自然科学基金青年B类资助额度是多少？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_year": 2025,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:006",
+      "annotation_status": "human_confirmed",
+      "query": "2024年度四川省自然科学基金面上项目实施周期是多少？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_year": 2024,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:007",
+      "annotation_status": "human_confirmed",
+      "query": "2027年度四川省自然科学基金青年A类年龄条件是什么？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_year": 2027,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:008",
+      "annotation_status": "human_confirmed",
+      "query": "2023年度四川省自然科学基金是否要求所有项目配备科研助理？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_year": 2023,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:009",
+      "annotation_status": "human_confirmed",
+      "query": "2025年度四川省高等教育教改项目建设周期是多少？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_year": 2025,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:010",
+      "annotation_status": "human_confirmed",
+      "query": "2024年度西南民族大学教改项目校内推荐名额是多少？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_year": 2024,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:011",
+      "annotation_status": "human_confirmed",
+      "query": "2027年度四川省专项教改项目包括哪些申报方向？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_year": 2027,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:012",
+      "annotation_status": "human_confirmed",
+      "query": "2023年度四川省专项教改项目负责人限报几项？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_year": 2023,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_program:001",
+      "annotation_status": "human_confirmed",
+      "query": "使用青年C类规则包判断青年A类固定资助额度。",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_program_type": "青年科学基金项目A类",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:002",
+      "annotation_status": "human_confirmed",
+      "query": "使用青年C类规则包判断重点项目合作单位限制。",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_program_type": "重点项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:003",
+      "annotation_status": "human_confirmed",
+      "query": "使用青年C类规则包判断大型设备申请书门槛。",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_program_type": "国家重大科研仪器研制项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:004",
+      "annotation_status": "human_confirmed",
+      "query": "使用青年C类规则包判断海外优青全职回国年限。",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "requested_program_type": "优秀青年科学基金项目（海外）",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:005",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包判断教改项目建设周期。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_program_type": "四川省高等教育教学改革研究项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:006",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包判断国自然青年C类年龄条件。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_program_type": "国家自然科学基金青年C类",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:007",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包判断省社科成果要求。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_program_type": "四川省社会科学规划项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:008",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包判断成都市项目资助额度。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_program_type": "成都市科技计划项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:009",
+      "annotation_status": "human_confirmed",
+      "query": "使用西南民族大学教改规则包判断四川省自然科学基金青年B类资格。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_program_type": "四川省自然科学基金青年B类",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:010",
+      "annotation_status": "human_confirmed",
+      "query": "使用教改规则包判断国自然面上项目限项。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_program_type": "国家自然科学基金面上项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:011",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省教改规则包判断教育部人文社科申报条件。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_program_type": "教育部人文社会科学研究项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:012",
+      "annotation_status": "human_confirmed",
+      "query": "使用本科教改规则包判断研究生教改项目校内材料。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_program_type": "西南民族大学研究生教育改革项目",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_region:001",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答广东省自然科学基金青年项目年龄条件。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "广东省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:002",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答重庆市自然科学基金面上项目资助额度。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "重庆市",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:003",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答云南省自然科学基金申报截止时间。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "云南省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:004",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答浙江省自然科学基金限项要求。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "浙江省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:005",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答陕西省自然科学基金联合申报协议要求。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "陕西省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:006",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省自然科学基金规则包回答湖南省自然科学基金项目周期。",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "requested_region": "湖南省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:007",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省教改规则包回答重庆市高校教改项目申报方向。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "重庆市",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:008",
+      "annotation_status": "human_confirmed",
+      "query": "使用西南民族大学组织覆盖规则回答云南大学教改校内截止时间。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "云南省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:009",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省教改规则包回答广东省高校教改项目负责人限项。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "广东省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:010",
+      "annotation_status": "human_confirmed",
+      "query": "使用西南民族大学组织覆盖规则回答北京高校教改推荐名额。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "北京市",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:011",
+      "annotation_status": "human_confirmed",
+      "query": "使用四川省教改规则包回答江苏省高校教改建设周期。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "江苏省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:012",
+      "annotation_status": "human_confirmed",
+      "query": "使用西南民族大学组织覆盖规则回答湖北高校教改材料清单。",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "requested_region": "湖北省",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "safety_block_unpublished:001",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "国自然青年C类申请资格有哪些要求？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:002",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "国自然青年C类正文结构是什么？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:003",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "四川省自然科学基金青年A类的资格条件是什么？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:004",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "四川省自然科学基金附件有哪些？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:005",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "四川省教改项目的人员限项是什么？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:006",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "四川省教改项目的建设周期如何规定？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:007",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "国自然青年C类的经费使用要求是什么？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:008",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "四川省自然科学基金项目周期如何确定？",
+      "grant_pack_version_id": "cn.sichuan.nsf.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:009",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "西南民族大学教改申报材料有哪些？",
+      "grant_pack_version_id": "cn.sichuan.swun.teaching_reform.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    },
+    {
+      "case_id": "safety_block_unpublished:010",
+      "annotation_status": "developer_initial_review",
+      "review_basis": "security_contract_pack_must_be_published",
+      "query": "国自然青年C类的提交要求是什么？",
+      "grant_pack_version_id": "cn.nsfc.youth_c.2026@2026.1-research-20260727",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published",
+      "reason": "unpublished_pack"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { api, apiMaybeAsync, apiUpload, safeOpenExternal } from '../lib/core.js'
 import { t } from '../keys.generated'
+import { Phase12Workspace } from '../components/Phase12Workspace.jsx'
 
 const normalizePlan = (raw) => ({
   schema_version: raw?.schema_version || 'v1',
@@ -560,6 +561,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
 
   return (
     <div className="fund-author-panel" style={{ marginTop: 16, padding: 20, border: '1px solid #d8dee9', borderRadius: 12, background: '#f7f9fc' }}>
+      <Phase12Workspace proposal={proposal} token={token} orgId={orgId} />
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
         <div>
           <h3 style={{ margin: 0 }}>基金申请书工作区</h3>

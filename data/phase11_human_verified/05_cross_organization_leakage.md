@@ -1,0 +1,3 @@
+# 05_cross_organization_leakage
+
+每条必须填写真实授权组织和真实干扰组织，且两侧存在相似资料。forbidden_user_evidence_ids 不能出现在授权组织检索结果中。

@@ -1,0 +1,37 @@
+{
+  "target_count": 4,
+  "cases": [
+    {
+      "case_id": "public_amr_rule_negative:wrong_year",
+      "query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？",
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "reason": "wrong_year",
+      "requested_year": 2025,
+      "expected_status": "no_applicable_rule"
+    },
+    {
+      "case_id": "public_amr_rule_negative:wrong_program",
+      "query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？",
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "reason": "wrong_program",
+      "requested_program_type": "不适用项目类别",
+      "expected_status": "no_applicable_rule"
+    },
+    {
+      "case_id": "public_amr_rule_negative:wrong_region",
+      "query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？",
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "reason": "wrong_region",
+      "requested_region": "不适用地区",
+      "expected_status": "no_applicable_rule"
+    },
+    {
+      "case_id": "public_amr_rule_negative:unpublished",
+      "query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？",
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "reason": "unpublished_pack",
+      "pack_status_override": "draft",
+      "expected_status": "grant_pack_not_published"
+    }
+  ]
+}

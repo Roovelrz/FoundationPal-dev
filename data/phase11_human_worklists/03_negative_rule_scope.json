@@ -1,0 +1,329 @@
+{
+  "target_count": 36,
+  "cases": [
+    {
+      "case_id": "no_applicable_rule_year:001",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:002",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:003",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:004",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:005",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:006",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:007",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:008",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:009",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:010",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:011",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_year:012",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_year": null,
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_year"
+    },
+    {
+      "case_id": "no_applicable_rule_program:001",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:002",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:003",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:004",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:005",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:006",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:007",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:008",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:009",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:010",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:011",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_program:012",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_program_type": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_program"
+    },
+    {
+      "case_id": "no_applicable_rule_region:001",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:002",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:003",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:004",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:005",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:006",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:007",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:008",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:009",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:010",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:011",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    },
+    {
+      "case_id": "no_applicable_rule_region:012",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "grant_pack_version_id": null,
+      "requested_region": "",
+      "expected_status": "no_applicable_rule",
+      "reason": "wrong_region"
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "target_count": 18,
+  "source_fixture": "../phase30_public_amr_eval/05_cross_organization_leakage.json",
+  "cases": [
+    {
+      "case_id": "public_amr_leakage:001",
+      "rewrite_id": "p1_evidence_001",
+      "query": "在多个无线信号同时出现且载频不同的场景中，哪项研究把目标发现与调制判别串成统一流程，并开放了哪些配套资源？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-001"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:002",
+      "rewrite_id": "p1_evidence_002",
+      "query": "训练样本较少时，研究对比的三类波形增强中哪一种更有效，组合增强又怎样影响可用信号片段长度？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-002"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:003",
+      "rewrite_id": "p1_evidence_003",
+      "query": "为了保留 I/Q 两路之间的复数关系，相关模型把何种运算加入残差或稠密网络，并取得了多少峰值准确率？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-003"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:004",
+      "rewrite_id": "p1_evidence_004",
+      "query": "用于物联网端侧识别的 Transformer 方案比较了多少种射频序列切分方式，并在哪两套公开基准上验证？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-004"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:005",
+      "rewrite_id": "p1_evidence_005",
+      "query": "哪种注意力式接收机前端可以从数据中学习时间对齐和幅相标准化，而无需预先写入信号结构规则？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-005"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:006",
+      "rewrite_id": "p1_evidence_006",
+      "query": "为缩短自动调制分类训练过程，研究比较了哪些深度架构，并使用了哪些降维、抽样或信噪比选取办法？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-006"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:007",
+      "rewrite_id": "p1_evidence_007",
+      "query": "适配可变持续时间信号的轻量网络，其测试数据覆盖了哪些传播与解调偏差，数据和复现代码是否可获得？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-007"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:008",
+      "rewrite_id": "p1_evidence_008",
+      "query": "该综述除梳理网络架构和基准数据集外，还分析了算法复杂度、结果可解释性以及哪些单天线与多天线通信场景？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-008"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:009",
+      "rewrite_id": "p1_evidence_009",
+      "query": "把十一类调制波形转为时频图后，分辨率处理最高节省了多少计算负担，并带来几倍转换提速？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-009"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:010",
+      "rewrite_id": "p1_evidence_010",
+      "query": "调制识别采用分支提前输出时，论文共设计了几套结构，中高信噪比样本为何不必经过全部网络层？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-010"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:011",
+      "rewrite_id": "p1_evidence_011",
+      "query": "经过系统组件消融，哪种扩张感受野、统计汇聚和通道加权方案构成了最佳卷积分类器？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-011"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:012",
+      "rewrite_id": "p1_evidence_012",
+      "query": "若训练与测试信号由不同数据源生成，直接输入原始 I/Q 的实验主要检验模型应对哪类分布变化能力？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-012"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:013",
+      "rewrite_id": "p1_evidence_013",
+      "query": "为说明 CNN 与 LSTM 根据哪些时刻作出调制判断，研究如何给每个采样点分配重要度并展示连续关键区段？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-013"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:014",
+      "rewrite_id": "p1_evidence_014",
+      "query": "当每类标注很少且测试中可能出现未见过的调制方式时，模型如何兼顾已知类判别、未知类拒识和原型适配？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-014"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:015",
+      "rewrite_id": "p1_evidence_015",
+      "query": "在少量标注条件下，哪项方案联合跨域对比目标与强化策略来学习表示并完成后续调制分类？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-015"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:016",
+      "rewrite_id": "p1_evidence_016",
+      "query": "以星座图作为输入的注意力图像模型用多少张调制图像训练基础分类器，并分别评估了哪两类分布场景？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-016"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:017",
+      "rewrite_id": "p1_evidence_017",
+      "query": "训练标签含错时，哪种方法让异构师生网络借助少量可信样本重新评估并修正监督信息？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-017"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    },
+    {
+      "case_id": "public_amr_leakage:018",
+      "rewrite_id": "p1_evidence_018",
+      "query": "面向边缘硬件的轻量调制分类方案采用了哪种双路残差收缩设计，其紧凑 CNN-LSTM 约有多少可训练参数？",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "distractor_organization_id": "ORG-P1-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-P1-AMR-FORBIDDEN-018"
+      ],
+      "forbidden_source_user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Forbidden evidence must clone the authorized Gold source. Do not inject the evaluation query into either evidence record."
+    }
+  ]
+}

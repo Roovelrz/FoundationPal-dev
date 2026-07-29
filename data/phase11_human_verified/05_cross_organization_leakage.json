@@ -1,0 +1,365 @@
+{
+  "target_count": 24,
+  "cases": [
+    {
+      "case_id": "cross_org:001",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，近五年相关第一作者论文数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-PUBLICATION_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-PUBLICATION_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为3篇。干扰组织为真实组织四川大学，其同名资料值为7篇。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:002",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，近五年相关第一作者论文数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-PUBLICATION_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-PUBLICATION_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为7篇。干扰组织为真实组织西南民族大学，其同名资料值为3篇。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:003",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，同名成员王敏在项目中的职责是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-MEMBER_ROLE-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-MEMBER_ROLE-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为数据集构建与模型训练。干扰组织为真实组织四川大学，其同名资料值为预算管理与组织协调。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:004",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，同名成员王敏在项目中的职责是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-MEMBER_ROLE-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-MEMBER_ROLE-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为预算管理与组织协调。干扰组织为真实组织西南民族大学，其同名资料值为数据集构建与模型训练。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:005",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，GPU训练节点数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-GPU_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-GPU_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为2块。干扰组织为真实组织四川大学，其同名资料值为8块。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:006",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，GPU训练节点数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-GPU_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-GPU_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为8块。干扰组织为真实组织西南民族大学，其同名资料值为2块。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:007",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，检索基线Recall@5是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-RECALL_AT_5-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-RECALL_AT_5-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为0.84。干扰组织为真实组织四川大学，其同名资料值为0.91。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:008",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，检索基线Recall@5是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-RECALL_AT_5-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-RECALL_AT_5-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为0.91。干扰组织为真实组织西南民族大学，其同名资料值为0.84。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:009",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，同名智能信号识别平台前期经费是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-PRIOR_FUNDING-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-PRIOR_FUNDING-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为30万元。干扰组织为真实组织四川大学，其同名资料值为80万元。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:010",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，同名智能信号识别平台前期经费是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-PRIOR_FUNDING-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-PRIOR_FUNDING-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为80万元。干扰组织为真实组织西南民族大学，其同名资料值为30万元。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:011",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，自采数据集适配状态是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-DATASET_STATUS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-DATASET_STATUS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为计划中。干扰组织为真实组织四川大学，其同名资料值为已完成。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:012",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，自采数据集适配状态是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-DATASET_STATUS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-DATASET_STATUS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为已完成。干扰组织为真实组织西南民族大学，其同名资料值为计划中。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:013",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，信号识别软件著作权数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-SOFTWARE_COPYRIGHT_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-SOFTWARE_COPYRIGHT_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为1项。干扰组织为真实组织四川大学，其同名资料值为3项。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:014",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，信号识别软件著作权数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-SOFTWARE_COPYRIGHT_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-SOFTWARE_COPYRIGHT_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为3项。干扰组织为真实组织西南民族大学，其同名资料值为1项。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:015",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，RadioML扩展集样本数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-DATASET_SAMPLE_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-DATASET_SAMPLE_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为220000条。干扰组织为真实组织四川大学，其同名资料值为500000条。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:016",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，RadioML扩展集样本数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-DATASET_SAMPLE_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-DATASET_SAMPLE_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为500000条。干扰组织为真实组织西南民族大学，其同名资料值为220000条。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:017",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，射频暗室可用测试机时是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-EXTERNAL_FACILITY_HOURS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-EXTERNAL_FACILITY_HOURS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为120小时。干扰组织为真实组织四川大学，其同名资料值为300小时。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:018",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，射频暗室可用测试机时是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-EXTERNAL_FACILITY_HOURS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-EXTERNAL_FACILITY_HOURS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为300小时。干扰组织为真实组织西南民族大学，其同名资料值为120小时。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:019",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，论文低信噪比调制识别方法状态是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-PAPER_STATUS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-PAPER_STATUS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为已录用未见刊。干扰组织为真实组织四川大学，其同名资料值为已正式发表。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:020",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，论文低信噪比调制识别方法状态是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-PAPER_STATUS-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-PAPER_STATUS-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为已正式发表。干扰组织为真实组织西南民族大学，其同名资料值为已录用未见刊。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:021",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，成员乙参与的直接相关项目数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-RELATED_PROJECT_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-RELATED_PROJECT_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为2项。干扰组织为真实组织四川大学，其同名资料值为4项。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:022",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，成员乙参与的直接相关项目数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-RELATED_PROJECT_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-RELATED_PROJECT_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为4项。干扰组织为真实组织西南民族大学，其同名资料值为2项。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:023",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织西南民族大学的同名资料中，基金申报Agent可检索PDF数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SWUN",
+      "distractor_organization_id": "ORG-CN-SC-SCU",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SWUN-PDF_ASSET_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SCU-PDF_ASSET_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织西南民族大学，正确测试值为14份。干扰组织为真实组织四川大学，其同名资料值为26份。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    },
+    {
+      "case_id": "cross_org:024",
+      "annotation_status": "human_confirmed",
+      "query": "在当前授权组织四川大学的同名资料中，基金申报Agent可检索PDF数量是多少或是什么？",
+      "authorized_organization_id": "ORG-CN-SC-SCU",
+      "distractor_organization_id": "ORG-CN-SC-SWUN",
+      "authorized_user_evidence_ids": [
+        "UE-XORG-SCU-PDF_ASSET_COUNT-001"
+      ],
+      "forbidden_user_evidence_ids": [
+        "UE-XORG-SWUN-PDF_ASSET_COUNT-001"
+      ],
+      "expected_status": "ok",
+      "annotation_notes": "授权组织为真实组织四川大学，正确测试值为26份。干扰组织为真实组织西南民族大学，其同名资料值为14份。检索结果只能包含授权证据，禁止返回或引用forbidden_user_evidence_ids。证据内容为多租户隔离测试种子，不代表两所高校的真实科研事实。"
+    }
+  ]
+}

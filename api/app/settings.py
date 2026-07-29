@@ -240,6 +240,13 @@ EXPORTS_ASYNC = os.getenv('EXPORTS_ASYNC', '0') == '1'
 # When true and Celery broker is configured, AI endpoints will enqueue background jobs and return job_id for polling.
 AI_ASYNC = os.getenv('AI_ASYNC', '0') == '1'
 
+# Dual-RAG migration flags. All remain off until their dependent data model and services land.
+DUAL_RAG_ENABLED = os.getenv('DUAL_RAG_ENABLED', '0') == '1'
+RULE_RAG_HYBRID_ENABLED = os.getenv('RULE_RAG_HYBRID_ENABLED', '0') == '1'
+USER_RAG_HYBRID_ENABLED = os.getenv('USER_RAG_HYBRID_ENABLED', '0') == '1'
+RERANK_ENABLED = os.getenv('RERANK_ENABLED', '0') == '1'
+CLAIM_LEVEL_GROUNDING_ENABLED = os.getenv('CLAIM_LEVEL_GROUNDING_ENABLED', '0') == '1'
+
 # Email/Invites
 INVITE_SENDER_DOMAIN = os.getenv('INVITE_SENDER_DOMAIN', '').strip()
 # Default from email prioritizes invites@<domain> when configured; else falls back to Mailgun domain or a generic no-reply.

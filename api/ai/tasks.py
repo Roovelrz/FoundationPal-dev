@@ -8,8 +8,10 @@ from . import retrieval
 from .section_pipeline import get_section
 from .validators import SchemaError, section_draft, validate_role_output
 from .diff_engine import diff_texts
-from .writer_evidence import parse_writer_result, persist_evidence_usage, render_evidence_context
-from .services import finalize_service, plan_service, revise_service, search_service, write_service
+from .writer_evidence import parse_writer_result, persist_evidence_usage, render_writer_contexts, retrieve_writer_evidence
+from .query_router import persist_dual_retrieval_trace
+from .reviewing import prepare_writer_run
+from .services import finalize_service, plan_service, revise_service, write_service
 
 
 def _provider():
@@ -133,25 +135,41 @@ def run_write(job_id: int):
             job.save(update_fields=['status', 'error_text'])
             return
 
-        retrieval_query, res_snippets = search_service(
-            section_key=section_id,
-            answers=job.input_json.get('answers') or {},
+        write_answers = job.input_json.get('answers') or {}
+        writer_run = None
+        if section_obj:
+            try:
+                writer_run, rule_context, user_evidence_context = prepare_writer_run(section_obj)
+                write_answers = {**write_answers, '_protected_facts': '\n'.join(writer_run.protected_facts), '_missing_evidence': '\n'.join(writer_run.missing_evidence)}
+                write_answers['_pack_version_id'] = str(writer_run.section_plan.claim_plan.pack_version_id)
+                write_answers['_year'] = str(writer_run.section_plan.claim_plan.pack_version.year)
+            except ValueError:
+                writer_run = None
+        contexts = retrieve_writer_evidence(
+            section_id,
+            answers=write_answers,
             organization_id=job.org_id,
             proposal_id=proposal_id,
         )
+        if writer_run is None:
+            rule_context, user_evidence_context = render_writer_contexts(contexts)
+        workflow_run = WorkflowRun.objects.filter(run_id=job.run_id).first()
+        persist_dual_retrieval_trace(workflow_run, contexts.result)
+        res_snippets = contexts.rule_candidates + contexts.user_evidence_candidates
         allocation = {'snippets': res_snippets}
 
         # Provider call
         res = prov.write(
             section_id=section_id,
-            answers=job.input_json.get('answers') or {},
+            answers=write_answers,
             file_refs=job.input_json.get('file_refs') or None,
             deterministic=det_default,
-            evidence_context=render_evidence_context(res_snippets),
+            rule_context=rule_context,
+            user_evidence_context=user_evidence_context,
         )
 
         # Validation
-        draft = parse_writer_result(section_id, res.text, [item['chunk_id'] for item in res_snippets])
+        draft = parse_writer_result(section_id, res.text, contexts.allowed_chunk_ids)
         validation = {'write_valid': True}
 
         # Persist prompt context
@@ -207,11 +225,12 @@ def run_write(job_id: int):
             persist_evidence_usage(
                 section=section_obj,
                 job=job,
-                run=WorkflowRun.objects.filter(run_id=job.run_id).first(),
+                run=workflow_run,
                 role='writer',
-                query=retrieval_query,
+                query=contexts.query,
                 candidates=res_snippets,
                 cited_chunk_ids=draft['evidence_ids'],
+                retrieval_run_id=contexts.result.retrieval_run_id,
             )
         job.status = 'done'
 

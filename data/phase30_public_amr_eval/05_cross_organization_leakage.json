@@ -1,0 +1,275 @@
+{
+  "target_count": 18,
+  "cases": [
+    {
+      "case_id": "public_amr_leakage:001",
+      "query": "CRML23覆盖不同载频上的多信号共存场景。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-001"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:002",
+      "query": "研究比较了旋转、翻转和高斯噪声增强。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-002"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:003",
+      "query": "模型直接利用I/Q信号的复数结构。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-003"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:004",
+      "query": "方法面向实时边缘计算场景。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-004"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:005",
+      "query": "研究将学习式注意力模型用于调制识别。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-005"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:006",
+      "query": "论文比较CLDNN、LSTM和ResNet。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-006"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:007",
+      "query": "网络参数量不依赖信号持续时间。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-007"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:008",
+      "query": "论文综述DL-AMR模型和数据集。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-008"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:009",
+      "query": "研究覆盖11种调制类型。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-009"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:010",
+      "query": "论文提出四种Early Exit架构。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-010"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:011",
+      "query": "研究比较多种CNN架构与设计元素。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-011"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:012",
+      "query": "研究输入为原始I/Q数据。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-012"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:013",
+      "query": "类别激活向量表示各信号采样点的重要性。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-013"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:014",
+      "query": "框架同时处理已知和未知调制类型。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-014"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:015",
+      "query": "框架结合多域表示、对比学习和强化学习。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-015"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:016",
+      "query": "模型以调制信号星座图为输入。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-016"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:017",
+      "query": "方法使用教师学生异构网络处理标签噪声。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-017"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    },
+    {
+      "case_id": "public_amr_leakage:018",
+      "query": "模型面向资源受限边缘设备。",
+      "authorized_organization_id": "ORG-P30-PUBLIC-AMR",
+      "authorized_user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "distractor_organization_id": "ORG-P30-FORBIDDEN-AMR",
+      "forbidden_user_evidence_ids": [
+        "UE-PUBLIC-AMR-FORBIDDEN-018"
+      ],
+      "expected_status": "no_cross_organization_leakage",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Same public document is deliberately duplicated across two test organizations."
+    }
+  ]
+}

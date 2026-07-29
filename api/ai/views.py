@@ -21,10 +21,16 @@ from django.db import models
 from app.common.keys import t
 from proposals.models import Proposal, ProposalSection
 from proposals.finalization import SectionsNotApproved, build_approved_markdown
-from .writer_evidence import parse_writer_result, persist_evidence_usage, render_evidence_context
-from .services import finalize_service, plan_service, revise_service, search_service, write_service
+from .writer_evidence import parse_writer_result, persist_evidence_usage, render_writer_contexts, retrieve_writer_evidence
+from .query_router import persist_dual_retrieval_trace
+from .services import ServiceError, finalize_service, plan_service, revise_service, write_service
 from .grill import answer as answer_grill, confirm as confirm_grill, get_session, planning_context, serialize as serialize_grill
 from .grill import finish as finish_grill
+from .intake import answer_node, consensus as intake_consensus, next_node, question_card, start_intake, work_plan_preview
+from .claim_planning import confirm_claim_plan, create_claim_plan, serialize_claim_plan
+from .reviewing import answer_review_grill, apply_local_revision, prepare_writer_run, run_review, start_review_grill
+from .models import ClaimPlan, GrillSession, ProposalIntakeProfile, GrantPackVersion
+from .phase12 import create_custom_pack_draft, decide_claim, serialize_evidence_review, serialize_pack_review, update_evidence_review, update_pack_review
 from .proposal_graph import run_proposal_graph
 from .hitl import HUMAN_ACTIONS, HUMAN_NODES, resume_human_task, start_human_task
 from django.db import transaction
@@ -360,6 +366,249 @@ def grill(request):
     return Response(serialize_grill(session, draft=draft))
 
 
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def intake(request):
+    data = request.query_params if request.method == 'GET' else request.data
+    if request.method == 'GET':
+        try:
+            session_id = int(data.get('session_id'))
+        except (TypeError, ValueError):
+            return Response({'error': 'session_id_invalid'}, status=400)
+        session = GrillSession.objects.select_related('proposal', 'profile', 'policy').filter(pk=session_id).first()
+        if session is None or _get_accessible_proposal(request, session.proposal_id) is None:
+            return Response({'error': 'intake_session_not_found'}, status=404)
+        return Response({'session_id': session.id, 'status': session.status, 'work_plan_preview': work_plan_preview(session), 'question_card': question_card(next_node(session))})
+    try:
+        proposal_id = int(data.get('proposal_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'proposal_id_invalid'}, status=400)
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    task_mode = data.get('task_mode')
+    quality_level = data.get('quality_level')
+    if task_mode not in dict(ProposalIntakeProfile.TASK_MODE_CHOICES) or quality_level not in dict(ProposalIntakeProfile.QUALITY_LEVEL_CHOICES):
+        return Response({'error': 'task_mode_or_quality_level_invalid'}, status=400)
+    inputs = data.get('inputs') or {}
+    overrides = data.get('user_overrides') or {}
+    if not isinstance(inputs, dict) or not isinstance(overrides, dict):
+        return Response({'error': 'intake_inputs_invalid'}, status=400)
+    session = start_intake(proposal, task_mode=task_mode, quality_level=quality_level, inputs=inputs, user_overrides=overrides)
+    return Response({'session_id': session.id, 'status': session.status, 'work_plan_preview': work_plan_preview(session), 'question_card': question_card(next_node(session))}, status=201)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def intake_grill(request):
+    try:
+        session_id = int(request.data.get('session_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'session_id_invalid'}, status=400)
+    session = GrillSession.objects.select_related('proposal', 'profile', 'policy').filter(pk=session_id).first()
+    if session is None or _get_accessible_proposal(request, session.proposal_id) is None:
+        return Response({'error': 'intake_session_not_found'}, status=404)
+    try:
+        _, created = answer_node(
+            session,
+            node_id=sanitize_text(request.data.get('node_id'), max_len=64),
+            action=request.data.get('action'),
+            answer=sanitize_text(request.data.get('answer'), max_len=4000),
+            idempotency_key=sanitize_text(request.data.get('idempotency_key'), max_len=128),
+            user=request.user,
+        )
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    session.refresh_from_db()
+    return Response({'idempotent_replay': not created, 'status': session.status, 'question_card': question_card(next_node(session)), 'consensus_summary': intake_consensus(session)})
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def intake_consensus_view(request):
+    data = request.query_params if request.method == 'GET' else request.data
+    try:
+        session_id = int(data.get('session_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'session_id_invalid'}, status=400)
+    session = GrillSession.objects.select_related('proposal', 'profile', 'policy').filter(pk=session_id).first()
+    if session is None or _get_accessible_proposal(request, session.proposal_id) is None:
+        return Response({'error': 'intake_session_not_found'}, status=404)
+    try:
+        summary = intake_consensus(session, confirm=bool(data.get('confirm')) if request.method == 'POST' else False)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response(summary)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def grant_pack_review(request, version_id):
+    version = GrantPackVersion.objects.select_related('pack').filter(pk=version_id).first()
+    if version is None:
+        return Response({'error': 'grant_pack_version_not_found'}, status=404)
+    organization_id = request.META.get('HTTP_X_ORG_ID', '')
+    if version.pack.organization_id and version.pack.organization_id != str(organization_id):
+        return Response({'error': 'grant_pack_not_found'}, status=404)
+    if request.method == 'GET':
+        return Response(serialize_pack_review(version))
+    try:
+        return Response(update_pack_review(version, request.data, request.user))
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def proposal_evidence_review(request, proposal_id):
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    if request.method == 'GET':
+        return Response(serialize_evidence_review(proposal))
+    try:
+        return Response(update_evidence_review(proposal, request.data, request.user))
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def proposal_claim_decision(request, proposal_id):
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    try:
+        return Response(decide_claim(proposal, request.data))
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def proposal_rule_pack_draft(request, proposal_id):
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    try:
+        return Response(create_custom_pack_draft(proposal, request.data), status=201)
+    except (ValueError, TypeError) as error:
+        return Response({'error': str(error)}, status=409)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def claim_plan(request):
+    if request.method == 'GET':
+        try:
+            plan_id = int(request.query_params.get('claim_plan_id'))
+        except (TypeError, ValueError):
+            return Response({'error': 'claim_plan_id_invalid'}, status=400)
+        plan = ClaimPlan.objects.select_related('proposal').filter(pk=plan_id).first()
+        if plan is None or _get_accessible_proposal(request, plan.proposal_id) is None:
+            return Response({'error': 'claim_plan_not_found'}, status=404)
+        return Response(serialize_claim_plan(plan))
+    try:
+        proposal_id = int(request.data.get('proposal_id'))
+        pack_version_id = int(request.data.get('pack_version_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'proposal_id_or_pack_version_id_invalid'}, status=400)
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    try:
+        plan = create_claim_plan(proposal, pack_version_id=pack_version_id)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response(serialize_claim_plan(plan), status=201)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def claim_plan_confirm(request):
+    try:
+        plan_id = int(request.data.get('claim_plan_id'))
+    except (TypeError, ValueError):
+        return Response({'error': 'claim_plan_id_invalid'}, status=400)
+    plan = ClaimPlan.objects.select_related('proposal').filter(pk=plan_id).first()
+    if plan is None or _get_accessible_proposal(request, plan.proposal_id) is None:
+        return Response({'error': 'claim_plan_not_found'}, status=404)
+    try:
+        plan = confirm_claim_plan(plan)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response(serialize_claim_plan(plan))
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def section_writer_context(request, section_id):
+    section = ProposalSection.objects.select_related('proposal').filter(pk=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    try:
+        run, _, _ = prepare_writer_run(section)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response({'writer_run_id': run.id, 'writing_mode': run.writing_mode, 'rule_evidence_ids': run.rule_context, 'user_evidence_ids': run.user_evidence_context, 'protected_facts': run.protected_facts, 'missing_evidence': run.missing_evidence})
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def section_review(request, section_id):
+    section = ProposalSection.objects.select_related('proposal').filter(pk=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    try:
+        issues = run_review(section)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response({'issues': [{'id': item.id, 'category': item.category, 'code': item.code, 'severity': item.severity, 'status': item.status, 'auto_fixable': item.auto_fixable} for item in issues]})
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def section_review_grill(request, section_id):
+    section = ProposalSection.objects.select_related('proposal').filter(pk=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    try:
+        session = start_review_grill(section)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response({'session_id': session.id, 'question_card': question_card(next_node(session))}, status=201)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def review_grill_answer(request):
+    try:
+        session = GrillSession.objects.select_related('proposal').get(pk=int(request.data.get('session_id')))
+    except (TypeError, ValueError, GrillSession.DoesNotExist):
+        return Response({'error': 'review_session_not_found'}, status=404)
+    if _get_accessible_proposal(request, session.proposal_id) is None:
+        return Response({'error': 'review_session_not_found'}, status=404)
+    try:
+        _, created = answer_review_grill(session, node_id=sanitize_text(request.data.get('node_id'), max_len=64), action=request.data.get('action'), answer=sanitize_text(request.data.get('answer'), max_len=4000), idempotency_key=sanitize_text(request.data.get('idempotency_key'), max_len=128), user=request.user)
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    return Response({'idempotent_replay': not created, 'question_card': question_card(next_node(session))})
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def section_review_revise(request, section_id):
+    section = ProposalSection.objects.select_related('proposal').filter(pk=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    issue = section.review_issues.filter(pk=request.data.get('issue_id')).first() if request.data.get('issue_id') else None
+    try:
+        diff = apply_local_revision(section, revised_text=sanitize_text(request.data.get('revised_text'), max_len=20000, neutralize_injection=False), issue=issue, user_id=request.user.id if request.user.is_authenticated else None)
+    except (ValueError, ServiceError) as error:
+        return Response({'error': str(error)}, status=409)
+    return Response({'diff': diff})
+
+
 @api_view(['POST'])
 @permission_classes([DebugOrAuthPermission])
 def workflow_run(request):
@@ -583,24 +832,39 @@ def write(request):
                 for item in review_evidence
             )
     try:
-        retrieval_query, candidates = search_service(
-            section_key=section_id,
+        writer_run = None
+        if section is not None:
+            try:
+                writer_run, rule_context, user_evidence_context = prepare_writer_run(section)
+                answers['_protected_facts'] = '\n'.join(writer_run.protected_facts)
+                answers['_missing_evidence'] = '\n'.join(writer_run.missing_evidence)
+                answers['_pack_version_id'] = str(writer_run.section_plan.claim_plan.pack_version_id)
+                answers['_year'] = str(writer_run.section_plan.claim_plan.pack_version.year)
+            except ValueError:
+                writer_run = None
+        contexts = retrieve_writer_evidence(
+            section_id,
             answers=answers,
             organization_id=request.META.get('HTTP_X_ORG_ID', ''),
             proposal_id=proposal_id,
         )
+        if writer_run is None:
+            rule_context, user_evidence_context = render_writer_contexts(contexts)
+        workflow_run = WorkflowRun.objects.filter(run_id=run_id).first()
+        persist_dual_retrieval_trace(workflow_run, contexts.result)
         res = provider.write(
             section_id=section_id,
             answers=answers,
             file_refs=file_refs or None,
             deterministic=deterministic,
-            evidence_context=render_evidence_context(candidates),
+            rule_context=rule_context,
+            user_evidence_context=user_evidence_context,
         )  # type: ignore[arg-type]
     except Exception:
         logger.exception('AI provider.write failed')
         return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
     try:
-        draft = parse_writer_result(section_id, res.text, [item['chunk_id'] for item in candidates])
+        draft = parse_writer_result(section_id, res.text, contexts.allowed_chunk_ids)
     except SchemaError as error:
         return Response({'error': invalid_output_error(error).as_dict()}, status=502)
     if section is not None:
@@ -608,11 +872,12 @@ def write(request):
         persist_evidence_usage(
             section=section,
             job=None,
-            run=WorkflowRun.objects.filter(run_id=run_id).first(),
+            run=workflow_run,
             role='writer',
-            query=retrieval_query,
-            candidates=candidates,
+            query=contexts.query,
+            candidates=contexts.rule_candidates + contexts.user_evidence_candidates,
             cited_chunk_ids=draft['evidence_ids'],
+            retrieval_run_id=contexts.result.retrieval_run_id,
         )
     # (single-write marker already set at entry)
     dt_ms = int((time.time() - t0) * 1000)
@@ -650,7 +915,7 @@ def write(request):
         'section_title': item['section_title'],
         'text': item['text'],
         'cited_by_model': item['chunk_id'] in draft['evidence_ids'],
-    } for item in candidates]
+    } for item in contexts.rule_candidates + contexts.user_evidence_candidates]
     return Response({'draft_text': draft['draft_markdown'], 'assets': [], 'tokens_used': res.usage_tokens, 'evidence_ids': draft['evidence_ids'], 'missing_evidence': draft['missing_evidence'], 'evidence': evidence, 'run_id': str(run_id)})
 
 

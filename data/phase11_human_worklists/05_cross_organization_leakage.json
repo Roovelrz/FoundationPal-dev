@@ -1,0 +1,269 @@
+{
+  "target_count": 24,
+  "cases": [
+    {
+      "case_id": "cross_org:001",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:002",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:003",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:004",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:005",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:006",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:007",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:008",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:009",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:010",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:011",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:012",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:013",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:014",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:015",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:016",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:017",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:018",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:019",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:020",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:021",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:022",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:023",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    },
+    {
+      "case_id": "cross_org:024",
+      "annotation_status": "pending_human_review",
+      "query": "",
+      "authorized_organization_id": "",
+      "distractor_organization_id": "",
+      "authorized_user_evidence_ids": [],
+      "forbidden_user_evidence_ids": [],
+      "expected_status": "ok",
+      "annotation_notes": ""
+    }
+  ]
+}

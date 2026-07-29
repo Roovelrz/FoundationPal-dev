@@ -1,0 +1,41 @@
+{
+  "schema_version": "phase11_human_worklists_v1",
+  "frozen_confirmed_count": 162,
+  "worklists": [
+    {
+      "file": "01_rule_requirement_mapping.json",
+      "target_count": 154,
+      "actual_count": 154
+    },
+    {
+      "file": "02_user_evidence_grounding.json",
+      "target_count": 40,
+      "actual_count": 40
+    },
+    {
+      "file": "03_negative_rule_scope.json",
+      "target_count": 36,
+      "actual_count": 36
+    },
+    {
+      "file": "04_mixed_dual_domain.json",
+      "target_count": 24,
+      "actual_count": 24
+    },
+    {
+      "file": "05_cross_organization_leakage.json",
+      "target_count": 24,
+      "actual_count": 24
+    },
+    {
+      "file": "06_claim_grounding.json",
+      "target_count": 30,
+      "actual_count": 30
+    },
+    {
+      "file": "07_intake_and_review_workflow.json",
+      "target_count": 48,
+      "actual_count": 48
+    }
+  ]
+}

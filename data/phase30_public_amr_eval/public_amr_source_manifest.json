@@ -1,0 +1,659 @@
+{
+  "sources": [
+    {
+      "index": 1,
+      "public_evidence_id": "UE-PUBLIC-AMR-001",
+      "legacy_slot_external_id": "UE-P11-AMR-DATA-001",
+      "arxiv_id": "2405.00736",
+      "title": "Joint Signal Detection and Automatic Modulation Classification via Deep Learning",
+      "authors": [
+        "Huijun Xing",
+        "Xuhui Zhang",
+        "Shuo Chang",
+        "Jinke Ren",
+        "Zixun Zhang",
+        "Jie Xu",
+        "Shuguang Cui"
+      ],
+      "publication_year": 2024,
+      "source_file": "joint_signal_detection_amc.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/joint_signal_detection_amc.pdf",
+      "source_url": "https://arxiv.org/abs/2405.00736",
+      "source_pdf_url": "https://arxiv.org/pdf/2405.00736",
+      "file_sha256": "6d23ae743fff31631f219bbf91d992247f60abe57cd2bc16f4ae90f55d3e05b8",
+      "stable_chunk_id": "4dc09c0ac8122ad95c79b10d6834d1ce7c326973f3c9227ca1ca401d7b564c08",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 13,
+      "file_size_bytes": 1336052,
+      "evidence_summary": "论文构建了多信号共存的 CRML23 数据集，并提出联合信号检测与自动调制分类框架，代码和数据集公开。",
+      "verified_claims": [
+        "CRML23覆盖不同载频上的多信号共存场景。",
+        "JDM框架由信号检测与调制分类两个模块组成。",
+        "论文声明代码和数据集已开源。"
+      ],
+      "topic_tags": [
+        "dataset",
+        "joint_detection",
+        "multi_signal",
+        "open_source"
+      ]
+    },
+    {
+      "index": 2,
+      "public_evidence_id": "UE-PUBLIC-AMR-002",
+      "legacy_slot_external_id": "UE-P11-AMR-EXP-001",
+      "arxiv_id": "1912.03026",
+      "title": "Data Augmentation for Deep Learning-based Radio Modulation Classification",
+      "authors": [
+        "Liang Huang",
+        "Weijian Pan",
+        "You Zhang",
+        "LiPing Qian",
+        "Nan Gao",
+        "Yuan Wu"
+      ],
+      "publication_year": 2019,
+      "source_file": "data_augmentation_radio_modulation.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/data_augmentation_radio_modulation.pdf",
+      "source_url": "https://arxiv.org/abs/1912.03026",
+      "source_pdf_url": "https://arxiv.org/pdf/1912.03026",
+      "file_sha256": "bf5311d25949a1f6743c041a39329b108e6b3d3317d53e97b4e14818003e672d",
+      "stable_chunk_id": "aaabf8613e95a877054de1a29d4d6f0abd6f5e729ae8a926cad9a41cbc0ea3ff",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 8,
+      "file_size_bytes": 2454400,
+      "evidence_summary": "论文系统评估旋转、翻转和高斯噪声三种无线调制数据增强方法，并报告旋转方法在其设置中优于另外两种方法。",
+      "verified_claims": [
+        "研究比较了旋转、翻转和高斯噪声增强。",
+        "联合旋转与翻转可在较少训练数据下提升分类表现。",
+        "增强后可使用更短无线样本进行分类。"
+      ],
+      "topic_tags": [
+        "data_augmentation",
+        "rotation",
+        "small_data",
+        "RadioML"
+      ]
+    },
+    {
+      "index": 3,
+      "public_evidence_id": "UE-PUBLIC-AMR-003",
+      "legacy_slot_external_id": "UE-P11-AMR-EXP-002",
+      "arxiv_id": "2010.10717",
+      "title": "High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification",
+      "authors": [
+        "Jakob Krzyston",
+        "Rajib Bhattacharjea",
+        "Andrew Stark"
+      ],
+      "publication_year": 2020,
+      "source_file": "complex_cnn_iq_modulation.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/complex_cnn_iq_modulation.pdf",
+      "source_url": "https://arxiv.org/abs/2010.10717",
+      "source_pdf_url": "https://arxiv.org/pdf/2010.10717",
+      "file_sha256": "194e792c4db2235ca8a00d1a743a16e6ea86efe02344600d9ea61384e7c52b07",
+      "stable_chunk_id": "acfdc37ba1f782d636b205802144f058c3cde2acb20f06e9ab5093600b04ffb4",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 5,
+      "file_size_bytes": 332774,
+      "evidence_summary": "论文将复杂卷积引入高容量残差和稠密网络，在 RadioML 2016.10a 上报告峰值分类准确率92.4%。",
+      "verified_claims": [
+        "模型直接利用I/Q信号的复数结构。",
+        "复杂卷积被用于残差或稠密连接网络。",
+        "论文报告RadioML 2016.10a峰值准确率92.4%。"
+      ],
+      "topic_tags": [
+        "complex_convolution",
+        "residual_network",
+        "RadioML2016.10a",
+        "evaluation"
+      ]
+    },
+    {
+      "index": 4,
+      "public_evidence_id": "UE-PUBLIC-AMR-004",
+      "legacy_slot_external_id": "UE-P11-AMR-PROJ-004",
+      "arxiv_id": "2403.15417",
+      "title": "Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers",
+      "authors": [
+        "Narges Rashvand",
+        "Kenneth Witham",
+        "Gabriel Maldonado",
+        "Vinit Katariya",
+        "Nishanth Marer Prabhu",
+        "Gunar Schirner",
+        "Hamed Tabkhi"
+      ],
+      "publication_year": 2024,
+      "source_file": "transformer_amr_iot.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/transformer_amr_iot.pdf",
+      "source_url": "https://arxiv.org/abs/2403.15417",
+      "source_pdf_url": "https://arxiv.org/pdf/2403.15417",
+      "file_sha256": "fcc1b6da2b0c7aa6667721831ba54007eb811cbc72932209cbb9f43ed5b54261",
+      "stable_chunk_id": "421ffe0a66602ac360381f06e209e1eecaa7494ba37e7cfe4ca6f904ee5a7613",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 13,
+      "file_size_bytes": 1163513,
+      "evidence_summary": "论文面向物联网边缘设备设计 Transformer 调制识别方法，并比较四种 RF 信号 tokenization 方案。",
+      "verified_claims": [
+        "方法面向实时边缘计算场景。",
+        "研究提出并比较四种RF信号tokenization方式。",
+        "论文在RML2016和CSPB.ML.2018+上进行实验。"
+      ],
+      "topic_tags": [
+        "transformer",
+        "IoT",
+        "edge_computing",
+        "tokenization"
+      ]
+    },
+    {
+      "index": 5,
+      "public_evidence_id": "UE-PUBLIC-AMR-005",
+      "legacy_slot_external_id": "UE-P11-AMR-PUB-002",
+      "arxiv_id": "1605.00716",
+      "title": "Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems",
+      "authors": [
+        "Timothy J. O'Shea",
+        "Latha Pemula",
+        "Dhruv Batra",
+        "T. Charles Clancy"
+      ],
+      "publication_year": 2016,
+      "source_file": "radio_transformer_networks.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/radio_transformer_networks.pdf",
+      "source_url": "https://arxiv.org/abs/1605.00716",
+      "source_pdf_url": "https://arxiv.org/pdf/1605.00716",
+      "file_sha256": "eba5cc627919b3f873708cb072ef0db492cd6dfd723498af443598f79fba91c2",
+      "stable_chunk_id": "ffd7a00f456a3340ea21a7b93cc65ce6638ad6cc0232c0079ecf20bfe4922937",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 5,
+      "file_size_bytes": 710806,
+      "evidence_summary": "论文将可学习注意力和空间变换思想用于调制识别，使网络能够学习无线信号的同步与归一化变换。",
+      "verified_claims": [
+        "研究将学习式注意力模型用于调制识别。",
+        "定位网络可学习无线信号同步和归一化。",
+        "模型不依赖预先给定的信号结构知识。"
+      ],
+      "topic_tags": [
+        "attention",
+        "synchronization",
+        "radio_transformer",
+        "classic"
+      ]
+    },
+    {
+      "index": 6,
+      "public_evidence_id": "UE-PUBLIC-AMR-006",
+      "legacy_slot_external_id": "UE-P11-AMR-PUB-003",
+      "arxiv_id": "1901.05850",
+      "title": "Fast Deep Learning for Automatic Modulation Classification",
+      "authors": [
+        "Sharan Ramjee",
+        "Shengtai Ju",
+        "Diyu Yang",
+        "Xiaoyu Liu",
+        "Aly El Gamal",
+        "Yonina C. Eldar"
+      ],
+      "publication_year": 2019,
+      "source_file": "fast_deep_learning_amc.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/fast_deep_learning_amc.pdf",
+      "source_url": "https://arxiv.org/abs/1901.05850",
+      "source_pdf_url": "https://arxiv.org/pdf/1901.05850",
+      "file_sha256": "52c9c6a5e592d24c0349940daabea5d002712bb46695f5279447150c98725d97",
+      "stable_chunk_id": "32e690d3446b03b72923a3bcaac4273bdf674bacb368a93345e0beb32b88a6fe",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 29,
+      "file_size_bytes": 3600861,
+      "evidence_summary": "论文比较 CLDNN、LSTM 和 ResNet 等架构，并研究 PCA、子采样和代表性 SNR 训练以降低训练成本。",
+      "verified_claims": [
+        "论文比较CLDNN、LSTM和ResNet。",
+        "高SNR下多种架构达到约90%的典型准确率。",
+        "PCA和子采样用于降低训练时间。"
+      ],
+      "topic_tags": [
+        "fast_training",
+        "PCA",
+        "subsampling",
+        "ResNet"
+      ]
+    },
+    {
+      "index": 7,
+      "public_evidence_id": "UE-PUBLIC-AMR-007",
+      "legacy_slot_external_id": "UE-P11-GRANT-DATA-001",
+      "arxiv_id": "2003.12260",
+      "title": "A Light Neural Network for Modulation Detection under Impairments",
+      "authors": [
+        "Thomas Courtat",
+        "Hélion du Mas des Bourboux"
+      ],
+      "publication_year": 2020,
+      "source_file": "light_neural_network_modulation.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/light_neural_network_modulation.pdf",
+      "source_url": "https://arxiv.org/abs/2003.12260",
+      "source_pdf_url": "https://arxiv.org/pdf/2003.12260",
+      "file_sha256": "9ba268b7b5f5f5ad831985b9d9535a173769cc9c7df1f09565c083e146ae7e44",
+      "stable_chunk_id": "492d6b36ab1027f00b60f2b3521261d6b6febf216fceaadbefdd96139db9eee3",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 7,
+      "file_size_bytes": 784433,
+      "evidence_summary": "论文提出信号长度无关的轻量调制检测网络，并生成包含相位、时延、滚降、采样率和频偏等损伤的数据集。",
+      "verified_claims": [
+        "网络参数量不依赖信号持续时间。",
+        "数据集模拟多种传播信道和解调器损伤。",
+        "论文声明数据和复现实验代码公开。"
+      ],
+      "topic_tags": [
+        "lightweight",
+        "impairments",
+        "public_dataset",
+        "streaming"
+      ]
+    },
+    {
+      "index": 8,
+      "public_evidence_id": "UE-PUBLIC-AMR-008",
+      "legacy_slot_external_id": "UE-P11-GRANT-DATA-002",
+      "arxiv_id": "2207.09647",
+      "title": "Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges",
+      "authors": [
+        "Fuxin Zhang",
+        "Chunbo Luo",
+        "Jialang Xu",
+        "Yang Luo",
+        "FuChun Zheng"
+      ],
+      "publication_year": 2022,
+      "source_file": "deep_learning_amr_review.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/deep_learning_amr_review.pdf",
+      "source_url": "https://arxiv.org/abs/2207.09647",
+      "source_pdf_url": "https://arxiv.org/pdf/2207.09647",
+      "file_sha256": "dad4330748a0e077609c526c1939e3a7ce4a30400c4efab9fd2fea8d72351327",
+      "stable_chunk_id": "212c9736f3469684866ee7aeb7531a3da47bc245dc83e5825c5bb15fd8dff367",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 19,
+      "file_size_bytes": 21929741,
+      "evidence_summary": "综述系统梳理深度学习调制识别模型、基准数据集、复杂度、可解释性以及 SISO 和 MIMO 场景。",
+      "verified_claims": [
+        "论文综述DL-AMR模型和数据集。",
+        "研究讨论复杂度与可解释性问题。",
+        "论文比较SISO模型并讨论MIMO扩展。"
+      ],
+      "topic_tags": [
+        "survey",
+        "datasets",
+        "complexity",
+        "explainability"
+      ]
+    },
+    {
+      "index": 9,
+      "public_evidence_id": "UE-PUBLIC-AMR-009",
+      "legacy_slot_external_id": "UE-P11-GRANT-EVAL-002",
+      "arxiv_id": "2306.04655",
+      "title": "Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms",
+      "authors": [
+        "Muhammad Waqas",
+        "Muhammad Ashraf",
+        "Muhammad Zakwan"
+      ],
+      "publication_year": 2023,
+      "source_file": "amc_spectrum_images.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/amc_spectrum_images.pdf",
+      "source_url": "https://arxiv.org/abs/2306.04655",
+      "source_pdf_url": "https://arxiv.org/pdf/2306.04655",
+      "file_sha256": "ac771f8294905387fb574e6af024526017a8bc60d34ed0b83e4975300638ed4f",
+      "stable_chunk_id": "0a389f2206e62804be638649a2e3363a37447124f819007d844a07afadf9c286",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 15,
+      "file_size_bytes": 1085821,
+      "evidence_summary": "论文将11类调制信号转换为频谱图，并报告分辨率变换最高减少99.61%的计算负载及8倍转换加速。",
+      "verified_claims": [
+        "研究覆盖11种调制类型。",
+        "方法使用频谱图和多种CNN架构。",
+        "论文报告最高99.61%计算负载降低与8倍转换加速。"
+      ],
+      "topic_tags": [
+        "spectrogram",
+        "efficiency",
+        "CNN",
+        "eleven_modulations"
+      ]
+    },
+    {
+      "index": 10,
+      "public_evidence_id": "UE-PUBLIC-AMR-010",
+      "legacy_slot_external_id": "UE-P11-GRANT-EVAL-003",
+      "arxiv_id": "2308.11100",
+      "title": "Using Early Exits for Fast Inference in Automatic Modulation Classification",
+      "authors": [
+        "Elsayed Mohammed",
+        "Omar Mashaal",
+        "Hatem Abou-Zeid"
+      ],
+      "publication_year": 2023,
+      "source_file": "early_exits_amc.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/early_exits_amc.pdf",
+      "source_url": "https://arxiv.org/abs/2308.11100",
+      "source_pdf_url": "https://arxiv.org/pdf/2308.11100",
+      "file_sha256": "2d94bf0cce84d284aade58ad4eeb4cee71c0178a46934a468ae7a81d20dc0d2c",
+      "stable_chunk_id": "1722c486362eaca45d4325774c9c698d91516a8e0de70137b21f0b8b0b0a3479",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 6,
+      "file_size_bytes": 761371,
+      "evidence_summary": "论文为调制分类设计四种 Early Exit 架构，研究准确率与推理时间的权衡。",
+      "verified_claims": [
+        "论文提出四种Early Exit架构。",
+        "中高SNR信号通常不需要完整深层推理。",
+        "实验研究准确率与推理时间的权衡。"
+      ],
+      "topic_tags": [
+        "early_exit",
+        "inference_latency",
+        "SNR",
+        "efficiency"
+      ]
+    },
+    {
+      "index": 11,
+      "public_evidence_id": "UE-PUBLIC-AMR-011",
+      "legacy_slot_external_id": "UE-P11-GRANT-EVAL-004",
+      "arxiv_id": "2301.11773",
+      "title": "Automatic Modulation Classification with Deep Neural Networks",
+      "authors": [
+        "Clayton A. Harper",
+        "Mitchell A. Thornton",
+        "Eric C. Larson"
+      ],
+      "publication_year": 2023,
+      "source_file": "amc_deep_neural_networks.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/amc_deep_neural_networks.pdf",
+      "source_url": "https://arxiv.org/abs/2301.11773",
+      "source_pdf_url": "https://arxiv.org/pdf/2301.11773",
+      "file_sha256": "03aa441c55a0b6aac2dd2bf488e85d43c67d4c85aee6267dbf9508b6908655ff",
+      "stable_chunk_id": "0328b570347e6a74ed9467f755d9c424eb4b07c0bffe7b151f85cca3e9b17ad2",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 13,
+      "file_size_bytes": 4944672,
+      "evidence_summary": "论文对多种自动调制分类卷积架构开展系统消融，并指出空洞卷积、统计池化和 SE 单元组合表现最强。",
+      "verified_claims": [
+        "研究比较多种CNN架构与设计元素。",
+        "论文执行系统消融分析。",
+        "空洞卷积、统计池化和SE单元的组合表现最强。"
+      ],
+      "topic_tags": [
+        "ablation",
+        "dilated_convolution",
+        "statistics_pooling",
+        "squeeze_excitation"
+      ]
+    },
+    {
+      "index": 12,
+      "public_evidence_id": "UE-PUBLIC-AMR-012",
+      "legacy_slot_external_id": "UE-P11-GRANT-EVAL-005",
+      "arxiv_id": "2307.02450",
+      "title": "On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data",
+      "authors": [
+        "John A. Snoap",
+        "Dimitrie C. Popescu",
+        "Chad M. Spooner"
+      ],
+      "publication_year": 2023,
+      "source_file": "digital_modulated_signal_generalization.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/digital_modulated_signal_generalization.pdf",
+      "source_url": "https://arxiv.org/abs/2307.02450",
+      "source_pdf_url": "https://arxiv.org/pdf/2307.02450",
+      "file_sha256": "80f14482d88511b13feddd117f2fb7fb11749c94942a70a0d282c585aad3c56e",
+      "stable_chunk_id": "55fdad368986d98a987d5536696ae931a19e3460e04a91d78867dee967afcb7b",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 4,
+      "file_size_bytes": 313479,
+      "evidence_summary": "论文使用原始 I/Q 数据研究训练集和测试集来自不同数据源时的跨数据集泛化能力。",
+      "verified_claims": [
+        "研究输入为原始I/Q数据。",
+        "训练集和测试集被设置为不同数据集。",
+        "重点评估模型在数据分布变化下的泛化。"
+      ],
+      "topic_tags": [
+        "generalization",
+        "raw_IQ",
+        "cross_dataset",
+        "domain_shift"
+      ]
+    },
+    {
+      "index": 13,
+      "public_evidence_id": "UE-PUBLIC-AMR-013",
+      "legacy_slot_external_id": "UE-P11-GRANT-IP-002",
+      "arxiv_id": "2005.02175",
+      "title": "Visualizing Deep Learning-based Radio Modulation Classifier",
+      "authors": [
+        "Liang Huang",
+        "You Zhang",
+        "Weijian Pan",
+        "Jinyin Chen",
+        "Li Ping Qian",
+        "Yuan Wu"
+      ],
+      "publication_year": 2021,
+      "source_file": "visualizing_radio_modulation_classifiers.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/visualizing_radio_modulation_classifiers.pdf",
+      "source_url": "https://arxiv.org/abs/2005.02175",
+      "source_pdf_url": "https://arxiv.org/pdf/2005.02175",
+      "file_sha256": "e50dc23b9062822c6c07450239223a90f943bf3c8052d05d6f56afbaae635c8b",
+      "stable_chunk_id": "94f04f8a6fce05fda263ec3139d5ecf075f6f8064f82aeec6e7d2ef0969bead5",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 11,
+      "file_size_bytes": 5270149,
+      "evidence_summary": "论文提出基于类别激活向量的可视化方法，用于解释 CNN 和 LSTM 调制分类器关注的时域采样点。",
+      "verified_claims": [
+        "类别激活向量表示各信号采样点的重要性。",
+        "方法可用于CNN和LSTM调制分类器。",
+        "阈值化激活用于可视化连续时域特征。"
+      ],
+      "topic_tags": [
+        "interpretability",
+        "class_activation",
+        "CNN",
+        "LSTM"
+      ]
+    },
+    {
+      "index": 14,
+      "public_evidence_id": "UE-PUBLIC-AMR-014",
+      "legacy_slot_external_id": "UE-P11-GRANT-PLAN-001",
+      "arxiv_id": "2410.10265",
+      "title": "FSOS-AMC: Few-Shot Open-Set Learning for Automatic Modulation Classification Over Multipath Fading Channels",
+      "authors": [
+        "Hao Zhang",
+        "Fuhui Zhou",
+        "Qihui Wu",
+        "Chau Yuen"
+      ],
+      "publication_year": 2024,
+      "source_file": "fsos_amc.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/fsos_amc.pdf",
+      "source_url": "https://arxiv.org/abs/2410.10265",
+      "source_pdf_url": "https://arxiv.org/pdf/2410.10265",
+      "file_sha256": "15811e9f27327df0ec5114f283f1f251b18addf4524af43bfe3de117de44ab50",
+      "stable_chunk_id": "4291dd3e0218eb9edfb33fc9a966764e1222068e6bbaaa054bd6d7e865b0e75f",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 14,
+      "file_size_bytes": 2767198,
+      "evidence_summary": "论文提出少样本开放集调制分类框架，结合多序列多尺度注意力、元原型训练和开放集分类器。",
+      "verified_claims": [
+        "框架同时处理已知和未知调制类型。",
+        "方法结合多尺度注意力与元原型训练。",
+        "论文报告低SNR条件下的稳健性。"
+      ],
+      "topic_tags": [
+        "few_shot",
+        "open_set",
+        "meta_prototype",
+        "low_SNR"
+      ]
+    },
+    {
+      "index": 15,
+      "public_evidence_id": "UE-PUBLIC-AMR-015",
+      "legacy_slot_external_id": "UE-P11-GRANT-PLAN-002",
+      "arxiv_id": "2502.19071",
+      "title": "MCLRL: A Multi-Domain Contrastive Learning with Reinforcement Learning Framework for Few-Shot Modulation Recognition",
+      "authors": [
+        "Dongwei Xu",
+        "Yutao Zhu",
+        "Yao Lu",
+        "Youpeng Feng",
+        "Yun Lin",
+        "Qi Xuan"
+      ],
+      "publication_year": 2025,
+      "source_file": "mclrl_few_shot_modulation.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/mclrl_few_shot_modulation.pdf",
+      "source_url": "https://arxiv.org/abs/2502.19071",
+      "source_pdf_url": "https://arxiv.org/pdf/2502.19071",
+      "file_sha256": "1d354b97996a80a1c65641464920600e3027939ec1ee1e61bed22776286796c6",
+      "stable_chunk_id": "4b1c51bd00fce6c64026f7d1037316774619bded0792663a919c057db2515595",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 15,
+      "file_size_bytes": 5721843,
+      "evidence_summary": "论文提出多域对比学习与强化学习结合的少样本调制识别框架，以有限标注样本完成下游分类。",
+      "verified_claims": [
+        "框架结合多域表示、对比学习和强化学习。",
+        "方法面向少样本调制识别。",
+        "论文报告少量样本和较少训练轮次下的下游表现。"
+      ],
+      "topic_tags": [
+        "few_shot",
+        "contrastive_learning",
+        "reinforcement_learning",
+        "multi_domain"
+      ]
+    },
+    {
+      "index": 16,
+      "public_evidence_id": "UE-PUBLIC-AMR-016",
+      "legacy_slot_external_id": "UE-P11-GRANT-PROJ-002",
+      "arxiv_id": "2411.02428",
+      "title": "NMformer: A Transformer for Noisy Modulation Classification in Wireless Communication",
+      "authors": [
+        "Atik Faysal",
+        "Mohammad Rostami",
+        "Reihaneh Gh. Roshan",
+        "Huaxia Wang",
+        "Nikhil Muralidhar"
+      ],
+      "publication_year": 2024,
+      "source_file": "nmformer_noisy_modulation.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/nmformer_noisy_modulation.pdf",
+      "source_url": "https://arxiv.org/abs/2411.02428",
+      "source_pdf_url": "https://arxiv.org/pdf/2411.02428",
+      "file_sha256": "1a43615acc4ead03b22463248cf5ba4121d6741feb8024eb754e9fabcd60eeb8",
+      "stable_chunk_id": "d8622b757b41701814ad91e98f9c57331ddd6e5775a4a675b232da068b445165",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 6,
+      "file_size_bytes": 2180826,
+      "evidence_summary": "论文提出基于视觉 Transformer 的 NMformer，使用星座图处理不同噪声水平下的调制分类，并评估分布内和分布外任务。",
+      "verified_claims": [
+        "模型以调制信号星座图为输入。",
+        "基础分类器使用106800张调制图像训练。",
+        "研究覆盖分布内和分布外预测设置。"
+      ],
+      "topic_tags": [
+        "vision_transformer",
+        "constellation_diagram",
+        "noise",
+        "out_of_distribution"
+      ]
+    },
+    {
+      "index": 17,
+      "public_evidence_id": "UE-PUBLIC-AMR-017",
+      "legacy_slot_external_id": "UE-P11-GRANT-WF-001",
+      "arxiv_id": "2408.05151",
+      "title": "Meta-Learning Guided Label Noise Distillation for Robust Signal Modulation Classification",
+      "authors": [
+        "Xiaoyang Hao",
+        "Zhixi Feng",
+        "Tongqing Peng",
+        "Shuyuan Yang"
+      ],
+      "publication_year": 2024,
+      "source_file": "label_noise_distillation_amc.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/label_noise_distillation_amc.pdf",
+      "source_url": "https://arxiv.org/abs/2408.05151",
+      "source_pdf_url": "https://arxiv.org/pdf/2408.05151",
+      "file_sha256": "a56e1e2498b4c6bfd7fc603a53100f240949d3429ec5d793f480a2d0533df821",
+      "stable_chunk_id": "26fd696b2c1a2a64fda6281097c1bb964473cd2138066e143a0cfb870d568ebd",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 8,
+      "file_size_bytes": 1718567,
+      "evidence_summary": "论文通过元学习引导的教师学生异构网络校正噪声标签，并用少量可信标签和多视图信号提升鲁棒性。",
+      "verified_claims": [
+        "方法使用教师学生异构网络处理标签噪声。",
+        "可信元学习用于重新评估和纠正标签。",
+        "多视图信号方法使用少样本可信标签。"
+      ],
+      "topic_tags": [
+        "label_noise",
+        "meta_learning",
+        "teacher_student",
+        "robustness"
+      ]
+    },
+    {
+      "index": 18,
+      "public_evidence_id": "UE-PUBLIC-AMR-018",
+      "legacy_slot_external_id": "UE-P11-GRANT-WF-002",
+      "arxiv_id": "2507.04586",
+      "title": "A Lightweight Deep Learning Model for Automatic Modulation Classification using Dual Path Deep Residual Shrinkage Network",
+      "authors": [
+        "Prakash Suman",
+        "Yanzhen Qu"
+      ],
+      "publication_year": 2025,
+      "source_file": "lightweight_amc_edge.pdf",
+      "source_path": "phase30_public_amr_evidence/pdfs/lightweight_amc_edge.pdf",
+      "source_url": "https://arxiv.org/abs/2507.04586",
+      "source_pdf_url": "https://arxiv.org/pdf/2507.04586",
+      "file_sha256": "24fa623e138aea4fadc5be5d52e697de570f571a6d0bebf19621892eb09aa04e",
+      "stable_chunk_id": "c72d8cf744940dd09f8c92ea4dc5a501546ea23b0a44e3fdda1f603f8d46ba82",
+      "page_start": 1,
+      "page_end": 1,
+      "pdf_page_count": 14,
+      "file_size_bytes": 1303438,
+      "evidence_summary": "论文提出面向资源受限边缘设备的双路径深度残差收缩网络和紧凑 CNN-LSTM 架构。",
+      "verified_claims": [
+        "模型面向资源受限边缘设备。",
+        "紧凑CNN-LSTM架构约含27000个训练参数。",
+        "论文在三套RadioML数据集上报告平均分类准确率。"
+      ],
+      "topic_tags": [
+        "lightweight",
+        "edge_device",
+        "residual_shrinkage",
+        "CNN_LSTM"
+      ]
+    }
+  ]
+}

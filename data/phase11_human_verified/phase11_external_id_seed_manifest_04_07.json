@@ -1,0 +1,1154 @@
+{
+  "schema_version": "phase11_external_id_seed_manifest_04_07_v1",
+  "warning": "所有ID均为受控外部ID，不是当前数据库主键。导入数据库后必须映射到真实GrantPackVersion、GrantRequirement、Organization、Proposal、UserEvidence和Claim主键。AIChunk ID未被复用为其他实体ID。",
+  "real_organizations": [
+    {
+      "external_id": "ORG-CN-SC-SWUN",
+      "legal_name": "西南民族大学",
+      "region": "四川省",
+      "country": "中国",
+      "record_type": "real_organization_external_key",
+      "status": "requires_database_pk_mapping",
+      "note": "组织名称真实存在；本清单中的证据内容是隔离测试种子，不代表该校真实科研数据。"
+    },
+    {
+      "external_id": "ORG-CN-SC-SCU",
+      "legal_name": "四川大学",
+      "region": "四川省",
+      "country": "中国",
+      "record_type": "real_organization_external_key",
+      "status": "requires_database_pk_mapping",
+      "note": "组织名称真实存在；本清单中的证据内容是隔离测试种子，不代表该校真实科研数据。"
+    }
+  ],
+  "grant_pack_versions": [
+    {
+      "external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    }
+  ],
+  "grant_requirements": [
+    {
+      "external_id": "GRANTREQ-P11-024DB165D33F",
+      "case_id": "synthetic:synthetic_0079",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书的要求，可行性分析应该包括哪几个方面？",
+      "reference_answer": "学术思想、研究队伍和研究条件",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        153
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-083B7B916913",
+      "case_id": "synthetic:synthetic_0070",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年度国家自然科学基金申请规定，申请书必须由谁撰写？",
+      "reference_answer": "申请人本人",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        125
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0AF6AB543861",
+      "case_id": "synthetic:synthetic_0118",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026版国家自然科学基金申请书要求，第三部分“论著之外的代表性研究成果和学术奖励”中明确禁止列出哪些类型的成果？",
+      "reference_answer": "论文和专著",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        236
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0D2268EF916F",
+      "case_id": "synthetic:synthetic_0011",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据指南，合作研究单位的数量上限是多少？",
+      "reference_answer": "2个",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        175
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-15C010C17522",
+      "case_id": "synthetic:synthetic_0039",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "按照2026年度国家自然科学基金项目指南的要求，在业务费预算编制中，测试化验加工费的使用存在什么特别禁止的情形？",
+      "reference_answer": "不得以测试化验加工费的名义分包核心研究任务",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        23
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2B1B5A33765E",
+      "case_id": "synthetic:synthetic_0062",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "当学校不具备所需仪器设备时，基金申请书应如何处理？",
+      "reference_answer": "提出外协合作来解决",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        155
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-40F5B78ED799",
+      "case_id": "synthetic:synthetic_0069",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "购置单价大于多少万元的设备需在预算说明书中做购置必要性详细说明？",
+      "reference_answer": "50万元",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        91
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-518D918EA3AB",
+      "case_id": "synthetic:synthetic_0112",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "青年A项目申请人的其余已发表论著在提交简历时是否受近五年发表的时间约束？",
+      "reference_answer": "不受，青年A无发表时间限制。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        202
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5A949C2A8883",
+      "case_id": "synthetic:synthetic_0036",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据要求，申请书中研究期限的开始时间应如何填写？",
+      "reference_answer": "2027年1月1日",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        79
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7348FDC58F64",
+      "case_id": "synthetic:synthetic_0033",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "预算说明书中的预算数据应以什么为单位，并需要精确到哪一位？",
+      "reference_answer": "以万元为单位，精确到小数点后两位。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        90
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-74A7093BA724",
+      "case_id": "synthetic:synthetic_0017",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人本人发表的代表性论著数量上限是多少？",
+      "reference_answer": "5篇",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        181
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7526CC6B785E",
+      "case_id": "synthetic:synthetic_0025",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据申请规定，哪些项目属于包干制预算管理，无须编制预算表和预算说明书？",
+      "reference_answer": "青A、青B、青C项目、博士生项目",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        131
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A17D615E5774",
+      "case_id": "synthetic:synthetic_0004",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026版国家自然科学基金申请书模板，中文摘要在字数方面有何具体限制？",
+      "reference_answer": "建议400字以内，含标点符号。",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        234
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A4ACC5A75FB4",
+      "case_id": "synthetic:synthetic_0139",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于青年A、青年B以及重点项目等需要会评的项目，若在二次筛查时发现研究成果信息错误或未按规定上传全文，申请人将面临什么处理措施？",
+      "reference_answer": "一票否决，且以“科研诚信”问题提交评审专家组。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-AE927F02EBCA",
+      "case_id": "synthetic:synthetic_0092",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在“完成国家自然科学基金项目情况”部分，申请人需要明确写出前一个已结题基金的哪些具体信息？",
+      "reference_answer": "资助机构、项目类别、批准号、项目名称、资助金额、起止年月、与本项目关系及负责内容",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        200
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B544D1F39F18",
+      "case_id": "synthetic:synthetic_0002",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "面上项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书的撰写建议，面上项目应提出多少个拟解决的关键科学问题？",
+      "reference_answer": "2-3个",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        151
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B5F15AA88C84",
+      "case_id": "synthetic:synthetic_0005",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书撰写指导，在撰写研究背景和意义部分时，应当回答哪两个基本问题？",
+      "reference_answer": "要做什么和为什么做",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        149
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DFAACE62769E",
+      "case_id": "synthetic:synthetic_0109",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年度国家自然科学基金项目指南，申请人是否可以虚构或夸大本人成果的学术贡献？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        27
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E231F80FCA9E",
+      "case_id": "synthetic:synthetic_0015",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "具有高级专业技术职务（职称）的人员，申请和正在承担的项目总数合计最多为多少项？",
+      "reference_answer": "2项",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        9
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EF620487E32D",
+      "case_id": "synthetic:synthetic_0128",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在国家自然科学基金申请中，哪些项目类型的骨干成员需要提供代表作个人贡献信息？",
+      "reference_answer": "创新研究群体项目和卓越研究群体项目的骨干成员。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        26
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F336FD6539C7",
+      "case_id": "synthetic:synthetic_0050",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "如果某个研究内容已经获得其他来源的资助，申请人是否还能就同一研究内容向自然科学基金委提交项目申请？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        137
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    }
+  ],
+  "user_evidences": [
+    {
+      "external_id": "UE-P11-AERO-BIBLIO-001",
+      "organization_external_id": "ORG-P11-DEMO-AERO",
+      "proposal_external_id": "PROP-P11-AERO-001",
+      "query": "2014 AIAA Science and Technology Forum and Exposition 是在哪里举办的？",
+      "expected_role": "bibliographic_fact",
+      "expected_numeric_value": 2014,
+      "expected_fact_status": "verified",
+      "gold_chunk_ids": [
+        162
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "UE-P11-AMR-EQUIP-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "实验室是否拥有完成信号采集所需的射频设备？",
+      "expected_role": "equipment_custodian",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "verified_available",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EQUIP-002",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "可用于模型训练的GPU数量是多少？",
+      "expected_role": "compute_resource_owner",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "verified_available",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EQUIP-003",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "目标设备是否由申请人所在组织直接管理？",
+      "expected_role": "equipment_custodian",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "verified_owned",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EQUIP-004",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "外协平台计划提供多少小时的测试机时？",
+      "expected_role": "external_facility_provider",
+      "expected_numeric_value": 120,
+      "expected_fact_status": "planned",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EXP-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "低信噪比实验在负18分贝条件下的梯度范数是多少？",
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 76.3,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EXP-002",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "MCAP模型在高信噪比区间的平均准确率是多少？",
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 82.88,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-EXP-003",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "SAM版本在低信噪比下是否完成对比验证？",
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PLAN-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "自采数据集适配工作当前处于什么状态？",
+      "expected_role": "dataset_curator",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "planned",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PROJ-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "申请人在前期项目中担任什么角色？",
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PROJ-002",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "前期项目获得的经费金额是多少万元？",
+      "expected_role": "funding_recipient",
+      "expected_numeric_value": 30,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PROJ-003",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "该前期项目当前是否已经结题？",
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PUB-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "申请人在相关方向已发表多少篇第一作者论文？",
+      "expected_role": "first_author",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PUB-004",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "申请人近五年公开发表的相关论文总数是多少？",
+      "expected_role": "applicant_publication_owner",
+      "expected_numeric_value": 6,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-PUB-005",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "哪一项论文成果已正式录用但尚未见刊？",
+      "expected_role": "accepted_paper_owner",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "accepted_not_published",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-AMR-TEAM-002",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "query": "哪一位团队成员负责数据集构建和模型训练？",
+      "expected_role": "data_and_model_training_lead",
+      "expected_numeric_value": null,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [
+        249
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "UE-P11-GRANT-EVAL-001",
+      "organization_external_id": "ORG-P11-DEMO-GRANT",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "query": "当前检索基线的Recall@5是多少？",
+      "expected_role": "evaluation_owner",
+      "expected_numeric_value": 0.84,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-GRANT-IP-001",
+      "organization_external_id": "ORG-P11-DEMO-GRANT",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "query": "申请人是否拥有目标软件著作权？",
+      "expected_role": "software_copyright_owner",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-GRANT-PROJ-001",
+      "organization_external_id": "ORG-P11-DEMO-GRANT",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "query": "拟申报项目是否已经获得其他来源重复资助？",
+      "expected_role": "applicant",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "verified_no_duplicate_funding",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-GRANT-PROJ-003",
+      "organization_external_id": "ORG-P11-DEMO-GRANT",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "query": "项目负责人目前有多少项在研相关项目？",
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "ongoing",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-GRANT-WF-003",
+      "organization_external_id": "ORG-P11-DEMO-GRANT",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "query": "Writer在无证据情况下是否允许生成事实性证据ID？",
+      "expected_role": "writer_agent",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "verified_prohibited",
+      "gold_chunk_ids": [],
+      "status": "requires_database_seed_and_chunk_ingestion"
+    },
+    {
+      "external_id": "UE-P11-VACCINE-PROBLEM-001",
+      "organization_external_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_external_id": "PROP-P11-VACCINE-001",
+      "query": "本项目研究的疫苗供应链特点包括哪些？",
+      "expected_role": "research_problem_definition",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "verified",
+      "gold_chunk_ids": [
+        108
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "UE-P11-VACCINE-VALUE-001",
+      "organization_external_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_external_id": "PROP-P11-VACCINE-001",
+      "query": "这项关于疫苗供应链的研究预期会带来哪两方面的价值？",
+      "expected_role": "project_value_statement",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "planned_outcome",
+      "gold_chunk_ids": [
+        170
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "UE-P11-VACCINE-VALUE-002",
+      "organization_external_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_external_id": "PROP-P11-VACCINE-001",
+      "query": "这项关于疫苗供应链的研究预期会带来哪两方面的价值？",
+      "expected_role": "project_value_statement",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "planned_outcome",
+      "gold_chunk_ids": [
+        170
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "UE-P11-AMR-DECISION-001",
+      "organization_external_id": "ORG-P11-DEMO-AMR",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "fact_type": "human_confirmed_decision",
+      "fact_value": "创新主线锁定为低信噪比条件下的优化稳定性",
+      "status": "locked",
+      "source": "ProposalDecisionLedger",
+      "mapping_status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-DATASET_SAMPLE_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_RadioML扩展集样本数量",
+      "fact_label": "RadioML扩展集样本数量",
+      "fact_value": "500000条",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-DATASET_STATUS-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_自采数据集适配状态",
+      "fact_label": "自采数据集适配状态",
+      "fact_value": "已完成",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-EXTERNAL_FACILITY_HOURS-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_射频暗室可用测试机时",
+      "fact_label": "射频暗室可用测试机时",
+      "fact_value": "300小时",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-GPU_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_GPU训练节点数量",
+      "fact_label": "GPU训练节点数量",
+      "fact_value": "8块",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-MEMBER_ROLE-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_同名成员王敏在项目中的职责",
+      "fact_label": "同名成员王敏在项目中的职责",
+      "fact_value": "预算管理与组织协调",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-PAPER_STATUS-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_论文低信噪比调制识别方法状态",
+      "fact_label": "论文低信噪比调制识别方法状态",
+      "fact_value": "已正式发表",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-PDF_ASSET_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_基金申报Agent可检索PDF数量",
+      "fact_label": "基金申报Agent可检索PDF数量",
+      "fact_value": "26份",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-PRIOR_FUNDING-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_同名智能信号识别平台前期经费",
+      "fact_label": "同名智能信号识别平台前期经费",
+      "fact_value": "80万元",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-PUBLICATION_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_近五年相关第一作者论文数量",
+      "fact_label": "近五年相关第一作者论文数量",
+      "fact_value": "7篇",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-RECALL_AT_5-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_检索基线Recall@5",
+      "fact_label": "检索基线Recall@5",
+      "fact_value": "0.91",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-RELATED_PROJECT_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_成员乙参与的直接相关项目数量",
+      "fact_label": "成员乙参与的直接相关项目数量",
+      "fact_value": "4项",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SCU-SOFTWARE_COPYRIGHT_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SCU",
+      "document_title": "共享命名测试资料_信号识别软件著作权数量",
+      "fact_label": "信号识别软件著作权数量",
+      "fact_value": "3项",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-DATASET_SAMPLE_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_RadioML扩展集样本数量",
+      "fact_label": "RadioML扩展集样本数量",
+      "fact_value": "220000条",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-DATASET_STATUS-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_自采数据集适配状态",
+      "fact_label": "自采数据集适配状态",
+      "fact_value": "计划中",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-EXTERNAL_FACILITY_HOURS-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_射频暗室可用测试机时",
+      "fact_label": "射频暗室可用测试机时",
+      "fact_value": "120小时",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-GPU_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_GPU训练节点数量",
+      "fact_label": "GPU训练节点数量",
+      "fact_value": "2块",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-MEMBER_ROLE-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_同名成员王敏在项目中的职责",
+      "fact_label": "同名成员王敏在项目中的职责",
+      "fact_value": "数据集构建与模型训练",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-PAPER_STATUS-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_论文低信噪比调制识别方法状态",
+      "fact_label": "论文低信噪比调制识别方法状态",
+      "fact_value": "已录用未见刊",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-PDF_ASSET_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_基金申报Agent可检索PDF数量",
+      "fact_label": "基金申报Agent可检索PDF数量",
+      "fact_value": "14份",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-PRIOR_FUNDING-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_同名智能信号识别平台前期经费",
+      "fact_label": "同名智能信号识别平台前期经费",
+      "fact_value": "30万元",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-PUBLICATION_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_近五年相关第一作者论文数量",
+      "fact_label": "近五年相关第一作者论文数量",
+      "fact_value": "3篇",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-RECALL_AT_5-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_检索基线Recall@5",
+      "fact_label": "检索基线Recall@5",
+      "fact_value": "0.84",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-RELATED_PROJECT_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_成员乙参与的直接相关项目数量",
+      "fact_label": "成员乙参与的直接相关项目数量",
+      "fact_value": "2项",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    },
+    {
+      "external_id": "UE-XORG-SWUN-SOFTWARE_COPYRIGHT_COUNT-001",
+      "organization_external_id": "ORG-CN-SC-SWUN",
+      "document_title": "共享命名测试资料_信号识别软件著作权数量",
+      "fact_label": "信号识别软件著作权数量",
+      "fact_value": "1项",
+      "status": "synthetic_isolation_seed_requires_database_pk_mapping"
+    }
+  ],
+  "claims": [
+    {
+      "external_id": "CLAIM-P11-001",
+      "case_id": "claim_grounding:001",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-002",
+      "case_id": "claim_grounding:002",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-003",
+      "case_id": "claim_grounding:003",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "eligibility",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-004",
+      "case_id": "claim_grounding:004",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "feasibility",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-005",
+      "case_id": "claim_grounding:005",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-006",
+      "case_id": "claim_grounding:006",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "feasibility",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-007",
+      "case_id": "claim_grounding:007",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-008",
+      "case_id": "claim_grounding:008",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "representative_outputs",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-009",
+      "case_id": "claim_grounding:009",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_conditions",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-010",
+      "case_id": "claim_grounding:010",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_plan",
+      "expected_status": "supported",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-011",
+      "case_id": "claim_grounding:011",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-012",
+      "case_id": "claim_grounding:012",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-013",
+      "case_id": "claim_grounding:013",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-014",
+      "case_id": "claim_grounding:014",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "collaboration",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-015",
+      "case_id": "claim_grounding:015",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "budget",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-016",
+      "case_id": "claim_grounding:016",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "budget",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-017",
+      "case_id": "claim_grounding:017",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "attachments",
+      "expected_status": "missing_evidence",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-018",
+      "case_id": "claim_grounding:018",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-019",
+      "case_id": "claim_grounding:019",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-020",
+      "case_id": "claim_grounding:020",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-021",
+      "case_id": "claim_grounding:021",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "team",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-022",
+      "case_id": "claim_grounding:022",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-023",
+      "case_id": "claim_grounding:023",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "research_conditions",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-024",
+      "case_id": "claim_grounding:024",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-025",
+      "case_id": "claim_grounding:025",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "expected_status": "conflicted",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-026",
+      "case_id": "claim_grounding:026",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "expected_status": "locked",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-027",
+      "case_id": "claim_grounding:027",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "team",
+      "expected_status": "locked",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-028",
+      "case_id": "claim_grounding:028",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "expected_status": "locked",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-029",
+      "case_id": "claim_grounding:029",
+      "proposal_external_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "expected_status": "locked",
+      "status": "requires_database_pk_mapping"
+    },
+    {
+      "external_id": "CLAIM-P11-030",
+      "case_id": "claim_grounding:030",
+      "proposal_external_id": "PROP-P11-AMR-001",
+      "section_key": "scientific_problem",
+      "expected_status": "locked",
+      "status": "requires_database_pk_mapping"
+    }
+  ]
+}

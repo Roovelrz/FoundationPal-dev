@@ -1,0 +1,4261 @@
+{
+  "dataset": "phase30_reviewer_risk_matrix",
+  "cases": [
+    {
+      "case_id": "development:completion_status_conflict:positive:001",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:positive:002",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:positive:003",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:positive:004",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:positive:005",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:near_negative:001",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:near_negative:002",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:near_negative:003",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:near_negative:004",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:near_negative:005",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:boundary:001",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:boundary:002",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:completion_status_conflict:boundary:003",
+      "split": "development",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:001",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:002",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:003",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:004",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:005",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:006",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:007",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:008",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:009",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:positive:010",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:001",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:002",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:003",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:004",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:005",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:006",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:007",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:008",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:009",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:near_negative:010",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:boundary:001",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:boundary:002",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:boundary:003",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:boundary:004",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:completion_status_conflict:boundary:005",
+      "split": "frozen",
+      "issue_code": "completion_status_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:positive:001",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:positive:002",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:positive:003",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:positive:004",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:positive:005",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:near_negative:001",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:near_negative:002",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:near_negative:003",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:near_negative:004",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:near_negative:005",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:boundary:001",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:boundary:002",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:cross_section_consistency:boundary:003",
+      "split": "development",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:001",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:002",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:003",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:004",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:005",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:006",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:007",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:008",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:009",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:positive:010",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:001",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:002",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:003",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:004",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:005",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:006",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:007",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:008",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:009",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:near_negative:010",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:boundary:001",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:boundary:002",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:boundary:003",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:boundary:004",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:cross_section_consistency:boundary:005",
+      "split": "frozen",
+      "issue_code": "cross_section_consistency",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:positive:001",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:positive:002",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:positive:003",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:positive:004",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:positive:005",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:near_negative:001",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:near_negative:002",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:near_negative:003",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:near_negative:004",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:near_negative:005",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:boundary:001",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:boundary:002",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_claim:boundary:003",
+      "split": "development",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:001",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:002",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:003",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:004",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:005",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:006",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:007",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:008",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:009",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:positive:010",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:001",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:002",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:003",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:004",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:005",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:006",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:007",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:008",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:009",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:near_negative:010",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:boundary:001",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:boundary:002",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:boundary:003",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:boundary:004",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_claim:boundary:005",
+      "split": "frozen",
+      "issue_code": "duplicate_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:positive:001",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:positive:002",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:positive:003",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:positive:004",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:positive:005",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:near_negative:001",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:near_negative:002",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:near_negative:003",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:near_negative:004",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:near_negative:005",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:boundary:001",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:boundary:002",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:duplicate_funding_conflict:boundary:003",
+      "split": "development",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:001",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:002",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:003",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:004",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:005",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:006",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:007",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:008",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:009",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:positive:010",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:001",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:002",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:003",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:004",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:005",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:006",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:007",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:008",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:009",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:near_negative:010",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:boundary:001",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:boundary:002",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:boundary:003",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:boundary:004",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:duplicate_funding_conflict:boundary:005",
+      "split": "frozen",
+      "issue_code": "duplicate_funding_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:positive:001",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:positive:002",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:positive:003",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:positive:004",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:positive:005",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:near_negative:001",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:near_negative:002",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:near_negative:003",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:near_negative:004",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:near_negative:005",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:boundary:001",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:boundary:002",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:human_decision_preserved:boundary:003",
+      "split": "development",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:001",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:002",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:003",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:004",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:005",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:006",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:007",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:008",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:009",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:positive:010",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:001",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:002",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:003",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:004",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:005",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:006",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:007",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:008",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:009",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:near_negative:010",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:boundary:001",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:boundary:002",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:boundary:003",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:boundary:004",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:human_decision_preserved:boundary:005",
+      "split": "frozen",
+      "issue_code": "human_decision_preserved",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:positive:001",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:positive:002",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:positive:003",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:positive:004",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:positive:005",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:near_negative:001",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:near_negative:002",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:near_negative:003",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:near_negative:004",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:near_negative:005",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:boundary:001",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:boundary:002",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:locked_claim_change_attempt:boundary:003",
+      "split": "development",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:001",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:002",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:003",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:004",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:005",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:006",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:007",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:008",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:009",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:positive:010",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:001",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:002",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:003",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:004",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:005",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:006",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:007",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:008",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:009",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:near_negative:010",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:boundary:001",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:boundary:002",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:boundary:003",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:boundary:004",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:locked_claim_change_attempt:boundary:005",
+      "split": "frozen",
+      "issue_code": "locked_claim_change_attempt",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:positive:001",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:positive:002",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:positive:003",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:positive:004",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:positive:005",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:near_negative:001",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:near_negative:002",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:near_negative:003",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:near_negative:004",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:near_negative:005",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:boundary:001",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:boundary:002",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:mandatory_requirement_gap:boundary:003",
+      "split": "development",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:001",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:002",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:003",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:004",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:005",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:006",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:007",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:008",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:009",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:positive:010",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:001",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:002",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:003",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:004",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:005",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:006",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:007",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:008",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:009",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:near_negative:010",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:boundary:001",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:boundary:002",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:boundary:003",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:boundary:004",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:mandatory_requirement_gap:boundary:005",
+      "split": "frozen",
+      "issue_code": "mandatory_requirement_gap",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:positive:001",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:positive:002",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:positive:003",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:positive:004",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:positive:005",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:near_negative:001",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:near_negative:002",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:near_negative:003",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:near_negative:004",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:near_negative:005",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:boundary:001",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:boundary:002",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:metric_definition_conflict:boundary:003",
+      "split": "development",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:001",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:002",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:003",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:004",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:005",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:006",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:007",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:008",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:009",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:positive:010",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:001",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:002",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:003",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:004",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:005",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:006",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:007",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:008",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:009",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:near_negative:010",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:boundary:001",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:boundary:002",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:boundary:003",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:boundary:004",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:metric_definition_conflict:boundary:005",
+      "split": "frozen",
+      "issue_code": "metric_definition_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:positive:001",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:positive:002",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:positive:003",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:positive:004",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:positive:005",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:near_negative:001",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:near_negative:002",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:near_negative:003",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:near_negative:004",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:near_negative:005",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:boundary:001",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:boundary:002",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_attachment_evidence:boundary:003",
+      "split": "development",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:001",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:002",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:003",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:004",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:005",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:006",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:007",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:008",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:009",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:positive:010",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:001",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:002",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:003",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:004",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:005",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:006",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:007",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:008",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:009",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:near_negative:010",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:boundary:001",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:boundary:002",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:boundary:003",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:boundary:004",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_attachment_evidence:boundary:005",
+      "split": "frozen",
+      "issue_code": "missing_attachment_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:positive:001",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:positive:002",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:positive:003",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:positive:004",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:positive:005",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:near_negative:001",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:near_negative:002",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:near_negative:003",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:near_negative:004",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:near_negative:005",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:boundary:001",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:boundary:002",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_budget_decision:boundary:003",
+      "split": "development",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:001",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:002",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:003",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:004",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:005",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:006",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:007",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:008",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:009",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:positive:010",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:001",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:002",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:003",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:004",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:005",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:006",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:007",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:008",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:009",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:near_negative:010",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:boundary:001",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:boundary:002",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:boundary:003",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:boundary:004",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_budget_decision:boundary:005",
+      "split": "frozen",
+      "issue_code": "missing_budget_decision",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:positive:001",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:positive:002",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:positive:003",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:positive:004",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:positive:005",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:near_negative:001",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:near_negative:002",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:near_negative:003",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:near_negative:004",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:near_negative:005",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:boundary:001",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:boundary:002",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:missing_claim_evidence:boundary:003",
+      "split": "development",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:001",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:002",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:003",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:004",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:005",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:006",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:007",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:008",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:009",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:positive:010",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:001",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:002",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:003",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:004",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:005",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:006",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:007",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:008",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:009",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:near_negative:010",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:boundary:001",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:boundary:002",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:boundary:003",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:boundary:004",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:missing_claim_evidence:boundary:005",
+      "split": "frozen",
+      "issue_code": "missing_claim_evidence",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:positive:001",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:positive:002",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:positive:003",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:positive:004",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:positive:005",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:near_negative:001",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:near_negative:002",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:near_negative:003",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:near_negative:004",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:near_negative:005",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:boundary:001",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:boundary:002",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:numerical_conflict:boundary:003",
+      "split": "development",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:001",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:002",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:003",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:004",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:005",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:006",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:007",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:008",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:009",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:positive:010",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:001",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:002",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:003",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:004",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:005",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:006",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:007",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:008",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:009",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:near_negative:010",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:boundary:001",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:boundary:002",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:boundary:003",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:boundary:004",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:numerical_conflict:boundary:005",
+      "split": "frozen",
+      "issue_code": "numerical_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:positive:001",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:positive:002",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:positive:003",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:positive:004",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:positive:005",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:near_negative:001",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:near_negative:002",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:near_negative:003",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:near_negative:004",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:near_negative:005",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:boundary:001",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:boundary:002",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:overclaiming:boundary:003",
+      "split": "development",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:001",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:002",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:003",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:004",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:005",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:006",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:007",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:008",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:009",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:positive:010",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:001",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:002",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:003",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:004",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:005",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:006",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:007",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:008",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:009",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:near_negative:010",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:boundary:001",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:boundary:002",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:boundary:003",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:boundary:004",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:overclaiming:boundary:005",
+      "split": "frozen",
+      "issue_code": "overclaiming",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:positive:001",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:positive:002",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:positive:003",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:positive:004",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:positive:005",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:near_negative:001",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:near_negative:002",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:near_negative:003",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:near_negative:004",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:near_negative:005",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:boundary:001",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:boundary:002",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:role_attribution_conflict:boundary:003",
+      "split": "development",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:001",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:002",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:003",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:004",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:005",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:006",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:007",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:008",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:009",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:positive:010",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:001",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:002",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:003",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:004",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:005",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:006",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:007",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:008",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:009",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:near_negative:010",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:boundary:001",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:boundary:002",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:boundary:003",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:boundary:004",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:role_attribution_conflict:boundary:005",
+      "split": "frozen",
+      "issue_code": "role_attribution_conflict",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:positive:001",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:positive:002",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:positive:003",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:positive:004",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:positive:005",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:near_negative:001",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:near_negative:002",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:near_negative:003",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:near_negative:004",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:near_negative:005",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:boundary:001",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:boundary:002",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:unsupported_claim:boundary:003",
+      "split": "development",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:001",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:002",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:003",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:004",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:005",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:006",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:007",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:008",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:009",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:positive:010",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:001",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:002",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:003",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:004",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:005",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:006",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:007",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:008",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:009",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:near_negative:010",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:boundary:001",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:boundary:002",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:boundary:003",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:boundary:004",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:unsupported_claim:boundary:005",
+      "split": "frozen",
+      "issue_code": "unsupported_claim",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:positive:001",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:positive:002",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:positive:003",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:positive:004",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:positive:005",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:near_negative:001",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:near_negative:002",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:near_negative:003",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:near_negative:004",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:near_negative:005",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:boundary:001",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:boundary:002",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "development:word_limit_exceeded:boundary:003",
+      "split": "development",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:001",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:002",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:003",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:004",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:005",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:006",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:007",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:008",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:009",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:positive:010",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "positive",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:001",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:002",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:003",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:004",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:005",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:006",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:007",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:008",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:009",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:near_negative:010",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "near_negative",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:boundary:001",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:boundary:002",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:boundary:003",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:boundary:004",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    },
+    {
+      "case_id": "frozen:word_limit_exceeded:boundary:005",
+      "split": "frozen",
+      "issue_code": "word_limit_exceeded",
+      "kind": "boundary",
+      "provenance": "developer_authored_fixture"
+    }
+  ]
+}

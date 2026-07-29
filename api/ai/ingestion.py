@@ -84,7 +84,7 @@ def _stable_chunk_id(resource_sha256: str, parser_version: str, index: int, norm
 
 
 @transaction.atomic
-def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full_text: str, organization_id: str = '', proposal_id: int | None = None, evidence_purpose: str = 'fact', original_filename: str = '', mime_type: str = 'text/plain', parser_version: str = PARSER_VERSION, page_chunks: list[tuple[int, str, str]] | None = None, resource_sha256: str | None = None) -> AIResource:
+def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full_text: str, organization_id: str = '', proposal_id: int | None = None, evidence_purpose: str = 'fact', original_filename: str = '', mime_type: str = 'text/plain', parser_version: str = PARSER_VERSION, page_chunks: list[tuple[int, str, str]] | None = None, resource_sha256: str | None = None, knowledge_domain: str = 'unknown') -> AIResource:
     full_text = _normalize_text(full_text)
     if not full_text:
         raise IngestionError('empty_document')
@@ -92,14 +92,21 @@ def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full
     existing = AIResource.objects.filter(organization_id=organization_id, sha256=sha256, parser_version=parser_version).first()
     if existing:
         return existing
-    rows = page_chunks or [(1, chunk, '') for chunk in _chunk_text(full_text)]
+    if knowledge_domain in {'grant_rule', 'user_evidence'}:
+        from .domain_indexing import chunk_text_for_domain
+
+        rows = page_chunks or [(1, chunk, '') for chunk in chunk_text_for_domain(text=full_text, knowledge_domain=knowledge_domain)]
+    elif knowledge_domain == 'unknown':
+        rows = page_chunks or [(1, chunk, '') for chunk in _chunk_text(full_text)]
+    else:
+        raise IngestionError('knowledge_domain_invalid')
     if not rows:
         raise IngestionError('empty_document')
     service = EmbeddingService.instance()
     resource = AIResource.objects.create(
         organization_id=organization_id, proposal_id=proposal_id, source_type=type_, evidence_purpose=evidence_purpose,
         title=title[:256], display_name=(title or original_filename)[:256], original_filename=original_filename[:512],
-        mime_type=mime_type, source_url=source_url, sha256=sha256, parser_version=parser_version, metadata={'dedup': True},
+        mime_type=mime_type, source_url=source_url, sha256=sha256, parser_version=parser_version, knowledge_domain=knowledge_domain, metadata={'dedup': True},
     )
     for index, ((page, text, section_title), embedding) in enumerate(zip(rows, embed_texts([row[1] for row in rows]))):
         normalized = _normalize_text(text)
@@ -113,6 +120,10 @@ def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full
         embedding_model=service.model_name, embedding_revision=service.model_name, embedding_dimension=service.dim,
         page_count=max(row[0] for row in rows), metadata={'chunks': len(rows)},
     )
+    if knowledge_domain in {'grant_rule', 'user_evidence'}:
+        from .domain_indexing import reindex_domain_resource
+
+        reindex_domain_resource(resource=resource)
     return resource
 
 

@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "errors": [],
+  "counts": {
+    "04_mixed_dual_domain": 24,
+    "05_cross_organization_leakage": 24,
+    "06_claim_grounding": 30,
+    "07_intake_and_review_workflow": 48,
+    "07_intake": 36,
+    "07_review_grill": 12
+  },
+  "claim_status_distribution": {
+    "supported": 10,
+    "missing_evidence": 7,
+    "conflicted": 8,
+    "locked": 5
+  },
+  "intake_task_quality_distribution": {
+    "plan_from_scratch:deep": 4,
+    "plan_from_scratch:quick": 4,
+    "plan_from_scratch:standard": 4,
+    "polish_existing:deep": 4,
+    "polish_existing:quick": 4,
+    "polish_existing:standard": 4,
+    "refine_outline:deep": 4,
+    "refine_outline:quick": 4,
+    "refine_outline:standard": 4
+  },
+  "cross_org_real_organization_ids": [
+    "ORG-CN-SC-SCU",
+    "ORG-CN-SC-SWUN"
+  ],
+  "id_safety": {
+    "ai_chunk_id_reused_as_requirement_or_user_evidence": false,
+    "external_ids_require_database_mapping": true
+  }
+}

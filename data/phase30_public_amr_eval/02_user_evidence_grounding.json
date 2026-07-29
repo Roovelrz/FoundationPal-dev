@@ -1,0 +1,311 @@
+{
+  "target_count": 18,
+  "cases": [
+    {
+      "case_id": "public_amr_evidence:001",
+      "query": "CRML23覆盖不同载频上的多信号共存场景。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "gold_chunk_ids": [
+        "4dc09c0ac8122ad95c79b10d6834d1ce7c326973f3c9227ca1ca401d7b564c08"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:002",
+      "query": "研究比较了旋转、翻转和高斯噪声增强。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "gold_chunk_ids": [
+        "aaabf8613e95a877054de1a29d4d6f0abd6f5e729ae8a926cad9a41cbc0ea3ff"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:003",
+      "query": "模型直接利用I/Q信号的复数结构。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "gold_chunk_ids": [
+        "acfdc37ba1f782d636b205802144f058c3cde2acb20f06e9ab5093600b04ffb4"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:004",
+      "query": "方法面向实时边缘计算场景。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "gold_chunk_ids": [
+        "421ffe0a66602ac360381f06e209e1eecaa7494ba37e7cfe4ca6f904ee5a7613"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 4,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:005",
+      "query": "研究将学习式注意力模型用于调制识别。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "gold_chunk_ids": [
+        "ffd7a00f456a3340ea21a7b93cc65ce6638ad6cc0232c0079ecf20bfe4922937"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 5,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:006",
+      "query": "论文比较CLDNN、LSTM和ResNet。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "gold_chunk_ids": [
+        "32e690d3446b03b72923a3bcaac4273bdf674bacb368a93345e0beb32b88a6fe"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 6,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:007",
+      "query": "网络参数量不依赖信号持续时间。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "gold_chunk_ids": [
+        "492d6b36ab1027f00b60f2b3521261d6b6febf216fceaadbefdd96139db9eee3"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 7,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:008",
+      "query": "论文综述DL-AMR模型和数据集。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "gold_chunk_ids": [
+        "212c9736f3469684866ee7aeb7531a3da47bc245dc83e5825c5bb15fd8dff367"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 8,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:009",
+      "query": "研究覆盖11种调制类型。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "gold_chunk_ids": [
+        "0a389f2206e62804be638649a2e3363a37447124f819007d844a07afadf9c286"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 9,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:010",
+      "query": "论文提出四种Early Exit架构。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "gold_chunk_ids": [
+        "1722c486362eaca45d4325774c9c698d91516a8e0de70137b21f0b8b0b0a3479"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 10,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:011",
+      "query": "研究比较多种CNN架构与设计元素。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "gold_chunk_ids": [
+        "0328b570347e6a74ed9467f755d9c424eb4b07c0bffe7b151f85cca3e9b17ad2"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 11,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:012",
+      "query": "研究输入为原始I/Q数据。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "gold_chunk_ids": [
+        "55fdad368986d98a987d5536696ae931a19e3460e04a91d78867dee967afcb7b"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 12,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:013",
+      "query": "类别激活向量表示各信号采样点的重要性。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "gold_chunk_ids": [
+        "94f04f8a6fce05fda263ec3139d5ecf075f6f8064f82aeec6e7d2ef0969bead5"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 13,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:014",
+      "query": "框架同时处理已知和未知调制类型。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "gold_chunk_ids": [
+        "4291dd3e0218eb9edfb33fc9a966764e1222068e6bbaaa054bd6d7e865b0e75f"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 14,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:015",
+      "query": "框架结合多域表示、对比学习和强化学习。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "gold_chunk_ids": [
+        "4b1c51bd00fce6c64026f7d1037316774619bded0792663a919c057db2515595"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 15,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:016",
+      "query": "模型以调制信号星座图为输入。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "gold_chunk_ids": [
+        "d8622b757b41701814ad91e98f9c57331ddd6e5775a4a675b232da068b445165"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 16,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:017",
+      "query": "方法使用教师学生异构网络处理标签噪声。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "gold_chunk_ids": [
+        "26fd696b2c1a2a64fda6281097c1bb964473cd2138066e143a0cfb870d568ebd"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 17,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    },
+    {
+      "case_id": "public_amr_evidence:018",
+      "query": "模型面向资源受限边缘设备。",
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "gold_chunk_ids": [
+        "c72d8cf744940dd09f8c92ea4dc5a501546ea23b0a44e3fdda1f603f8d46ba82"
+      ],
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 18,
+      "expected_fact_status": "completed",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Query and Gold both derive from the supplied public paper record."
+    }
+  ]
+}

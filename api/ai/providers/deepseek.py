@@ -138,20 +138,26 @@ class DeepSeekProvider(BaseProvider):
 
     def write(self, *, section_id: str, answers: dict[str, str],
               file_refs: list[dict[str, Any]] | None = None, deterministic: bool = False,
-              evidence_context: str | None = None) -> AIResult:
+              evidence_context: str | None = None, rule_context: str | None = None,
+              user_evidence_context: str | None = None) -> AIResult:
         budget = apply_context_budget(retrieval=[], memory=[], file_refs=file_refs or [], model_max_tokens=None)
         ctx = summarize_file_refs(budget.file_refs)
         user = f"章节: {section_id}\n\n用户回答:\n" + "\n".join(f"Q: {k}\nA: {v}" for k, v in answers.items())
         if ctx:
             user += f"\n\n参考资料:\n{ctx}"
         system = NSFC_WRITER_SYSTEM
-        if evidence_context is not None:
+        if evidence_context is not None or rule_context is not None or user_evidence_context is not None:
             system += (
                 '\n\n证据约束：只能依据 evidence_context 陈述事实。'
                 '输出单个 JSON 对象，字段为 schema_version、section_key、draft_markdown、evidence_ids、warnings、missing_evidence。'
                 'evidence_ids 必须是实际使用的整数 evidence_id；无证据时使用空列表并说明 missing_evidence。'
             )
-            user += f"\n\nevidence_context:\n{evidence_context}"
+            if rule_context is not None:
+                user += f"\n\ngrant_rule_context:\n{rule_context}"
+            if user_evidence_context is not None:
+                user += f"\n\nuser_evidence_context:\n{user_evidence_context}"
+            if evidence_context is not None:
+                user += f"\n\nevidence_context:\n{evidence_context}"
         draft = self._call(system, user, max_tokens=8192)
         return AIResult(text=draft, usage_tokens=len(draft.split()), model_id=self.model)
 

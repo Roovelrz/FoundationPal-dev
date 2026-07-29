@@ -1,0 +1,3 @@
+# 02_user_evidence_grounding
+
+逐条填写 organization_id、proposal_id、user_evidence_ids、expected_role、expected_numeric_value、expected_fact_status。不得使用跨组织或未授权资料。

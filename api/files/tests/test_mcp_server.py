@@ -29,11 +29,12 @@ class McpServerTests(SimpleTestCase):
 
         tools, resources = asyncio.run(check_server())
         self.assertEqual(tools, {'parse_document', 'extract_document_structure', 'extract_requirements'})
-        self.assertEqual(
-            resources,
-            {
-                'document://{file_id}/metadata',
-                'document://{file_id}/page/{page_number}',
-                'document://{file_id}/section/{section_index}',
-            },
-        )
+        self.assertTrue({
+            'document://{file_id}/metadata',
+            'document://{file_id}/page/{page_number}',
+            'document://{file_id}/section/{section_index}',
+            'grantpack://{pack_version_id}/metadata',
+            'grantpack://requirement/{requirement_id}',
+            'evidence://{user_evidence_id}',
+            'evidence://claim/{claim_id}/bindings',
+        }.issubset(resources))

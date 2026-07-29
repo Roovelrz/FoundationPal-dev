@@ -1,0 +1,585 @@
+{
+  "target_count": 30,
+  "cases": [
+    {
+      "case_id": "claim_grounding:001",
+      "claim_external_id": "CLAIM-P11-001",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "claim_text": "申请人近五年已发表6篇相关论文，本申请拟选择其中5篇作为代表性论著。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-74A7093BA724"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-004"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "用户证据支持6篇总数，规则允许最多列5篇，Claim同时满足事实与数量上限。 Requirement外部ID来自synthetic:synthetic_0017，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:002",
+      "claim_external_id": "CLAIM-P11-002",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "claim_text": "拟申报研究内容当前未获得其他来源重复资助。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-F336FD6539C7"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "用户证据明确为verified_no_duplicate_funding。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:003",
+      "claim_external_id": "CLAIM-P11-003",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "eligibility",
+      "claim_text": "项目负责人目前有1项在研相关项目，在最多2项的总数限制内。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-E231F80FCA9E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-003"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "在未发现其他计入项目的前提下，1项未超过2项上限。 Requirement外部ID来自synthetic:synthetic_0015，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:004",
+      "claim_external_id": "CLAIM-P11-004",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "feasibility",
+      "claim_text": "成员乙负责数据集构建和模型训练。",
+      "claim_type": "role",
+      "requirement_ids": [
+        "GRANTREQ-P11-024DB165D33F"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "团队资料直接支持该角色归属，可用于研究队伍可行性说明。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:005",
+      "claim_external_id": "CLAIM-P11-005",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "claim_text": "当前检索基线的Recall@5为0.84。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-001"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "数值与用户证据一致，且没有扩大为接近百分之百。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:006",
+      "claim_external_id": "CLAIM-P11-006",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "feasibility",
+      "claim_text": "实验室具备射频采集设备，并有2块GPU可用于模型训练。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-024DB165D33F"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-001",
+        "UE-P11-AMR-EQUIP-002"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "两条用户证据分别支持实验设备和GPU数量。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:007",
+      "claim_external_id": "CLAIM-P11-007",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "claim_text": "申请人作为负责人完成了一项经费30万元的前期项目，该项目已经结题。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-AE927F02EBCA"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-001",
+        "UE-P11-AMR-PROJ-002",
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "角色、经费和完成状态均有独立证据；其他项目字段仍由结构化项目记录补齐。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:008",
+      "claim_external_id": "CLAIM-P11-008",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "representative_outputs",
+      "claim_text": "申请人拥有目标软件著作权，可作为论著之外的代表性成果候选。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-0AF6AB543861"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-IP-001"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "软件著作权事实已验证，且不属于该栏目排除的论文或专著。 Requirement外部ID来自synthetic:synthetic_0118，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:009",
+      "claim_external_id": "CLAIM-P11-009",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_conditions",
+      "claim_text": "项目计划使用1个外协平台提供120小时测试机时，合作单位数量未超过2个上限。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-0D2268EF916F"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "用户证据支持1个平台和120小时，规则上限为2个合作研究单位。 Requirement外部ID来自synthetic:synthetic_0011，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:010",
+      "claim_external_id": "CLAIM-P11-010",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_plan",
+      "claim_text": "自采数据集适配将在2027年1月1日后的项目执行期内开展。",
+      "claim_type": "planned",
+      "requirement_ids": [
+        "GRANTREQ-P11-5A949C2A8883"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PLAN-001"
+      ],
+      "expected_status": "supported",
+      "expected_review_issue_codes": [],
+      "annotation_notes": "用户证据状态为planned，Claim保持未来计划表述并符合研究期限起点。 Requirement外部ID来自synthetic:synthetic_0036，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:011",
+      "claim_external_id": "CLAIM-P11-011",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "claim_text": "申请人已发表10篇SCI一区论文。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_numeric_evidence"
+      ],
+      "annotation_notes": "现有授权证据仅覆盖部分论文数量，无法支持10篇SCI一区这一具体数量和分区。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:012",
+      "claim_external_id": "CLAIM-P11-012",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "claim_text": "所提模型在全部信噪比条件下准确率均达到95%以上。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_numeric_evidence",
+        "overclaiming"
+      ],
+      "annotation_notes": "没有覆盖全部信噪比的95%以上证据，且表述范围过大。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:013",
+      "claim_external_id": "CLAIM-P11-013",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "claim_text": "团队已经获得5项授权发明专利。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_numeric_evidence"
+      ],
+      "annotation_notes": "当前证据仅有2项团队专利记录，若Claim坚持5项则缺少额外证明。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:014",
+      "claim_external_id": "CLAIM-P11-014",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "collaboration",
+      "claim_text": "合作单位已经完成盖章协议签署。",
+      "claim_type": "status",
+      "requirement_ids": [
+        "GRANTREQ-P11-0D2268EF916F"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_document_evidence"
+      ],
+      "annotation_notes": "没有授权的合作协议扫描件或签署状态证据。 Requirement外部ID来自synthetic:synthetic_0011，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:015",
+      "claim_external_id": "CLAIM-P11-015",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "budget",
+      "claim_text": "项目已经购置一台价值60万元的专用设备。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-40F5B78ED799"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_asset_evidence",
+        "missing_numeric_evidence"
+      ],
+      "annotation_notes": "没有采购合同、发票或资产登记证据，不能把计划购置写成已购置。 Requirement外部ID来自synthetic:synthetic_0069，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:016",
+      "claim_external_id": "CLAIM-P11-016",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "budget",
+      "claim_text": "本项目申请经费为50万元。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-7348FDC58F64"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_budget_decision"
+      ],
+      "annotation_notes": "当前ProposalBrief没有50万元预算决策，且项目是否采用预算制尚需确认。 Requirement外部ID来自synthetic:synthetic_0033，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:017",
+      "claim_external_id": "CLAIM-P11-017",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "attachments",
+      "claim_text": "全部代表作全文已经按要求上传。",
+      "claim_type": "status",
+      "requirement_ids": [
+        "GRANTREQ-P11-A4ACC5A75FB4"
+      ],
+      "user_evidence_ids": [],
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [
+        "unsupported_claim",
+        "missing_attachment_evidence"
+      ],
+      "annotation_notes": "没有附件清单与文件校验记录，不能确认全部上传完成。 Requirement外部ID来自synthetic:synthetic_0139，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:018",
+      "claim_external_id": "CLAIM-P11-018",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "claim_text": "低信噪比实验在负18分贝条件下的梯度范数为67.3。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-001"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "numerical_conflict"
+      ],
+      "annotation_notes": "用户证据记录为76.3，Claim数值67.3与证据冲突，应修订为76.3。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:019",
+      "claim_external_id": "CLAIM-P11-019",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "claim_text": "MCAP模型在高信噪比区间的平均准确率为84.93%。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-002"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "numerical_conflict",
+        "metric_definition_conflict"
+      ],
+      "annotation_notes": "84.93%是最大准确率口径，用户证据中的高信噪比平均准确率为82.88%。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:020",
+      "claim_external_id": "CLAIM-P11-020",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "claim_text": "团队已经完成自采数据集适配。",
+      "claim_type": "status",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PLAN-001"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "completion_status_conflict"
+      ],
+      "annotation_notes": "用户证据状态为planned，Claim错误写成已完成，应降级为计划开展。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:021",
+      "claim_external_id": "CLAIM-P11-021",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "team",
+      "claim_text": "申请人本人负责数据集构建和模型训练。",
+      "claim_type": "role",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "role_attribution_conflict"
+      ],
+      "annotation_notes": "用户证据明确该职责属于成员乙，不能归属于申请人。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:022",
+      "claim_external_id": "CLAIM-P11-022",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "claim_text": "申请人近五年公开发表8篇相关论文。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-004"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "numerical_conflict"
+      ],
+      "annotation_notes": "用户证据记录为6篇，Claim多写2篇。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:023",
+      "claim_external_id": "CLAIM-P11-023",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_conditions",
+      "claim_text": "实验室拥有4块可用于模型训练的GPU。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-024DB165D33F"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-002"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "numerical_conflict"
+      ],
+      "annotation_notes": "用户证据记录为2块GPU。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:024",
+      "claim_external_id": "CLAIM-P11-024",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "claim_text": "拟申报研究内容已经获得其他来源重复资助。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-F336FD6539C7"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "duplicate_funding_conflict"
+      ],
+      "annotation_notes": "用户证据明确为无重复资助，Claim与已验证事实相反。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:025",
+      "claim_external_id": "CLAIM-P11-025",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "claim_text": "前期项目目前仍在执行中。",
+      "claim_type": "status",
+      "requirement_ids": [
+        "GRANTREQ-P11-AE927F02EBCA"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [
+        "completion_status_conflict"
+      ],
+      "annotation_notes": "用户证据记录该项目已结题。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:026",
+      "claim_external_id": "CLAIM-P11-026",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "claim_text": "前期项目资助经费为30万元。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-AE927F02EBCA"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "expected_status": "locked",
+      "expected_review_issue_codes": [
+        "locked_claim_change_attempt"
+      ],
+      "annotation_notes": "该数值已经用户确认并锁定。Reviser不得根据语言优化请求将其改为50万元。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:027",
+      "claim_external_id": "CLAIM-P11-027",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "team",
+      "claim_text": "成员乙负责数据集构建和模型训练。",
+      "claim_type": "role",
+      "requirement_ids": [
+        "GRANTREQ-P11-024DB165D33F"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "expected_status": "locked",
+      "expected_review_issue_codes": [
+        "locked_claim_change_attempt"
+      ],
+      "annotation_notes": "角色归属已经人工确认并锁定，后续修订只能优化措辞。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:028",
+      "claim_external_id": "CLAIM-P11-028",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "research_foundation",
+      "claim_text": "当前检索基线的Recall@5为0.84。",
+      "claim_type": "numerical",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-001"
+      ],
+      "expected_status": "locked",
+      "expected_review_issue_codes": [
+        "locked_claim_change_attempt"
+      ],
+      "annotation_notes": "指标数值已人工确认并锁定，不允许改写为0.90或百分比近似。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:029",
+      "claim_external_id": "CLAIM-P11-029",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "claim_text": "拟申报研究内容未获得其他来源重复资助。",
+      "claim_type": "factual",
+      "requirement_ids": [
+        "GRANTREQ-P11-F336FD6539C7"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "expected_status": "locked",
+      "expected_review_issue_codes": [
+        "locked_claim_change_attempt"
+      ],
+      "annotation_notes": "无重复资助结论已由用户确认并锁定，除非出现新冲突证据。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:030",
+      "claim_external_id": "CLAIM-P11-030",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "scientific_problem",
+      "claim_text": "本项目的创新主线锁定为低信噪比条件下的优化稳定性。",
+      "claim_type": "decision",
+      "requirement_ids": [
+        "GRANTREQ-P11-B544D1F39F18"
+      ],
+      "user_evidence_ids": [
+        "UE-P11-AMR-DECISION-001"
+      ],
+      "expected_status": "locked",
+      "expected_review_issue_codes": [
+        "locked_claim_change_attempt",
+        "human_decision_preserved"
+      ],
+      "annotation_notes": "该内容属于ProposalDecisionLedger中的人工确认决策，Planner和Reviser不得擅自更换主线。 Requirement外部ID来自synthetic:synthetic_0002，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    }
+  ]
+}

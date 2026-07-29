@@ -11,6 +11,7 @@ from .section_materializer import materialize_sections
 from .section_pipeline import apply_revision, promote_section, save_write_result
 from .validators import reviewer_or_human_review
 from .writer_evidence import retrieve_writer_evidence
+from .query_router import retrieve_dual, search_grant_rules, search_user_evidence
 
 
 class ServiceError(ValueError):
@@ -84,3 +85,11 @@ def search_service(*, section_key: str, answers: dict[str, Any], organization_id
         organization_id=organization_id,
         proposal_id=proposal_id,
     )
+
+
+def retrieve_for_section_dual(*, question: str, rule_query, evidence_query):
+    '''Return typed rule and user-evidence retrieval results without mixing candidates.'''
+    return retrieve_dual(question=question, rule_query=rule_query, evidence_query=evidence_query)
+
+
+__all__ = ['search_grant_rules', 'search_user_evidence', 'retrieve_for_section_dual']

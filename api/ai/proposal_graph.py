@@ -38,6 +38,20 @@ class ProposalWorkflowState(TypedDict, total=False):
     final_markdown: str
     handoffs: list[dict[str, str]]
     auto_approve: bool
+    intake_profile: dict[str, Any]
+    work_policy: dict[str, Any]
+    grant_pack_version_id: int
+    proposal_brief_version: int
+    proposal_decision_ids: list[int]
+    grill_session_id: int
+    grill_mode: str
+    requirement_ids: list[int]
+    rule_evidence_ids: list[int]
+    user_evidence_ids: list[int]
+    claim_ids: list[int]
+    requirement_gaps: list[int]
+    evidence_gaps: list[int]
+    validation_issues: list[dict[str, Any]]
 
 
 def _append_trace(state: ProposalWorkflowState, node: str, status: str, error: str = '') -> dict[str, Any]:

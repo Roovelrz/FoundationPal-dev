@@ -1,0 +1,18 @@
+{
+  "dataset": "phase11_dataset_roles",
+  "synthetic_test_fixture": true,
+  "roles": {
+    "development": {
+      "source": "synthetic_test_fixture",
+      "tuning_allowed": true
+    },
+    "frozen": {
+      "source": "phase11_human_verified",
+      "tuning_allowed": false
+    },
+    "release_holdout": {
+      "source": "synthetic_test_fixture",
+      "tuning_allowed": false
+    }
+  }
+}

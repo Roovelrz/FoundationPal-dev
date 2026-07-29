@@ -1,0 +1,347 @@
+{
+  "target_count": 18,
+  "cases": [
+    {
+      "case_id": "public_amr_mixed:001",
+      "query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？。同时核对公开论文事实：CRML23覆盖不同载频上的多信号共存场景。",
+      "requirement_ids": [
+        "GRANTREQ-P11-516AEC6793C9"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "gold_chunk_ids": [
+        213,
+        "4dc09c0ac8122ad95c79b10d6834d1ce7c326973f3c9227ca1ca401d7b564c08"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:002",
+      "query": "根据国家自然科学基金申请书的撰写建议，面上项目应提出多少个拟解决的关键科学问题？。同时核对公开论文事实：研究比较了旋转、翻转和高斯噪声增强。",
+      "requirement_ids": [
+        "GRANTREQ-P11-B544D1F39F18"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "gold_chunk_ids": [
+        151,
+        "aaabf8613e95a877054de1a29d4d6f0abd6f5e729ae8a926cad9a41cbc0ea3ff"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:003",
+      "query": "申请人上传科技奖励附件时，应提供什么级别和类型的奖励证书？。同时核对公开论文事实：模型直接利用I/Q信号的复数结构。",
+      "requirement_ids": [
+        "GRANTREQ-P11-B366DA96A071"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "gold_chunk_ids": [
+        163,
+        "acfdc37ba1f782d636b205802144f058c3cde2acb20f06e9ab5093600b04ffb4"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:004",
+      "query": "根据2026版国家自然科学基金申请书模板，中文摘要在字数方面有何具体限制？。同时核对公开论文事实：方法面向实时边缘计算场景。",
+      "requirement_ids": [
+        "GRANTREQ-P11-A17D615E5774"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "gold_chunk_ids": [
+        234,
+        "421ffe0a66602ac360381f06e209e1eecaa7494ba37e7cfe4ca6f904ee5a7613"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:005",
+      "query": "根据国家自然科学基金申请书撰写指导，在撰写研究背景和意义部分时，应当回答哪两个基本问题？。同时核对公开论文事实：研究将学习式注意力模型用于调制识别。",
+      "requirement_ids": [
+        "GRANTREQ-P11-B5F15AA88C84"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "gold_chunk_ids": [
+        149,
+        "ffd7a00f456a3340ea21a7b93cc65ce6638ad6cc0232c0079ecf20bfe4922937"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:006",
+      "query": "申请人需提供境外合作者近多少年发表的代表作？。同时核对公开论文事实：论文比较CLDNN、LSTM和ResNet。",
+      "requirement_ids": [
+        "GRANTREQ-P11-C795748A352F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "gold_chunk_ids": [
+        141,
+        "32e690d3446b03b72923a3bcaac4273bdf674bacb368a93345e0beb32b88a6fe"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:007",
+      "query": "《国家自然科学基金项目评审回避与保密管理办法》是在哪个日期审议通过的？。同时核对公开论文事实：网络参数量不依赖信号持续时间。",
+      "requirement_ids": [
+        "GRANTREQ-P11-85E8C6C7584B"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "gold_chunk_ids": [
+        210,
+        "492d6b36ab1027f00b60f2b3521261d6b6febf216fceaadbefdd96139db9eee3"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:008",
+      "query": "根据合作创新团队项目的申报要求，项目获批开始执行后，申请人每年需在依托单位从事基础研究工作的时间应满足什么条件？。同时核对公开论文事实：论文综述DL-AMR模型和数据集。",
+      "requirement_ids": [
+        "GRANTREQ-P11-FBBC48F0F13F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "gold_chunk_ids": [
+        143,
+        "212c9736f3469684866ee7aeb7531a3da47bc245dc83e5825c5bb15fd8dff367"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:009",
+      "query": "境外人员作为主要参与者时，项目申请人需将什么材料作为申请书附件上传？。同时核对公开论文事实：研究覆盖11种调制类型。",
+      "requirement_ids": [
+        "GRANTREQ-P11-A665736D0A93"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "gold_chunk_ids": [
+        85,
+        "0a389f2206e62804be638649a2e3363a37447124f819007d844a07afadf9c286"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:010",
+      "query": "根据国家自然科学基金的相关规定，哪些项目类型在项目申请时无需编制预算？。同时核对公开论文事实：论文提出四种Early Exit架构。",
+      "requirement_ids": [
+        "GRANTREQ-P11-75B6310BF54E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "gold_chunk_ids": [
+        24,
+        "1722c486362eaca45d4325774c9c698d91516a8e0de70137b21f0b8b0b0a3479"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:011",
+      "query": "根据指南，合作研究单位的数量上限是多少？。同时核对公开论文事实：研究比较多种CNN架构与设计元素。",
+      "requirement_ids": [
+        "GRANTREQ-P11-0D2268EF916F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "gold_chunk_ids": [
+        175,
+        "0328b570347e6a74ed9467f755d9c424eb4b07c0bffe7b151f85cca3e9b17ad2"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:012",
+      "query": "面向具身智能操作系统的驱动代码合成与演化技术主要聚焦哪些问题？。同时核对公开论文事实：研究输入为原始I/Q数据。",
+      "requirement_ids": [
+        "GRANTREQ-P11-E04A6974CEBB"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "gold_chunk_ids": [
+        54,
+        "55fdad368986d98a987d5536696ae931a19e3460e04a91d78867dee967afcb7b"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:013",
+      "query": "在撰写国家自然科学基金申请书的国内外研究现状及分析部分时，要求的字数、字体和行距分别是什么？。同时核对公开论文事实：类别激活向量表示各信号采样点的重要性。",
+      "requirement_ids": [
+        "GRANTREQ-P11-99E6C79C1AF4"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "gold_chunk_ids": [
+        103,
+        "94f04f8a6fce05fda263ec3139d5ecf075f6f8064f82aeec6e7d2ef0969bead5"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:014",
+      "query": "根据限项规定，2026年12月31日前资助期满的项目是否计入申请和承担项目总数？。同时核对公开论文事实：框架同时处理已知和未知调制类型。",
+      "requirement_ids": [
+        "GRANTREQ-P11-30707F26C675"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "gold_chunk_ids": [
+        127,
+        "4291dd3e0218eb9edfb33fc9a966764e1222068e6bbaaa054bd6d7e865b0e75f"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:015",
+      "query": "具有高级专业技术职务（职称）的人员，申请和正在承担的项目总数合计最多为多少项？。同时核对公开论文事实：框架结合多域表示、对比学习和强化学习。",
+      "requirement_ids": [
+        "GRANTREQ-P11-E231F80FCA9E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "gold_chunk_ids": [
+        9,
+        "4b1c51bd00fce6c64026f7d1037316774619bded0792663a919c057db2515595"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:016",
+      "query": "根据规定，申请人及主要参与者填报的学位信息应当与什么一致？。同时核对公开论文事实：模型以调制信号星座图为输入。",
+      "requirement_ids": [
+        "GRANTREQ-P11-F7B4AFF0F9D9"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "gold_chunk_ids": [
+        25,
+        "d8622b757b41701814ad91e98f9c57331ddd6e5775a4a675b232da068b445165"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:017",
+      "query": "申请人本人发表的代表性论著数量上限是多少？。同时核对公开论文事实：方法使用教师学生异构网络处理标签噪声。",
+      "requirement_ids": [
+        "GRANTREQ-P11-74A7093BA724"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "gold_chunk_ids": [
+        181,
+        "26fd696b2c1a2a64fda6281097c1bb964473cd2138066e143a0cfb870d568ebd"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    },
+    {
+      "case_id": "public_amr_mixed:018",
+      "query": "国家自然科学基金申请书的题目字数建议上限是多少？。同时核对公开论文事实：模型面向资源受限边缘设备。",
+      "requirement_ids": [
+        "GRANTREQ-P11-9DED6F2D6DE0"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "gold_chunk_ids": [
+        164,
+        "c72d8cf744940dd09f8c92ea4dc5a501546ea23b0a44e3fdda1f603f8d46ba82"
+      ],
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-B-001",
+      "organization_id": "ORG-P30-PUBLIC-AMR",
+      "expected_answer": "Rule evidence and public-paper evidence must be returned as separate domains.",
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "The public evidence is not attributed to an applicant or organization."
+    }
+  ]
+}

@@ -40,6 +40,8 @@ class GeminiProvider(BaseProvider):
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
         evidence_context: str | None = None,
+        rule_context: str | None = None,
+        user_evidence_context: str | None = None,
     ) -> AIResult:
         budget = apply_context_budget(
             retrieval=[],

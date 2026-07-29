@@ -19,6 +19,7 @@ from .document_services import (
     extract_requirements as build_requirements,
     parse_controlled_pdf,
 )
+from ai.models import Claim, GrantPackVersion, GrantRequirement, UserEvidence
 
 
 mcp = FastMCP('Grant Proposal Document MCP')
@@ -101,6 +102,50 @@ def get_document_section(file_id: int, section_index: int) -> dict:
         if section_index < 1 or section_index > len(structure['sections']):
             raise DocumentServiceError('section_not_found')
         return {'schema_version': 'v1', 'file_id': file_id, 'section': structure['sections'][section_index - 1]}
+    return _result(operation)
+
+
+@mcp.resource('grantpack://{pack_version_id}/metadata', mime_type='application/json')
+def get_grantpack_metadata(pack_version_id: int) -> dict:
+    def operation():
+        _, organization_id = _context()
+        version = GrantPackVersion.objects.select_related('pack__program').filter(pk=pack_version_id, status='published').first()
+        if version is None or (version.pack.organization_id and version.pack.organization_id != str(organization_id)):
+            raise DocumentServiceError('grant_pack_not_found')
+        return {'schema_version': 'v1', 'pack_version_id': version.id, 'year': version.year, 'program': version.pack.program.name, 'status': version.status}
+    return _result(operation)
+
+
+@mcp.resource('grantpack://requirement/{requirement_id}', mime_type='application/json')
+def get_grant_requirement(requirement_id: int) -> dict:
+    def operation():
+        _, organization_id = _context()
+        requirement = GrantRequirement.objects.select_related('pack_version__pack', 'source_chunk__resource').filter(pk=requirement_id, pack_version__status='published').first()
+        if requirement is None or (requirement.pack_version.pack.organization_id and requirement.pack_version.pack.organization_id != str(organization_id)):
+            raise DocumentServiceError('requirement_not_found')
+        return {'schema_version': 'v1', 'knowledge_domain': 'grant_rule', 'requirement_id': requirement.id, 'excerpt': requirement.source_excerpt or requirement.text, 'source': requirement.source_chunk.resource.display_name}
+    return _result(operation)
+
+
+@mcp.resource('evidence://{user_evidence_id}', mime_type='application/json')
+def get_user_evidence(user_evidence_id: int) -> dict:
+    def operation():
+        _, organization_id = _context()
+        evidence = UserEvidence.objects.select_related('chunk__resource').filter(pk=user_evidence_id, organization_id=str(organization_id)).first()
+        if evidence is None:
+            raise DocumentServiceError('user_evidence_not_found')
+        return {'schema_version': 'v1', 'knowledge_domain': 'user_evidence', 'user_evidence_id': evidence.id, 'excerpt': evidence.controlled_summary or evidence.chunk.text[:1000], 'source': evidence.chunk.resource.display_name}
+    return _result(operation)
+
+
+@mcp.resource('evidence://claim/{claim_id}/bindings', mime_type='application/json')
+def get_claim_bindings(claim_id: int) -> dict:
+    def operation():
+        _, organization_id = _context()
+        claim = Claim.objects.filter(pk=claim_id, proposal__org_id=organization_id).first()
+        if claim is None:
+            raise DocumentServiceError('claim_not_found')
+        return {'schema_version': 'v1', 'claim_id': claim.id, 'bindings': list(claim.evidence_bindings.values('grant_requirement_id', 'user_evidence_id', 'support_type', 'support_strength', 'reviewer_status'))}
     return _result(operation)
 
 

@@ -1,0 +1,22 @@
+{
+  "dataset": "phase40_p1_holdout",
+  "status": "approved_roovel",
+  "p0v5_source_data_immutable": true,
+  "files": {
+    "rewrites": "00_p1_evidence_query_rewrites.json",
+    "evidence": "02_user_evidence_grounding.json",
+    "mixed": "04_mixed_dual_domain.json",
+    "cross_organization": "05_cross_organization_leakage.json",
+    "forbidden_source_bindings": "phase40_p1_source_bindings.json"
+  },
+  "acceptance": {
+    "exact_query_leak_observation_count": 0,
+    "ngram_query_leak_observation_count": 0,
+    "authorized_evidence_recall_at_8": "measured_after_human_approval",
+    "cross_organization_leakage_rate": 0
+  },
+  "reviewer": "roovel",
+  "review_date": "2026-07-28",
+  "formal_report": "../../api/reports/phase40_p1_holdout_eval/phase40-p1-formal-eval.json"
+}
+

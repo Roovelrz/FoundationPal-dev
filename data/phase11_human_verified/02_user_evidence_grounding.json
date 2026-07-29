@@ -1,0 +1,616 @@
+{
+  "target_count": 40,
+  "cases": [
+    {
+      "case_id": "synthetic:synthetic_0024",
+      "query": "2009年我国甲型H1N1流感死亡病例数是多少？",
+      "gold_chunk_ids": [
+        169
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_id": "PROP-P11-VACCINE-001",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-BACKGROUND-001"
+      ],
+      "expected_role": "background_fact",
+      "expected_numeric_value": 654,
+      "expected_fact_status": "verified_historical",
+      "annotation_notes": "用户证据域题。依据成功案例或写作参考中的项目、团队或案例事实，source_document_id 为 9，Gold AIChunk 为 169。确认答案要点为 654例。 该数值是案例正文中的背景事实，不属于基金规则。 已逐条补全组织、Proposal、角色、数值或状态及受控UserEvidence外部ID。 UserEvidence ID使用UE-P11独立命名空间，不包含AIChunk ID； 在当前项目数据库中导入种子后，应将外部ID解析为真实UserEvidence主键。",
+      "annotation_status": "human_confirmed"
+    },
+    {
+      "case_id": "synthetic:synthetic_0030",
+      "query": "哪一位团队成员负责数据集构建和模型训练？",
+      "gold_chunk_ids": [
+        249
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "expected_role": "data_and_model_training_lead",
+      "expected_numeric_value": null,
+      "expected_fact_status": "completed",
+      "annotation_notes": "用户证据域题。依据团队资料中的项目、团队或案例事实，source_document_id 为 14，Gold AIChunk 为 249。确认答案要点为 成员乙。 已逐条补全组织、Proposal、角色、数值或状态及受控UserEvidence外部ID。 UserEvidence ID使用UE-P11独立命名空间，不包含AIChunk ID； 在当前项目数据库中导入种子后，应将外部ID解析为真实UserEvidence主键。",
+      "annotation_status": "human_confirmed"
+    },
+    {
+      "case_id": "synthetic:synthetic_0064",
+      "query": "这项关于疫苗供应链的研究预期会带来哪两方面的价值？",
+      "gold_chunk_ids": [
+        170
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_id": "PROP-P11-VACCINE-001",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-VALUE-001",
+        "UE-P11-VACCINE-VALUE-002"
+      ],
+      "expected_role": "project_value_statement",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "planned_outcome",
+      "annotation_notes": "用户证据域题。依据成功案例或写作参考中的项目、团队或案例事实，source_document_id 为 9，Gold AIChunk 为 170。确认答案要点为 拓展供应链领域的理论和方法，以及为政府有效管理疫苗类生物制品供应链以应对传染病威胁、提升人们健康水平提供现实意义。。 该内容是疫苗供应链案例的项目价值，不属于基金规则。 已逐条补全组织、Proposal、角色、数值或状态及受控UserEvidence外部ID。 UserEvidence ID使用UE-P11独立命名空间，不包含AIChunk ID； 在当前项目数据库中导入种子后，应将外部ID解析为真实UserEvidence主键。",
+      "annotation_status": "human_confirmed"
+    },
+    {
+      "case_id": "synthetic:synthetic_0115",
+      "query": "本项目研究的疫苗供应链特点包括哪些？",
+      "gold_chunk_ids": [
+        108
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "proposal_id": "PROP-P11-VACCINE-001",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-PROBLEM-001"
+      ],
+      "expected_role": "research_problem_definition",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "verified",
+      "annotation_notes": "用户证据域题。依据申报通知或填报快照中的项目、团队或案例事实，source_document_id 为 6，Gold AIChunk 为 108。确认答案要点为 需求动态变化、供应风险及供应链成员的风险态度。 该内容是疫苗供应链项目自身的研究事实，不属于基金规则。 已逐条补全组织、Proposal、角色、数值或状态及受控UserEvidence外部ID。 UserEvidence ID使用UE-P11独立命名空间，不包含AIChunk ID； 在当前项目数据库中导入种子后，应将外部ID解析为真实UserEvidence主键。",
+      "annotation_status": "human_confirmed"
+    },
+    {
+      "case_id": "synthetic:synthetic_0130",
+      "query": "2014 AIAA Science and Technology Forum and Exposition 是在哪里举办的？",
+      "gold_chunk_ids": [
+        162
+      ],
+      "organization_id": "ORG-P11-DEMO-AERO",
+      "proposal_id": "PROP-P11-AERO-001",
+      "user_evidence_ids": [
+        "UE-P11-AERO-BIBLIO-001"
+      ],
+      "expected_role": "bibliographic_fact",
+      "expected_numeric_value": 2014,
+      "expected_fact_status": "verified",
+      "annotation_notes": "用户证据域题。依据成功案例或写作参考中的项目、团队或案例事实，source_document_id 为 8，Gold AIChunk 为 162。确认答案要点为 National Harbor, Maryland。 会议地点是案例材料中的事实，不属于基金规则。 已逐条补全组织、Proposal、角色、数值或状态及受控UserEvidence外部ID。 UserEvidence ID使用UE-P11独立命名空间，不包含AIChunk ID； 在当前项目数据库中导入种子后，应将外部ID解析为真实UserEvidence主键。",
+      "annotation_status": "human_confirmed"
+    },
+    {
+      "case_id": "new_user_evidence:001",
+      "annotation_status": "human_confirmed",
+      "query": "申请人在相关方向已发表多少篇第一作者论文？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-001"
+      ],
+      "expected_role": "first_author",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "completed",
+      "annotation_notes": "申请人已发表3篇第一作者论文。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:002",
+      "annotation_status": "human_confirmed",
+      "query": "申请人是否为论文《低信噪比调制识别方法》的通讯作者？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-002"
+      ],
+      "expected_role": "corresponding_author",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "申请人为该论文通讯作者。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:003",
+      "annotation_status": "human_confirmed",
+      "query": "团队成员甲在目标论文中的作者排序是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-003"
+      ],
+      "expected_role": "coauthor",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "annotation_notes": "团队成员甲为第二作者。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:004",
+      "annotation_status": "human_confirmed",
+      "query": "申请人近五年公开发表的相关论文总数是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-004"
+      ],
+      "expected_role": "applicant_publication_owner",
+      "expected_numeric_value": 6,
+      "expected_fact_status": "completed",
+      "annotation_notes": "近五年相关论文总数为6篇。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:005",
+      "annotation_status": "human_confirmed",
+      "query": "哪一项论文成果已正式录用但尚未见刊？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-005"
+      ],
+      "expected_role": "accepted_paper_owner",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "accepted_not_published",
+      "annotation_notes": "存在1篇已录用未见刊论文。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:006",
+      "annotation_status": "human_confirmed",
+      "query": "申请人是否拥有目标软件著作权？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-IP-001"
+      ],
+      "expected_role": "software_copyright_owner",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "申请人为第一著作权人。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:007",
+      "annotation_status": "human_confirmed",
+      "query": "团队已有多少项授权发明专利可支撑本项目？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-IP-002"
+      ],
+      "expected_role": "patent_owner_team",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "annotation_notes": "团队有2项授权发明专利。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:008",
+      "annotation_status": "human_confirmed",
+      "query": "申请人在前期项目中担任什么角色？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-001"
+      ],
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "申请人担任项目负责人。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:009",
+      "annotation_status": "human_confirmed",
+      "query": "前期项目获得的经费金额是多少万元？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "expected_role": "funding_recipient",
+      "expected_numeric_value": 30,
+      "expected_fact_status": "completed",
+      "annotation_notes": "前期项目经费为30万元。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:010",
+      "annotation_status": "human_confirmed",
+      "query": "该前期项目当前是否已经结题？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "项目已结题。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:011",
+      "annotation_status": "human_confirmed",
+      "query": "团队成员乙参与过多少项与本申请直接相关的项目？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-004"
+      ],
+      "expected_role": "core_project_member",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "annotation_notes": "成员乙参与2项相关项目。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:012",
+      "annotation_status": "human_confirmed",
+      "query": "拟申报项目是否已经获得其他来源重复资助？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "expected_role": "applicant",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "verified_no_duplicate_funding",
+      "annotation_notes": "未发现同一研究内容重复资助。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:013",
+      "annotation_status": "human_confirmed",
+      "query": "合作单位在前期项目中承担的任务是否已完成？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-002"
+      ],
+      "expected_role": "collaborating_institution",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "合作单位的数据采集任务已完成。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:014",
+      "annotation_status": "human_confirmed",
+      "query": "项目负责人目前有多少项在研相关项目？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-003"
+      ],
+      "expected_role": "project_leader",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "ongoing",
+      "annotation_notes": "当前有1项相关在研项目。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:015",
+      "annotation_status": "human_confirmed",
+      "query": "低信噪比实验在负18分贝条件下的梯度范数是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-001"
+      ],
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 76.3,
+      "expected_fact_status": "completed",
+      "annotation_notes": "负18分贝时梯度范数为76.3。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:016",
+      "annotation_status": "human_confirmed",
+      "query": "MCAP模型在高信噪比区间的平均准确率是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-002"
+      ],
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 82.88,
+      "expected_fact_status": "completed",
+      "annotation_notes": "高信噪比平均准确率为82.88%。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:017",
+      "annotation_status": "human_confirmed",
+      "query": "SAM版本在低信噪比下是否完成对比验证？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-003"
+      ],
+      "expected_role": "experiment_lead",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "SAM低信噪比对比实验已完成。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:018",
+      "annotation_status": "human_confirmed",
+      "query": "当前检索基线的Recall@5是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-001"
+      ],
+      "expected_role": "evaluation_owner",
+      "expected_numeric_value": 0.84,
+      "expected_fact_status": "completed",
+      "annotation_notes": "RAG基线Recall@5为0.84。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:019",
+      "annotation_status": "human_confirmed",
+      "query": "当前检索基线的Recall@20是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-002"
+      ],
+      "expected_role": "evaluation_owner",
+      "expected_numeric_value": 0.9467,
+      "expected_fact_status": "completed",
+      "annotation_notes": "RAG基线Recall@20为0.9467。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:020",
+      "annotation_status": "human_confirmed",
+      "query": "证据Judge抽检的完整支持率是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-003"
+      ],
+      "expected_role": "evaluation_owner",
+      "expected_numeric_value": 0.8667,
+      "expected_fact_status": "completed",
+      "annotation_notes": "完整支持率为0.8667。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:021",
+      "annotation_status": "human_confirmed",
+      "query": "当前固定评测集中包含多少道合成检索题？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-004"
+      ],
+      "expected_role": "dataset_curator",
+      "expected_numeric_value": 150,
+      "expected_fact_status": "completed",
+      "annotation_notes": "合成检索题为150道。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:022",
+      "annotation_status": "human_confirmed",
+      "query": "人工锚点题数量是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-005"
+      ],
+      "expected_role": "dataset_curator",
+      "expected_numeric_value": 15,
+      "expected_fact_status": "completed",
+      "annotation_notes": "人工锚点题为15道。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:023",
+      "annotation_status": "human_confirmed",
+      "query": "实验室是否拥有完成信号采集所需的射频设备？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-001"
+      ],
+      "expected_role": "equipment_custodian",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "verified_available",
+      "annotation_notes": "射频采集设备可用。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:024",
+      "annotation_status": "human_confirmed",
+      "query": "可用于模型训练的GPU数量是多少？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-002"
+      ],
+      "expected_role": "compute_resource_owner",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "verified_available",
+      "annotation_notes": "当前可用GPU为2块。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:025",
+      "annotation_status": "human_confirmed",
+      "query": "目标设备是否由申请人所在组织直接管理？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-003"
+      ],
+      "expected_role": "equipment_custodian",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "verified_owned",
+      "annotation_notes": "设备由所在组织直接管理。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:026",
+      "annotation_status": "human_confirmed",
+      "query": "外协平台计划提供多少小时的测试机时？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "expected_role": "external_facility_provider",
+      "expected_numeric_value": 120,
+      "expected_fact_status": "planned",
+      "annotation_notes": "计划提供120小时测试机时。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:027",
+      "annotation_status": "human_confirmed",
+      "query": "团队是否已经获得目标数据集的合法使用授权？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-DATA-001"
+      ],
+      "expected_role": "data_license_holder",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "verified",
+      "annotation_notes": "数据使用授权已核验。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:028",
+      "annotation_status": "human_confirmed",
+      "query": "当前用户资料包中有多少份可用于证据检索的PDF？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-DATA-001"
+      ],
+      "expected_role": "data_curator",
+      "expected_numeric_value": 14,
+      "expected_fact_status": "completed",
+      "annotation_notes": "已导入14份PDF。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:029",
+      "annotation_status": "human_confirmed",
+      "query": "这些PDF共生成多少个稳定Chunk？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-DATA-002"
+      ],
+      "expected_role": "data_curator",
+      "expected_numeric_value": 249,
+      "expected_fact_status": "completed",
+      "annotation_notes": "共生成249个稳定Chunk。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:030",
+      "annotation_status": "human_confirmed",
+      "query": "自采数据集适配工作当前处于什么状态？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "proposal_id": "PROP-P11-AMR-001",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PLAN-001"
+      ],
+      "expected_role": "dataset_curator",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "planned",
+      "annotation_notes": "自采数据集适配尚未完成。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:031",
+      "annotation_status": "human_confirmed",
+      "query": "跨章节一致性检查器是否已经进入生产流程？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PLAN-001"
+      ],
+      "expected_role": "system_owner",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "planned",
+      "annotation_notes": "检查器仍处于规划阶段。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:032",
+      "annotation_status": "human_confirmed",
+      "query": "基金规则包编译器当前是否已经完成正式数据库接入？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PLAN-002"
+      ],
+      "expected_role": "system_owner",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "planned",
+      "annotation_notes": "尚未完成正式数据库接入。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:033",
+      "annotation_status": "human_confirmed",
+      "query": "LangGraph主工作流是否已经通过正常路径与回退路径测试？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-WF-001"
+      ],
+      "expected_role": "workflow_owner",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "annotation_notes": "正常路径与回退路径均通过。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:034",
+      "annotation_status": "human_confirmed",
+      "query": "人工审批检查点是否支持服务重启后恢复？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-WF-002"
+      ],
+      "expected_role": "workflow_owner",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "annotation_notes": "支持重启后恢复。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    },
+    {
+      "case_id": "new_user_evidence:035",
+      "annotation_status": "human_confirmed",
+      "query": "Writer在无证据情况下是否允许生成事实性证据ID？",
+      "gold_chunk_ids": [],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-WF-003"
+      ],
+      "expected_role": "writer_agent",
+      "expected_numeric_value": 0,
+      "expected_fact_status": "verified_prohibited",
+      "annotation_notes": "无证据时不得生成证据ID。 该案例为Phase 11匿名受控用户证据补充样本。 UserEvidence ID使用UE-P11独立命名空间，不引用AIChunk ID。 新增案例需要先写入数据库种子并生成对应检索Chunk。"
+    }
+  ]
+}

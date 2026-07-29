@@ -1,0 +1,370 @@
+{
+  "fixture_case_count": 36,
+  "routing_accuracy": 1.0,
+  "question_budget_accuracy": 1.0,
+  "remaining_discrepancy_count": 0,
+  "diagnostics": [
+    {
+      "case_id": "intake:001",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 4,
+      "actual_question_budget": 4,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:002",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 4,
+      "actual_question_budget": 4,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:003",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:004",
+      "expected_grill_mode": "evidence_confirmation",
+      "actual_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 2,
+      "actual_question_budget": 2,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:005",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "actual_question_budget": 7,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:006",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "actual_question_budget": 7,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:007",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:008",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "actual_question_budget": 7,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:009",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 10,
+      "actual_question_budget": 10,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:010",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 10,
+      "actual_question_budget": 10,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:011",
+      "expected_grill_mode": "discovery",
+      "actual_grill_mode": "discovery",
+      "expected_max_questions": 9,
+      "actual_question_budget": 9,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:012",
+      "expected_grill_mode": "evidence_confirmation",
+      "actual_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:013",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:014",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:015",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 2,
+      "actual_question_budget": 2,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:016",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 2,
+      "actual_question_budget": 2,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:017",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:018",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:019",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 5,
+      "actual_question_budget": 5,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:020",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:021",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "actual_question_budget": 8,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:022",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "actual_question_budget": 8,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:023",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "actual_question_budget": 8,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:024",
+      "expected_grill_mode": "refinement",
+      "actual_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "actual_question_budget": 8,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:025",
+      "expected_grill_mode": "skip",
+      "actual_grill_mode": "skip",
+      "expected_max_questions": 0,
+      "actual_question_budget": 0,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:026",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 1,
+      "actual_question_budget": 1,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:027",
+      "expected_grill_mode": "skip",
+      "actual_grill_mode": "skip",
+      "expected_max_questions": 0,
+      "actual_question_budget": 0,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:028",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 2,
+      "actual_question_budget": 2,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:029",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:030",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 4,
+      "actual_question_budget": 4,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:031",
+      "expected_grill_mode": "evidence_confirmation",
+      "actual_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 3,
+      "actual_question_budget": 3,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:032",
+      "expected_grill_mode": "evidence_confirmation",
+      "actual_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 4,
+      "actual_question_budget": 4,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:033",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:034",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:035",
+      "expected_grill_mode": "review",
+      "actual_grill_mode": "review",
+      "expected_max_questions": 6,
+      "actual_question_budget": 6,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    },
+    {
+      "case_id": "intake:036",
+      "expected_grill_mode": "evidence_confirmation",
+      "actual_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 4,
+      "actual_question_budget": 4,
+      "route_match": true,
+      "question_budget_match": true,
+      "discrepancy_category": null
+    }
+  ],
+  "evaluation_scope": "phase40_p03_intake_contract",
+  "fixture": "F:\\lrz_workplace\\Agent\\Foundation\\FoundationPal\\data\\phase30_public_amr_eval\\07_intake_and_review_workflow.json"
+}

@@ -1,0 +1,5181 @@
+{
+  "schema_version": "phase30-public-amr-eval-v1",
+  "warning": "Public AMR papers are real public test sources. They must not be attributed to an applicant or a grant organization.",
+  "grant_pack_versions": [
+    {
+      "external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-B-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-AI-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "family": "国家自然科学基金",
+      "applicable_year": 2026,
+      "region": "中国",
+      "status": "requires_database_seed_or_pk_mapping"
+    }
+  ],
+  "grant_requirements": [
+    {
+      "external_id": "GRANTREQ-P11-516AEC6793C9",
+      "case_id": "synthetic:synthetic_0001",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金委的保密规定，评审专家无法履行保密义务的，应如何处理？",
+      "reference_answer": "视为放弃评审。",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        213
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B544D1F39F18",
+      "case_id": "synthetic:synthetic_0002",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "面上项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书的撰写建议，面上项目应提出多少个拟解决的关键科学问题？",
+      "reference_answer": "2-3个",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        151
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B366DA96A071",
+      "case_id": "synthetic:synthetic_0003",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人上传科技奖励附件时，应提供什么级别和类型的奖励证书？",
+      "reference_answer": "国家级科技奖励（国家自然科学奖、国家发明奖、国家科学技术进步奖）或省部级奖励（二等以上）证书",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        163
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A17D615E5774",
+      "case_id": "synthetic:synthetic_0004",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026版国家自然科学基金申请书模板，中文摘要在字数方面有何具体限制？",
+      "reference_answer": "建议400字以内，含标点符号。",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        234
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B5F15AA88C84",
+      "case_id": "synthetic:synthetic_0005",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书撰写指导，在撰写研究背景和意义部分时，应当回答哪两个基本问题？",
+      "reference_answer": "要做什么和为什么做",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        149
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C795748A352F",
+      "case_id": "synthetic:synthetic_0006",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人需提供境外合作者近多少年发表的代表作？",
+      "reference_answer": "近5年",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        141
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-85E8C6C7584B",
+      "case_id": "synthetic:synthetic_0007",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "《国家自然科学基金项目评审回避与保密管理办法》是在哪个日期审议通过的？",
+      "reference_answer": "2015年5月12日",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        210
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FBBC48F0F13F",
+      "case_id": "synthetic:synthetic_0008",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据合作创新团队项目的申报要求，项目获批开始执行后，申请人每年需在依托单位从事基础研究工作的时间应满足什么条件？",
+      "reference_answer": "6个月以上",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        143
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A665736D0A93",
+      "case_id": "synthetic:synthetic_0009",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "境外人员作为主要参与者时，项目申请人需将什么材料作为申请书附件上传？",
+      "reference_answer": "有其本人签字的“知情同意书”扫描件",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        85
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-75B6310BF54E",
+      "case_id": "synthetic:synthetic_0010",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金的相关规定，哪些项目类型在项目申请时无需编制预算？",
+      "reference_answer": "青年科学基金项目（A、B、C类）和青年学生基础研究项目",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        24
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0D2268EF916F",
+      "case_id": "synthetic:synthetic_0011",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据指南，合作研究单位的数量上限是多少？",
+      "reference_answer": "2个",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        175
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E04A6974CEBB",
+      "case_id": "synthetic:synthetic_0012",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向具身智能操作系统的驱动代码合成与演化技术主要聚焦哪些问题？",
+      "reference_answer": "底层驱动开发适配慢和数据分布漂移导致模型失效",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-99E6C79C1AF4",
+      "case_id": "synthetic:synthetic_0013",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在撰写国家自然科学基金申请书的国内外研究现状及分析部分时，要求的字数、字体和行距分别是什么？",
+      "reference_answer": "5000字左右，小四号字，楷体，1.25倍行距。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        103
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-30707F26C675",
+      "case_id": "synthetic:synthetic_0014",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据限项规定，2026年12月31日前资助期满的项目是否计入申请和承担项目总数？",
+      "reference_answer": "不计入",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        127
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E231F80FCA9E",
+      "case_id": "synthetic:synthetic_0015",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "具有高级专业技术职务（职称）的人员，申请和正在承担的项目总数合计最多为多少项？",
+      "reference_answer": "2项",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        9
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F7B4AFF0F9D9",
+      "case_id": "synthetic:synthetic_0016",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，申请人及主要参与者填报的学位信息应当与什么一致？",
+      "reference_answer": "学位证书",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        25
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-74A7093BA724",
+      "case_id": "synthetic:synthetic_0017",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人本人发表的代表性论著数量上限是多少？",
+      "reference_answer": "5篇",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        181
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9DED6F2D6DE0",
+      "case_id": "synthetic:synthetic_0018",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书的题目字数建议上限是多少？",
+      "reference_answer": "30字",
+      "source_document_ids": [
+        9
+      ],
+      "gold_chunk_ids": [
+        164
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-41AC92735AB7",
+      "case_id": "synthetic:synthetic_0019",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年国家自然科学基金常规项目撰写提纲，若同一年以不同专业技术职务申请或参与申请项目，应在申请书的哪一部分说明相关情况？",
+      "reference_answer": "在申请书“其他需要说明的情况”中说明",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        116
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5F862FAAB623",
+      "case_id": "synthetic:synthetic_0020",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据申报要求，申请人在资助期限内每年在依托单位从事基础研究工作的时间应不少于多少个月？",
+      "reference_answer": "9个月",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        36
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-28701ADD6385",
+      "case_id": "synthetic:synthetic_0021",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在国家自然科学基金预算制项目中，直接费用各科目是否有比例限制？",
+      "reference_answer": "无比例限制",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        88
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-450F9FE5AB4D",
+      "case_id": "synthetic:synthetic_0022",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "联合基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于同一名称联合基金，申请当年资助期满的项目是否计入科研人员申请和承担项目数量的限项统计范围？",
+      "reference_answer": "不计入",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        97
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F2C6F0AA6DB0",
+      "case_id": "synthetic:synthetic_0023",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于不具有高级专业技术职务（职称）的人员，作为主要参与者承担的2022年批准的项目，是否计入申请和承担项目总数范围？",
+      "reference_answer": "不计入",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        10
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7526CC6B785E",
+      "case_id": "synthetic:synthetic_0025",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据申请规定，哪些项目属于包干制预算管理，无须编制预算表和预算说明书？",
+      "reference_answer": "青A、青B、青C项目、博士生项目",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        131
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2770FAC2510E",
+      "case_id": "synthetic:synthetic_0026",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "原创探索计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "原创探索计划项目在申请阶段是否计入申请和承担项目总数？",
+      "reference_answer": "不计入",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-47BE35F6D31F",
+      "case_id": "synthetic:synthetic_0027",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家重大科研仪器研制项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据限项申请规定，申请人申请和正在承担的国家重大科研仪器研制项目与国家重点研发计划“基础科研条件与重大科学仪器设备研发”重点专项（科学仪器方向）合计限多少项？",
+      "reference_answer": "1项",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        100
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2485FE6BF07B",
+      "case_id": "synthetic:synthetic_0028",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "面上项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "上一年度曾获得面上项目资助的项目负责人，在本年度是否允许作为申请人申请同类型的面上项目？",
+      "reference_answer": "不允许",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        93
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FD8277B44A0B",
+      "case_id": "synthetic:synthetic_0029",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年国家自然科学基金项目指南，重点项目申请当年资助期满的项目是否计入限项统计？",
+      "reference_answer": "不计入",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        11
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E3652B9884EE",
+      "case_id": "synthetic:synthetic_0031",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在撰写国家自然科学基金申请书的国内外研究现状分析部分时，要求的字数、字体和行距分别是多少？",
+      "reference_answer": "5000字左右，小四号字，楷体，1.25倍行距",
+      "source_document_ids": [
+        9
+      ],
+      "gold_chunk_ids": [
+        165
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-039261EC6901",
+      "case_id": "synthetic:synthetic_0032",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "青年科学基金项目C类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，在职攻读硕士是否可以申请青年基金？",
+      "reference_answer": "不可以",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        172
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7348FDC58F64",
+      "case_id": "synthetic:synthetic_0033",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "预算说明书中的预算数据应以什么为单位，并需要精确到哪一位？",
+      "reference_answer": "以万元为单位，精确到小数点后两位。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        90
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A9D69D487BF7",
+      "case_id": "synthetic:synthetic_0034",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "生命学部按“宏观领域”申请重点项目时，在正文“立项依据”前须添加什么内容才可受理？",
+      "reference_answer": "不超过800字的“关于已取得重要创新性进展的情况说明”",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        199
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-70806DD8AF28",
+      "case_id": "synthetic:synthetic_0035",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请青年A类项目时，每年工作时间的最低要求是多少？",
+      "reference_answer": "9个月以上",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5A949C2A8883",
+      "case_id": "synthetic:synthetic_0036",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据要求，申请书中研究期限的开始时间应如何填写？",
+      "reference_answer": "2027年1月1日",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        79
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F178294B6F45",
+      "case_id": "synthetic:synthetic_0037",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于近五年主持或参加的其他科研项目/课题，其时间范围的界定条件是什么？",
+      "reference_answer": "资助期限开始日期晚于2021年1月1日（含）或者目前在研的项目/课题。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        201
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BDF113ED6339",
+      "case_id": "synthetic:synthetic_0038",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在预算编制的设备费中，计算类仪器设备可以列支，但明确不包含哪种通用设备？",
+      "reference_answer": "笔记本电脑",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        132
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-15C010C17522",
+      "case_id": "synthetic:synthetic_0039",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "按照2026年度国家自然科学基金项目指南的要求，在业务费预算编制中，测试化验加工费的使用存在什么特别禁止的情形？",
+      "reference_answer": "不得以测试化验加工费的名义分包核心研究任务",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        23
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C68BE4FC63CA",
+      "case_id": "synthetic:synthetic_0040",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "依托单位应当多长时间撰写一次受资助项目成果报告？",
+      "reference_answer": "每年",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        228
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5E07D2D4735D",
+      "case_id": "synthetic:synthetic_0041",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于参与项目的境外人员，需要提供什么文件来确认其同意并承诺履行职责？",
+      "reference_answer": "本人亲笔签名的知情同意函（信件或传真）",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        183
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-798D58CD0ED9",
+      "case_id": "synthetic:synthetic_0042",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "青年科学基金项目（A类）的固定资助额度是多少？",
+      "reference_answer": "400万元，数学和管理科学部为280万元。",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        177
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B11AE66CAC77",
+      "case_id": "synthetic:synthetic_0043",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在国家自然科学基金申请书摘要的撰写建议中，最后一部分应当表达哪方面的内容？",
+      "reference_answer": "问题解决的理论和现实意义",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        146
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E08921CCBF2A",
+      "case_id": "synthetic:synthetic_0044",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "地区科学基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年度国家自然科学基金项目指南，自2016年起，地区科学基金项目对项目负责人累计获得资助次数的上限是多少？",
+      "reference_answer": "累计不超过3次",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        15
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-AD0A9F7A030A",
+      "case_id": "synthetic:synthetic_0045",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "创新研究群体项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "创新研究群体项目允许多个合作单位参与吗？",
+      "reference_answer": "不允许，申请人和参与者只能是同一依托单位，无合作单位。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        193
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C834319A9338",
+      "case_id": "synthetic:synthetic_0046",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "如果申请人在同一年使用了不同的专业或学术头衔，应提供什么？",
+      "reference_answer": "解释原因",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        242
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1BA4D0C5AD84",
+      "case_id": "synthetic:synthetic_0047",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "合作研究单位能否通过委托研发形式将项目资金转拨给外部机构？",
+      "reference_answer": "不能。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        21
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F56CB0168060",
+      "case_id": "synthetic:synthetic_0048",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金委审查复审申请时，应有多少名复审人员参加？",
+      "reference_answer": "2名以上",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        218
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-35856874BF6B",
+      "case_id": "synthetic:synthetic_0049",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "地区科学基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "自2016年起，地区科学基金项目负责人累计能够获得多少次资助？",
+      "reference_answer": "不超过3次",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        99
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F336FD6539C7",
+      "case_id": "synthetic:synthetic_0050",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "如果某个研究内容已经获得其他来源的资助，申请人是否还能就同一研究内容向自然科学基金委提交项目申请？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        137
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-3419AE5EEEDC",
+      "case_id": "synthetic:synthetic_0051",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于集中接收期提交的项目申请，依托单位必须在截止时间后多长时间内在线提交本单位项目申请清单？",
+      "reference_answer": "24小时内",
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        65
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9BDABE84CE5F",
+      "case_id": "synthetic:synthetic_0052",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026版国家自然科学基金申请书要求，申请人同年参与或申请项目的单位如果不同，需要说明哪些具体信息？",
+      "reference_answer": "需提供相关人员姓名、其他项目的项目类型、项目名称、单位名称、该人员是申请人还是参与者，以及单位不一致的原因。",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        240
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E666F20AFFF0",
+      "case_id": "synthetic:synthetic_0053",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "联合基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在计算同一名称联合基金项目的申请和承担数量是否达到1项限制时，哪种情况不计入统计范围？",
+      "reference_answer": "申请当年资助期满的项目",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        12
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9BE6BA908901",
+      "case_id": "synthetic:synthetic_0054",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，《国家自然科学基金资助项目研究成果管理办法》从哪一天开始施行？",
+      "reference_answer": "2015年11月1日",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        230
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-CE5466A8667D",
+      "case_id": "synthetic:synthetic_0055",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "合作创新研究团队项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "合作创新研究团队项目要求申请人在资助期限内，每年在依托单位从事研究工作的最低时间是多少个月？",
+      "reference_answer": "6个月",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        83
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7167A70C5C4F",
+      "case_id": "synthetic:synthetic_0056",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "该《中央财政科研项目专家咨询费管理办法》如何界定专家咨询费的含义？",
+      "reference_answer": "科研项目（课题）承担单位在项目（课题）实施过程中支付给临时聘请的咨询专家的费用。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        110
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-252AB9DE12D4",
+      "case_id": "synthetic:synthetic_0057",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "联合基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于全部类型联合基金项目，科研人员申请和正在承担的项目数量合计最多为多少项？",
+      "reference_answer": "限2项。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        96
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-26465A7A3A5F",
+      "case_id": "synthetic:synthetic_0058",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请2026年度生命科学部“宏观领域”重点项目时，那800字左右的“关于已取得重要创新性进展的情况说明”需要加在申请书正文的哪一部分之前？",
+      "reference_answer": "立项依据",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        194
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-411B93E345C4",
+      "case_id": "synthetic:synthetic_0059",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "中文项目摘要的字数要求是什么？",
+      "reference_answer": "不超过400字",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        107
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7EFFEE805E0B",
+      "case_id": "synthetic:synthetic_0060",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "当主要参与者的工作单位是香港中文大学时，在填报系统里该单位应被归类为哪一类？",
+      "reference_answer": "境外",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        78
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5F94780CBB7E",
+      "case_id": "synthetic:synthetic_0061",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在提交2026年度项目申请前，依托单位必须通过哪个系统上传何种文件？",
+      "reference_answer": "科学基金网络信息系统上传《2026年度国家自然科学基金依托单位项目申请承诺书》",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        37
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2B1B5A33765E",
+      "case_id": "synthetic:synthetic_0062",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "当学校不具备所需仪器设备时，基金申请书应如何处理？",
+      "reference_answer": "提出外协合作来解决",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        155
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D2714C088E84",
+      "case_id": "synthetic:synthetic_0063",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "优秀青年科学基金项目（海外）",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据该海外优青项目的诚信承诺书，入选者必须承诺全职回国连续工作的最短年限是多少？",
+      "reference_answer": "不少于3年",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        245
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C4FC764C7947",
+      "case_id": "synthetic:synthetic_0065",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-AI-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "这项重大研究计划旨在解决深度学习存在的哪三个主要基础科学问题？",
+      "reference_answer": "鲁棒性差、可解释性差、对数据的依赖性强",
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EDB304CBADBE",
+      "case_id": "synthetic:synthetic_0066",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金青年科学基金项目建议的申请直接经费是多少？",
+      "reference_answer": "30万元/项",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        145
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-6FC953FA06EB",
+      "case_id": "synthetic:synthetic_0067",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "通讯评审专家需要在收到评审材料后的多少天内提出回避申请？",
+      "reference_answer": "10日内",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        211
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-39900EBA35A4",
+      "case_id": "synthetic:synthetic_0068",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "面上项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "境外合作者在其参与的国际（地区）合作研究项目资助期满前，能否以境内申请人身份申请面上项目？",
+      "reference_answer": "不可以，资助期满前不得作为境内申请人申请其他类型项目（外国学者研究基金项目、合作创新研究团队项目除外）。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        4
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-40F5B78ED799",
+      "case_id": "synthetic:synthetic_0069",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "购置单价大于多少万元的设备需在预算说明书中做购置必要性详细说明？",
+      "reference_answer": "50万元",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        91
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-083B7B916913",
+      "case_id": "synthetic:synthetic_0070",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年度国家自然科学基金申请规定，申请书必须由谁撰写？",
+      "reference_answer": "申请人本人",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        125
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-699353F1B8D1",
+      "case_id": "synthetic:synthetic_0071",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-AI-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据该重大研究计划项目的申请条件，哪些人员不得作为申请人进行申请？",
+      "reference_answer": "在站博士后研究人员、正在攻读研究生学位以及无工作单位或者所在单位不是依托单位的科学技术人员。",
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-35F9E6A09580",
+      "case_id": "synthetic:synthetic_0072",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据《国家自然科学基金评审专家管理办法》，评审专家在什么情形下会被自然科学基金委通报批评且不再聘请？",
+      "reference_answer": "存在不履行评审职责、未按规定申请回避、披露未公开评审信息、对项目申请不公正评审或利用工作便利谋取不正当利益的行为，且情节严重。",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9763094E34F4",
+      "case_id": "synthetic:synthetic_0073",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "依托单位为了防范伦理风险，需要建立什么机制？",
+      "reference_answer": "科技伦理审查机制",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        28
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EB523C5E5640",
+      "case_id": "synthetic:synthetic_0074",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据指导，撰写基金申请书时题目命名忌讳什么？",
+      "reference_answer": "题目名称重复",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        102
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-583D6FCCA7B4",
+      "case_id": "synthetic:synthetic_0075",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家重大科研仪器研制项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家重大科研仪器研制项目时，单台设备价值达到多少必须编制购置（试制）大型设备申请书？",
+      "reference_answer": "达到或超过100万元人民币",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        197
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A44FF6652CF3",
+      "case_id": "synthetic:synthetic_0076",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "卓越研究群体项目B类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请卓越研究群体B类项目时，对申请人和骨干成员的年龄和职称有什么具体要求？",
+      "reference_answer": "申请人和骨干成员当年1月1日均未满55周岁（1971年1月1日（含）以后出生），申请人正高，骨干成员具有高级职称。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        191
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BC06AE58D3EA",
+      "case_id": "synthetic:synthetic_0077",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据《指南》，什么情况下会对学术不端行为启动调查？",
+      "reference_answer": "涉嫌违背科研诚信要求或科技伦理规范时。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        30
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-81EC717131F2",
+      "case_id": "synthetic:synthetic_0078",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据《国家自然科学基金项目评审专家管理办法》，科学技术人员因剽窃他人科学研究成果受到处罚的，自然科学基金委能否聘请其作为评审专家？",
+      "reference_answer": "不能",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        221
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-024DB165D33F",
+      "case_id": "synthetic:synthetic_0079",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请书的要求，可行性分析应该包括哪几个方面？",
+      "reference_answer": "学术思想、研究队伍和研究条件",
+      "source_document_ids": [
+        8
+      ],
+      "gold_chunk_ids": [
+        153
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7B973ED7B02A",
+      "case_id": "synthetic:synthetic_0081",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "复审期间的计算应依据哪部法律？",
+      "reference_answer": "民事诉讼法关于期间的规定",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        219
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-065D6D27A612",
+      "case_id": "synthetic:synthetic_0082",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "优秀青年科学基金项目（海外）",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "依托单位在推荐申报国家自然科学基金优秀青年科学基金项目（海外）时，必须对申报人的哪些情况进行核实？",
+      "reference_answer": "涉法涉诉、知识产权纠纷、竞业禁止、兼职取酬限制、被有关部门调查等情况。",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        248
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7D6071188F40",
+      "case_id": "synthetic:synthetic_0083",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-AI-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据指南，面向复杂科学发现的垂域智能体需要在几种典型科学任务上验证有效性？",
+      "reference_answer": "不少于3种",
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        41
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2E08C2365311",
+      "case_id": "synthetic:synthetic_0084",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "卓越研究群体项目B类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "某退出创新研究群体项目的参与者，在退出后1年内是否可以申请卓越研究群体项目？",
+      "reference_answer": "不得申请",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        98
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8246477C4AC0",
+      "case_id": "synthetic:synthetic_0085",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "境外人员是否可以同时以境外和境内身份同时申报或者参与申报国家自然科学基金项目？",
+      "reference_answer": "不能",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        171
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7FBD8D525E1F",
+      "case_id": "synthetic:synthetic_0086",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据该基金申请建议，技术路线部分是否需要对关键细节进行明确说明？",
+      "reference_answer": "否",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        104
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F139AE886804",
+      "case_id": "synthetic:synthetic_0087",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度智能化软件重大研究计划的培育项目是否资助归纳演绎相融合的智能化软件构造与运行机理方向？",
+      "reference_answer": "否，2026年度培育项目仅优先资助人机物融合智能化软件的数理基础和行为科学基础方向。",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        49
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0AAE5335C797",
+      "case_id": "synthetic:synthetic_0088",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人在撰写国家自然科学基金申请书报告正文时，不得进行什么操作？",
+      "reference_answer": "删除或改动提纲标题及括号中的文字",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        237
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-56650CFA28AA",
+      "case_id": "synthetic:synthetic_0089",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请人可以将已获得过科学基金资助的项目再次提交申请吗？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        135
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2442814C1125",
+      "case_id": "synthetic:synthetic_0090",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "评审专家未按照《国家自然科学基金评审专家回避与保密办法》申请回避的，自然科学基金委将对其采取什么措施？",
+      "reference_answer": "警告，责令限期改正；情节严重的，通报批评，且不再聘请其为评审专家。",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        215
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-30D3A408096F",
+      "case_id": "synthetic:synthetic_0091",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年指南，申请人若未使用英文提交申请书，其项目申请将如何处理？",
+      "reference_answer": "不予受理",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        35
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-AE927F02EBCA",
+      "case_id": "synthetic:synthetic_0092",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在“完成国家自然科学基金项目情况”部分，申请人需要明确写出前一个已结题基金的哪些具体信息？",
+      "reference_answer": "资助机构、项目类别、批准号、项目名称、资助金额、起止年月、与本项目关系及负责内容",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        200
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8C9B4D7BDBCA",
+      "case_id": "synthetic:synthetic_0093",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在预算编制中，单价大于等于50万元和单价小于50万元的设备，在设备费说明要求上分别是什么？",
+      "reference_answer": "单价大于等于50万元的设备需补充说明主要性能指标、主要技术参数等内容；单价小于50万元的设备仅需按照设备购置费、试制改造费和租赁使用费分类进行说明。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        133
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-CC1F9F55AC70",
+      "case_id": "synthetic:synthetic_0094",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "外国青年学者研究基金项目每年的资助额度是多少？对于两年期项目，起止时间是什么？",
+      "reference_answer": "20万元/年/项，起止时间为2027年1月1日－2028年12月31日。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        142
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B79970DAAC72",
+      "case_id": "synthetic:synthetic_0095",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金委员会交叉科学部交叉科学四处的联系电话是多少？",
+      "reference_answer": "010-62328922",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        59
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-55DCFB550F71",
+      "case_id": "synthetic:synthetic_0096",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，在2026年申请项目时，报告正文应下载哪一年的模板？同时，受聘于依托单位的境外人员不得以哪些身份同时申请项目？",
+      "reference_answer": "报告正文应下载2026年最新模板；受聘于依托单位的境外人员不得同时以境内申请人和境外合作者两种身份申请项目。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        86
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9E68D1ED91A9",
+      "case_id": "synthetic:synthetic_0097",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在填写国家自然科学基金申请书时，项目名称的填写有哪些具体规定？",
+      "reference_answer": "100字符以内，写专业方向，且不能写为优秀青年科学基金项目（海外）。",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-607ECE803A5C",
+      "case_id": "synthetic:synthetic_0098",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请规定，项目对合作研究单位的数量有什么限制？境外单位是否能作为合作研究单位？",
+      "reference_answer": "每个申请项目的合作研究单位不得超过2个（特殊说明的除外）；境外单位不被视为合作研究单位。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        6
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F67EBF7C35C0",
+      "case_id": "synthetic:synthetic_0099",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年，哪些类型的国家自然科学基金项目申请时无需编制预算？",
+      "reference_answer": "青年科学基金项目（A、B、C类）和试点设立的青年学生基础研究。",
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        62
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0159C4D110AD",
+      "case_id": "synthetic:synthetic_0100",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2015年审议通过的《国家自然科学基金资助项目研究成果管理办法》第八条，项目负责人不得将哪类研究成果列入项目研究成果报告中？",
+      "reference_answer": "非本人或者参与者所取得的研究成果",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        227
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D66417881923",
+      "case_id": "synthetic:synthetic_0101",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度拟资助的培育项目的直接费用资助强度是多少？",
+      "reference_answer": "约60万元/项",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        57
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1BB646CC3A12",
+      "case_id": "synthetic:synthetic_0102",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在2026版国家自然科学基金申请书附件清单中，哪些附件类型是必填项？",
+      "reference_answer": "身份证/护照等身份证明材料, 博士学历学位证书, 海外任职证明材料, 工作合同, 申请人科研诚信承诺书, 依托单位推荐意见",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DE093E21482F",
+      "case_id": "synthetic:synthetic_0103",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "自然科学基金委为接受对评审专家违规行为的举报，应当公布什么？",
+      "reference_answer": "专门的举报电话和举报信箱等联系方式",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        225
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-193801D2F9FA",
+      "case_id": "synthetic:synthetic_0104",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度外国青年学者研究基金项目要求申请人何时之后取得博士学位？",
+      "reference_answer": "2020年1月1日后",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        32
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DCB2CD69DD38",
+      "case_id": "synthetic:synthetic_0105",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "首次申请国家自然科学基金的人员应如何获取申请账号？",
+      "reference_answer": "将个人姓名、电子邮箱、手机号码、证件类型、证件号、学院/机构及职称信息发至 tanyihong@cuhk.edu.cn 创建账号。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        72
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E193E608E584",
+      "case_id": "synthetic:synthetic_0106",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在职人员如果在本校攻读研究生学位，但其工作单位不是本校，能否依托本校申报国家自然科学基金项目？",
+      "reference_answer": "不可以",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        123
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-06DE750260DE",
+      "case_id": "synthetic:synthetic_0107",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在医学学部“宏观领域”申请的重点项目中，“关于已取得重要创新性进展的情况说明”的字数上限是多少？",
+      "reference_answer": "不超过1000字",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        195
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-872D0035AEB7",
+      "case_id": "synthetic:synthetic_0108",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据北京大学 2026 年度国家自然科学基金项目形式审查明细表，申请人通过基金系统提交申请的截止日期是什么？",
+      "reference_answer": "2026年3月4日中午12:00",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        188
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DFAACE62769E",
+      "case_id": "synthetic:synthetic_0109",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年度国家自然科学基金项目指南，申请人是否可以虚构或夸大本人成果的学术贡献？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        27
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0DD89C0D2665",
+      "case_id": "synthetic:synthetic_0110",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "青年科学基金项目B类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "青年基金（B类）的固定直接费用额度是多少？",
+      "reference_answer": "200万",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        176
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FE91E094D2B3",
+      "case_id": "synthetic:synthetic_0111",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "依托单位应于什么时间前通过信息系统对结题材料进行审核并逐项确认？",
+      "reference_answer": "2026年2月24日16时前",
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        68
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-518D918EA3AB",
+      "case_id": "synthetic:synthetic_0112",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "青年A项目申请人的其余已发表论著在提交简历时是否受近五年发表的时间约束？",
+      "reference_answer": "不受，青年A无发表时间限制。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        202
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-6F2A9C767C24",
+      "case_id": "synthetic:synthetic_0113",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "合作研究协议（合同）最晚应在何时完成签订？",
+      "reference_answer": "项目计划书审核后一个月内。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        19
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2AA86001C7BF",
+      "case_id": "synthetic:synthetic_0114",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "作为负责人获得过外国优秀青年学者研究基金项目资助的申请人，是否有资格申请外国青年学者研究基金项目？",
+      "reference_answer": "没有资格",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        34
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FA901B9CDC8B",
+      "case_id": "synthetic:synthetic_0116",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "证据中，围绕智能化软件的高可信运行支撑问题提出的研究方向是什么？",
+      "reference_answer": "泛在操作系统原理和构造方法",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        50
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-77266263B656",
+      "case_id": "synthetic:synthetic_0117",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在撰写申请书正文时，根据评审标准要求，不应插入哪些内容？",
+      "reference_answer": "页眉、页脚和页码",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        178
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0AF6AB543861",
+      "case_id": "synthetic:synthetic_0118",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026版国家自然科学基金申请书要求，第三部分“论著之外的代表性研究成果和学术奖励”中明确禁止列出哪些类型的成果？",
+      "reference_answer": "论文和专著",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        236
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-3A6D8DE9AD20",
+      "case_id": "synthetic:synthetic_0119",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "创新研究群体项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据限项规定，对于高级职称人员，创新研究群体项目从哪一年开始计入申请和承担项目总数范围？",
+      "reference_answer": "2025年",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        128
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-27433E9E35F3",
+      "case_id": "synthetic:synthetic_0120",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "案例3中描述的行为违反了国家自然科学基金申请中的哪项科研诚信要求？",
+      "reference_answer": "不得将研究内容相同或相近的项目以不同项目类型提出申请",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        136
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-54C789852BF4",
+      "case_id": "synthetic:synthetic_0121",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2015年审议通过的《国家自然科学基金项目评审专家工作管理办法》，评审专家在评审活动中享有哪些基本权利？",
+      "reference_answer": "选择是否参与评审工作；获取评审工作所需的有关信息和材料；独立开展评审工作。",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        220
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F2556618A538",
+      "case_id": "synthetic:synthetic_0122",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "高级职称人员申请和承担的基金项目合计上限是多少？",
+      "reference_answer": "2项",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        189
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-449463E03599",
+      "case_id": "synthetic:synthetic_0123",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据该承诺，申请人在获得资助后必须在中国全职工作不少于多少年？",
+      "reference_answer": "3年",
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        246
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9E99413FA68A",
+      "case_id": "synthetic:synthetic_0124",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据国家自然科学基金申请限制规定，不具有高级专业技术职务（职称）的人员同时作为申请人申请和作为项目负责人承担指定类型项目，合计数量上限是多少？",
+      "reference_answer": "1项",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        95
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9BDF004D6992",
+      "case_id": "synthetic:synthetic_0125",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，支付给临时聘请的咨询专家的费用不得支付给哪些人员？编制预算时应依据哪个文件？",
+      "reference_answer": "不得支付给参与本项目及所属课题研究和管理的相关人员，应依据《财政部关于印发〈中央财政科研项目专家咨询费管理办法〉的通知》（财科教〔2017〕128 号）进行填报。",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        89
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-ACEFFC784DA7",
+      "case_id": "synthetic:synthetic_0126",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "其他专业人员的专家咨询费标准是多少？",
+      "reference_answer": "900-1500元/人天（税后）",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        111
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FA0EC4CF1766",
+      "case_id": "synthetic:synthetic_0127",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "重点项目对提供的代表性论著有何时间要求？",
+      "reference_answer": "近5年",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        204
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EF620487E32D",
+      "case_id": "synthetic:synthetic_0128",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在国家自然科学基金申请中，哪些项目类型的骨干成员需要提供代表作个人贡献信息？",
+      "reference_answer": "创新研究群体项目和卓越研究群体项目的骨干成员。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        26
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-40711565C209",
+      "case_id": "synthetic:synthetic_0129",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "合作研究单位发生变更时，需要报请哪个机构审批？",
+      "reference_answer": "自然科学基金委",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        20
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B0668DE925BC",
+      "case_id": "synthetic:synthetic_0131",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在撰写国家自然科学基金申请书时，年度研究计划中的研究进展计划应按什么时间单位编写？",
+      "reference_answer": "按年度",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        105
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E6557BF4FCA9",
+      "case_id": "synthetic:synthetic_0132",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "哪些国家自然科学基金项目申请不计入申请和承担项目总数范围？",
+      "reference_answer": "进入现场考察环节的卓越研究群体项目申请、未进入预算评审环节的国家重大科研仪器研制项目（自由申请）申请、未进入现场考察环节的国家重大科研仪器研制项目（部门推荐）申请。",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        16
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D653B53BDACD",
+      "case_id": "synthetic:synthetic_0133",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "重点项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据评审标准，哪个科学部的重点项目要求附件中必须上传五篇代表作？",
+      "reference_answer": "生命科学部",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        184
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C7EECE1CFAC5",
+      "case_id": "synthetic:synthetic_0134",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "准予结题的国家自然科学基金项目，结余资金使用上有何禁止性支出？",
+      "reference_answer": "不得支出间接费用",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        22
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B98ED2D1C2D1",
+      "case_id": "synthetic:synthetic_0135",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-SPECIAL-GUIDE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金外国学者研究基金项目中，交叉科学领域的申请仅开放哪些项目层次？",
+      "reference_answer": "层次2（外国优秀青年学者研究基金项目）和层次3（外国资深学者研究基金项目）",
+      "source_document_ids": [
+        2
+      ],
+      "gold_chunk_ids": [
+        31
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-61C7E6AE66FF",
+      "case_id": "synthetic:synthetic_0136",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在编制国家自然科学基金项目决算时，决算的截止日期是哪一天？",
+      "reference_answer": "12月31日。",
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        67
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EDEC3956056E",
+      "case_id": "synthetic:synthetic_0137",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-NOTICE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "自然科学基金委计划在什么时间之前公布申请项目的初审结果？",
+      "reference_answer": "2026年4月29日前",
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        66
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F5A3379E019D",
+      "case_id": "synthetic:synthetic_0138",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "预算制项目的直接费用各个科目在编列时，是否受到比例上的约束？",
+      "reference_answer": "没有比例限制",
+      "source_document_ids": [
+        1
+      ],
+      "gold_chunk_ids": [
+        17
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A4ACC5A75FB4",
+      "case_id": "synthetic:synthetic_0139",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "青年科学基金项目A类",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于青年A、青年B以及重点项目等需要会评的项目，若在二次筛查时发现研究成果信息错误或未按规定上传全文，申请人将面临什么处理措施？",
+      "reference_answer": "一票否决，且以“科研诚信”问题提交评审专家组。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-278E60EBE32E",
+      "case_id": "synthetic:synthetic_0140",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "面上项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "对于医学部面上项目中的“源于临床实践的科学问题探索研究”，申请人在正文的“立项依据”之前必须说明哪些内容？",
+      "reference_answer": "需要说明三个问题（800字以内）：①本项目申请的临床科学问题及创新性；②本项目申请的临床价值和转化应用潜力；③本项目申请如何利用临床资源开展临床-基础相结合的科学探索。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        198
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2CFECE6F9172",
+      "case_id": "synthetic:synthetic_0141",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金博士后申请",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在我校，在站博士后人员能够申报国家自然科学基金的哪两类项目？",
+      "reference_answer": "面上项目和青年科学基金项目",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        87
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E320DC2A5F62",
+      "case_id": "synthetic:synthetic_0142",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据规定，已经申请了2026年社会科学基金项目的人员，是否还可以申请国家自然科学基金管理部的项目？",
+      "reference_answer": "不可以。",
+      "source_document_ids": [
+        10
+      ],
+      "gold_chunk_ids": [
+        173
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-6732AEFFD6EC",
+      "case_id": "synthetic:synthetic_0143",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-AI-001",
+      "program_type": "集成项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度集成项目的直接费用资助强度是多少？",
+      "reference_answer": "300－500万元/项",
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        45
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7B63F6EB9E14",
+      "case_id": "synthetic:synthetic_0144",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "在重点国际（地区）合作研究项目中，当外方合作者无法在英文申请书上签字时，其确认函需要涵盖哪些必要信息？",
+      "reference_answer": "完整准确的通讯地址和联系信息，合作题目与内容，覆盖项目研究期限的合作时限，成果共享约定，以及已阅读并认可英文申请书、同意参与项目及所承担研究工作的明确声明。",
+      "source_document_ids": [
+        11
+      ],
+      "gold_chunk_ids": [
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-057820FB0499",
+      "case_id": "synthetic:synthetic_0146",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "涉及科研伦理与科技安全的项目申请进行审查时，需要将相关材料发送至哪几个邮箱？",
+      "reference_answer": "irb@cuhk.edu.cn, iacuc@cuhk.edu.cn, ibc@cuhk.edu.cn",
+      "source_document_ids": [
+        6
+      ],
+      "gold_chunk_ids": [
+        84
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-990E7FB72A0C",
+      "case_id": "synthetic:synthetic_0148",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-MANAGEMENT-RULES-2015-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "一名评审专家最多可以连续多少年参加同类型项目的会议评审？",
+      "reference_answer": "两年",
+      "source_document_ids": [
+        12
+      ],
+      "gold_chunk_ids": [
+        223
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-22FC8372A42B",
+      "case_id": "synthetic:synthetic_0149",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "program_type": "国家自然科学基金博士后申请",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "根据2026年项目申请要求，博士后与硕士生、博士生在参与人填报上的最大区别是什么？",
+      "reference_answer": "博士后必须作为参与人列入表格，而不能仅统计人数。",
+      "source_document_ids": [
+        7
+      ],
+      "gold_chunk_ids": [
+        124
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EB03A12B5BBE",
+      "case_id": "synthetic:synthetic_0150",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-MAJOR-PLAN-SOFTWARE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "指南中列出的第7个研究方向构建的是哪种一体化工业操作系统？",
+      "reference_answer": "“感-联-知-控”一体化工业操作系统",
+      "source_document_ids": [
+        4
+      ],
+      "gold_chunk_ids": [
+        52
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-4804979E361C",
+      "case_id": "anchor:Q01",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金项目申请人需要满足哪些基本资格条件？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        32,
+        34,
+        46,
+        172,
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C31BCA044BAF",
+      "case_id": "anchor:Q01",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金项目申请人需要满足哪些基本资格条件？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        32,
+        34,
+        46,
+        172,
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DEB0327813BC",
+      "case_id": "anchor:Q01",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金项目申请人需要满足哪些基本资格条件？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        32,
+        34,
+        46,
+        172,
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BA323F410ABC",
+      "case_id": "anchor:Q01",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金项目申请人需要满足哪些基本资格条件？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        32,
+        34,
+        46,
+        172,
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DE7CFB485FE3",
+      "case_id": "anchor:Q01",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度国家自然科学基金项目申请人需要满足哪些基本资格条件？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        32,
+        34,
+        46,
+        172,
+        192
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A05965EE5D0D",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EF35ED492DB2",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8DA80E763C4F",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C5BAAB935809",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5AB952B9A498",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EB8353E40185",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FEBF72CE1300",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9F1DD4283353",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0F06A4E3C4DC",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-EA08310DC8D7",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1259648E40E4",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-164B056EF8CA",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7DE6BEB54CA8",
+      "case_id": "anchor:Q02",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请国家自然科学基金项目时需要遵守哪些限项规定？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        95,
+        96,
+        97,
+        100,
+        127,
+        128,
+        130
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0B1701CEDE42",
+      "case_id": "anchor:Q03",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "2026年度集中接收项目申请的截止时间是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        5
+      ],
+      "gold_chunk_ids": [
+        64
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A0F6D6F94432",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1FFD676B7FB3",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-13557E01D511",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-F312FB54FF38",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8951562D5287",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-188E6FAA667C",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-81E4C74FC350",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-97C0082836F3",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-324179ACAFC4",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D6808E619CD5",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-19718060F796",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-9B629CF44033",
+      "case_id": "anchor:Q04",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请书预算编报应遵循哪些要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        17,
+        23,
+        24,
+        88,
+        89,
+        90,
+        91,
+        93,
+        125,
+        132,
+        133,
+        138
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-AA1C5E48C83E",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-263B3E68DF64",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8B10A7E2CBDF",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-60E4E60D08D3",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D63D9F5F1FD5",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5B8D07508C07",
+      "case_id": "anchor:Q05",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "申请材料中涉及科研诚信和科技伦理时有哪些禁止事项？",
+      "reference_answer": null,
+      "source_document_ids": [
+        1,
+        6,
+        7
+      ],
+      "gold_chunk_ids": [
+        27,
+        28,
+        30,
+        77,
+        109,
+        120
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0A87EA4E6590",
+      "case_id": "anchor:Q06",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "外国学者研究基金项目包含哪些项目层次？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        7
+      ],
+      "gold_chunk_ids": [
+        31,
+        32,
+        34,
+        135
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7B9FFC01973E",
+      "case_id": "anchor:Q06",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "外国学者研究基金项目包含哪些项目层次？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        7
+      ],
+      "gold_chunk_ids": [
+        31,
+        32,
+        34,
+        135
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DAD1AA6DADFD",
+      "case_id": "anchor:Q06",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "外国学者研究基金项目包含哪些项目层次？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        7
+      ],
+      "gold_chunk_ids": [
+        31,
+        32,
+        34,
+        135
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D8211F7725D6",
+      "case_id": "anchor:Q06",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "外国学者研究基金项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "外国学者研究基金项目包含哪些项目层次？",
+      "reference_answer": null,
+      "source_document_ids": [
+        2,
+        7
+      ],
+      "gold_chunk_ids": [
+        31,
+        32,
+        34,
+        135
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2AE4FD36CBD6",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-003C4E576A05",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1259D60EFD0A",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-FEFD03265658",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-ED47F37F7A79",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-10975D0A4C11",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-1110A9D4C0ED",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-02C1551EF68B",
+      "case_id": "anchor:Q07",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "可解释可通用的下一代人工智能方法重大研究计划支持哪些研究方向？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3
+      ],
+      "gold_chunk_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-B878ECBD2B05",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BA233C497BB5",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-6E4DDB59AF7E",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D0B55B25D5E9",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8A3C4C6EFF36",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BD6BE5F2B958",
+      "case_id": "anchor:Q08",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "重大研究计划项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "面向人机物融合的智能化软件基础研究重大研究计划的科学目标是什么？",
+      "reference_answer": null,
+      "source_document_ids": [
+        3,
+        4
+      ],
+      "gold_chunk_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8BDF4D3D3D25",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-818E9A2237DB",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-4185ECB992B6",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-0EC964D3A4C3",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-2FDE95176049",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-8BFA7DB470D3",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-7A5D2C333635",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-34E6D5977331",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-277E6C44D918",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-3AE53C392C81",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-CD7C9D8136A8",
+      "case_id": "anchor:Q09",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金形式审查时应重点检查哪些申请人资格和材料要求？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        171,
+        172,
+        175,
+        178,
+        181,
+        183,
+        184,
+        189,
+        197,
+        200,
+        203
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-E22B705516DA",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-371FA2344987",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-45BF5671A33D",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-605F48364C61",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-BF9991146FF2",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A441F0654B14",
+      "case_id": "anchor:Q10",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金通用项目",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "北京大学2026年度形式审查明细表要求关注哪些时间节点和附件材料？",
+      "reference_answer": null,
+      "source_document_ids": [
+        10,
+        11
+      ],
+      "gold_chunk_ids": [
+        184,
+        188,
+        197,
+        200,
+        203,
+        206
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-4C1FE85A7200",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-299CB2176B6E",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-4847E1DDC7C7",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-D2FA31E235B4",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-08855363B256",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-3643B4A7FE57",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-A36ADFCAFD16",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C20A9B76BADE",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-84D20AC5CFBE",
+      "case_id": "anchor:Q11",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金管理规则",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "项目评审中的回避与保密管理适用于哪些人员？",
+      "reference_answer": null,
+      "source_document_ids": [
+        11,
+        12
+      ],
+      "gold_chunk_ids": [
+        209,
+        210,
+        211,
+        213,
+        215,
+        221,
+        223,
+        225,
+        226
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-01DA5E04F873",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-5EB3DD8E1340",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-45432CC126E3",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-DCE5C106B919",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-290CAB457ED1",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-C2F7B0C43240",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    },
+    {
+      "external_id": "GRANTREQ-P11-10DB6420E539",
+      "case_id": "anchor:Q12",
+      "grant_pack_version_external_id": "GPV-P11-NSFC-2026-COMPOSITE-001",
+      "program_type": "国家自然科学基金申请书通用",
+      "applicable_year": 2026,
+      "region": "中国",
+      "rule_query": "国家自然科学基金申请书模板定义了哪些主要章节和填写结构？",
+      "reference_answer": null,
+      "source_document_ids": [
+        13
+      ],
+      "gold_chunk_ids": [
+        233,
+        234,
+        236,
+        237,
+        240,
+        242,
+        244
+      ],
+      "status": "requires_database_seed_or_pk_mapping"
+    }
+  ],
+  "user_evidences": [
+    {
+      "external_id": "UE-PUBLIC-AMR-001",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "CRML23覆盖不同载频上的多信号共存场景。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "document_text": "title: Joint Signal Detection and Automatic Modulation Classification via Deep Learning\nauthors: Huijun Xing, Xuhui Zhang, Shuo Chang, Jinke Ren, Zixun Zhang, Jie Xu, Shuguang Cui\nyear: 2024\nsummary: 论文构建了多信号共存的 CRML23 数据集，并提出联合信号检测与自动调制分类框架，代码和数据集公开。\nverified_claims:\nCRML23覆盖不同载频上的多信号共存场景。\nJDM框架由信号检测与调制分类两个模块组成。\n论文声明代码和数据集已开源。\nsource_url: https://arxiv.org/abs/2405.00736\nfile_sha256: 6d23ae743fff31631f219bbf91d992247f60abe57cd2bc16f4ae90f55d3e05b8"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-001",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "CRML23覆盖不同载频上的多信号共存场景。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 1,
+      "expected_fact_status": "completed",
+      "document_text": "title: Joint Signal Detection and Automatic Modulation Classification via Deep Learning\nauthors: Huijun Xing, Xuhui Zhang, Shuo Chang, Jinke Ren, Zixun Zhang, Jie Xu, Shuguang Cui\nyear: 2024\nsummary: 论文构建了多信号共存的 CRML23 数据集，并提出联合信号检测与自动调制分类框架，代码和数据集公开。\nverified_claims:\nCRML23覆盖不同载频上的多信号共存场景。\nJDM框架由信号检测与调制分类两个模块组成。\n论文声明代码和数据集已开源。\nsource_url: https://arxiv.org/abs/2405.00736\nfile_sha256: 6d23ae743fff31631f219bbf91d992247f60abe57cd2bc16f4ae90f55d3e05b8"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-002",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "研究比较了旋转、翻转和高斯噪声增强。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "document_text": "title: Data Augmentation for Deep Learning-based Radio Modulation Classification\nauthors: Liang Huang, Weijian Pan, You Zhang, LiPing Qian, Nan Gao, Yuan Wu\nyear: 2019\nsummary: 论文系统评估旋转、翻转和高斯噪声三种无线调制数据增强方法，并报告旋转方法在其设置中优于另外两种方法。\nverified_claims:\n研究比较了旋转、翻转和高斯噪声增强。\n联合旋转与翻转可在较少训练数据下提升分类表现。\n增强后可使用更短无线样本进行分类。\nsource_url: https://arxiv.org/abs/1912.03026\nfile_sha256: bf5311d25949a1f6743c041a39329b108e6b3d3317d53e97b4e14818003e672d"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-002",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "研究比较了旋转、翻转和高斯噪声增强。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 2,
+      "expected_fact_status": "completed",
+      "document_text": "title: Data Augmentation for Deep Learning-based Radio Modulation Classification\nauthors: Liang Huang, Weijian Pan, You Zhang, LiPing Qian, Nan Gao, Yuan Wu\nyear: 2019\nsummary: 论文系统评估旋转、翻转和高斯噪声三种无线调制数据增强方法，并报告旋转方法在其设置中优于另外两种方法。\nverified_claims:\n研究比较了旋转、翻转和高斯噪声增强。\n联合旋转与翻转可在较少训练数据下提升分类表现。\n增强后可使用更短无线样本进行分类。\nsource_url: https://arxiv.org/abs/1912.03026\nfile_sha256: bf5311d25949a1f6743c041a39329b108e6b3d3317d53e97b4e14818003e672d"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-003",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "模型直接利用I/Q信号的复数结构。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "completed",
+      "document_text": "title: High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification\nauthors: Jakob Krzyston, Rajib Bhattacharjea, Andrew Stark\nyear: 2020\nsummary: 论文将复杂卷积引入高容量残差和稠密网络，在 RadioML 2016.10a 上报告峰值分类准确率92.4%。\nverified_claims:\n模型直接利用I/Q信号的复数结构。\n复杂卷积被用于残差或稠密连接网络。\n论文报告RadioML 2016.10a峰值准确率92.4%。\nsource_url: https://arxiv.org/abs/2010.10717\nfile_sha256: 194e792c4db2235ca8a00d1a743a16e6ea86efe02344600d9ea61384e7c52b07"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-003",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "模型直接利用I/Q信号的复数结构。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 3,
+      "expected_fact_status": "completed",
+      "document_text": "title: High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification\nauthors: Jakob Krzyston, Rajib Bhattacharjea, Andrew Stark\nyear: 2020\nsummary: 论文将复杂卷积引入高容量残差和稠密网络，在 RadioML 2016.10a 上报告峰值分类准确率92.4%。\nverified_claims:\n模型直接利用I/Q信号的复数结构。\n复杂卷积被用于残差或稠密连接网络。\n论文报告RadioML 2016.10a峰值准确率92.4%。\nsource_url: https://arxiv.org/abs/2010.10717\nfile_sha256: 194e792c4db2235ca8a00d1a743a16e6ea86efe02344600d9ea61384e7c52b07"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-004",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "方法面向实时边缘计算场景。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 4,
+      "expected_fact_status": "completed",
+      "document_text": "title: Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers\nauthors: Narges Rashvand, Kenneth Witham, Gabriel Maldonado, Vinit Katariya, Nishanth Marer Prabhu, Gunar Schirner, Hamed Tabkhi\nyear: 2024\nsummary: 论文面向物联网边缘设备设计 Transformer 调制识别方法，并比较四种 RF 信号 tokenization 方案。\nverified_claims:\n方法面向实时边缘计算场景。\n研究提出并比较四种RF信号tokenization方式。\n论文在RML2016和CSPB.ML.2018+上进行实验。\nsource_url: https://arxiv.org/abs/2403.15417\nfile_sha256: fcc1b6da2b0c7aa6667721831ba54007eb811cbc72932209cbb9f43ed5b54261"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-004",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "方法面向实时边缘计算场景。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 4,
+      "expected_fact_status": "completed",
+      "document_text": "title: Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers\nauthors: Narges Rashvand, Kenneth Witham, Gabriel Maldonado, Vinit Katariya, Nishanth Marer Prabhu, Gunar Schirner, Hamed Tabkhi\nyear: 2024\nsummary: 论文面向物联网边缘设备设计 Transformer 调制识别方法，并比较四种 RF 信号 tokenization 方案。\nverified_claims:\n方法面向实时边缘计算场景。\n研究提出并比较四种RF信号tokenization方式。\n论文在RML2016和CSPB.ML.2018+上进行实验。\nsource_url: https://arxiv.org/abs/2403.15417\nfile_sha256: fcc1b6da2b0c7aa6667721831ba54007eb811cbc72932209cbb9f43ed5b54261"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-005",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "研究将学习式注意力模型用于调制识别。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 5,
+      "expected_fact_status": "completed",
+      "document_text": "title: Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems\nauthors: Timothy J. O'Shea, Latha Pemula, Dhruv Batra, T. Charles Clancy\nyear: 2016\nsummary: 论文将可学习注意力和空间变换思想用于调制识别，使网络能够学习无线信号的同步与归一化变换。\nverified_claims:\n研究将学习式注意力模型用于调制识别。\n定位网络可学习无线信号同步和归一化。\n模型不依赖预先给定的信号结构知识。\nsource_url: https://arxiv.org/abs/1605.00716\nfile_sha256: eba5cc627919b3f873708cb072ef0db492cd6dfd723498af443598f79fba91c2"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-005",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "研究将学习式注意力模型用于调制识别。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 5,
+      "expected_fact_status": "completed",
+      "document_text": "title: Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems\nauthors: Timothy J. O'Shea, Latha Pemula, Dhruv Batra, T. Charles Clancy\nyear: 2016\nsummary: 论文将可学习注意力和空间变换思想用于调制识别，使网络能够学习无线信号的同步与归一化变换。\nverified_claims:\n研究将学习式注意力模型用于调制识别。\n定位网络可学习无线信号同步和归一化。\n模型不依赖预先给定的信号结构知识。\nsource_url: https://arxiv.org/abs/1605.00716\nfile_sha256: eba5cc627919b3f873708cb072ef0db492cd6dfd723498af443598f79fba91c2"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-006",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "论文比较CLDNN、LSTM和ResNet。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 6,
+      "expected_fact_status": "completed",
+      "document_text": "title: Fast Deep Learning for Automatic Modulation Classification\nauthors: Sharan Ramjee, Shengtai Ju, Diyu Yang, Xiaoyu Liu, Aly El Gamal, Yonina C. Eldar\nyear: 2019\nsummary: 论文比较 CLDNN、LSTM 和 ResNet 等架构，并研究 PCA、子采样和代表性 SNR 训练以降低训练成本。\nverified_claims:\n论文比较CLDNN、LSTM和ResNet。\n高SNR下多种架构达到约90%的典型准确率。\nPCA和子采样用于降低训练时间。\nsource_url: https://arxiv.org/abs/1901.05850\nfile_sha256: 52c9c6a5e592d24c0349940daabea5d002712bb46695f5279447150c98725d97"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-006",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "论文比较CLDNN、LSTM和ResNet。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 6,
+      "expected_fact_status": "completed",
+      "document_text": "title: Fast Deep Learning for Automatic Modulation Classification\nauthors: Sharan Ramjee, Shengtai Ju, Diyu Yang, Xiaoyu Liu, Aly El Gamal, Yonina C. Eldar\nyear: 2019\nsummary: 论文比较 CLDNN、LSTM 和 ResNet 等架构，并研究 PCA、子采样和代表性 SNR 训练以降低训练成本。\nverified_claims:\n论文比较CLDNN、LSTM和ResNet。\n高SNR下多种架构达到约90%的典型准确率。\nPCA和子采样用于降低训练时间。\nsource_url: https://arxiv.org/abs/1901.05850\nfile_sha256: 52c9c6a5e592d24c0349940daabea5d002712bb46695f5279447150c98725d97"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-007",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "网络参数量不依赖信号持续时间。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 7,
+      "expected_fact_status": "completed",
+      "document_text": "title: A Light Neural Network for Modulation Detection under Impairments\nauthors: Thomas Courtat, Hélion du Mas des Bourboux\nyear: 2020\nsummary: 论文提出信号长度无关的轻量调制检测网络，并生成包含相位、时延、滚降、采样率和频偏等损伤的数据集。\nverified_claims:\n网络参数量不依赖信号持续时间。\n数据集模拟多种传播信道和解调器损伤。\n论文声明数据和复现实验代码公开。\nsource_url: https://arxiv.org/abs/2003.12260\nfile_sha256: 9ba268b7b5f5f5ad831985b9d9535a173769cc9c7df1f09565c083e146ae7e44"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-007",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "网络参数量不依赖信号持续时间。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 7,
+      "expected_fact_status": "completed",
+      "document_text": "title: A Light Neural Network for Modulation Detection under Impairments\nauthors: Thomas Courtat, Hélion du Mas des Bourboux\nyear: 2020\nsummary: 论文提出信号长度无关的轻量调制检测网络，并生成包含相位、时延、滚降、采样率和频偏等损伤的数据集。\nverified_claims:\n网络参数量不依赖信号持续时间。\n数据集模拟多种传播信道和解调器损伤。\n论文声明数据和复现实验代码公开。\nsource_url: https://arxiv.org/abs/2003.12260\nfile_sha256: 9ba268b7b5f5f5ad831985b9d9535a173769cc9c7df1f09565c083e146ae7e44"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-008",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "论文综述DL-AMR模型和数据集。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 8,
+      "expected_fact_status": "completed",
+      "document_text": "title: Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges\nauthors: Fuxin Zhang, Chunbo Luo, Jialang Xu, Yang Luo, FuChun Zheng\nyear: 2022\nsummary: 综述系统梳理深度学习调制识别模型、基准数据集、复杂度、可解释性以及 SISO 和 MIMO 场景。\nverified_claims:\n论文综述DL-AMR模型和数据集。\n研究讨论复杂度与可解释性问题。\n论文比较SISO模型并讨论MIMO扩展。\nsource_url: https://arxiv.org/abs/2207.09647\nfile_sha256: dad4330748a0e077609c526c1939e3a7ce4a30400c4efab9fd2fea8d72351327"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-008",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "论文综述DL-AMR模型和数据集。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 8,
+      "expected_fact_status": "completed",
+      "document_text": "title: Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges\nauthors: Fuxin Zhang, Chunbo Luo, Jialang Xu, Yang Luo, FuChun Zheng\nyear: 2022\nsummary: 综述系统梳理深度学习调制识别模型、基准数据集、复杂度、可解释性以及 SISO 和 MIMO 场景。\nverified_claims:\n论文综述DL-AMR模型和数据集。\n研究讨论复杂度与可解释性问题。\n论文比较SISO模型并讨论MIMO扩展。\nsource_url: https://arxiv.org/abs/2207.09647\nfile_sha256: dad4330748a0e077609c526c1939e3a7ce4a30400c4efab9fd2fea8d72351327"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-009",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "研究覆盖11种调制类型。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 9,
+      "expected_fact_status": "completed",
+      "document_text": "title: Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms\nauthors: Muhammad Waqas, Muhammad Ashraf, Muhammad Zakwan\nyear: 2023\nsummary: 论文将11类调制信号转换为频谱图，并报告分辨率变换最高减少99.61%的计算负载及8倍转换加速。\nverified_claims:\n研究覆盖11种调制类型。\n方法使用频谱图和多种CNN架构。\n论文报告最高99.61%计算负载降低与8倍转换加速。\nsource_url: https://arxiv.org/abs/2306.04655\nfile_sha256: ac771f8294905387fb574e6af024526017a8bc60d34ed0b83e4975300638ed4f"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-009",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "研究覆盖11种调制类型。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 9,
+      "expected_fact_status": "completed",
+      "document_text": "title: Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms\nauthors: Muhammad Waqas, Muhammad Ashraf, Muhammad Zakwan\nyear: 2023\nsummary: 论文将11类调制信号转换为频谱图，并报告分辨率变换最高减少99.61%的计算负载及8倍转换加速。\nverified_claims:\n研究覆盖11种调制类型。\n方法使用频谱图和多种CNN架构。\n论文报告最高99.61%计算负载降低与8倍转换加速。\nsource_url: https://arxiv.org/abs/2306.04655\nfile_sha256: ac771f8294905387fb574e6af024526017a8bc60d34ed0b83e4975300638ed4f"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-010",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "论文提出四种Early Exit架构。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 10,
+      "expected_fact_status": "completed",
+      "document_text": "title: Using Early Exits for Fast Inference in Automatic Modulation Classification\nauthors: Elsayed Mohammed, Omar Mashaal, Hatem Abou-Zeid\nyear: 2023\nsummary: 论文为调制分类设计四种 Early Exit 架构，研究准确率与推理时间的权衡。\nverified_claims:\n论文提出四种Early Exit架构。\n中高SNR信号通常不需要完整深层推理。\n实验研究准确率与推理时间的权衡。\nsource_url: https://arxiv.org/abs/2308.11100\nfile_sha256: 2d94bf0cce84d284aade58ad4eeb4cee71c0178a46934a468ae7a81d20dc0d2c"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-010",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "论文提出四种Early Exit架构。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 10,
+      "expected_fact_status": "completed",
+      "document_text": "title: Using Early Exits for Fast Inference in Automatic Modulation Classification\nauthors: Elsayed Mohammed, Omar Mashaal, Hatem Abou-Zeid\nyear: 2023\nsummary: 论文为调制分类设计四种 Early Exit 架构，研究准确率与推理时间的权衡。\nverified_claims:\n论文提出四种Early Exit架构。\n中高SNR信号通常不需要完整深层推理。\n实验研究准确率与推理时间的权衡。\nsource_url: https://arxiv.org/abs/2308.11100\nfile_sha256: 2d94bf0cce84d284aade58ad4eeb4cee71c0178a46934a468ae7a81d20dc0d2c"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-011",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "研究比较多种CNN架构与设计元素。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 11,
+      "expected_fact_status": "completed",
+      "document_text": "title: Automatic Modulation Classification with Deep Neural Networks\nauthors: Clayton A. Harper, Mitchell A. Thornton, Eric C. Larson\nyear: 2023\nsummary: 论文对多种自动调制分类卷积架构开展系统消融，并指出空洞卷积、统计池化和 SE 单元组合表现最强。\nverified_claims:\n研究比较多种CNN架构与设计元素。\n论文执行系统消融分析。\n空洞卷积、统计池化和SE单元的组合表现最强。\nsource_url: https://arxiv.org/abs/2301.11773\nfile_sha256: 03aa441c55a0b6aac2dd2bf488e85d43c67d4c85aee6267dbf9508b6908655ff"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-011",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "研究比较多种CNN架构与设计元素。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 11,
+      "expected_fact_status": "completed",
+      "document_text": "title: Automatic Modulation Classification with Deep Neural Networks\nauthors: Clayton A. Harper, Mitchell A. Thornton, Eric C. Larson\nyear: 2023\nsummary: 论文对多种自动调制分类卷积架构开展系统消融，并指出空洞卷积、统计池化和 SE 单元组合表现最强。\nverified_claims:\n研究比较多种CNN架构与设计元素。\n论文执行系统消融分析。\n空洞卷积、统计池化和SE单元的组合表现最强。\nsource_url: https://arxiv.org/abs/2301.11773\nfile_sha256: 03aa441c55a0b6aac2dd2bf488e85d43c67d4c85aee6267dbf9508b6908655ff"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-012",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "研究输入为原始I/Q数据。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 12,
+      "expected_fact_status": "completed",
+      "document_text": "title: On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data\nauthors: John A. Snoap, Dimitrie C. Popescu, Chad M. Spooner\nyear: 2023\nsummary: 论文使用原始 I/Q 数据研究训练集和测试集来自不同数据源时的跨数据集泛化能力。\nverified_claims:\n研究输入为原始I/Q数据。\n训练集和测试集被设置为不同数据集。\n重点评估模型在数据分布变化下的泛化。\nsource_url: https://arxiv.org/abs/2307.02450\nfile_sha256: 80f14482d88511b13feddd117f2fb7fb11749c94942a70a0d282c585aad3c56e"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-012",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "研究输入为原始I/Q数据。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 12,
+      "expected_fact_status": "completed",
+      "document_text": "title: On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data\nauthors: John A. Snoap, Dimitrie C. Popescu, Chad M. Spooner\nyear: 2023\nsummary: 论文使用原始 I/Q 数据研究训练集和测试集来自不同数据源时的跨数据集泛化能力。\nverified_claims:\n研究输入为原始I/Q数据。\n训练集和测试集被设置为不同数据集。\n重点评估模型在数据分布变化下的泛化。\nsource_url: https://arxiv.org/abs/2307.02450\nfile_sha256: 80f14482d88511b13feddd117f2fb7fb11749c94942a70a0d282c585aad3c56e"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-013",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "类别激活向量表示各信号采样点的重要性。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 13,
+      "expected_fact_status": "completed",
+      "document_text": "title: Visualizing Deep Learning-based Radio Modulation Classifier\nauthors: Liang Huang, You Zhang, Weijian Pan, Jinyin Chen, Li Ping Qian, Yuan Wu\nyear: 2021\nsummary: 论文提出基于类别激活向量的可视化方法，用于解释 CNN 和 LSTM 调制分类器关注的时域采样点。\nverified_claims:\n类别激活向量表示各信号采样点的重要性。\n方法可用于CNN和LSTM调制分类器。\n阈值化激活用于可视化连续时域特征。\nsource_url: https://arxiv.org/abs/2005.02175\nfile_sha256: e50dc23b9062822c6c07450239223a90f943bf3c8052d05d6f56afbaae635c8b"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-013",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "类别激活向量表示各信号采样点的重要性。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 13,
+      "expected_fact_status": "completed",
+      "document_text": "title: Visualizing Deep Learning-based Radio Modulation Classifier\nauthors: Liang Huang, You Zhang, Weijian Pan, Jinyin Chen, Li Ping Qian, Yuan Wu\nyear: 2021\nsummary: 论文提出基于类别激活向量的可视化方法，用于解释 CNN 和 LSTM 调制分类器关注的时域采样点。\nverified_claims:\n类别激活向量表示各信号采样点的重要性。\n方法可用于CNN和LSTM调制分类器。\n阈值化激活用于可视化连续时域特征。\nsource_url: https://arxiv.org/abs/2005.02175\nfile_sha256: e50dc23b9062822c6c07450239223a90f943bf3c8052d05d6f56afbaae635c8b"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-014",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "框架同时处理已知和未知调制类型。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 14,
+      "expected_fact_status": "completed",
+      "document_text": "title: FSOS-AMC: Few-Shot Open-Set Learning for Automatic Modulation Classification Over Multipath Fading Channels\nauthors: Hao Zhang, Fuhui Zhou, Qihui Wu, Chau Yuen\nyear: 2024\nsummary: 论文提出少样本开放集调制分类框架，结合多序列多尺度注意力、元原型训练和开放集分类器。\nverified_claims:\n框架同时处理已知和未知调制类型。\n方法结合多尺度注意力与元原型训练。\n论文报告低SNR条件下的稳健性。\nsource_url: https://arxiv.org/abs/2410.10265\nfile_sha256: 15811e9f27327df0ec5114f283f1f251b18addf4524af43bfe3de117de44ab50"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-014",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "框架同时处理已知和未知调制类型。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 14,
+      "expected_fact_status": "completed",
+      "document_text": "title: FSOS-AMC: Few-Shot Open-Set Learning for Automatic Modulation Classification Over Multipath Fading Channels\nauthors: Hao Zhang, Fuhui Zhou, Qihui Wu, Chau Yuen\nyear: 2024\nsummary: 论文提出少样本开放集调制分类框架，结合多序列多尺度注意力、元原型训练和开放集分类器。\nverified_claims:\n框架同时处理已知和未知调制类型。\n方法结合多尺度注意力与元原型训练。\n论文报告低SNR条件下的稳健性。\nsource_url: https://arxiv.org/abs/2410.10265\nfile_sha256: 15811e9f27327df0ec5114f283f1f251b18addf4524af43bfe3de117de44ab50"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-015",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "框架结合多域表示、对比学习和强化学习。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 15,
+      "expected_fact_status": "completed",
+      "document_text": "title: MCLRL: A Multi-Domain Contrastive Learning with Reinforcement Learning Framework for Few-Shot Modulation Recognition\nauthors: Dongwei Xu, Yutao Zhu, Yao Lu, Youpeng Feng, Yun Lin, Qi Xuan\nyear: 2025\nsummary: 论文提出多域对比学习与强化学习结合的少样本调制识别框架，以有限标注样本完成下游分类。\nverified_claims:\n框架结合多域表示、对比学习和强化学习。\n方法面向少样本调制识别。\n论文报告少量样本和较少训练轮次下的下游表现。\nsource_url: https://arxiv.org/abs/2502.19071\nfile_sha256: 1d354b97996a80a1c65641464920600e3027939ec1ee1e61bed22776286796c6"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-015",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "框架结合多域表示、对比学习和强化学习。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 15,
+      "expected_fact_status": "completed",
+      "document_text": "title: MCLRL: A Multi-Domain Contrastive Learning with Reinforcement Learning Framework for Few-Shot Modulation Recognition\nauthors: Dongwei Xu, Yutao Zhu, Yao Lu, Youpeng Feng, Yun Lin, Qi Xuan\nyear: 2025\nsummary: 论文提出多域对比学习与强化学习结合的少样本调制识别框架，以有限标注样本完成下游分类。\nverified_claims:\n框架结合多域表示、对比学习和强化学习。\n方法面向少样本调制识别。\n论文报告少量样本和较少训练轮次下的下游表现。\nsource_url: https://arxiv.org/abs/2502.19071\nfile_sha256: 1d354b97996a80a1c65641464920600e3027939ec1ee1e61bed22776286796c6"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-016",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "模型以调制信号星座图为输入。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 16,
+      "expected_fact_status": "completed",
+      "document_text": "title: NMformer: A Transformer for Noisy Modulation Classification in Wireless Communication\nauthors: Atik Faysal, Mohammad Rostami, Reihaneh Gh. Roshan, Huaxia Wang, Nikhil Muralidhar\nyear: 2024\nsummary: 论文提出基于视觉 Transformer 的 NMformer，使用星座图处理不同噪声水平下的调制分类，并评估分布内和分布外任务。\nverified_claims:\n模型以调制信号星座图为输入。\n基础分类器使用106800张调制图像训练。\n研究覆盖分布内和分布外预测设置。\nsource_url: https://arxiv.org/abs/2411.02428\nfile_sha256: 1a43615acc4ead03b22463248cf5ba4121d6741feb8024eb754e9fabcd60eeb8"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-016",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "模型以调制信号星座图为输入。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 16,
+      "expected_fact_status": "completed",
+      "document_text": "title: NMformer: A Transformer for Noisy Modulation Classification in Wireless Communication\nauthors: Atik Faysal, Mohammad Rostami, Reihaneh Gh. Roshan, Huaxia Wang, Nikhil Muralidhar\nyear: 2024\nsummary: 论文提出基于视觉 Transformer 的 NMformer，使用星座图处理不同噪声水平下的调制分类，并评估分布内和分布外任务。\nverified_claims:\n模型以调制信号星座图为输入。\n基础分类器使用106800张调制图像训练。\n研究覆盖分布内和分布外预测设置。\nsource_url: https://arxiv.org/abs/2411.02428\nfile_sha256: 1a43615acc4ead03b22463248cf5ba4121d6741feb8024eb754e9fabcd60eeb8"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-017",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "方法使用教师学生异构网络处理标签噪声。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 17,
+      "expected_fact_status": "completed",
+      "document_text": "title: Meta-Learning Guided Label Noise Distillation for Robust Signal Modulation Classification\nauthors: Xiaoyang Hao, Zhixi Feng, Tongqing Peng, Shuyuan Yang\nyear: 2024\nsummary: 论文通过元学习引导的教师学生异构网络校正噪声标签，并用少量可信标签和多视图信号提升鲁棒性。\nverified_claims:\n方法使用教师学生异构网络处理标签噪声。\n可信元学习用于重新评估和纠正标签。\n多视图信号方法使用少样本可信标签。\nsource_url: https://arxiv.org/abs/2408.05151\nfile_sha256: a56e1e2498b4c6bfd7fc603a53100f240949d3429ec5d793f480a2d0533df821"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-017",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "方法使用教师学生异构网络处理标签噪声。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 17,
+      "expected_fact_status": "completed",
+      "document_text": "title: Meta-Learning Guided Label Noise Distillation for Robust Signal Modulation Classification\nauthors: Xiaoyang Hao, Zhixi Feng, Tongqing Peng, Shuyuan Yang\nyear: 2024\nsummary: 论文通过元学习引导的教师学生异构网络校正噪声标签，并用少量可信标签和多视图信号提升鲁棒性。\nverified_claims:\n方法使用教师学生异构网络处理标签噪声。\n可信元学习用于重新评估和纠正标签。\n多视图信号方法使用少样本可信标签。\nsource_url: https://arxiv.org/abs/2408.05151\nfile_sha256: a56e1e2498b4c6bfd7fc603a53100f240949d3429ec5d793f480a2d0533df821"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-018",
+      "organization_external_id": "ORG-P30-PUBLIC-AMR",
+      "proposal_external_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "query": "模型面向资源受限边缘设备。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 18,
+      "expected_fact_status": "completed",
+      "document_text": "title: A Lightweight Deep Learning Model for Automatic Modulation Classification using Dual Path Deep Residual Shrinkage Network\nauthors: Prakash Suman, Yanzhen Qu\nyear: 2025\nsummary: 论文提出面向资源受限边缘设备的双路径深度残差收缩网络和紧凑 CNN-LSTM 架构。\nverified_claims:\n模型面向资源受限边缘设备。\n紧凑CNN-LSTM架构约含27000个训练参数。\n论文在三套RadioML数据集上报告平均分类准确率。\nsource_url: https://arxiv.org/abs/2507.04586\nfile_sha256: 24fa623e138aea4fadc5be5d52e697de570f571a6d0bebf19621892eb09aa04e"
+    },
+    {
+      "external_id": "UE-PUBLIC-AMR-FORBIDDEN-018",
+      "organization_external_id": "ORG-P30-FORBIDDEN-AMR",
+      "proposal_external_id": "PROPOSAL-P30-FORBIDDEN-AMR",
+      "query": "模型面向资源受限边缘设备。",
+      "expected_role": "public_amr_paper",
+      "expected_numeric_value": 18,
+      "expected_fact_status": "completed",
+      "document_text": "title: A Lightweight Deep Learning Model for Automatic Modulation Classification using Dual Path Deep Residual Shrinkage Network\nauthors: Prakash Suman, Yanzhen Qu\nyear: 2025\nsummary: 论文提出面向资源受限边缘设备的双路径深度残差收缩网络和紧凑 CNN-LSTM 架构。\nverified_claims:\n模型面向资源受限边缘设备。\n紧凑CNN-LSTM架构约含27000个训练参数。\n论文在三套RadioML数据集上报告平均分类准确率。\nsource_url: https://arxiv.org/abs/2507.04586\nfile_sha256: 24fa623e138aea4fadc5be5d52e697de570f571a6d0bebf19621892eb09aa04e"
+    }
+  ]
+}
