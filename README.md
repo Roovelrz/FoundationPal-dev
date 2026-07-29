@@ -22,8 +22,7 @@ AI-assisted grant proposal writing for organizations that can't afford a full-ti
 
 当前自动基准使用匿名冻结案例与 DeepSeek 自动裁判。它用于验证工程链路和架构比较，不能替代真实申报材料上的人工质量结论。
 
-Live Dev: <https://grants.intelfy.dk>
-Planned Production: <https://forgranted.io>
+ 
 
 ---
 
