@@ -23,6 +23,14 @@ AI-assisted grant proposal writing for organizations that can't afford a full-ti
 当前自动基准使用匿名冻结案例与 DeepSeek 自动裁判。它用于验证工程链路和架构比较，不能替代真实申报材料上的人工质量结论。
 
  
+## Context Engineering
+
+FoundationPal uses workflow-driven Context Engineering to assemble the minimum context required for each proposal task instead of sending all available materials to a single prompt. The current workflow composes Policy Context, User Evidence Context, Proposal Context, Section Context, Review Context, and Permission Context according to the active task.
+
+Rule knowledge and user evidence stay in separate retrieval domains. Intake and Grill Me collect and complete task context before generation. Writer and Reviewer receive task-specific context scopes. EvidenceUsage records evidence made available to a generation run and whether it was cited, while organization_id and proposal_id constrain cross-organization and cross-proposal access.
+
+This describes the current workflow only. It does not claim general-purpose dynamic context compression, automatic token-budget management, or persistent long-term memory. See [Context Flow](docs/agent_architecture.md#context-flow) for the existing composition path.
+
 
 ---
 
