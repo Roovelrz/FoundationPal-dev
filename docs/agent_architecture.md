@@ -115,3 +115,9 @@ This packaging does not add open automatic re-query, a retrieval sufficiency gra
 | output | The unmodified result returned by the existing graph. |
 
 The entry does not add a second workflow, dispatch new agent roles, change graph nodes or their order, reconstruct prompts, access the database directly, or bypass existing services. Planner, Writer, Reviewer, human approval, and finalization remain owned by the current graph and services.
+
+## Eval Coverage
+
+`api/evals/run_all.py` is a read-only aggregation entry for the existing evaluation reports. It reads a fixed set of committed JSON artifacts, presents available key metrics first, then preserves all current source-report metrics in the generated summary.
+
+The current coverage is retrieval, grounding, isolation, reviewer-related reported fields, Intake, release evidence within the E2E baseline, and end-to-end workflow cases. Missing result fields remain absent from metrics and are listed as coverage gaps. The aggregation does not rerun evaluations, change Gold data, modify scoring, add an evaluator, or add dependencies. See [Evaluation Suite](evaluation.md) for source paths, metric definitions, and current gaps.

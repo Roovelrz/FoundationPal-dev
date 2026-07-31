@@ -23,13 +23,43 @@ AI-assisted grant proposal writing for organizations that can't afford a full-ti
 当前自动基准使用匿名冻结案例与 DeepSeek 自动裁判。它用于验证工程链路和架构比较，不能替代真实申报材料上的人工质量结论。
 
  
-## Context Engineering
+## Core Agent Architecture
+
+### Context Engineering
 
 FoundationPal uses workflow-driven Context Engineering to assemble the minimum context required for each proposal task instead of sending all available materials to a single prompt. The current workflow composes Policy Context, User Evidence Context, Proposal Context, Section Context, Review Context, and Permission Context according to the active task.
 
 Rule knowledge and user evidence stay in separate retrieval domains. Intake and Grill Me collect and complete task context before generation. Writer and Reviewer receive task-specific context scopes. EvidenceUsage records evidence made available to a generation run and whether it was cited, while organization_id and proposal_id constrain cross-organization and cross-proposal access.
 
 This describes the current workflow only. It does not claim general-purpose dynamic context compression, automatic token-budget management, or persistent long-term memory. See [Context Flow](docs/agent_architecture.md#context-flow) for the existing composition path.
+
+### Controlled Dual-Domain Agentic RAG
+
+FoundationPal uses controlled dual-domain retrieval across rule knowledge and user evidence. Existing task and query conditions select the rule domain, user-evidence domain, or both; organization and proposal boundaries apply before evidence is injected into Writer or Reviewer work.
+
+EvidenceUsage records the retrieved evidence used for a model invocation, Claim Grounding supports evidence checks, and Reviewer performs its implemented post-generation checks. This is workflow-driven retrieval without an autonomous re-query loop, a new retrieval model, or a claim of independent-source generalization. See [Retrieval Flow](docs/agent_architecture.md#retrieval-flow).
+
+### Agent Harness
+
+The thin `run_agent_task` entry invokes the existing `full_pipeline` LangGraph workflow without duplicating business logic. It forwards the existing task scope and payload to the current graph and returns a minimal result envelope. It is not a general-purpose autonomous runtime. See [Harness Entry](docs/agent_architecture.md#harness-entry).
+
+### Agent Evaluation Suite
+
+The read-only Agent Evaluation Suite aggregates committed Retrieval, Grounding, Isolation, Intake, workflow, and E2E report fields. It does not rerun evaluations, create Gold data, change scoring, or add an evaluator. See [Evaluation Suite](docs/evaluation.md) and the [complete current metric summary](api/evals/reports/summary.md).
+
+## Evaluation Results
+
+Current key metrics are shown in priority order. They retain the scope of their source reports.
+
+| Metric | Value | Scope |
+|---|---:|---|
+| End-to-End Task Success Rate | 100.00% | Existing five-case E2E baseline |
+| Claim Support Rate | 80.00% | P1 strict citation labels, 30 cases |
+| Unsupported Claim Rate | 20.00% | P1 strict citation labels, 6 of 30 cases |
+| Cross-Organization Leakage Rate | 0.00% | P1 strict leakage cases, 18 cases |
+| Rule Final Recall@5 | 84.42% | P1 strict rule retrieval, 154 cases |
+
+Reviewer Risk Recall is not shown because no committed result currently reports that metric. The strict P1 values are limited to current same-lineage source coverage under an eight-item context budget, not independent-source generalization. [All existing report metrics and coverage](api/evals/reports/summary.md) remain in the generated summary.
 
 
 ---
