@@ -1,0 +1,1133 @@
+{
+  "generated_at": "2026-07-31T08:54:02.657373+00:00",
+  "key_metrics": [
+    {
+      "id": "e2e.task_success_rate",
+      "label": "End-to-End Task Success Rate",
+      "value": 1.0,
+      "scope": "Existing eval baseline cases",
+      "source": "e2e_baseline",
+      "source_field": "cases.count and failure_count"
+    },
+    {
+      "id": "grounding.claim_support_rate",
+      "label": "Claim Support Rate",
+      "value": 0.8,
+      "scope": "P1 strict citation labels",
+      "source": "p1_strict",
+      "source_field": "citation_metrics.citation_entailment_rate"
+    },
+    {
+      "id": "grounding.unsupported_claim_rate",
+      "label": "Unsupported Claim Rate",
+      "value": 0.2,
+      "scope": "P1 strict citation labels",
+      "source": "p1_strict",
+      "source_field": "citation_label_counts.unsupported / citation_evaluable_case_count"
+    },
+    {
+      "id": "isolation.cross_organization_leakage_rate",
+      "label": "Cross-Organization Leakage Rate",
+      "value": 0.0,
+      "scope": "P1 strict leakage cases",
+      "source": "p1_strict",
+      "source_field": "user_evidence_rag.cross_organization_leakage_rate"
+    },
+    {
+      "id": "retrieval.recall_at_5",
+      "label": "Rule Final Recall@5",
+      "value": 0.8442,
+      "scope": "P1 strict rule retrieval",
+      "source": "p1_strict",
+      "source_field": "rule_rag.final_recall_at_5"
+    }
+  ],
+  "metrics": {
+    "retrieval": [
+      {
+        "id": "retrieval.rule.candidate_recall_at_20",
+        "label": "Rule Candidate Recall@20",
+        "value": 0.9156,
+        "scope": "P1 strict rule retrieval",
+        "source": "p1_strict",
+        "source_field": "rule_rag.candidate_recall_at_20"
+      },
+      {
+        "id": "retrieval.rule.candidate_recall_at_40",
+        "label": "Rule Candidate Recall@40",
+        "value": 0.9805,
+        "scope": "P1 strict rule retrieval",
+        "source": "p1_strict",
+        "source_field": "rule_rag.candidate_recall_at_40"
+      },
+      {
+        "id": "retrieval.user_evidence.candidate_recall_at_20",
+        "label": "User Evidence Candidate Recall@20",
+        "value": 1.0,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.candidate_recall_at_20"
+      },
+      {
+        "id": "retrieval.user_evidence.context_recall_at_1",
+        "label": "User Evidence Context Recall@1",
+        "value": 0.8333,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.context_recall_at_1"
+      },
+      {
+        "id": "retrieval.user_evidence.context_recall_at_3",
+        "label": "User Evidence Context Recall@3",
+        "value": 0.9444,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.context_recall_at_3"
+      },
+      {
+        "id": "retrieval.user_evidence.context_recall_at_5",
+        "label": "User Evidence Context Recall@5",
+        "value": 0.9444,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.context_recall_at_5"
+      },
+      {
+        "id": "retrieval.user_evidence.context_recall_at_8",
+        "label": "User Evidence Context Recall@8",
+        "value": 1.0,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.context_recall_at_8"
+      },
+      {
+        "id": "retrieval.user_evidence.context_result_limit",
+        "label": "User Evidence Context Result Limit",
+        "value": 8,
+        "scope": "P1 strict user-evidence retrieval",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.context_result_limit"
+      },
+      {
+        "id": "retrieval.dual_domain.rule_final_recall_at_5",
+        "label": "Dual-Domain Rule Final Recall@5",
+        "value": 0.8333,
+        "scope": "P1 strict mixed-domain cases",
+        "source": "p1_strict",
+        "source_field": "dual_domain.rule_final_recall_at_5"
+      },
+      {
+        "id": "retrieval.dual_domain.evidence_context_recall_at_8",
+        "label": "Dual-Domain Evidence Context Recall@8",
+        "value": 0.8889,
+        "scope": "P1 strict mixed-domain cases",
+        "source": "p1_strict",
+        "source_field": "dual_domain.evidence_context_recall_at_8"
+      },
+      {
+        "id": "retrieval.dual_domain.joint_recall",
+        "label": "Dual-Domain Joint Recall",
+        "value": 0.7222,
+        "scope": "P1 strict mixed-domain cases",
+        "source": "p1_strict",
+        "source_field": "dual_domain.joint_recall"
+      },
+      {
+        "id": "retrieval.recall_at_1",
+        "label": "Rule Final Recall@1",
+        "value": 0.0714,
+        "scope": "P1 strict rule retrieval",
+        "source": "p1_strict",
+        "source_field": "rule_rag.final_recall_at_1"
+      },
+      {
+        "id": "retrieval.recall_at_3",
+        "label": "Rule Final Recall@3",
+        "value": 0.7532,
+        "scope": "P1 strict rule retrieval",
+        "source": "p1_strict",
+        "source_field": "rule_rag.final_recall_at_3"
+      },
+      {
+        "id": "retrieval.recall_at_5",
+        "label": "Rule Final Recall@5",
+        "value": 0.8442,
+        "scope": "P1 strict rule retrieval",
+        "source": "p1_strict",
+        "source_field": "rule_rag.final_recall_at_5"
+      }
+    ],
+    "grounding": [
+      {
+        "id": "grounding.claim_support_rate",
+        "label": "Claim Support Rate",
+        "value": 0.8,
+        "scope": "P1 strict citation labels",
+        "source": "p1_strict",
+        "source_field": "citation_metrics.citation_entailment_rate"
+      },
+      {
+        "id": "grounding.citation_source_field_completeness_rate",
+        "label": "Citation Source Field Completeness Rate",
+        "value": 1.0,
+        "scope": "P1 strict citation labels",
+        "source": "p1_strict",
+        "source_field": "citation_metrics.source_field_completeness_rate"
+      },
+      {
+        "id": "grounding.unsupported_claim_count",
+        "label": "Unsupported Claim Count",
+        "value": 6,
+        "scope": "P1 strict citation labels",
+        "source": "p1_strict",
+        "source_field": "citation_metrics.citation_label_counts.unsupported"
+      },
+      {
+        "id": "grounding.citation_evaluable_case_count",
+        "label": "Citation Evaluable Case Count",
+        "value": 30,
+        "scope": "P1 strict citation labels",
+        "source": "p1_strict",
+        "source_field": "citation_metrics.citation_evaluable_case_count"
+      },
+      {
+        "id": "grounding.unsupported_claim_rate",
+        "label": "Unsupported Claim Rate",
+        "value": 0.2,
+        "scope": "P1 strict citation labels",
+        "source": "p1_strict",
+        "source_field": "citation_label_counts.unsupported / citation_evaluable_case_count"
+      }
+    ],
+    "isolation": [
+      {
+        "id": "isolation.cross_organization_leakage_rate",
+        "label": "Cross-Organization Leakage Rate",
+        "value": 0.0,
+        "scope": "P1 strict leakage cases",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.cross_organization_leakage_rate"
+      },
+      {
+        "id": "isolation.authorized_recall_at_8",
+        "label": "Authorized Evidence Recall@8",
+        "value": 1.0,
+        "scope": "P1 strict leakage cases",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.cross_organization_authorized_recall_at_8"
+      },
+      {
+        "id": "isolation.runnable_case_count",
+        "label": "Cross-Organization Runnable Case Count",
+        "value": 18,
+        "scope": "P1 strict leakage cases",
+        "source": "p1_strict",
+        "source_field": "user_evidence_rag.cross_organization_runnable_case_count"
+      },
+      {
+        "id": "isolation.holdout_valid",
+        "label": "P1 Holdout Validation",
+        "value": true,
+        "scope": "P1 strict holdout validation",
+        "source": "p1_strict",
+        "source_field": "p1_holdout_validation.valid"
+      }
+    ],
+    "reviewer": [],
+    "workflow": [
+      {
+        "id": "workflow.fixture_case_count",
+        "label": "Intake Fixture Case Count",
+        "value": 36,
+        "scope": "Phase 40 P03 intake contract",
+        "source": "intake_contract",
+        "source_field": "fixture_case_count"
+      },
+      {
+        "id": "workflow.routing_accuracy",
+        "label": "Intake Routing Accuracy",
+        "value": 1.0,
+        "scope": "Phase 40 P03 intake contract",
+        "source": "intake_contract",
+        "source_field": "routing_accuracy"
+      },
+      {
+        "id": "workflow.question_budget_accuracy",
+        "label": "Question Budget Accuracy",
+        "value": 1.0,
+        "scope": "Phase 40 P03 intake contract",
+        "source": "intake_contract",
+        "source_field": "question_budget_accuracy"
+      },
+      {
+        "id": "workflow.remaining_discrepancy_count",
+        "label": "Remaining Intake Discrepancy Count",
+        "value": 0,
+        "scope": "Phase 40 P03 intake contract",
+        "source": "intake_contract",
+        "source_field": "remaining_discrepancy_count"
+      }
+    ],
+    "e2e": [
+      {
+        "id": "e2e.total_tasks",
+        "label": "Total Eval Cases",
+        "value": 5,
+        "scope": "Existing eval baseline cases",
+        "source": "e2e_baseline",
+        "source_field": "cases.count"
+      },
+      {
+        "id": "e2e.successful_tasks",
+        "label": "Passed Cases",
+        "value": 5,
+        "scope": "Existing eval baseline cases",
+        "source": "e2e_baseline",
+        "source_field": "cases.count - failure_count"
+      },
+      {
+        "id": "e2e.failed_tasks",
+        "label": "Failed Cases",
+        "value": 0,
+        "scope": "Existing eval baseline cases",
+        "source": "e2e_baseline",
+        "source_field": "failure_count"
+      },
+      {
+        "id": "e2e.task_success_rate",
+        "label": "End-to-End Task Success Rate",
+        "value": 1.0,
+        "scope": "Existing eval baseline cases",
+        "source": "e2e_baseline",
+        "source_field": "cases.count and failure_count"
+      }
+    ]
+  },
+  "source_report_metrics": {
+    "e2e_baseline": [
+      {
+        "field": "cases.count",
+        "value": 5
+      },
+      {
+        "field": "failure_count",
+        "value": 0
+      },
+      {
+        "field": "passed",
+        "value": true
+      }
+    ],
+    "phase10_auto": [
+      {
+        "field": "automatic_eval.case_count",
+        "value": 3
+      },
+      {
+        "field": "automatic_eval.context_recall_at_3",
+        "value": 0.6667
+      },
+      {
+        "field": "automatic_eval.faithfulness",
+        "value": 0.6667
+      },
+      {
+        "field": "automatic_eval.judge_estimated_cost_usd",
+        "value": 0.00043508
+      },
+      {
+        "field": "automatic_eval.judge_token_usage",
+        "value": 897
+      },
+      {
+        "field": "automatic_eval.no_answer_correctness",
+        "value": 0.3333
+      },
+      {
+        "field": "comparison.architectures.langgraph_single.average_end_to_end_ms",
+        "value": 34.56
+      },
+      {
+        "field": "comparison.architectures.langgraph_single.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.langgraph_single.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.langgraph_single.run_count",
+        "value": 9
+      },
+      {
+        "field": "comparison.architectures.langgraph_single.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.average_end_to_end_ms",
+        "value": 38.18
+      },
+      {
+        "field": "comparison.architectures.multi_agent.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.reviewer_regression_rate",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.run_count",
+        "value": 9
+      },
+      {
+        "field": "comparison.architectures.multi_agent.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.architectures.sequential.average_end_to_end_ms",
+        "value": 31.75
+      },
+      {
+        "field": "comparison.architectures.sequential.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.sequential.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.sequential.run_count",
+        "value": 10
+      },
+      {
+        "field": "comparison.architectures.sequential.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.failure_cases.count",
+        "value": 0
+      },
+      {
+        "field": "cost.estimated_cost_usd",
+        "value": 0.00090972
+      },
+      {
+        "field": "cost.token_usage",
+        "value": 1776
+      },
+      {
+        "field": "rag.case_count",
+        "value": 3
+      },
+      {
+        "field": "rag.context_recall_at_3",
+        "value": 0.6667
+      },
+      {
+        "field": "rag.evidence_coverage_rate",
+        "value": 1.0
+      },
+      {
+        "field": "rag.faithfulness",
+        "value": 0.6667
+      },
+      {
+        "field": "rag.incorrect_evidence_citation_rate",
+        "value": 0.0
+      },
+      {
+        "field": "rag.judge_estimated_cost_usd",
+        "value": 0.00043508
+      },
+      {
+        "field": "rag.judge_token_usage",
+        "value": 897
+      },
+      {
+        "field": "rag.no_answer_correctness",
+        "value": 0.3333
+      },
+      {
+        "field": "rag.not_measured.count",
+        "value": 0
+      },
+      {
+        "field": "scope.run_count",
+        "value": 28
+      },
+      {
+        "field": "tools.authorization_rejection_correctness",
+        "value": 1.0
+      },
+      {
+        "field": "tools.average_tool_latency_ms",
+        "value": 0.6
+      },
+      {
+        "field": "tools.not_measured.count",
+        "value": 0
+      },
+      {
+        "field": "tools.tool_call_success_rate",
+        "value": 0.6
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.average_end_to_end_ms",
+        "value": 34.56
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.run_count",
+        "value": 9
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.average_end_to_end_ms",
+        "value": 38.18
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.reviewer_regression_rate",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.run_count",
+        "value": 9
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "workflow_and_agents.sequential.average_end_to_end_ms",
+        "value": 31.75
+      },
+      {
+        "field": "workflow_and_agents.sequential.average_fallback_count",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.sequential.human_intervention_rate",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.sequential.run_count",
+        "value": 10
+      },
+      {
+        "field": "workflow_and_agents.sequential.workflow_task_success_rate",
+        "value": 1.0
+      }
+    ],
+    "phase10_reference": [
+      {
+        "field": "comparison.architectures.langgraph_single.run_count",
+        "value": 0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.average_end_to_end_ms",
+        "value": 45.23
+      },
+      {
+        "field": "comparison.architectures.multi_agent.average_fallback_count",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.human_intervention_rate",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.reviewer_regression_rate",
+        "value": 0.0
+      },
+      {
+        "field": "comparison.architectures.multi_agent.run_count",
+        "value": 1
+      },
+      {
+        "field": "comparison.architectures.multi_agent.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "comparison.architectures.sequential.run_count",
+        "value": 0
+      },
+      {
+        "field": "comparison.failure_cases.count",
+        "value": 0
+      },
+      {
+        "field": "rag.not_measured.count",
+        "value": 2
+      },
+      {
+        "field": "scope.run_count",
+        "value": 1
+      },
+      {
+        "field": "tools.not_measured.count",
+        "value": 1
+      },
+      {
+        "field": "workflow_and_agents.langgraph_single.run_count",
+        "value": 0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.average_end_to_end_ms",
+        "value": 45.23
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.average_fallback_count",
+        "value": 1.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.human_intervention_rate",
+        "value": 1.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.reviewer_regression_rate",
+        "value": 0.0
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.run_count",
+        "value": 1
+      },
+      {
+        "field": "workflow_and_agents.multi_agent.workflow_task_success_rate",
+        "value": 1.0
+      },
+      {
+        "field": "workflow_and_agents.sequential.run_count",
+        "value": 0
+      }
+    ],
+    "intake_contract": [
+      {
+        "field": "diagnostics.count",
+        "value": 36
+      },
+      {
+        "field": "question_budget_accuracy",
+        "value": 1.0
+      },
+      {
+        "field": "remaining_discrepancy_count",
+        "value": 0
+      },
+      {
+        "field": "routing_accuracy",
+        "value": 1.0
+      }
+    ],
+    "p0_reference": [
+      {
+        "field": "citation_metrics.citation_entailment_rate",
+        "value": 0.8
+      },
+      {
+        "field": "citation_metrics.citation_entailment_status",
+        "value": "measured_developer_initial_review"
+      },
+      {
+        "field": "citation_metrics.citation_evaluable_case_count",
+        "value": 30
+      },
+      {
+        "field": "citation_metrics.citation_label_case_count",
+        "value": 30
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.complete_support",
+        "value": 18
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.partial_support",
+        "value": 6
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.unsupported",
+        "value": 6
+      },
+      {
+        "field": "citation_metrics.citation_not_evaluable_case_count",
+        "value": 0
+      },
+      {
+        "field": "citation_metrics.source_field_completeness_rate",
+        "value": 1.0
+      },
+      {
+        "field": "claim_grounding.case_count",
+        "value": 30
+      },
+      {
+        "field": "claim_grounding.status",
+        "value": "seeded_cases_pending_claim_runtime_eval"
+      },
+      {
+        "field": "diagnostics.evidence_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.leakage_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.mixed_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.negative_cases.count",
+        "value": 4
+      },
+      {
+        "field": "diagnostics.rule_cases.count",
+        "value": 154
+      },
+      {
+        "field": "dual_domain.case_count",
+        "value": 18
+      },
+      {
+        "field": "dual_domain.evidence_context_recall_at_8",
+        "value": 1.0
+      },
+      {
+        "field": "dual_domain.joint_recall",
+        "value": 0.8889
+      },
+      {
+        "field": "dual_domain.rule_final_recall_at_5",
+        "value": 0.8889
+      },
+      {
+        "field": "dual_domain.runnable_case_count",
+        "value": 18
+      },
+      {
+        "field": "intake_review.case_count",
+        "value": 48
+      },
+      {
+        "field": "intake_review.status",
+        "value": "seeded_cases_pending_workflow_runtime_eval"
+      },
+      {
+        "field": "rule_rag.candidate_recall_at_20",
+        "value": 0.9935
+      },
+      {
+        "field": "rule_rag.candidate_recall_at_40",
+        "value": 1.0
+      },
+      {
+        "field": "rule_rag.case_count",
+        "value": 154
+      },
+      {
+        "field": "rule_rag.final_recall_at_1",
+        "value": 0.0714
+      },
+      {
+        "field": "rule_rag.final_recall_at_3",
+        "value": 0.7857
+      },
+      {
+        "field": "rule_rag.final_recall_at_5",
+        "value": 0.8571
+      },
+      {
+        "field": "rule_rag.negative_status_counts.grant_pack_not_published",
+        "value": 1
+      },
+      {
+        "field": "rule_rag.negative_status_counts.no_applicable_rule",
+        "value": 3
+      },
+      {
+        "field": "rule_rag.no_applicable_rule_accuracy",
+        "value": 1.0
+      },
+      {
+        "field": "rule_rag.unpublished_pack_safety_block_rate",
+        "value": 1.0
+      },
+      {
+        "field": "rule_rag.unpublished_pack_safety_block_status",
+        "value": "measured"
+      },
+      {
+        "field": "user_evidence_rag.candidate_recall_at_20",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.case_count",
+        "value": 18
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_1",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_3",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_5",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_8",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.context_result_limit",
+        "value": 8
+      },
+      {
+        "field": "user_evidence_rag.cross_organization_runnable_case_count",
+        "value": 0
+      }
+    ],
+    "p1_strict": [
+      {
+        "field": "citation_metrics.citation_entailment_rate",
+        "value": 0.8
+      },
+      {
+        "field": "citation_metrics.citation_entailment_status",
+        "value": "measured_developer_initial_review"
+      },
+      {
+        "field": "citation_metrics.citation_evaluable_case_count",
+        "value": 30
+      },
+      {
+        "field": "citation_metrics.citation_label_case_count",
+        "value": 30
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.complete_support",
+        "value": 18
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.partial_support",
+        "value": 6
+      },
+      {
+        "field": "citation_metrics.citation_label_counts.unsupported",
+        "value": 6
+      },
+      {
+        "field": "citation_metrics.citation_not_evaluable_case_count",
+        "value": 0
+      },
+      {
+        "field": "citation_metrics.source_field_completeness_rate",
+        "value": 1.0
+      },
+      {
+        "field": "claim_grounding.case_count",
+        "value": 30
+      },
+      {
+        "field": "claim_grounding.status",
+        "value": "seeded_cases_pending_claim_runtime_eval"
+      },
+      {
+        "field": "diagnostics.evidence_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.leakage_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.mixed_cases.count",
+        "value": 18
+      },
+      {
+        "field": "diagnostics.negative_cases.count",
+        "value": 4
+      },
+      {
+        "field": "diagnostics.rule_cases.count",
+        "value": 154
+      },
+      {
+        "field": "dual_domain.case_count",
+        "value": 18
+      },
+      {
+        "field": "dual_domain.evidence_context_recall_at_8",
+        "value": 0.8889
+      },
+      {
+        "field": "dual_domain.joint_recall",
+        "value": 0.7222
+      },
+      {
+        "field": "dual_domain.rule_final_recall_at_5",
+        "value": 0.8333
+      },
+      {
+        "field": "dual_domain.runnable_case_count",
+        "value": 18
+      },
+      {
+        "field": "intake_review.case_count",
+        "value": 48
+      },
+      {
+        "field": "intake_review.status",
+        "value": "seeded_cases_pending_workflow_runtime_eval"
+      },
+      {
+        "field": "p1_holdout_validation.eight_character_query_leaks.count",
+        "value": 0
+      },
+      {
+        "field": "p1_holdout_validation.errors.count",
+        "value": 0
+      },
+      {
+        "field": "p1_holdout_validation.exact_query_leaks.count",
+        "value": 0
+      },
+      {
+        "field": "p1_holdout_validation.rewrite_count",
+        "value": 18
+      },
+      {
+        "field": "p1_holdout_validation.valid",
+        "value": true
+      },
+      {
+        "field": "rule_rag.candidate_recall_at_20",
+        "value": 0.9156
+      },
+      {
+        "field": "rule_rag.candidate_recall_at_40",
+        "value": 0.9805
+      },
+      {
+        "field": "rule_rag.case_count",
+        "value": 154
+      },
+      {
+        "field": "rule_rag.final_recall_at_1",
+        "value": 0.0714
+      },
+      {
+        "field": "rule_rag.final_recall_at_3",
+        "value": 0.7532
+      },
+      {
+        "field": "rule_rag.final_recall_at_5",
+        "value": 0.8442
+      },
+      {
+        "field": "rule_rag.negative_status_counts.grant_pack_not_published",
+        "value": 1
+      },
+      {
+        "field": "rule_rag.negative_status_counts.no_applicable_rule",
+        "value": 3
+      },
+      {
+        "field": "rule_rag.no_applicable_rule_accuracy",
+        "value": 1.0
+      },
+      {
+        "field": "rule_rag.unpublished_pack_safety_block_rate",
+        "value": 1.0
+      },
+      {
+        "field": "rule_rag.unpublished_pack_safety_block_status",
+        "value": "measured"
+      },
+      {
+        "field": "user_evidence_rag.candidate_recall_at_20",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.case_count",
+        "value": 18
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_1",
+        "value": 0.8333
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_3",
+        "value": 0.9444
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_5",
+        "value": 0.9444
+      },
+      {
+        "field": "user_evidence_rag.context_recall_at_8",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.context_result_limit",
+        "value": 8
+      },
+      {
+        "field": "user_evidence_rag.cross_organization_authorized_recall_at_8",
+        "value": 1.0
+      },
+      {
+        "field": "user_evidence_rag.cross_organization_leakage_rate",
+        "value": 0.0
+      },
+      {
+        "field": "user_evidence_rag.cross_organization_runnable_case_count",
+        "value": 18
+      }
+    ],
+    "rag_initial_candidates": [
+      {
+        "field": "question_count",
+        "value": 15
+      },
+      {
+        "field": "results.count",
+        "value": 15
+      }
+    ],
+    "rag_judge_sample": [
+      {
+        "field": "complete",
+        "value": true
+      },
+      {
+        "field": "complete_answer_rate",
+        "value": 0.8667
+      },
+      {
+        "field": "results.count",
+        "value": 30
+      },
+      {
+        "field": "sample_size",
+        "value": 30
+      },
+      {
+        "field": "target_sample_size",
+        "value": 30
+      }
+    ],
+    "rag_regression": [
+      {
+        "field": "case_count",
+        "value": 150
+      },
+      {
+        "field": "metrics.average_elapsed_ms",
+        "value": 190.54
+      },
+      {
+        "field": "metrics.id_recall_at_1",
+        "value": 0.5467
+      },
+      {
+        "field": "metrics.id_recall_at_20",
+        "value": 0.9467
+      },
+      {
+        "field": "metrics.id_recall_at_3",
+        "value": 0.76
+      },
+      {
+        "field": "metrics.id_recall_at_5",
+        "value": 0.84
+      },
+      {
+        "field": "results.count",
+        "value": 150
+      }
+    ]
+  },
+  "coverage": {
+    "loaded_result_files": [
+      {
+        "name": "e2e_baseline",
+        "path": "api/reports/eval-baseline.json"
+      },
+      {
+        "name": "phase10_auto",
+        "path": "api/reports/phase10-auto-eval.json"
+      },
+      {
+        "name": "phase10_reference",
+        "path": "api/reports/phase10-eval.json"
+      },
+      {
+        "name": "intake_contract",
+        "path": "api/reports/phase40_p03_intake_eval.json"
+      },
+      {
+        "name": "p0_reference",
+        "path": "api/reports/phase40_p0v5_eval/phase11-formal-eval.json"
+      },
+      {
+        "name": "p1_strict",
+        "path": "api/reports/phase40_p1_holdout_eval/phase40-p1-formal-eval.json"
+      },
+      {
+        "name": "rag_initial_candidates",
+        "path": "api/reports/rag-initial-candidates.json"
+      },
+      {
+        "name": "rag_judge_sample",
+        "path": "api/reports/rag-judge-sample.json"
+      },
+      {
+        "name": "rag_regression",
+        "path": "api/reports/rag-regression.json"
+      }
+    ],
+    "missing_result_files": [],
+    "not_reported_metrics": [
+      {
+        "metric": "reviewer.risk_recall",
+        "reason": "No committed result currently reports reviewer risk recall on implemented risk types."
+      },
+      {
+        "metric": "grounding.numeric_conflict_count",
+        "reason": "No committed result currently reports numeric-conflict evaluation output."
+      },
+      {
+        "metric": "workflow.grill_completion_rate",
+        "reason": "No committed result currently reports Grill completion rate."
+      },
+      {
+        "metric": "workflow.release_signoff_pass_rate",
+        "reason": "No committed result currently reports a standalone release-signoff pass rate."
+      }
+    ]
+  }
+}
