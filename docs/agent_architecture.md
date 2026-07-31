@@ -101,3 +101,17 @@ The strict readout limits its conclusion to the current same-lineage source cove
 ### Known gaps and boundary
 
 This packaging does not add open automatic re-query, a retrieval sufficiency grader, model-driven query rewriting, autonomous self-correction, a new retrieval model, or a new dependency. It does not change existing retrieval logic, prompts, evaluation results, data, or permission behavior.
+
+## Harness Entry
+
+`ai.agent_runner.run_agent_task` is the thin Agent Harness entry for the existing `full_pipeline` LangGraph workflow. It validates the required task and scope inputs, forwards the caller-provided organization and proposal values with the existing payload to `run_proposal_graph`, and returns the existing graph result in a minimal envelope.
+
+| Harness field | Current source |
+|---|---|
+| task_type | The existing `full_pipeline` workflow only. |
+| organization_id | Forwarded into the existing graph state. |
+| proposal_id | Forwarded into the existing graph state. |
+| status | Maps existing `completed`, `awaiting_human_approval`, and failure statuses without adding a state machine. |
+| output | The unmodified result returned by the existing graph. |
+
+The entry does not add a second workflow, dispatch new agent roles, change graph nodes or their order, reconstruct prompts, access the database directly, or bypass existing services. Planner, Writer, Reviewer, human approval, and finalization remain owned by the current graph and services.
