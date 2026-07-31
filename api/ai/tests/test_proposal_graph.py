@@ -5,6 +5,7 @@ from django.test import TestCase
 from orgs.models import Organization
 from proposals.models import Proposal, ProposalSection
 
+from ai.agent_runner import run_agent_task
 from ai.proposal_graph import run_proposal_graph
 from ai.models import WorkflowRun
 
@@ -38,6 +39,23 @@ class ProposalGraphTests(TestCase):
             'evidence_ids': [],
             'draft': '初始草稿',
         }
+
+    def test_agent_runner_invokes_existing_graph(self):
+        result = run_agent_task(
+            task_type='full_pipeline',
+            organization_id=self.state['organization_id'],
+            proposal_id=str(self.proposal.id),
+            payload={
+                key: value for key, value in self.state.items()
+                if key not in {'organization_id', 'proposal_id'}
+            },
+        )
+        self.assertEqual(result['status'], 'needs_human_review')
+        self.assertEqual(result['organization_id'], self.state['organization_id'])
+        self.assertEqual(result['proposal_id'], str(self.proposal.id))
+        self.assertEqual(result['output']['status'], 'awaiting_human_approval')
+        self.assertEqual(result['output']['organization_id'], self.state['organization_id'])
+        self.assertEqual(result['output']['proposal_id'], self.proposal.id)
 
     def test_approve_path_stops_for_human_approval(self):
         result = run_proposal_graph({**self.state, 'review': review('approve')})
