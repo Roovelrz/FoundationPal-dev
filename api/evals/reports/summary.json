@@ -1,13 +1,29 @@
 {
-  "generated_at": "2026-07-31T08:54:02.657373+00:00",
+  "generated_at": "2026-07-31T09:23:06.695947+00:00",
   "key_metrics": [
     {
-      "id": "e2e.task_success_rate",
-      "label": "End-to-End Task Success Rate",
+      "id": "workflow.routing_accuracy",
+      "label": "Intake Routing Accuracy",
       "value": 1.0,
-      "scope": "Existing eval baseline cases",
-      "source": "e2e_baseline",
-      "source_field": "cases.count and failure_count"
+      "scope": "Phase 40 P03 intake contract",
+      "source": "intake_contract",
+      "source_field": "routing_accuracy"
+    },
+    {
+      "id": "retrieval.recall_at_5",
+      "label": "Rule Final Recall@5",
+      "value": 0.8442,
+      "scope": "P1 strict rule retrieval",
+      "source": "p1_strict",
+      "source_field": "rule_rag.final_recall_at_5"
+    },
+    {
+      "id": "retrieval.dual_domain.joint_recall",
+      "label": "Dual-Domain Joint Recall",
+      "value": 0.7222,
+      "scope": "P1 strict mixed-domain cases",
+      "source": "p1_strict",
+      "source_field": "dual_domain.joint_recall"
     },
     {
       "id": "grounding.claim_support_rate",
@@ -18,28 +34,12 @@
       "source_field": "citation_metrics.citation_entailment_rate"
     },
     {
-      "id": "grounding.unsupported_claim_rate",
-      "label": "Unsupported Claim Rate",
-      "value": 0.2,
-      "scope": "P1 strict citation labels",
-      "source": "p1_strict",
-      "source_field": "citation_label_counts.unsupported / citation_evaluable_case_count"
-    },
-    {
       "id": "isolation.cross_organization_leakage_rate",
       "label": "Cross-Organization Leakage Rate",
       "value": 0.0,
       "scope": "P1 strict leakage cases",
       "source": "p1_strict",
       "source_field": "user_evidence_rag.cross_organization_leakage_rate"
-    },
-    {
-      "id": "retrieval.recall_at_5",
-      "label": "Rule Final Recall@5",
-      "value": 0.8442,
-      "scope": "P1 strict rule retrieval",
-      "source": "p1_strict",
-      "source_field": "rule_rag.final_recall_at_5"
     }
   ],
   "metrics": {

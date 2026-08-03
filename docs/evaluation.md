@@ -18,12 +18,13 @@ FoundationPal packages existing evaluation artifacts as a read-only Agent Evalua
 
 | Metric | Source field | Numerator and denominator | Scope | Key metric |
 |---|---|---|---|---|
-| End-to-End Task Success Rate | `cases` and `failure_count` | `(case count - failure count) / case count` | Existing five E2E baseline cases | Yes |
-| Claim Support Rate | `citation_metrics.citation_entailment_rate` | Existing reported rate | P1 strict citation labels | Yes |
-| Unsupported Claim Rate | `citation_label_counts.unsupported / citation_evaluable_case_count` | Existing unsupported labels divided by existing evaluable labels | P1 strict citation labels | Yes |
-| Cross-Organization Leakage Rate | `user_evidence_rag.cross_organization_leakage_rate` | Existing reported rate | P1 strict leakage cases | Yes |
+| Intake Routing Accuracy | `routing_accuracy` | Existing reported rate | P03 intake contract cases | Yes |
 | Rule Final Recall at 5 | `rule_rag.final_recall_at_5` | Existing reported recall | P1 strict rule retrieval | Yes |
-| Intake Routing Accuracy | `routing_accuracy` | Existing reported rate | P03 intake contract cases | No |
+| Dual-Domain Joint Recall | `dual_domain.joint_recall` | Existing reported recall | P1 strict mixed-domain cases | Yes |
+| Claim Support Rate | `citation_metrics.citation_entailment_rate` | Existing reported rate | P1 strict citation labels | Yes |
+| Cross-Organization Leakage Rate | `user_evidence_rag.cross_organization_leakage_rate` | Existing reported rate | P1 strict leakage cases | Yes |
+| End-to-End Task Success Rate | `cases` and `failure_count` | `(case count - failure count) / case count` | Existing five E2E baseline cases | No |
+| Unsupported Claim Rate | `citation_label_counts.unsupported / citation_evaluable_case_count` | Existing unsupported labels divided by existing evaluable labels | P1 strict citation labels | No |
 | Question Budget Accuracy | `question_budget_accuracy` | Existing reported rate | P03 intake contract cases | No |
 
 The P1 strict readout is qualified by the current same-lineage source coverage and eight-item context budget. It is not evidence of independent-source generalization.
@@ -42,18 +43,17 @@ The fixed result map currently reads these committed files:
 - `api/reports/rag-judge-sample.json`
 - `api/reports/rag-regression.json`
 
-Run the read-only aggregation from `api` with `F:\Anaconda\envs\fundagent\python.exe evals/run_all.py`. The generated outputs are `api/evals/reports/summary.json` and `api/evals/reports/summary.md`.
+Run the read-only aggregation from `api` with `F:\Anaconda\envs\fundagent\python.exe evals/run_all.py`. The generated outputs are `api/evals/reports/summary.json`, the published `api/evals/reports/summary.md`, and the ignored local-detail view `api/evals/reports/summary.local.md`.
 
 ## Key Metric Priority
 
 The summary orders existing available key metrics as follows:
 
-1. End-to-End Task Success Rate
-2. Claim Support Rate
-3. Unsupported Claim Rate
-4. Cross-Organization Leakage Rate
-5. Reviewer Risk Recall on Implemented Risk Types when a current result provides it
-6. Rule Final Recall at 5
+1. Intake Routing Accuracy
+2. Rule Final Recall at 5
+3. Dual-Domain Joint Recall
+4. Claim Support Rate
+5. Cross-Organization Leakage Rate
 
 All other current source-report indicators follow in the normalized and source-report sections of the summary.
 

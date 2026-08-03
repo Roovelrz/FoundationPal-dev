@@ -1,87 +1,83 @@
 # FoundationPal Agent Evaluation Summary
 
-This read-only summary loads committed result files. Key metrics appear first; all current source-report metrics remain below with their original field names.
+This read-only summary loads committed result files. Key metrics appear first; all current report metrics remain below with their original field names.
 
 ## Key Metrics
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| End-to-End Task Success Rate | 100.00% | Existing eval baseline cases | Eval baseline |
-| Claim Support Rate | 80.00% | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Unsupported Claim Rate | 20.00% | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Cross-Organization Leakage Rate | 0.00% | P1 strict leakage cases | Phase 40 P1 strict holdout |
-| Rule Final Recall@5 | 84.42% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
+| Metric | Value |
+|---|---:|
+| Intake Routing Accuracy | 100.00% |
+| Rule Final Recall@5 | 84.42% |
+| Dual-Domain Joint Recall | 72.22% |
+| Claim Support Rate | 80.00% |
+| Cross-Organization Leakage Rate | 0.00% |
 
 ## Normalized Metrics
 
 ### Retrieval
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| Rule Candidate Recall@20 | 91.56% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
-| Rule Candidate Recall@40 | 98.05% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
-| User Evidence Candidate Recall@20 | 100.00% | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| User Evidence Context Recall@1 | 83.33% | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| User Evidence Context Recall@3 | 94.44% | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| User Evidence Context Recall@5 | 94.44% | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| User Evidence Context Recall@8 | 100.00% | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| User Evidence Context Result Limit | 8 | P1 strict user-evidence retrieval | Phase 40 P1 strict holdout |
-| Dual-Domain Rule Final Recall@5 | 83.33% | P1 strict mixed-domain cases | Phase 40 P1 strict holdout |
-| Dual-Domain Evidence Context Recall@8 | 88.89% | P1 strict mixed-domain cases | Phase 40 P1 strict holdout |
-| Dual-Domain Joint Recall | 72.22% | P1 strict mixed-domain cases | Phase 40 P1 strict holdout |
-| Rule Final Recall@1 | 7.14% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
-| Rule Final Recall@3 | 75.32% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
-| Rule Final Recall@5 | 84.42% | P1 strict rule retrieval | Phase 40 P1 strict holdout |
+| Metric | Value |
+|---|---:|
+| Rule Candidate Recall@20 | 91.56% |
+| Rule Candidate Recall@40 | 98.05% |
+| User Evidence Candidate Recall@20 | 100.00% |
+| User Evidence Context Recall@1 | 83.33% |
+| User Evidence Context Recall@3 | 94.44% |
+| User Evidence Context Recall@5 | 94.44% |
+| User Evidence Context Recall@8 | 100.00% |
+| User Evidence Context Result Limit | 8 |
+| Dual-Domain Rule Final Recall@5 | 83.33% |
+| Dual-Domain Evidence Context Recall@8 | 88.89% |
+| Dual-Domain Joint Recall | 72.22% |
+| Rule Final Recall@1 | 7.14% |
+| Rule Final Recall@3 | 75.32% |
+| Rule Final Recall@5 | 84.42% |
 
 ### Grounding
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| Claim Support Rate | 80.00% | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Citation Source Field Completeness Rate | 100.00% | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Unsupported Claim Count | 6 | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Citation Evaluable Case Count | 30 | P1 strict citation labels | Phase 40 P1 strict holdout |
-| Unsupported Claim Rate | 20.00% | P1 strict citation labels | Phase 40 P1 strict holdout |
+| Metric | Value |
+|---|---:|
+| Claim Support Rate | 80.00% |
+| Citation Source Field Completeness Rate | 100.00% |
+| Unsupported Claim Count | 6 |
+| Citation Evaluable Case Count | 30 |
+| Unsupported Claim Rate | 20.00% |
 
 ### Isolation
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| Cross-Organization Leakage Rate | 0.00% | P1 strict leakage cases | Phase 40 P1 strict holdout |
-| Authorized Evidence Recall@8 | 100.00% | P1 strict leakage cases | Phase 40 P1 strict holdout |
-| Cross-Organization Runnable Case Count | 18 | P1 strict leakage cases | Phase 40 P1 strict holdout |
-| P1 Holdout Validation | true | P1 strict holdout validation | Phase 40 P1 strict holdout |
+| Metric | Value |
+|---|---:|
+| Cross-Organization Leakage Rate | 0.00% |
+| Authorized Evidence Recall@8 | 100.00% |
+| Cross-Organization Runnable Case Count | 18 |
+| P1 Holdout Validation | true |
 
 ### Reviewer
 No current output was found for this group.
 
 ### Workflow
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| Intake Fixture Case Count | 36 | Phase 40 P03 intake contract | Phase 40 P03 intake contract |
-| Intake Routing Accuracy | 100.00% | Phase 40 P03 intake contract | Phase 40 P03 intake contract |
-| Question Budget Accuracy | 100.00% | Phase 40 P03 intake contract | Phase 40 P03 intake contract |
-| Remaining Intake Discrepancy Count | 0 | Phase 40 P03 intake contract | Phase 40 P03 intake contract |
+| Metric | Value |
+|---|---:|
+| Intake Fixture Case Count | 36 |
+| Intake Routing Accuracy | 100.00% |
+| Question Budget Accuracy | 100.00% |
+| Remaining Intake Discrepancy Count | 0 |
 
 ### E2E
-| Metric | Value | Scope | Source |
-|---|---:|---|---|
-| Total Eval Cases | 5 | Existing eval baseline cases | Eval baseline |
-| Passed Cases | 5 | Existing eval baseline cases | Eval baseline |
-| Failed Cases | 0 | Existing eval baseline cases | Eval baseline |
-| End-to-End Task Success Rate | 100.00% | Existing eval baseline cases | Eval baseline |
+| Metric | Value |
+|---|---:|
+| Total Eval Cases | 5 |
+| Passed Cases | 5 |
+| Failed Cases | 0 |
+| End-to-End Task Success Rate | 100.00% |
 
-## All Existing Source Metrics
+## All Existing Report Metrics
 
 ### Eval baseline
-Source: `api/reports/eval-baseline.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | cases.count | 5 |
 | failure_count | 0 |
 | passed | true |
 
 ### Historical Phase 10 automatic report
-Source: `api/reports/phase10-auto-eval.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | automatic_eval.case_count | 3 |
 | automatic_eval.context_recall_at_3 | 66.67% |
@@ -140,9 +136,7 @@ Source: `api/reports/phase10-auto-eval.json`
 | workflow_and_agents.sequential.workflow_task_success_rate | 100.00% |
 
 ### Historical Phase 10 reference report
-Source: `api/reports/phase10-eval.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | comparison.architectures.langgraph_single.run_count | 0 |
 | comparison.architectures.multi_agent.average_end_to_end_ms | 45.23 |
@@ -166,9 +160,7 @@ Source: `api/reports/phase10-eval.json`
 | workflow_and_agents.sequential.run_count | 0 |
 
 ### Phase 40 P03 intake contract
-Source: `api/reports/phase40_p03_intake_eval.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | diagnostics.count | 36 |
 | question_budget_accuracy | 100.00% |
@@ -176,9 +168,7 @@ Source: `api/reports/phase40_p03_intake_eval.json`
 | routing_accuracy | 100.00% |
 
 ### Phase 40 P0v5 formal report
-Source: `api/reports/phase40_p0v5_eval/phase11-formal-eval.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | citation_metrics.citation_entailment_rate | 80.00% |
 | citation_metrics.citation_entailment_status | measured_developer_initial_review |
@@ -224,9 +214,7 @@ Source: `api/reports/phase40_p0v5_eval/phase11-formal-eval.json`
 | user_evidence_rag.cross_organization_runnable_case_count | 0 |
 
 ### Phase 40 P1 strict holdout
-Source: `api/reports/phase40_p1_holdout_eval/phase40-p1-formal-eval.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | citation_metrics.citation_entailment_rate | 80.00% |
 | citation_metrics.citation_entailment_status | measured_developer_initial_review |
@@ -279,17 +267,13 @@ Source: `api/reports/phase40_p1_holdout_eval/phase40-p1-formal-eval.json`
 | user_evidence_rag.cross_organization_runnable_case_count | 18 |
 
 ### RAG initial candidates
-Source: `api/reports/rag-initial-candidates.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | question_count | 15 |
 | results.count | 15 |
 
 ### Historical RAG judge sample
-Source: `api/reports/rag-judge-sample.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | complete | true |
 | complete_answer_rate | 86.67% |
@@ -298,9 +282,7 @@ Source: `api/reports/rag-judge-sample.json`
 | target_sample_size | 30 |
 
 ### RAG regression
-Source: `api/reports/rag-regression.json`
-
-| Source field | Value |
+| Metric field | Value |
 |---|---:|
 | case_count | 150 |
 | metrics.average_elapsed_ms | 190.54 |

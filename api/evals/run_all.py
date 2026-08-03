@@ -40,12 +40,11 @@ METADATA_PREFIXES = (
     'fixture',
 )
 KEY_METRIC_IDS = (
-    'e2e.task_success_rate',
-    'grounding.claim_support_rate',
-    'grounding.unsupported_claim_rate',
-    'isolation.cross_organization_leakage_rate',
-    'reviewer.risk_recall',
+    'workflow.routing_accuracy',
     'retrieval.recall_at_5',
+    'retrieval.dual_domain.joint_recall',
+    'grounding.claim_support_rate',
+    'isolation.cross_organization_leakage_rate',
 )
 KNOWN_GAPS = [
     {
@@ -374,40 +373,64 @@ def format_value(value: Any, metric_id: str = '') -> str:
     return str(value)
 
 
-def append_normalized_table(lines: list[str], metrics: list[dict[str, Any]]) -> None:
+def append_normalized_table(
+    lines: list[str],
+    metrics: list[dict[str, Any]],
+    include_metadata: bool,
+) -> None:
     if not metrics:
         lines.append('No current output was found for this group.')
         return
-    lines.extend(['| Metric | Value | Scope | Source |', '|---|---:|---|---|'])
+    if include_metadata:
+        lines.extend(['| Metric | Value | Scope | Source |', '|---|---:|---|---|'])
+        for metric in metrics:
+            lines.append('| {label} | {value} | {scope} | {source} |'.format(
+                label=metric['label'],
+                value=format_value(metric['value'], metric['id']),
+                scope=metric['scope'],
+                source=SOURCE_LABELS[metric['source']],
+            ))
+        return
+    lines.extend(['| Metric | Value |', '|---|---:|'])
     for metric in metrics:
-        lines.append('| {label} | {value} | {scope} | {source} |'.format(
+        lines.append('| {label} | {value} |'.format(
             label=metric['label'],
             value=format_value(metric['value'], metric['id']),
-            scope=metric['scope'],
-            source=SOURCE_LABELS[metric['source']],
         ))
 
 
-def write_summary_markdown(summary: dict[str, Any], output_path: Path) -> None:
+def write_summary_markdown(
+    summary: dict[str, Any],
+    output_path: Path,
+    include_metadata: bool = False,
+) -> None:
+    all_metrics_heading = (
+        '## All Existing Source Metrics'
+        if include_metadata
+        else '## All Existing Report Metrics'
+    )
     lines = [
         '# FoundationPal Agent Evaluation Summary',
         '',
         'This read-only summary loads committed result files. Key metrics appear first; '
-        'all current source-report metrics remain below with their original field names.',
+        'all current report metrics remain below with their original field names.',
         '',
         '## Key Metrics',
     ]
-    append_normalized_table(lines, summary['key_metrics'])
+    append_normalized_table(lines, summary['key_metrics'], include_metadata)
     lines.extend(['', '## Normalized Metrics'])
     for group in ('retrieval', 'grounding', 'isolation', 'reviewer', 'workflow', 'e2e'):
         lines.extend(['', '### ' + group.replace('_', ' ').title()])
-        append_normalized_table(lines, summary['metrics'][group])
+        append_normalized_table(lines, summary['metrics'][group], include_metadata)
 
-    lines.extend(['', '## All Existing Source Metrics'])
+    lines.extend(['', all_metrics_heading])
     for name, metrics in summary['source_report_metrics'].items():
         lines.extend(['', f'### {SOURCE_LABELS[name]}'])
-        lines.append(f'Source: `{RESULT_FILES[name].as_posix()}`')
-        lines.extend(['', '| Source field | Value |', '|---|---:|'])
+        if include_metadata:
+            lines.append(f'Source: `{RESULT_FILES[name].as_posix()}`')
+            lines.extend(['', '| Source field | Value |', '|---|---:|'])
+        else:
+            lines.extend(['| Metric field | Value |', '|---|---:|'])
         for metric in metrics:
             lines.append('| {field} | {value} |'.format(
                 field=metric['field'],
@@ -437,8 +460,14 @@ def main() -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     write_summary_json(summary, output_dir / 'summary.json')
     write_summary_markdown(summary, output_dir / 'summary.md')
+    write_summary_markdown(
+        summary,
+        output_dir / 'summary.local.md',
+        include_metadata=True,
+    )
     print(f'Wrote {output_dir.relative_to(PROJECT_ROOT).as_posix()}/summary.json')
     print(f'Wrote {output_dir.relative_to(PROJECT_ROOT).as_posix()}/summary.md')
+    print(f'Wrote {output_dir.relative_to(PROJECT_ROOT).as_posix()}/summary.local.md')
     return summary
 
 

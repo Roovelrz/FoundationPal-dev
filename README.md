@@ -49,17 +49,17 @@ The read-only Agent Evaluation Suite aggregates committed Retrieval, Grounding, 
 
 ## Evaluation Results
 
-Current key metrics are shown in priority order. They retain the scope of their source reports.
+Current key metrics are shown in priority order. The complete generated summary retains all existing report metrics.
 
-| Metric | Value | Scope |
-|---|---:|---|
-| End-to-End Task Success Rate | 100.00% | Existing five-case E2E baseline |
-| Claim Support Rate | 80.00% | P1 strict citation labels, 30 cases |
-| Unsupported Claim Rate | 20.00% | P1 strict citation labels, 6 of 30 cases |
-| Cross-Organization Leakage Rate | 0.00% | P1 strict leakage cases, 18 cases |
-| Rule Final Recall@5 | 84.42% | P1 strict rule retrieval, 154 cases |
+| Metric | Value |
+|---|---:|
+| Intake Routing Accuracy | 100.00% |
+| Rule Final Recall@5 | 84.42% |
+| Dual-Domain Joint Recall | 72.22% |
+| Claim Support Rate | 80.00% |
+| Cross-Organization Leakage Rate | 0.00% |
 
-Reviewer Risk Recall is not shown because no committed result currently reports that metric. The strict P1 values are limited to current same-lineage source coverage under an eight-item context budget, not independent-source generalization. [All existing report metrics and coverage](api/evals/reports/summary.md) remain in the generated summary.
+End-to-End and Unsupported Claim metrics remain in the complete report instead of the project-facing priority set. The strict P1 values are limited to current same-lineage source coverage under an eight-item context budget, not independent-source generalization. [All existing report metrics and coverage](api/evals/reports/summary.md) remain in the generated summary.
 
 
 ---

@@ -28,6 +28,9 @@ htmlcov/
 .pytest_cache/
 .ruff_cache/
 
+# Local detailed evaluation presentation
+api/evals/reports/summary.local.md
+
 # Type checker / misc caches
 *.mypy_cache/
 *.pytype/
