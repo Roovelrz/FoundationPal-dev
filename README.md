@@ -1,10 +1,9 @@
 
 
-<!-- User-facing product README -->
 
-# ForGranted (codename: FoundationPal)
+#  FoundationPal
 
-AI-assisted grant proposal writing for organizations that can't afford a full-time grant writer.
+
 
 ## 工程演示入口
 
