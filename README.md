@@ -1,9 +1,4 @@
-[[AI_CONFIG]]
-FILE_TYPE: 'MARKETING_README'
-INTENDED_READER: 'NON_TECHNICAL_PUBLIC'
-PURPOSE: ['Provide an overview of the application', 'Highlight key features and technologies', 'Guide users to relevant documentation', 'Facilitate understanding for non-technical stakeholders']
-PRIORITY: 'HIGH'
-[[/AI_CONFIG]]
+
 
 <!-- User-facing product README -->
 
