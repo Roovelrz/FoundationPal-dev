@@ -3,20 +3,31 @@
 from __future__ import annotations
 
 from typing import Any, TypedDict
+from uuid import UUID
 
+from django.conf import settings
+from django.contrib.auth import get_user_model
 from langgraph.graph import END, START, StateGraph
 
 from proposals.models import Proposal
 
 from .section_pipeline import get_section
 from .agent_boundaries import supervisor_next_agent, validate_agent_result
-from .services import ServiceError, finalize_service, plan_service, promote_service, review_service, write_service
+from .hitl import start_human_task
+from .models import HumanApprovalTask, WorkflowRun
+from .providers import get_provider
+from .providers.base import normalize_application_system
+from .services import ServiceError, finalize_service, plan_service, promote_service
+from .tools import execute_tool
+from .workflow import resolve_run_id
 
 
 class ProposalWorkflowState(TypedDict, total=False):
     run_id: str
     thread_id: str
     organization_id: str
+    application_system: str
+    actor_id: int
     proposal_id: int
     section_key: str
     plan: list[dict[str, Any]]
@@ -86,6 +97,91 @@ def _failure(state: ProposalWorkflowState, node: str, error: Exception) -> dict[
     return update
 
 
+def _create_section_approval_task(state: ProposalWorkflowState, section) -> None:
+    try:
+        run_id = UUID(str(state.get('run_id')))
+    except (TypeError, ValueError):
+        return
+    workflow_run = WorkflowRun.objects.filter(run_id=run_id).first()
+    if workflow_run is None:
+        return
+    review = state.get('review') or {}
+    changes = review.get('required_changes') if isinstance(review.get('required_changes'), list) else []
+    review_decision = review.get('decision') or 'human_review'
+    review_summary = f'审查结论：{review_decision}'
+    if changes:
+        review_summary += '；修改要点：' + '；'.join(str(item)[:200] for item in changes[:3])
+    task, created = HumanApprovalTask.objects.get_or_create(
+        thread_id=f'{workflow_run.run_id}:section_approval',
+        defaults={
+            'workflow_run': workflow_run,
+            'proposal_id': section.proposal_id,
+            'node': 'section_approval',
+            'input_json': {
+                'section_key': section.key,
+                'section_title': section.title,
+                'draft_summary': (section.draft_content or section.approved_content or '').strip()[:500],
+            },
+            'model_output_json': {'review_summary': review_summary},
+        },
+    )
+    if created:
+        start_human_task({
+            'thread_id': task.thread_id,
+            'human_node': task.node,
+            'human_input': task.input_json,
+            'model_output': task.model_output_json,
+        })
+
+
+def _tool_caller(state: ProposalWorkflowState, proposal: Proposal):
+    actor_id = state.get('actor_id')
+    if actor_id:
+        actor = get_user_model().objects.filter(id=actor_id).first()
+        if actor is not None:
+            return actor
+    return proposal.author
+
+
+def _execute_agent_tool(state: ProposalWorkflowState, *, caller_role: str, tool_name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+    proposal = Proposal.objects.select_related('author').filter(id=state['proposal_id']).first()
+    if proposal is None:
+        raise ServiceError('proposal_not_found')
+    result = execute_tool(
+        schema_version='v1',
+        tool_name=tool_name,
+        arguments=arguments,
+        caller_role=caller_role,
+        caller=_tool_caller(state, proposal),
+        organization_id=str(proposal.org_id),
+        run_id=str(state.get('run_id') or ''),
+    )
+    if not result.success:
+        raise ServiceError(result.error.error_code if result.error else 'tool_execution_failed')
+    return result.data
+
+
+def _ensure_run_context(state: ProposalWorkflowState) -> ProposalWorkflowState:
+    proposal = Proposal.objects.filter(id=state.get('proposal_id')).only('id', 'org_id', 'author_id', 'content').first()
+    if proposal is None:
+        return state
+    content = proposal.content or {}
+    meta = content.get('meta') if isinstance(content, dict) else {}
+    application_system = normalize_application_system(meta.get('application_system') if isinstance(meta, dict) else None)
+    run_id = resolve_run_id(
+        state.get('run_id'),
+        proposal_id=proposal.id,
+        org_id=str(proposal.org_id),
+    )
+    return {
+        **state,
+        'run_id': str(run_id),
+        'organization_id': str(proposal.org_id),
+        'actor_id': state.get('actor_id') or proposal.author_id,
+        'application_system': application_system,
+    }
+
+
 def planner_node(state: ProposalWorkflowState) -> dict[str, Any]:
     if _completed(state, 'planner'):
         return _append_trace(state, 'planner', 'skipped')
@@ -110,12 +206,40 @@ def writer_node(state: ProposalWorkflowState) -> dict[str, Any]:
     if _completed(state, node):
         return _append_trace(state, node, 'skipped')
     try:
+        run_key = state.get('run_id') or ''
         _, handoff = validate_agent_result('writer', state)
         section = get_section(state['section_key'], proposal_id=state['proposal_id'])
         if section is None:
             raise ServiceError('section_not_found')
-        write_service(section=section, draft_markdown=state.get('draft') or '', answers=state.get('answers') or {})
-        return _success(state, node, handoffs=[*(state.get('handoffs') or []), handoff])
+        draft = state.get('draft') or ''
+        if attempt:
+            review = state.get('review') or {}
+            changes = review.get('required_changes') if isinstance(review.get('required_changes'), list) else []
+            change_request = '\n'.join(str(change) for change in changes if str(change).strip())
+            if not change_request:
+                change_request = '根据评审意见修订本章草稿。'
+            result = get_provider(getattr(settings, 'AI_PROVIDER', None)).revise(
+                base_text=draft,
+                change_request=change_request,
+                deterministic=bool(getattr(settings, 'AI_DETERMINISTIC_SAMPLING', True)),
+                application_system=normalize_application_system(state.get('application_system')),
+            )
+            draft = result.text.strip()
+            if not draft:
+                raise ServiceError('revision_empty')
+        _execute_agent_tool(
+            state,
+            caller_role='writer',
+            tool_name='save_section_draft',
+            arguments={
+                'proposal_id': state['proposal_id'],
+                'section_id': section.key,
+                'draft_markdown': draft,
+                'answers': state.get('answers') or {},
+                'idempotency_key': f'{run_key}:{node}:save_section_draft',
+            },
+        )
+        return _success(state, node, draft=draft, handoffs=[*(state.get('handoffs') or []), handoff])
     except Exception as error:
         return _failure(state, 'writer', error)
 
@@ -126,9 +250,21 @@ def reviewer_node(state: ProposalWorkflowState) -> dict[str, Any]:
     if _completed(state, node):
         return _append_trace(state, node, 'skipped')
     try:
+        run_key = state.get('run_id') or ''
         queue = list(state.get('review_queue') or [])
         raw_review = queue.pop(0) if queue else state.get('review') or {}
-        review = review_service(raw_review)
+        review_data = _execute_agent_tool(
+            state,
+            caller_role='reviewer',
+            tool_name='submit_review',
+            arguments={
+                'proposal_id': state['proposal_id'],
+                'section_id': state['section_key'],
+                'review': raw_review,
+                'idempotency_key': f'{run_key}:{node}:submit_review',
+            },
+        )
+        review = review_data['review']
         _, handoff = validate_agent_result('reviewer', {**state, 'review': review})
         revision_count = attempt + 1 if review['decision'] == 'rewrite' else attempt
         return _success(
@@ -154,6 +290,13 @@ def human_node(state: ProposalWorkflowState) -> dict[str, Any]:
             return _success(state, 'human', final_markdown=finalize_service(proposal=proposal), status='completed')
         except Exception as error:
             return _failure(state, 'human', error)
+    try:
+        section = get_section(state['section_key'], proposal_id=state['proposal_id'])
+        if section is None:
+            raise ServiceError('section_not_found')
+        _create_section_approval_task(state, section)
+    except Exception as error:
+        return _failure(state, 'human', error)
     return _success(state, 'human', status='awaiting_human_approval')
 
 
@@ -218,7 +361,7 @@ proposal_graph = build_proposal_graph()
 
 
 def run_proposal_graph(state: ProposalWorkflowState) -> ProposalWorkflowState:
-    initial: ProposalWorkflowState = {
+    initial = _ensure_run_context({
         'revision_count': 0,
         'max_revisions': 2,
         'max_node_retries': 1,
@@ -230,5 +373,5 @@ def run_proposal_graph(state: ProposalWorkflowState) -> ProposalWorkflowState:
         'node_retry_count': {},
         'handoffs': [],
         **state,
-    }
+    })
     return proposal_graph.invoke(initial, config={'recursion_limit': 30})

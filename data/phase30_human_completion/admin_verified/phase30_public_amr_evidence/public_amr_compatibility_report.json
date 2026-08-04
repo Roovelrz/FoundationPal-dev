@@ -1,0 +1,126 @@
+{
+  "report_type": "public_amr_evidence_replacement_compatibility",
+  "generated_at": "2026-07-28T18:00:14+08:00",
+  "ingestion_ready": true,
+  "source_authenticity_verified": true,
+  "ownership_attribution_verified": true,
+  "existing_02_citation_entailment_reusable": false,
+  "existing_04_dual_domain_gold_reusable": false,
+  "reason": "原01中的事实语义已由开发构造业务事实替换为公开AMR论文事实，原Claim、标签、用户事实Gold和联合答案不再具备语义蕴含关系。",
+  "required_followup_actions": [
+    "重新从18篇公开论文生成Claim集合。",
+    "重新执行Citation entailment标注。",
+    "重新构建与AMR论文事实匹配的双域问题和Gold。",
+    "不得将论文作者的成果归属于申请人或组织。"
+  ],
+  "legacy_to_public_mapping": [
+    {
+      "legacy_external_id": "UE-P11-AMR-DATA-001",
+      "case_id": "new_user_evidence:027",
+      "public_evidence_id": "UE-PUBLIC-AMR-001",
+      "title": "Joint Signal Detection and Automatic Modulation Classification via Deep Learning"
+    },
+    {
+      "legacy_external_id": "UE-P11-AMR-EXP-001",
+      "case_id": "new_user_evidence:015",
+      "public_evidence_id": "UE-PUBLIC-AMR-002",
+      "title": "Data Augmentation for Deep Learning-based Radio Modulation Classification"
+    },
+    {
+      "legacy_external_id": "UE-P11-AMR-EXP-002",
+      "case_id": "new_user_evidence:016",
+      "public_evidence_id": "UE-PUBLIC-AMR-003",
+      "title": "High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification"
+    },
+    {
+      "legacy_external_id": "UE-P11-AMR-PROJ-004",
+      "case_id": "new_user_evidence:011",
+      "public_evidence_id": "UE-PUBLIC-AMR-004",
+      "title": "Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers"
+    },
+    {
+      "legacy_external_id": "UE-P11-AMR-PUB-002",
+      "case_id": "new_user_evidence:002",
+      "public_evidence_id": "UE-PUBLIC-AMR-005",
+      "title": "Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems"
+    },
+    {
+      "legacy_external_id": "UE-P11-AMR-PUB-003",
+      "case_id": "new_user_evidence:003",
+      "public_evidence_id": "UE-PUBLIC-AMR-006",
+      "title": "Fast Deep Learning for Automatic Modulation Classification"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-DATA-001",
+      "case_id": "new_user_evidence:028",
+      "public_evidence_id": "UE-PUBLIC-AMR-007",
+      "title": "A Light Neural Network for Modulation Detection under Impairments"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-DATA-002",
+      "case_id": "new_user_evidence:029",
+      "public_evidence_id": "UE-PUBLIC-AMR-008",
+      "title": "Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-EVAL-002",
+      "case_id": "new_user_evidence:019",
+      "public_evidence_id": "UE-PUBLIC-AMR-009",
+      "title": "Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-EVAL-003",
+      "case_id": "new_user_evidence:020",
+      "public_evidence_id": "UE-PUBLIC-AMR-010",
+      "title": "Using Early Exits for Fast Inference in Automatic Modulation Classification"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-EVAL-004",
+      "case_id": "new_user_evidence:021",
+      "public_evidence_id": "UE-PUBLIC-AMR-011",
+      "title": "Automatic Modulation Classification with Deep Neural Networks"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-EVAL-005",
+      "case_id": "new_user_evidence:022",
+      "public_evidence_id": "UE-PUBLIC-AMR-012",
+      "title": "On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-IP-002",
+      "case_id": "new_user_evidence:007",
+      "public_evidence_id": "UE-PUBLIC-AMR-013",
+      "title": "Visualizing Deep Learning-based Radio Modulation Classifier"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-PLAN-001",
+      "case_id": "new_user_evidence:031",
+      "public_evidence_id": "UE-PUBLIC-AMR-014",
+      "title": "FSOS-AMC: Few-Shot Open-Set Learning for Automatic Modulation Classification Over Multipath Fading Channels"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-PLAN-002",
+      "case_id": "new_user_evidence:032",
+      "public_evidence_id": "UE-PUBLIC-AMR-015",
+      "title": "MCLRL: A Multi-Domain Contrastive Learning with Reinforcement Learning Framework for Few-Shot Modulation Recognition"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-PROJ-002",
+      "case_id": "new_user_evidence:013",
+      "public_evidence_id": "UE-PUBLIC-AMR-016",
+      "title": "NMformer: A Transformer for Noisy Modulation Classification in Wireless Communication"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-WF-001",
+      "case_id": "new_user_evidence:033",
+      "public_evidence_id": "UE-PUBLIC-AMR-017",
+      "title": "Meta-Learning Guided Label Noise Distillation for Robust Signal Modulation Classification"
+    },
+    {
+      "legacy_external_id": "UE-P11-GRANT-WF-002",
+      "case_id": "new_user_evidence:034",
+      "public_evidence_id": "UE-PUBLIC-AMR-018",
+      "title": "A Lightweight Deep Learning Model for Automatic Modulation Classification using Dual Path Deep Residual Shrinkage Network"
+    }
+  ]
+}

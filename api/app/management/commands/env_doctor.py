@@ -5,7 +5,6 @@ from django.conf import settings
 
 REQUIRED_ALWAYS = [
     'SECRET_KEY',
-    'PUBLIC_BASE_URL',
 ]
 
 # These must differ for rotation strategy
@@ -24,16 +23,6 @@ GROUPS = {
             'CELERY_RESULT_BACKEND',
         ],
     },
-    'stripe': {
-        'vars': ['STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET'],
-        'any_required': [
-            'PRICE_PRO_MONTHLY',
-            'PRICE_PRO_YEARLY',
-            'PRICE_BUNDLE_1',
-            'PRICE_BUNDLE_10',
-            'PRICE_BUNDLE_25',
-        ],
-    },
     'openai': {
         'vars': ['OPENAI_API_KEY'],
         'when': [('AI_PROVIDER', lambda v: v and 'openai' in v)],
@@ -49,7 +38,7 @@ SECURITY_INVARIANTS = [
     ('CORS_ALLOW_ALL', lambda v: v in {'', '0', 'False', 'false', None}, 'CORS_ALLOW_ALL must be 0/empty in production'),
 ]
 
-URL_MUST_BE_HTTPS = ['PUBLIC_BASE_URL']
+URL_MUST_BE_HTTPS = []
 
 
 class Command(BaseCommand):
@@ -106,11 +95,6 @@ class Command(BaseCommand):
                 for trigger in spec.get('require_if', []):
                     if get(trigger) and not all(get(rv) for rv in required_vars):
                         errors.append(f"{trigger} is set but required group '{key}' vars missing")
-                # If any price set then require stripe secrets
-                if key == 'stripe':
-                    if any(get(v) for v in spec.get('any_required', [])):
-                        if not all(get(v) for v in spec['vars']):
-                            errors.append('Stripe price vars set but STRIPE_SECRET_KEY/STRIPE_WEBHOOK_SECRET missing')
         else:
             # In debug we downgrade missing conditional vars to warnings
             for key, spec in GROUPS.items():

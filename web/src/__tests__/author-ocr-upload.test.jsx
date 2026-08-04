@@ -20,11 +20,10 @@ function mockFetch(routes) {
 describe('Authoring OCR upload', () => {
   it('shows OCR preview after uploading a file and sends file_refs on write', async () => {
     const token = 't'
-    const proposal = { id: 1, content: { meta: { title: 'T' }, sections: {} }, schema_version: 'v1', state: 'draft' }
+    const proposal = { id: 1, content: { meta: { title: 'T', user_setup: { ready: true }, intake_snapshot: { task_mode: 'plan_from_scratch', quality_level: 'quick' } }, sections: {} }, schema_version: 'v1', state: 'draft' }
     const serverState = { proposal: JSON.parse(JSON.stringify(proposal)) }
     const routes = {
       'GET /proposals/': async () => ({ body: [serverState.proposal] }),
-      'GET /usage': async () => ({ body: { tier: 'pro', status: 'active' } }),
       'POST /ai/plan': async ({ body }) => {
         expect(body.proposal_id).toBe(1)
         return { body: { schema_version: 'v1', sections: [ { id: 'summary', title: 'Executive Summary', inputs: [] } ] } }
@@ -51,7 +50,7 @@ describe('Authoring OCR upload', () => {
     fireEvent.click(await screen.findByRole('button', { name: '生成章节规划' }))
     await screen.findByText(/第 1 章，共 1 章/i)
 
-    const fileInput = await screen.findByLabelText(/上传本章参考材料/i)
+    const fileInput = await screen.findByLabelText(/上传本章补充材料/i)
     const file = new File([new Uint8Array([0x25,0x50,0x44,0x46])], 'sample.pdf', { type: 'application/pdf' })
     await waitFor(() => {
       fireEvent.change(fileInput, { target: { files: [file] } })

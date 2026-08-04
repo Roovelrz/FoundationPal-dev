@@ -24,7 +24,7 @@ describe('Export after final-formatting', () => {
     const proposal = {
       id: 7,
       content: {
-        meta: { title: 'Complete Draft' },
+        meta: { title: 'Complete Draft', user_setup: { ready: true }, intake_snapshot: { task_mode: 'plan_from_scratch', quality_level: 'quick' } },
         sections: {
           summary: { title: 'Executive Summary', content: 'S' },
           narrative: { title: 'Project Narrative', content: 'N' },
@@ -37,11 +37,40 @@ describe('Export after final-formatting', () => {
       schema_version: 'v1',
       state: 'draft',
     }
+    const fullDraft = {
+      draft_text: '# Complete Draft\n\n## Executive Summary\nS\n\n## Project Narrative\nN',
+      version: 1,
+      approval_status: 'draft',
+      section_keys: ['summary', 'narrative'],
+    }
+    let pendingTasks = []
     const routes = {
       'GET /proposals/': async () => ({ body: [proposal] }),
-      'GET /usage': async () => ({ body: { tier: 'pro', status: 'active' } }),
+      'GET /ai/human-tasks?proposal_id=7': async () => ({ body: { tasks: pendingTasks } }),
+      'GET /ai/proposals/7/full-draft': async () => ({ body: fullDraft }),
+      'PATCH /ai/proposals/7/full-draft': async ({ body }) => ({
+        body: { ...fullDraft, draft_text: body.draft_text, previous_draft: fullDraft.draft_text },
+      }),
       'POST /ai/plan': async () => ({ body: { schema_version: 'v1', sections: [ { id: 'summary', title: 'Executive Summary', inputs: [] }, { id: 'narrative', title: 'Project Narrative', inputs: [] } ] } }),
-      'POST /ai/format': async ({ body }) => ({ body: { formatted_text: `FINAL\n\n${body.full_text}` } }),
+      'POST /ai/human-tasks': async () => {
+        const task = {
+          id: 71,
+          thread_id: 'full-draft-7-1',
+          node: 'final_export_confirmation',
+          status: 'pending',
+          input: { kind: 'full_draft', draft_title: '审批后全文草稿', draft_version: 1, draft_text: fullDraft.draft_text },
+          model_output: {},
+          decision: {},
+        }
+        pendingTasks = [task]
+        return { body: task, status: 201 }
+      },
+      'POST /ai/human-tasks/71/decision': async () => {
+        fullDraft.approval_status = 'approved'
+        pendingTasks = []
+        return { body: { id: 71, status: 'approved' } }
+      },
+      'POST /ai/format': async () => ({ body: { formatted_text: 'FINAL\n\nComplete Draft' } }),
       'POST /exports': async ({ body }) => {
         expect(body).toEqual({ proposal_id: 7, format: 'pdf' })
         return { body: { id: 1, url: 'http://localhost/downloads/7.pdf' } }
@@ -60,6 +89,8 @@ describe('Export after final-formatting', () => {
     // Start plan; since sections are already approved in proposal, final-formatting should be available
     const startBtn = await screen.findByRole('button', { name: '生成章节规划' })
     fireEvent.click(startBtn)
+    fireEvent.click(await screen.findByRole('button', { name: '提交全文审批' }))
+    fireEvent.click(await screen.findByRole('button', { name: '通过全文审批' }))
     // Run final formatting
     const runBtn = await screen.findByRole('button', { name: /生成最终定稿/i })
     fireEvent.click(runBtn)

@@ -103,6 +103,38 @@ class MainWorkflowE2ETests(TestCase):
             )
         )
 
+        full_draft_response = self.api.get(
+            f'/api/ai/proposals/{proposal_id}/full-draft',
+            **self.org_header,
+        )
+        self.assertEqual(full_draft_response.status_code, 200, full_draft_response.content)
+        full_draft = full_draft_response.json()
+        full_task_response = self.api.post(
+            '/api/ai/human-tasks',
+            {
+                'proposal_id': proposal_id,
+                'node': 'final_export_confirmation',
+                'thread_id': f'full-draft-{proposal_id}-{full_draft["version"]}',
+                'input': {
+                    'kind': 'full_draft',
+                    'draft_title': '审批后全文草稿',
+                    'draft_version': full_draft['version'],
+                    'draft_text': full_draft['draft_text'],
+                },
+            },
+            format='json',
+            **self.org_header,
+        )
+        self.assertEqual(full_task_response.status_code, 201, full_task_response.content)
+        full_task = full_task_response.json()
+        full_approval_response = self.api.post(
+            f'/api/ai/human-tasks/{full_task["id"]}/decision',
+            {'thread_id': full_task['thread_id'], 'action': 'approve'},
+            format='json',
+            **self.org_header,
+        )
+        self.assertEqual(full_approval_response.status_code, 200, full_approval_response.content)
+
         format_response = self.api.post(
             '/api/ai/format',
             {'proposal_id': proposal_id, 'template_hint': 'standard'},

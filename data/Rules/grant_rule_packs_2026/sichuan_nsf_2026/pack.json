@@ -1,0 +1,320 @@
+{
+  "pack_id": "cn.sichuan.nsf.2026",
+  "program": {
+    "family": "四川省自然科学基金",
+    "year": 2026,
+    "issuer": "四川省科学技术厅",
+    "jurisdiction": "四川省",
+    "status": "closed_for_2026_application",
+    "project_start": "2026-01-01",
+    "funding_method": "前补助"
+  },
+  "version": "2026.1-research-20260727",
+  "sources": [
+    "SCNSF-2026-OFFICIAL-NOTICE",
+    "SCNSF-2026-GUIDE",
+    "SCNSF-2026-GENERAL-RULES-MIRROR",
+    "SCNSF-2026-DEADLINE-MIRROR",
+    "SCNSF-2026-SWUN-QUOTA"
+  ],
+  "category_profiles": [
+    {
+      "code": "major",
+      "name": "重大项目",
+      "amount_cny": 1000000,
+      "max_duration_years": 3,
+      "unit_quota_rule": "每单位牵头不超过1项，特定全国重点实验室可额外1项"
+    },
+    {
+      "code": "key",
+      "name": "重点项目",
+      "amount_cny": 400000,
+      "max_duration_years": 3,
+      "unit_quota_rule": "按名额表"
+    },
+    {
+      "code": "general",
+      "name": "面上项目",
+      "amount_cny": 200000,
+      "max_duration_years": 2,
+      "unit_quota_rule": "按名额表"
+    },
+    {
+      "code": "group",
+      "name": "创新研究群体项目",
+      "amount_cny": 600000,
+      "max_duration_years": 3,
+      "unit_quota_rule": "按名额表"
+    },
+    {
+      "code": "youth_a",
+      "name": "青年科学基金A类项目",
+      "amount_cny": 400000,
+      "max_duration_years": 3,
+      "unit_quota_rule": "按名额表"
+    },
+    {
+      "code": "youth_b",
+      "name": "青年科学基金B类项目",
+      "amount_cny": 100000,
+      "max_duration_years": 2,
+      "unit_quota_rule": "单位申报数量不作限制"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "SCNSF-COMMON-001",
+      "type": "organization",
+      "severity": "blocking",
+      "rule": "牵头单位应符合四川省科技计划申报单位范围并具有独立法人资格。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-002",
+      "type": "applicant",
+      "severity": "blocking",
+      "rule": "项目负责人应为实际主持项目研究、提出主体研究思路的科技人员，原则上为牵头单位人员。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-003",
+      "type": "limit",
+      "severity": "blocking",
+      "rule": "同一年度同一申报人新申报项目总数不得超过2项，其中作为负责人牵头申报限1项；承担在研省级科技计划项目或处于限制申报期的负责人不得再牵头。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-004",
+      "type": "duplicate",
+      "severity": "blocking",
+      "rule": "同一项目不得跨计划、跨专项重复申报；已有资助项目的延续或进一步探索须说明区别与联系。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-COMMON-005",
+      "type": "collaboration",
+      "severity": "conditional_blocking",
+      "rule": "多单位联合申报时须签订加盖法人单位公章的合作协议并作为附件上传。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-006",
+      "type": "foreign_applicant",
+      "severity": "conditional_blocking",
+      "rule": "在川外籍负责人项目周期应处于聘用合同期限内，并上传聘用合同扫描件。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-007",
+      "type": "ethics",
+      "severity": "conditional_blocking",
+      "rule": "涉及科研伦理、人类遗传资源等事项时，应上传相应审查或承诺材料。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-008",
+      "type": "staffing",
+      "severity": "blocking",
+      "rule": "所有项目均需配备科研助理。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-COMMON-009",
+      "type": "security",
+      "severity": "blocking",
+      "rule": "网上不受理涉密项目，系统中不得上传涉密资料。",
+      "source": "SCNSF-2026-GENERAL-RULES-MIRROR"
+    },
+    {
+      "id": "SCNSF-YA-001",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_a",
+      "rule": "负责人须具有高级职称或博士学位，并主持过省部级及以上科研项目。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YA-002",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_a",
+      "rule": "负责人不得主持过国家或四川省青年科学基金A类及其历史对应项目，不得获得规定层次的国家级人才计划资助。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YA-003",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_a",
+      "rule": "男性未满45周岁且1981年1月1日及以后出生，女性未满48周岁且1978年1月1日及以后出生。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YB-001",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_b",
+      "rule": "负责人须具有高级或副高级职称或博士学位，或者获得硕士学位满3年。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YB-002",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_b",
+      "rule": "负责人未主持过四川省自然科学基金项目，包括原应用基础自由探索类面上项目。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YB-003",
+      "type": "eligibility",
+      "severity": "blocking",
+      "category": "youth_b",
+      "rule": "男性未满35周岁且1991年1月1日及以后出生，女性未满40周岁且1986年1月1日及以后出生。",
+      "source": "SCNSF-2026-GUIDE"
+    },
+    {
+      "id": "SCNSF-YB-004",
+      "type": "direction",
+      "severity": "soft",
+      "category": "youth_b",
+      "rule": "支持青年科研工作者自主选题，鼓励前沿交叉、基础性发现和发明，鼓励探索并宽容失败。",
+      "source": "SCNSF-2026-GUIDE"
+    }
+  ],
+  "required_materials": [
+    {
+      "id": "SCNSF-MAT-001",
+      "name": "对应类别的四川省自然科学基金在线申报书",
+      "required": true,
+      "notes": "在四川省科技管理信息系统中在线填写"
+    },
+    {
+      "id": "SCNSF-MAT-002",
+      "name": "审批意见和申报人承诺页签字盖章扫描件",
+      "required": true
+    },
+    {
+      "id": "SCNSF-MAT-003",
+      "name": "证明前期研究基础及指南限制条件的支撑材料原件扫描件",
+      "required": true
+    },
+    {
+      "id": "SCNSF-MAT-004",
+      "name": "联合申报合作协议",
+      "required": "存在合作单位时"
+    },
+    {
+      "id": "SCNSF-MAT-005",
+      "name": "外籍项目负责人聘用合同",
+      "required": "外籍负责人时"
+    },
+    {
+      "id": "SCNSF-MAT-006",
+      "name": "人类遗传资源管理承诺书",
+      "required": "涉及我国人类遗传资源时"
+    },
+    {
+      "id": "SCNSF-MAT-007",
+      "name": "科研伦理审查材料",
+      "required": "涉及伦理审查时"
+    },
+    {
+      "id": "SCNSF-MAT-008",
+      "name": "指南组织单位推荐函",
+      "required": "指南明确组织单位时"
+    },
+    {
+      "id": "SCNSF-MAT-009",
+      "name": "国家青年A类进入会评未获立项证明",
+      "required": "青年A类申请人主张优先支持时"
+    },
+    {
+      "id": "SCNSF-MAT-010",
+      "name": "学历学位、职称等系统实名认证材料",
+      "required": true,
+      "notes": "系统注册和资格审核所需"
+    }
+  ],
+  "organization_overlays": {
+    "southwest_minzu_university": {
+      "organization": "西南民族大学",
+      "source": "SCNSF-2026-SWUN-QUOTA",
+      "quota": {
+        "major": 1,
+        "key": 1,
+        "general": 25,
+        "group": 2,
+        "youth_a": 5,
+        "youth_b": null
+      },
+      "quota_notes": {
+        "youth_b": "不限项",
+        "major": "按其余单位规则",
+        "key": "按其余单位规则",
+        "group": "按其余单位规则"
+      },
+      "internal_deadline": "待西南民族大学当年校内通知补充"
+    }
+  },
+  "deadlines": {
+    "provincial_system_close_candidate": "2025-10-16T06:00:00+08:00",
+    "confidence": "secondary_official_institution_mirror",
+    "instruction": "导入规则包时标记为需实时核验，不得覆盖用户所在单位更早的校内截止时间"
+  },
+  "validation_rules": [
+    {
+      "id": "SCNSF-VAL-CATEGORY",
+      "checker": "category_profile",
+      "blocking": true
+    },
+    {
+      "id": "SCNSF-VAL-AGE",
+      "checker": "date_of_birth",
+      "blocking": true,
+      "categories": [
+        "youth_a",
+        "youth_b"
+      ]
+    },
+    {
+      "id": "SCNSF-VAL-PRIOR-AWARD",
+      "checker": "prior_award",
+      "blocking": true,
+      "categories": [
+        "youth_a",
+        "youth_b"
+      ]
+    },
+    {
+      "id": "SCNSF-VAL-LIMIT",
+      "checker": "person_project_limit",
+      "blocking": true,
+      "thresholds": {
+        "new_applications": 2,
+        "as_pi": 1
+      }
+    },
+    {
+      "id": "SCNSF-VAL-QUOTA",
+      "checker": "organization_quota",
+      "blocking": true
+    },
+    {
+      "id": "SCNSF-VAL-COLLAB",
+      "checker": "cooperation_agreement",
+      "blocking": true,
+      "conditional": true
+    },
+    {
+      "id": "SCNSF-VAL-ATTACHMENTS",
+      "checker": "supporting_materials",
+      "blocking": true
+    }
+  ],
+  "unresolved_items": [
+    "各类别正式申报书字段仅在四川省科技管理信息系统中提供，应要求用户上传系统导出的模板或空白申报书。",
+    "申报系统关闭时间来自高校官方通知镜像，正式使用前应再次核验四川省科技厅系统。",
+    "每所依托单位存在独立校内截止时间、评审和限额分配流程，应使用组织补充包覆盖。"
+  ]
+}

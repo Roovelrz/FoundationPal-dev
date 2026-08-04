@@ -35,6 +35,43 @@ export function safeOpenExternal(u, allowedOrigins = []) {
   } catch { return false }
 }
 
+export async function downloadExport(path, { token, orgId } = {}) {
+  const apiOrigin = new URL(apiBase, window.location.origin).origin
+  const target = new URL(path, apiOrigin)
+  if (target.origin !== apiOrigin) throw new Error('download_origin_not_allowed')
+  const request = async (access) => fetch(target.toString(), {
+    headers: {
+      ...(access ? { Authorization: `Bearer ${access}` } : {}),
+      ...(orgId ? { 'X-Org-ID': orgId } : {}),
+    },
+  })
+  let response = await request(storedValue('jwt') || token || '')
+  if (response.status === 401) {
+    const refreshedAccess = await refreshAccessToken()
+    if (refreshedAccess) response = await request(refreshedAccess)
+  }
+  if (!response.ok) {
+    const error = new Error(`${response.status}`)
+    error.status = response.status
+    throw error
+  }
+  const blob = await response.blob()
+  const disposition = response.headers.get('content-disposition') || ''
+  const match = disposition.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i)
+  let filename = '基金申请书'
+  if (match?.[1]) {
+    try { filename = decodeURIComponent(match[1]) } catch { filename = match[1] }
+  }
+  const objectUrl = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = objectUrl
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0)
+}
+
 // Open local debug URLs safely (same-origin or localhost-only)
 export function openDebugLocal(u) {
   try {
@@ -66,25 +103,84 @@ export function sanitizeNext(dest) {
   }
 }
 
-export async function api(path, { method = 'GET', token, body, orgId } = {}) {
-  const res = await fetch(`${apiBase}${path}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(orgId ? { 'X-Org-ID': orgId } : {}),
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  })
-  let data = null
-  try { data = await res.json() } catch {}
-  if (!res.ok) {
-    const err = new Error(`${res.status}`)
-    err.status = res.status
-    err.data = data
+let refreshInFlight = null
+
+function storedValue(key) {
+  try { return localStorage.getItem(key) || '' } catch { return '' }
+}
+
+function setStoredValue(key, value) {
+  try {
+    if (value) localStorage.setItem(key, value)
+    else localStorage.removeItem(key)
+  } catch {}
+}
+
+function notifyToken(access) {
+  try {
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+      window.dispatchEvent(new CustomEvent('foundationpal:token-refreshed', { detail: { access } }))
+    }
+  } catch {}
+}
+
+async function refreshAccessToken() {
+  if (refreshInFlight) return refreshInFlight
+  const refresh = storedValue('jwt_refresh')
+  if (!refresh) return ''
+  refreshInFlight = (async () => {
+    const res = await fetch(`${apiBase}/token/refresh`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh }),
+    })
+    let data = null
+    try { data = await res.json() } catch {}
+    if (!res.ok || !data?.access) {
+      setStoredValue('jwt', '')
+      setStoredValue('jwt_refresh', '')
+      notifyToken('')
+      return ''
+    }
+    setStoredValue('jwt', data.access)
+    if (data.refresh) setStoredValue('jwt_refresh', data.refresh)
+    notifyToken(data.access)
+    return data.access
+  })().finally(() => { refreshInFlight = null })
+  return refreshInFlight
+}
+
+async function requestJson(path, { method, token, body, orgId, multipart = false }) {
+  const send = async (access) => {
+    const res = await fetch(`${apiBase}${path}`, {
+      method,
+      headers: {
+        ...(multipart ? {} : { 'Content-Type': 'application/json' }),
+        ...(access ? { Authorization: `Bearer ${access}` } : {}),
+        ...(orgId ? { 'X-Org-ID': orgId } : {}),
+      },
+      body: body === undefined ? undefined : (multipart ? body : JSON.stringify(body)),
+    })
+    let data = null
+    try { data = await res.json() } catch {}
+    return { res, data }
+  }
+  let result = await send(storedValue('jwt') || token || '')
+  if (result.res.status === 401 && path !== '/token/refresh') {
+    const refreshedAccess = await refreshAccessToken()
+    if (refreshedAccess) result = await send(refreshedAccess)
+  }
+  if (!result.res.ok) {
+    const err = new Error(`${result.res.status}`)
+    err.status = result.res.status
+    err.data = result.data
     throw err
   }
-  return data
+  return result.data
+}
+
+export async function api(path, { method = 'GET', token, body, orgId } = {}) {
+  return requestJson(path, { method, token, body, orgId })
 }
 
 export async function apiMaybeAsync(path, { method = 'POST', token, body, orgId } = {}) {
@@ -105,24 +201,11 @@ export async function apiMaybeAsync(path, { method = 'POST', token, body, orgId 
 }
 
 // Multipart upload helper for files (no JSON headers)
-export async function apiUpload(path, { token, orgId, file }) {
+export async function apiUpload(path, { token, orgId, file, fields = {} }) {
   const fd = new FormData()
   fd.append('file', file)
-  const res = await fetch(`${apiBase}${path}`, {
-    method: 'POST',
-    headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(orgId ? { 'X-Org-ID': orgId } : {}),
-    },
-    body: fd,
+  Object.entries(fields || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') fd.append(key, String(value))
   })
-  let data = null
-  try { data = await res.json() } catch {}
-  if (!res.ok) {
-    const err = new Error(`${res.status}`)
-    err.status = res.status
-    err.data = data
-    throw err
-  }
-  return data
+  return requestJson(path, { method: 'POST', token, orgId, body: fd, multipart: true })
 }

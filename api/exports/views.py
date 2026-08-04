@@ -1,6 +1,6 @@
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-from django.urls import reverse  # noqa: F401
+from django.http import FileResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -16,6 +16,8 @@ from .utils import render_pdf_from_text, render_docx_from_markdown
 from .tasks import perform_export
 from ai.models import AIMetric
 from ai.workflow import resolve_run_id
+import mimetypes
+import re
 import time
 
 
@@ -30,6 +32,21 @@ def _accessible_proposals(request):
     if org_id and str(org_id).isdigit():
         queryset = queryset.filter(org_id=int(org_id))
     return queryset
+
+
+def _download_url(job: ExportJob) -> str:
+    return f'/api/exports/{job.id}/download'
+
+
+def _storage_path(job: ExportJob) -> str:
+    media_url = str(settings.MEDIA_URL or '/media/').rstrip('/') + '/'
+    return job.url[len(media_url):] if job.url.startswith(media_url) else ''
+
+
+def _download_filename(job: ExportJob) -> str:
+    title = str(((job.proposal.content or {}).get('meta') or {}).get('title') or '').strip()
+    safe_title = re.sub(r'[<>:"/\\|?*\x00-\x1f]', '_', title).strip(' .')
+    return f'{safe_title or "基金申请书"}.{job.format}'
 
 
 @api_view(['POST'])
@@ -56,7 +73,7 @@ def create_export(request):
     if getattr(settings, 'EXPORTS_ASYNC', False) and getattr(settings, 'CELERY_BROKER_URL', ''):
         try:
             perform_export.delay(job.id)
-            return Response({'id': job.id, 'status': job.status, 'run_id': str(run_id)})
+            return Response({'id': job.id, 'status': job.status, 'download_url': _download_url(job), 'run_id': str(run_id)})
         except Exception:
             # Fall through to sync if enqueue fails
             pass
@@ -99,7 +116,7 @@ def create_export(request):
         proposal.save(update_fields=['downloads'])
     except Exception:
         pass
-    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'checksum': job.checksum, 'run_id': str(run_id)})
+    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'download_url': _download_url(job), 'checksum': job.checksum, 'run_id': str(run_id)})
 
 
 @api_view(['GET'])
@@ -113,4 +130,28 @@ def get_export(request, job_id: int):
         )
     except ExportJob.DoesNotExist:
         return Response({'error': 'not_found'}, status=status.HTTP_404_NOT_FOUND)
-    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'format': job.format})
+    return Response({'id': job.id, 'status': job.status, 'url': job.url, 'download_url': _download_url(job), 'format': job.format})
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny if settings.DEBUG else IsAuthenticated])
+def download_export(request, job_id: int):
+    try:
+        proposal_ids = _accessible_proposals(request).values_list('id', flat=True)
+        job = ExportJob.objects.select_related('proposal').get(
+            id=job_id,
+            proposal_id__in=proposal_ids,
+            status='done',
+        )
+    except ExportJob.DoesNotExist:
+        return Response({'error': 'not_found'}, status=status.HTTP_404_NOT_FOUND)
+    path = _storage_path(job)
+    if not path or not default_storage.exists(path):
+        return Response({'error': 'export_file_not_found'}, status=status.HTTP_404_NOT_FOUND)
+    content_type = mimetypes.guess_type(_download_filename(job))[0] or 'application/octet-stream'
+    return FileResponse(
+        default_storage.open(path, 'rb'),
+        as_attachment=True,
+        filename=_download_filename(job),
+        content_type=content_type,
+    )

@@ -1,0 +1,275 @@
+{
+  "pack_id": "cn.nsfc.youth_c.2026",
+  "program": {
+    "family": "国家自然科学基金",
+    "type": "青年科学基金项目C类",
+    "year": 2026,
+    "issuer": "国家自然科学基金委员会",
+    "jurisdiction": "中国",
+    "status": "closed_for_2026_application",
+    "application_window": {
+      "start": "2026-03-01",
+      "end": "2026-03-20T16:00:00+08:00"
+    },
+    "project_start": "2027-01-01",
+    "duration_years": 3,
+    "funding_mode": "包干制",
+    "average_funding_cny": 300000
+  },
+  "version": "2026.1-research-20260727",
+  "sources": [
+    "NSFC-2026-NOTICE",
+    "NSFC-2026-REGULATIONS",
+    "NSFC-2026-YOUTH-C",
+    "NSFC-2026-REFORM"
+  ],
+  "requirements": [
+    {
+      "id": "NSFC-C-ELIG-001",
+      "type": "eligibility",
+      "severity": "blocking",
+      "rule": "申请人应具有承担基础研究课题或从事基础研究的经历。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-ELIG-002",
+      "type": "eligibility",
+      "severity": "blocking",
+      "rule": "申请人应具有高级专业技术职务或博士学位，或者取得2名同领域高级专业技术职务科研人员推荐。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-ELIG-003",
+      "type": "eligibility",
+      "severity": "blocking",
+      "rule": "男性申请人应未满35周岁且出生日期不早于1991年1月1日，女性申请人应未满40周岁且出生日期不早于1986年1月1日。",
+      "source": "NSFC-2026-YOUTH-C"
+    },
+    {
+      "id": "NSFC-C-ELIG-004",
+      "type": "eligibility",
+      "severity": "blocking",
+      "rule": "正在攻读研究生学位人员原则上不得申请。在职攻读研究生学位人员经导师同意，可通过受聘依托单位申请，并上传导师签字同意函。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-ELIG-005",
+      "type": "eligibility",
+      "severity": "blocking",
+      "rule": "已获得过青年科学基金项目C类资助者不得再次申请。",
+      "source": "NSFC-2026-YOUTH-C"
+    },
+    {
+      "id": "NSFC-C-STRUCT-001",
+      "type": "section_structure",
+      "severity": "blocking",
+      "rule": "2026版申请书正文由立项依据、研究内容、研究基础三部分组成。",
+      "source": "NSFC-2026-REFORM"
+    },
+    {
+      "id": "NSFC-C-STRUCT-002",
+      "type": "length",
+      "severity": "warning",
+      "rule": "申请书正文原则上不超过30页。",
+      "source": "NSFC-2026-REFORM"
+    },
+    {
+      "id": "NSFC-C-CLASS-001",
+      "type": "classification",
+      "severity": "blocking",
+      "rule": "申请人须选择自由探索类基础研究或目标导向类基础研究之一，青年C类按研究属性分类评审。",
+      "source": "NSFC-2026-NOTICE"
+    },
+    {
+      "id": "NSFC-C-CODE-001",
+      "type": "classification",
+      "severity": "blocking",
+      "rule": "应准确选择申请代码，通常尽量选择到二级申请代码，并填写对应研究方向和关键词。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-COLLAB-001",
+      "type": "organization",
+      "severity": "blocking",
+      "rule": "合作研究单位原则上不得超过2个，参与者所在外单位会自动形成合作研究单位。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-ETHICS-001",
+      "type": "ethics",
+      "severity": "conditional_blocking",
+      "rule": "涉及科技伦理和科技安全的申请，应完成相应审查并按科学部要求上传附件。",
+      "source": "NSFC-2026-REGULATIONS"
+    },
+    {
+      "id": "NSFC-C-AI-001",
+      "type": "ai_use",
+      "severity": "blocking",
+      "rule": "借助生成式人工智能收集整理信息时必须人工核验、如实声明并按规定标识，不得直接使用人工智能生成的申请书或未经核实的内容。",
+      "source": "NSFC-2026-NOTICE"
+    },
+    {
+      "id": "NSFC-C-BUDGET-001",
+      "type": "budget",
+      "severity": "blocking",
+      "rule": "青年科学基金项目C类实行经费包干制，申请时无需编制预算。",
+      "source": "NSFC-2026-NOTICE"
+    },
+    {
+      "id": "NSFC-C-SUBMIT-001",
+      "type": "submission",
+      "severity": "blocking",
+      "rule": "全面实行无纸化申请，申请人和依托单位通过科学基金网络信息系统完成电子提交。",
+      "source": "NSFC-2026-REGULATIONS"
+    }
+  ],
+  "section_schema": [
+    {
+      "section_key": "project_basis",
+      "title": "立项依据",
+      "required": true,
+      "purpose": "说明为什么开展研究及其科学价值",
+      "hard_outline": false
+    },
+    {
+      "section_key": "research_content",
+      "title": "研究内容",
+      "required": true,
+      "purpose": "按研究自身逻辑自主组织目标、问题、内容、方法和路线",
+      "hard_outline": false
+    },
+    {
+      "section_key": "research_foundation",
+      "title": "研究基础",
+      "required": true,
+      "purpose": "展示与申请项目直接相关的前期工作积累、条件和可行性证据",
+      "hard_outline": false
+    }
+  ],
+  "required_materials": [
+    {
+      "id": "NSFC-MAT-001",
+      "name": "2026最新版青年科学基金项目C类在线申请书",
+      "required": true,
+      "source": "信息系统生成",
+      "notes": "不得使用旧模板"
+    },
+    {
+      "id": "NSFC-MAT-002",
+      "name": "申请人在线个人简历",
+      "required": true,
+      "source": "信息系统"
+    },
+    {
+      "id": "NSFC-MAT-003",
+      "name": "主要参与者在线个人简历及系统生成PDF",
+      "required": "有主要参与者时",
+      "source": "信息系统"
+    },
+    {
+      "id": "NSFC-MAT-004",
+      "name": "个人简历中代表性论文全文PDF",
+      "required": "列入代表性论文时",
+      "source": "申请人和参与者"
+    },
+    {
+      "id": "NSFC-MAT-005",
+      "name": "代表性专著的封面、摘要、目录和版权页扫描件",
+      "required": "列入代表性专著时",
+      "source": "申请人和参与者"
+    },
+    {
+      "id": "NSFC-MAT-006",
+      "name": "两名同领域高级职称科研人员推荐材料",
+      "required": "无高级职称且无博士学位时",
+      "source": "推荐专家"
+    },
+    {
+      "id": "NSFC-MAT-007",
+      "name": "导师签字同意函",
+      "required": "在职攻读研究生学位人员申请时",
+      "source": "导师",
+      "notes": "说明与学位论文关系、承担项目后的时间和条件保证"
+    },
+    {
+      "id": "NSFC-MAT-008",
+      "name": "科技伦理或科技安全审查材料",
+      "required": "涉及相应敏感领域时",
+      "source": "有权审查机构"
+    },
+    {
+      "id": "NSFC-MAT-009",
+      "name": "相关资助和同年其他申请的区别与联系说明",
+      "required": "存在相关项目或同年其他申请时",
+      "source": "申请人"
+    },
+    {
+      "id": "NSFC-MAT-010",
+      "name": "依托单位年度项目申请承诺书",
+      "required": true,
+      "source": "依托单位统一办理",
+      "notes": "由法定代表人签字盖章并由依托单位上传，本年度通常只上传一次"
+    }
+  ],
+  "validation_rules": [
+    {
+      "id": "NSFC-VAL-AGE",
+      "checker": "date_of_birth",
+      "blocking": true,
+      "inputs": [
+        "gender",
+        "date_of_birth"
+      ]
+    },
+    {
+      "id": "NSFC-VAL-ONE_TIME",
+      "checker": "prior_award",
+      "blocking": true,
+      "inputs": [
+        "prior_nsfc_youth_c_award"
+      ]
+    },
+    {
+      "id": "NSFC-VAL-SECTIONS",
+      "checker": "section_coverage",
+      "blocking": true,
+      "inputs": [
+        "project_basis",
+        "research_content",
+        "research_foundation"
+      ]
+    },
+    {
+      "id": "NSFC-VAL-PAGES",
+      "checker": "page_count",
+      "blocking": false,
+      "threshold": 30
+    },
+    {
+      "id": "NSFC-VAL-EVIDENCE",
+      "checker": "claim_evidence",
+      "blocking": true,
+      "scope": [
+        "numerical_claim",
+        "publication_claim",
+        "project_claim",
+        "role_claim"
+      ]
+    },
+    {
+      "id": "NSFC-VAL-AI",
+      "checker": "ai_disclosure",
+      "blocking": true,
+      "inputs": [
+        "ai_used",
+        "ai_disclosure",
+        "human_verification"
+      ]
+    }
+  ],
+  "unresolved_items": [
+    "正式申请书模板只在科学基金网络信息系统中提供，应在创建项目时要求用户上传当年系统导出的空白模板或结构快照。",
+    "依托单位可能设置早于国家截止时间的校内截止日期，必须由组织补充包覆盖。",
+    "各科学部可能有额外申请代码、附件和注意事项，应按用户选定科学部再加载二级规则包。"
+  ]
+}

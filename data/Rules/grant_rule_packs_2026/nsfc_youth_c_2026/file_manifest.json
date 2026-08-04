@@ -1,0 +1,26 @@
+{
+  "pack": "nsfc_youth_c_2026",
+  "generated_at": "2026-07-27",
+  "files": [
+    {
+      "path": "nsfc_youth_c_2026/README.md",
+      "size_bytes": 1392,
+      "sha256": "8a4725a0aba376d4b99da53f6f65f61e0367d23fe9dabc6d238ef9a4e6397251"
+    },
+    {
+      "path": "nsfc_youth_c_2026/pack.json",
+      "size_bytes": 8827,
+      "sha256": "349ec5479c0775db2e89e3c5adaf8e11ee0f067f74cf1c07d9bf8cc358166d48"
+    },
+    {
+      "path": "nsfc_youth_c_2026/source_documents/NSFC_2026_application_regulations.pdf",
+      "size_bytes": 1009614,
+      "sha256": "1c6dcd3250e2dacf86f4aadeced4a455ec870d499e24d632f07ac00220741273"
+    },
+    {
+      "path": "nsfc_youth_c_2026/source_documents/NSFC_2026_application_regulations.txt",
+      "size_bytes": 51245,
+      "sha256": "9e09ec29629bfedfac55c2db45bcced8abd34c8fb2296d5ae4947a61ec38feb3"
+    }
+  ]
+}

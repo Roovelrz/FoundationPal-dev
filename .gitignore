@@ -10,6 +10,8 @@ node_modules/
 
 # Local DB and generated media
 api/db.sqlite3
+api/data/*.sqlite3
+/db.sqlite3
 api/media/
 
 # Python virtual environments

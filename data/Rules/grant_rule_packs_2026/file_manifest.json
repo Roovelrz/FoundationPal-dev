@@ -1,0 +1,105 @@
+{
+  "generated_at": "2026-07-27",
+  "files": [
+    {
+      "path": "README.md",
+      "size_bytes": 1573,
+      "sha256": "34f18089162a1263a6de790a702a87a188b32e81c24b973385cabbae1ddda4b3"
+    },
+    {
+      "path": "comparison_matrix.md",
+      "size_bytes": 1288,
+      "sha256": "e13e85db0b652718c02d65c333e86b2cdbc3d7a4ba28e3028b85669077865269"
+    },
+    {
+      "path": "nsfc_youth_c_2026/README.md",
+      "size_bytes": 1392,
+      "sha256": "8a4725a0aba376d4b99da53f6f65f61e0367d23fe9dabc6d238ef9a4e6397251"
+    },
+    {
+      "path": "nsfc_youth_c_2026/file_manifest.json",
+      "size_bytes": 844,
+      "sha256": "9f557b5331e0b6e04fb96fdca3a5dfc24a0f232142c9244bcf90df93c92cd11b"
+    },
+    {
+      "path": "nsfc_youth_c_2026/pack.json",
+      "size_bytes": 8827,
+      "sha256": "349ec5479c0775db2e89e3c5adaf8e11ee0f067f74cf1c07d9bf8cc358166d48"
+    },
+    {
+      "path": "nsfc_youth_c_2026/source_documents/NSFC_2026_application_regulations.pdf",
+      "size_bytes": 1009614,
+      "sha256": "1c6dcd3250e2dacf86f4aadeced4a455ec870d499e24d632f07ac00220741273"
+    },
+    {
+      "path": "nsfc_youth_c_2026/source_documents/NSFC_2026_application_regulations.txt",
+      "size_bytes": 51245,
+      "sha256": "9e09ec29629bfedfac55c2db45bcced8abd34c8fb2296d5ae4947a61ec38feb3"
+    },
+    {
+      "path": "rule_pack.schema.json",
+      "size_bytes": 795,
+      "sha256": "e46d395724a795fc233801f38d4b72ff1660efe86f9c7b4f5a3ea115c96835ca"
+    },
+    {
+      "path": "sichuan_nsf_2026/README.md",
+      "size_bytes": 1407,
+      "sha256": "8beebe5df55e27ddce446d38cebc9d95522527de5bb285b1e9034dcb253dd384"
+    },
+    {
+      "path": "sichuan_nsf_2026/file_manifest.json",
+      "size_bytes": 841,
+      "sha256": "985b9301c9ca7f2da8bb9a2bc6502b4c6850d4a36fa34f15c9c1851b2b37bb61"
+    },
+    {
+      "path": "sichuan_nsf_2026/pack.json",
+      "size_bytes": 10090,
+      "sha256": "3242543fa2196d172ced0ce866150eb991344244be2c05908d7be25171edc0b6"
+    },
+    {
+      "path": "sichuan_nsf_2026/source_documents/Sichuan_2026_NSF_application_guide.pdf",
+      "size_bytes": 985213,
+      "sha256": "475045032e8ecc29737f5ad0382e9176575d1f5f066037479d8a3f4ba879b18c"
+    },
+    {
+      "path": "sichuan_nsf_2026/source_documents/Sichuan_2026_NSF_application_guide.txt",
+      "size_bytes": 56421,
+      "sha256": "0f8f4de2b7c91b028d344f33a9f3d3897ff2e97f0e1e1d9858dcccfe1c55a49b"
+    },
+    {
+      "path": "source_registry.json",
+      "size_bytes": 8297,
+      "sha256": "a6f3d1200493118f7a566f742d5483418273b5b5c840ff7d59e12588dc10d078"
+    },
+    {
+      "path": "swun_teaching_reform_2026/README.md",
+      "size_bytes": 1772,
+      "sha256": "6bafd09d496ff8253ea7d6dd9db2fb5eab7eed803853afb8d46cdf121ebe413f"
+    },
+    {
+      "path": "swun_teaching_reform_2026/file_manifest.json",
+      "size_bytes": 1076,
+      "sha256": "4206318c3acb52d20f202ec5a64095fae683c36d0cb667709efffbf7b29b0b4e"
+    },
+    {
+      "path": "swun_teaching_reform_2026/missing_source_request.json",
+      "size_bytes": 779,
+      "sha256": "5a21b3f8d1884452db5ea042e1e1de051a5cc28ef4cd078d2ec73b74e39a9de0"
+    },
+    {
+      "path": "swun_teaching_reform_2026/pack.json",
+      "size_bytes": 8520,
+      "sha256": "ccc2a13f30136f316c97378e5137b32c16d071fe9808290097326669d9aaa648"
+    },
+    {
+      "path": "swun_teaching_reform_2026/source_documents/Sichuan_2026_teaching_reform_guide.pdf",
+      "size_bytes": 250314,
+      "sha256": "1fc9d666b8b1f1b9ae38ae4afb21ead5d951211ecf9a40a4a52075d515d19e5f"
+    },
+    {
+      "path": "swun_teaching_reform_2026/source_documents/Sichuan_2026_teaching_reform_guide.txt",
+      "size_bytes": 2932,
+      "sha256": "1f599fd81a1e106976ecf1c9e2f08d1e2229a6bff84ec9308bd935816a300824"
+    }
+  ]
+}

@@ -21,30 +21,26 @@ def _run_env_doctor(env: dict, strict: bool = False) -> int:
 
 
 class EnvDoctorTests(SimpleTestCase):
-    def test_price_requires_stripe_secrets_prod(self):
-        """Production-like (DEBUG=0) with price set but missing stripe secrets => exit 1."""
+    def test_production_requires_a_distinct_jwt_signing_key(self):
         code = _run_env_doctor(
             {
-                'DEBUG': '0',  # production path => hard checks
+                'DEBUG': '0',
                 'SECRET_KEY': 'test',
-                'PUBLIC_BASE_URL': 'https://example.com',
-                'PRICE_PRO_MONTHLY': 'price_123',  # triggers stripe group requirement
-                # Intentionally omit STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET
-                'REDIS_URL': 'redis://localhost:6379/0',  # avoid unrelated redis error
+                'JWT_SIGNING_KEY': 'test',
+                'REDIS_URL': 'redis://localhost:6379/0',
             }
         )
-        self.assertEqual(code, 1)
+        self.assertGreater(code, 0)
 
-    def test_strict_mode_warning_http_url_not_fatal(self):
-        """HTTP base URL only produces warning; strict does not escalate warnings => exit 0."""
+    def test_debug_environment_without_payment_settings_passes(self):
         code = _run_env_doctor(
             {
-                'DEBUG': '1',  # debug => conditional groups are warnings not errors
+                'DEBUG': '1',
                 'SECRET_KEY': 'test',
-                'PUBLIC_BASE_URL': 'http://localhost:8000',  # causes https warning
+                'JWT_SIGNING_KEY': 'test-jwt-signing-key',
+                'CORS_ALLOW_ALL': '0',
+                'ALLOWED_HOSTS': 'localhost,127.0.0.1',
                 'REDIS_URL': 'redis://localhost:6379/0',
-                'STRIPE_SECRET_KEY': 'sk_test_dummy',
-                'STRIPE_WEBHOOK_SECRET': 'whsec_dummy',
             },
             strict=True,
         )

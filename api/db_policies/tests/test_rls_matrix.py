@@ -6,7 +6,6 @@ from django.contrib.auth import get_user_model
 
 from orgs.models import Organization, OrgUser
 from proposals.models import Proposal
-from billing.models import Subscription
 
 
 def set_guc(user_id=None, org_id=None, role: 'str' = 'user'):
@@ -23,7 +22,7 @@ def set_guc(user_id=None, org_id=None, role: 'str' = 'user'):
 class RLSMatrixTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        """Create baseline users, an organization (alice as admin), and a subscription.
+        """Create baseline users and an organization with an admin.
 
         All work is performed inside this classmethod so that references to ``cls``
         are valid. Previous failures came from mis-indented lines sitting at
@@ -38,9 +37,6 @@ class RLSMatrixTests(TestCase):
         set_guc(user_id=cls.alice.id)
         cls.org1 = Organization.objects.create(name='Org1-M', admin=cls.alice)
 
-        # Org subscription (admin GUC context)
-        set_guc(user_id=cls.alice.id, org_id=cls.org1.id, role='admin')
-        cls.sub_org = Subscription.objects.create(owner_org=cls.org1, status='active')
         set_guc(None, None, 'user')
 
     def tearDown(self):  # reset GUCs between tests
@@ -69,12 +65,6 @@ class RLSMatrixTests(TestCase):
         self.assertIn('shared to bob', titles)
         set_guc(None, None, 'user')
         self.assertEqual(Proposal.objects.filter(id=p.id).count(), 0)
-
-    def test_subscription_write_requires_admin(self):
-        set_guc(self.bob.id)
-        self.assertEqual(Subscription.objects.filter(id=self.sub_org.id).update(status='canceled'), 0)
-        set_guc(self.alice.id)
-        self.assertEqual(Subscription.objects.filter(id=self.sub_org.id).update(status='canceled'), 1)
 
     def test_orguser_membership_changes_require_admin(self):
         from django.db import transaction

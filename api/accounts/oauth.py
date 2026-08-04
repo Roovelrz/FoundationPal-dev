@@ -13,7 +13,6 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from billing.models import Subscription
 from orgs.models import OrgInvite, OrgUser
 
 # Sensitive OAuth token / assertion keys that must never be persisted or logged.
@@ -189,14 +188,6 @@ def google_callback(request):
         if not email:
             return JsonResponse({'ok': False, 'error': 'missing email', 'code': 'missing_email'}, status=400)
         user, _ = _get_or_create_user_by_email(email)
-        # Ensure a Free subscription exists for this user (debug Google login)
-        sub = Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()
-        if not sub:
-            sub = Subscription(owner_user=user)
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
         # Auto-accept invite if provided and matches email
         if invite_token:
             try:
@@ -271,15 +262,6 @@ def google_callback(request):
     if not email:
         return JsonResponse({'ok': False, 'error': 'email not provided by provider', 'code': 'email_not_found'}, status=400)
     user, _ = _get_or_create_user_by_email(email)
-    # In DEBUG, mark Google logins as Free tier (owner_user scope) for testing
-    if settings.DEBUG:
-        sub = Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()
-        if not sub:
-            sub = Subscription(owner_user=user)
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
     # Auto-accept invite if provided and matches email
     if invite_token:
         try:
@@ -356,13 +338,6 @@ def github_callback(request):
         if not email:
             return JsonResponse({'ok': False, 'error': 'missing email', 'code': 'missing_email'}, status=400)
         user, _ = _get_or_create_user_by_email(email)
-        sub = (Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()) or Subscription(
-            owner_user=user
-        )
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
         if invite_token:
             try:
                 inv = OrgInvite.objects.select_related('org').get(token=invite_token)
@@ -441,15 +416,6 @@ def github_callback(request):
         return JsonResponse({'ok': False, 'error': 'email not provided by provider', 'code': 'email_not_found'}, status=400)
 
     user, _ = _get_or_create_user_by_email(email)
-    if settings.DEBUG:
-        sub = Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()
-        if not sub:
-            sub = Subscription(owner_user=user)
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
-
     if invite_token:
         try:
             inv = OrgInvite.objects.select_related('org').get(token=invite_token)
@@ -527,13 +493,6 @@ def facebook_callback(request):
         if not email:
             return JsonResponse({'ok': False, 'error': 'missing email', 'code': 'missing_email'}, status=400)
         user, _ = _get_or_create_user_by_email(email)
-        sub = (Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()) or Subscription(
-            owner_user=user
-        )
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
         if invite_token:
             try:
                 inv = OrgInvite.objects.select_related('org').get(token=invite_token)
@@ -597,15 +556,6 @@ def facebook_callback(request):
         return JsonResponse({'ok': False, 'error': 'email not provided by provider', 'code': 'email_not_found'}, status=400)
 
     user, _ = _get_or_create_user_by_email(email)
-    if settings.DEBUG:
-        sub = Subscription.objects.filter(owner_user=user).order_by('-updated_at', '-id').first()
-        if not sub:
-            sub = Subscription(owner_user=user)
-        sub.tier = 'free'
-        sub.status = 'active'
-        sub.cancel_at_period_end = False
-        sub.save()
-
     if invite_token:
         try:
             inv = OrgInvite.objects.select_related('org').get(token=invite_token)

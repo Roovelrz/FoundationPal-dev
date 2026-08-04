@@ -19,7 +19,7 @@ function jsonResponse(body, status = 200) {
 
 
 describe('Proposal title editing', () => {
-  it('uses the entered title when creating a proposal', async () => {
+  it('uses the selected application system when creating a proposal', async () => {
     const items = []
     let createBody = null
     global.fetch = vi.fn(async (url, options = {}) => {
@@ -49,15 +49,45 @@ describe('Proposal title editing', () => {
       </MemoryRouter>
     )
 
+    expect(await screen.findByText('本项为必填。选择后，系统会按对应申报体系调整写作侧重点。')).toBeInTheDocument()
     fireEvent.change(await screen.findByPlaceholderText('输入新项目标题'), {
       target: { value: '小样本调制识别研究' },
     })
+    fireEvent.click(screen.getByLabelText('省基金'))
     fireEvent.click(screen.getByRole('button', { name: '新建申请' }))
 
     await waitFor(() => {
       expect(createBody.content.meta.title).toBe('小样本调制识别研究')
+      expect(createBody.content.meta.application_system).toBe('provincial')
     })
     expect(await screen.findByText('小样本调制识别研究')).toBeInTheDocument()
+  })
+
+  it('requires an application system before creating a proposal', async () => {
+    const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {})
+    global.fetch = vi.fn(async (url, options = {}) => {
+      const path = String(url)
+      const method = options.method || 'GET'
+      if (path.endsWith('/proposals/') && method === 'GET') return jsonResponse([])
+      return jsonResponse({})
+    })
+
+    render(
+      <MemoryRouter>
+        <Proposals token="token" />
+      </MemoryRouter>
+    )
+
+    fireEvent.change(await screen.findByPlaceholderText('输入新项目标题'), {
+      target: { value: '未选择体系的项目' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: '新建申请' }))
+
+    expect(alertSpy).toHaveBeenCalledWith('请选择申报体系')
+    expect(global.fetch).not.toHaveBeenCalledWith(
+      expect.stringContaining('/proposals/'),
+      expect.objectContaining({ method: 'POST' }),
+    )
   })
 
   it('edits and saves an existing proposal title', async () => {

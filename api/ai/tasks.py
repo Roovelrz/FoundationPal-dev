@@ -1,6 +1,7 @@
 from celery import shared_task
 from django.conf import settings
 from .provider import get_provider
+from .providers.base import normalize_application_system
 import time
 from .models import AIJob, AIMetric, AIJobContext, WorkflowRun
 from .prompting import render_role_prompt, PromptTemplateError
@@ -27,7 +28,11 @@ def run_plan(job_id: int):
         prov = _provider()
         t0 = time.time()
         snippets = retrieval.retrieve_for_plan(job.input_json.get('grant_url'), job.input_json.get('text_spec'))
-        plan = prov.plan(grant_url=job.input_json.get('grant_url'), text_spec=job.input_json.get('text_spec'))
+        plan = prov.plan(
+            grant_url=job.input_json.get('grant_url'),
+            text_spec=job.input_json.get('text_spec'),
+            application_system=normalize_application_system(job.input_json.get('application_system')),
+        )
         validate_role_output('plan', plan)
         validation = {'plan_valid': True}
         # Render and store prompt snapshot
@@ -166,6 +171,7 @@ def run_write(job_id: int):
             deterministic=det_default,
             rule_context=rule_context,
             user_evidence_context=user_evidence_context,
+            application_system=normalize_application_system(job.input_json.get('application_system')),
         )
 
         # Validation
@@ -298,39 +304,6 @@ def run_revise(job_id: int):
             job.error_text = 'section_locked'
             job.save(update_fields=['status', 'error_text'])
             return
-        # Revision cap enforcement (async path).
-        try:
-            if sec_obj is not None:
-                cap_raw = getattr(settings, 'PROPOSAL_SECTION_REVISION_CAP', 5)
-                try:
-                    cap_val = int(cap_raw) if cap_raw not in (None, '') else 5
-                except Exception:
-                    cap_val = 5
-                if cap_val <= 0:
-                    cap_val = 5
-                current_count = len(sec_obj.revisions or [])
-                if current_count >= cap_val:
-                    job.status = 'error'
-                    job.error_text = 'revision_cap_reached'
-                    job.save(update_fields=['status', 'error_text'])
-                    try:
-                        AIMetric.objects.create(
-                            type='revise',
-                            model_id='revision_cap_blocked',
-                            duration_ms=0,
-                            tokens_used=0,
-                            success=False,
-                            created_by=job.created_by,
-                            org_id=job.org_id,
-                            proposal_id=job.input_json.get('proposal_id'),
-                            section_id=sec_id,
-                            error_text='revision_cap_reached',
-                        )
-                    except Exception:
-                        pass
-                    return
-        except Exception:  # pragma: no cover
-            pass
         rev_snippets = retrieval.retrieve_for_section(
             job.input_json.get('section_id') or '',
             {'change_request': job.input_json.get('change_request') or ''},
@@ -343,6 +316,7 @@ def run_revise(job_id: int):
             change_request=job.input_json.get('change_request') or '',
             file_refs=job.input_json.get('file_refs') or None,
             deterministic=det_default,
+            application_system=normalize_application_system(job.input_json.get('application_system')),
         )
         diff_res = diff_texts(base_text, res.text)
         validation = {}
@@ -458,6 +432,7 @@ def run_format(job_id: int):
             template_hint=job.input_json.get('template_hint') or None,
             file_refs=job.input_json.get('file_refs') or None,
             deterministic=True,
+            application_system=normalize_application_system(job.input_json.get('application_system')),
         )
         validation = {}
         try:

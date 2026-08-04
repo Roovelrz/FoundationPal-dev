@@ -84,19 +84,50 @@ def answer(session: dict[str, Any], answers: dict[str, str], *, skip: bool = Fal
     question = next_question(session)
     if question is None:
         return
+    _store_answers(session, answers, skip=skip)
+    session['question_index'] = int(session.get('question_index', 0)) + 1
+    session['question_count'] = max(
+        int(session.get('question_count', 0)),
+        int(session['question_index']),
+    )
+    _refresh_completion(session)
+
+
+def previous(session: dict[str, Any], answers: dict[str, str]) -> None:
+    session['completion_reason'] = ''
+    session['confirmed'] = False
+    session['suggestion'] = ''
+    _store_answers(session, answers, skip=False)
+    session['question_index'] = max(int(session.get('question_index', 0)) - 1, 0)
+    session['question_count'] = min(
+        int(session.get('question_count', 0)),
+        int(session['question_index']),
+    )
+    _refresh_missing(session)
+
+
+def _store_answers(session: dict[str, Any], answers: dict[str, str], *, skip: bool) -> None:
+    questions = _questions(session['mode'])
+    index = min(max(int(session.get('question_index', 0)), 0), len(questions))
+    if index >= len(questions):
+        return
+    question = questions[index]
     collected = dict(session.get('collected_answers') or {})
     skipped = list(session.get('skipped_fields') or [])
     for field in question['fields']:
         value = (answers.get(field) or '').strip()
         if value:
             collected[field] = value
-        elif skip and field not in skipped:
-            skipped.append(field)
+            if field in skipped:
+                skipped.remove(field)
+        else:
+            collected.pop(field, None)
+            if skip and field not in skipped:
+                skipped.append(field)
+            elif not skip and field in skipped:
+                skipped.remove(field)
     session['collected_answers'] = collected
     session['skipped_fields'] = skipped
-    session['question_index'] = int(session.get('question_index', 0)) + 1
-    session['question_count'] = min(int(session.get('question_count', 0)) + 1, int(session['max_questions']))
-    _refresh_completion(session)
 
 
 def finish(session: dict[str, Any], reason: str = 'user_finished') -> None:

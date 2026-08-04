@@ -241,6 +241,12 @@ class RuleRAGService:
                 'requirement_id': item.id, 'chunk_id': item.source_chunk_id,
                 'source_document': item.source_chunk.resource.display_name,
                 'page_number': item.source_chunk.page_start,
+                'is_uploaded_material': bool(
+                    item.source_chunk.resource.original_filename
+                    and item.source_chunk.resource.proposal_id == query.proposal_id
+                ),
+                'section_title': item.source_chunk.section_title,
+                'chunk_index': item.source_chunk.chunk_index,
                 'original_text': item.source_excerpt or item.text,
                 'applicable_scope': item.applicability,
                 'authority_level': item.priority,
@@ -278,7 +284,11 @@ class RuleRAGService:
 class UserEvidenceRAGService:
     def search(self, query: EvidenceQuery) -> dict:
         query.validate()
-        evidence = UserEvidence.objects.filter(organization_id=query.organization_id).select_related('chunk__resource', 'owner_user')
+        evidence = UserEvidence.objects.filter(
+            organization_id=query.organization_id,
+            chunk__resource__is_deleted=False,
+            chunk__resource__status='ready',
+        ).select_related('chunk__resource', 'owner_user')
         filter_counts = {'organization_scope': evidence.count()}
         applied_filters = {'organization_id': query.organization_id, 'proposal_id': query.proposal_id}
         evidence = evidence.filter(Q(proposal__isnull=True) | Q(proposal_id=query.proposal_id))
@@ -341,6 +351,11 @@ class UserEvidenceRAGService:
                 'user_evidence_id': item.id, 'chunk_id': item.chunk_id,
                 'document_name': item.resource.display_name,
                 'page_number': item.chunk.page_start,
+                'is_uploaded_material': bool(
+                    item.resource.original_filename and item.resource.proposal_id == query.proposal_id
+                ),
+                'section_title': item.chunk.section_title,
+                'chunk_index': item.chunk.chunk_index,
                 'text': item.chunk.text,
                 'evidence_type': item.chunk.chunk_type,
                 'facts': [{'fact_id': fact.id, 'status': fact.fact_status, 'project_status': fact.project_status, 'role': fact.user_role, 'author_order': fact.author_order, 'verification_status': fact.verification_status, 'numeric_value': str(fact.numeric_value or ''), 'unit': fact.unit, 'metric_definition': fact.metric_definition, 'authority_level': fact.authority_level} for fact in facts],

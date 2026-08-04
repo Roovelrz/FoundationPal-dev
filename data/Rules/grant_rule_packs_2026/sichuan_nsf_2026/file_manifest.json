@@ -1,0 +1,26 @@
+{
+  "pack": "sichuan_nsf_2026",
+  "generated_at": "2026-07-27",
+  "files": [
+    {
+      "path": "sichuan_nsf_2026/README.md",
+      "size_bytes": 1407,
+      "sha256": "8beebe5df55e27ddce446d38cebc9d95522527de5bb285b1e9034dcb253dd384"
+    },
+    {
+      "path": "sichuan_nsf_2026/pack.json",
+      "size_bytes": 10090,
+      "sha256": "3242543fa2196d172ced0ce866150eb991344244be2c05908d7be25171edc0b6"
+    },
+    {
+      "path": "sichuan_nsf_2026/source_documents/Sichuan_2026_NSF_application_guide.pdf",
+      "size_bytes": 985213,
+      "sha256": "475045032e8ecc29737f5ad0382e9176575d1f5f066037479d8a3f4ba879b18c"
+    },
+    {
+      "path": "sichuan_nsf_2026/source_documents/Sichuan_2026_NSF_application_guide.txt",
+      "size_bytes": 56421,
+      "sha256": "0f8f4de2b7c91b028d344f33a9f3d3897ff2e97f0e1e1d9858dcccfe1c55a49b"
+    }
+  ]
+}

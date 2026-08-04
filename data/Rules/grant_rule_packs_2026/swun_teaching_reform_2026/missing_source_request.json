@@ -1,0 +1,23 @@
+{
+  "pack_id": "cn.sichuan.swun.teaching_reform.2026",
+  "blocking": true,
+  "requested_documents": [
+    {
+      "name": "西南民族大学教务函〔2026〕82号全文",
+      "reason": "确定校内截止时间、限额和报送流程"
+    },
+    {
+      "name": "西南民族大学校内申报附件包",
+      "reason": "冻结正式SectionSchema和签章字段"
+    },
+    {
+      "name": "学院或学校名额分配表",
+      "reason": "执行组织限项校验"
+    },
+    {
+      "name": "后续网上申报通知",
+      "reason": "确定最终系统提交时间和材料格式"
+    }
+  ],
+  "fallback_policy": "允许进行省级通用规划和初稿生成，但界面必须显示组织规则未核验，禁止输出确定的校内截止日期和推荐名额。"
+}

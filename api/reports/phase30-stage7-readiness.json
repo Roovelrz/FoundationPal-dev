@@ -1,0 +1,378 @@
+{
+  "phase": "3.0_phase_7",
+  "release_ready": false,
+  "risk_case_readiness": [
+    {
+      "code": "completion_status_conflict",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "cross_section_consistency",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "duplicate_funding_conflict",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "human_decision_preserved",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "locked_claim_change_attempt",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "metric_definition_conflict",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "missing_attachment_evidence",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "missing_budget_decision",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "numerical_conflict",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "overclaiming",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "role_attribution_conflict",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    },
+    {
+      "code": "unsupported_claim",
+      "current_frozen_case_count": 1,
+      "freeze_required": {
+        "positive": 10,
+        "near_negative": 10,
+        "boundary": 5
+      },
+      "freeze_missing": {
+        "positive": 9,
+        "near_negative": 9,
+        "boundary": 4
+      },
+      "development_required": {
+        "positive": 5,
+        "near_negative": 5,
+        "boundary": 3
+      },
+      "development_missing": {
+        "positive": 4,
+        "near_negative": 4,
+        "boundary": 2
+      }
+    }
+  ],
+  "reviewer_detector_status": {
+    "implemented_expected_codes": [
+      "completion_status_conflict",
+      "human_decision_preserved",
+      "missing_attachment_evidence",
+      "missing_budget_decision",
+      "numerical_conflict",
+      "unsupported_claim"
+    ],
+    "not_implemented_codes": [
+      "cross_section_consistency",
+      "duplicate_funding_conflict",
+      "locked_claim_change_attempt",
+      "metric_definition_conflict",
+      "overclaiming",
+      "role_attribution_conflict"
+    ],
+    "not_observed_codes": [
+      "completion_status_conflict",
+      "cross_section_consistency",
+      "duplicate_funding_conflict",
+      "human_decision_preserved",
+      "locked_claim_change_attempt",
+      "metric_definition_conflict",
+      "missing_attachment_evidence",
+      "overclaiming",
+      "role_attribution_conflict",
+      "unsupported_claim"
+    ]
+  },
+  "metric_status": {
+    "rule_bge_status": "ready_for_rule_only_bge_eval",
+    "user_evidence_bge_status": "blocked_by_missing_original_gold_chunk_bindings",
+    "citation_entailment_status": "unmeasured_requires_claim_to_evidence_human_labels",
+    "cross_organization_leakage_rate": 0.0,
+    "unpublished_pack_safety_block_rate": null,
+    "unpublished_pack_safety_block_status": "unmeasured_no_expected_unpublished_cases",
+    "intake_routing_accuracy": 0.6111,
+    "intake_question_budget_accuracy": 0.5556
+  },
+  "blockers": [
+    {
+      "id": "phase1_source_binding",
+      "count": 18,
+      "owner": "evidence_reviewer",
+      "action": "绑定原始 Gold Chunk 并确认授权、组织、Proposal 和页码。"
+    },
+    {
+      "id": "phase2_scope_semantics",
+      "count": 12,
+      "owner": "rule_reviewer",
+      "action": "确认 conditional 与青年 A、B 类规则的适用字段映射。"
+    },
+    {
+      "id": "citation_entailment_labels",
+      "count": "unquantified",
+      "owner": "claim_reviewer",
+      "action": "为 Claim 与证据标注完整支持、部分支持或不支持。"
+    },
+    {
+      "id": "unimplemented_review_detectors",
+      "count": 6,
+      "owner": "reviewer_product_owner",
+      "action": "实现并人工确认剩余风险检测器。"
+    },
+    {
+      "id": "frozen_test_overfitting_risk",
+      "count": 1,
+      "owner": "evaluation_owner",
+      "action": "建立未参与调参的开发集和独立发布保留集后，重新签署门槛。"
+    },
+    {
+      "id": "unpublished_pack_safety_fixture_gap",
+      "count": 1,
+      "owner": "rule_reviewer",
+      "action": "补充并人工确认预期为 grant_pack_not_published 的冻结安全阻断样本。"
+    },
+    {
+      "id": "intake_fixture_contract_gap",
+      "count": 1,
+      "owner": "intake_product_owner",
+      "action": "逐条复核36条 Intake 夹具与当前路由、问题预算合同的差异，并决定修正实现或更新人工标签。"
+    }
+  ]
+}

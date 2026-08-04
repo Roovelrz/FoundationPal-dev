@@ -1,0 +1,123 @@
+{
+  "phase": "3.0_phase_1_to_3",
+  "auto_confirmed": {
+    "phase_1": [
+      "规则侧隔离语料为 BGE 768 维，154 条冻结规则查询均可执行。",
+      "隔离规则候选正文未复制冻结题干，且无 Hash 与 BGE 混合向量。"
+    ],
+    "phase_2": [
+      "规则查询已记录候选、过滤、适用性和可解释排序因素。",
+      "规则隔离语料 BGE Candidate Recall@20 为 1.0，Final Recall@5 为 0.961。",
+      "34条规则的 source_id 与非条件 severity 已确认仅作来源或风险展示，不参与适用性过滤。"
+    ],
+    "phase_3": [
+      "用户证据查询先执行组织、Proposal、所有者、授权、类型和时间范围过滤。",
+      "排序结果保留词法、已确认事实、类型与 Claim 意图等因素。"
+    ]
+  },
+  "pending_human_confirmation": {
+    "phase_1_original_source_bindings": [],
+    "phase_2_scope_semantics": [
+      {
+        "requirement_id": 11,
+        "source_chunk_id": 254,
+        "scope": {
+          "source_id": "NSFC-2026-REGULATIONS",
+          "severity": "conditional_blocking",
+          "ethics_or_technology_safety": true
+        },
+        "unsupported_scope_keys": [
+          "ethics_or_technology_safety",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 19,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "severity": "conditional_blocking",
+          "joint_application": true
+        },
+        "unsupported_scope_keys": [
+          "joint_application",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 20,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "severity": "conditional_blocking",
+          "out_of_province_affiliation": true
+        },
+        "unsupported_scope_keys": [
+          "out_of_province_affiliation",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 21,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "severity": "conditional_blocking",
+          "ethics_or_human_genetic_resource": true
+        },
+        "unsupported_scope_keys": [
+          "ethics_or_human_genetic_resource",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 39,
+        "source_chunk_id": 257,
+        "scope": {
+          "source_id": "SCEDU-2026-TEACHING-NOTICE-MIRROR",
+          "severity": "conditional",
+          "program_category": "major",
+          "completion_review": true
+        },
+        "unsupported_scope_keys": [
+          "completion_review",
+          "program_category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      }
+    ],
+    "phase_3_extracted_fact_verification": []
+  },
+  "summary": {
+    "phase_1_pending_count": 0,
+    "phase_2_pending_count": 5,
+    "phase_2_auto_classified_display_metadata_count": 34,
+    "phase_3_pending_count": 0,
+    "scope_key_distribution": {
+      "category,severity,source_id": 27,
+      "ethics_or_technology_safety,severity,source_id": 1,
+      "joint_application,severity,source_id": 1,
+      "out_of_province_affiliation,severity,source_id": 1,
+      "ethics_or_human_genetic_resource,severity,source_id": 1,
+      "program_category,severity,source_id": 7,
+      "completion_review,program_category,severity,source_id": 1,
+      "program_type,region,year": 460,
+      "phase11_bge_eval,program_type,region,year": 222
+    }
+  }
+}

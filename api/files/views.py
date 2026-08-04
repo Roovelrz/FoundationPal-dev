@@ -8,6 +8,7 @@ from rest_framework import status
 from .models import FileUpload
 from orgs.models import Organization, OrgUser
 from proposals.models import Proposal
+from ai.project_materials import ProjectMaterialError, create_project_material, extract_uploaded_material
 import os
 import re
 import mimetypes
@@ -201,10 +202,11 @@ def upload(request):
     f = request.FILES.get('file')
     if not f:
         return Response({'error': 'missing_file'}, status=status.HTTP_400_BAD_REQUEST)
-    # Normalize filename: strip paths and suspicious chars
+    # Keep the user-facing filename readable, including Chinese characters, while
+    # removing path separators, Windows-reserved characters, and controls.
     raw_name = f.name or ''
-    base = os.path.basename(raw_name)
-    base = re.sub(r'[^A-Za-z0-9._-]', '_', base) or 'upload.bin'
+    base = os.path.basename(raw_name).replace('\x00', '').strip()
+    base = re.sub(r'[<>:"/\\|?*\x00-\x1f]', '_', base).strip(' .') or 'upload.bin'
     ext = base.rsplit('.', 1)[-1].lower() if '.' in base else ''
     if ext not in ALLOWED:
         return Response(
@@ -220,6 +222,9 @@ def upload(request):
         )
     org_raw = request.headers.get('X-Org-ID') or request.data.get('organization_id')
     proposal_raw = request.data.get('proposal_id')
+    material_kind = str(request.data.get('material_kind') or '').strip().lower()
+    if material_kind and material_kind not in {'guideline', 'evidence'}:
+        return Response({'error': 'material_kind_invalid'}, status=status.HTTP_400_BAD_REQUEST)
     organization = None
     proposal = None
     if proposal_raw is not None and not org_raw:
@@ -239,6 +244,8 @@ def upload(request):
         proposal = Proposal.objects.filter(id=int(proposal_raw), org=organization).first()
         if proposal is None:
             return Response({'error': 'proposal_forbidden'}, status=status.HTTP_403_FORBIDDEN)
+    if material_kind and proposal is None:
+        return Response({'error': 'project_material_requires_proposal'}, status=status.HTTP_400_BAD_REQUEST)
 
     upload = FileUpload.objects.create(
         owner=request.user if request.user.is_authenticated else None,
@@ -333,11 +340,37 @@ def upload(request):
     # Best-effort OCR/parse stub
     # Only attempt text/OCR extraction for safely stored paths
     # Skip extraction if file exceeds configured TEXT_MAX to avoid heavy work
+    page_chunks = []
     if os.path.getsize(fpath) <= TEXT_MAX:
-        upload.ocr_text = _extract_text_stub(fpath, upload.content_type) if _is_under_media_root(fpath) else ''
+        if material_kind:
+            upload.ocr_text, page_chunks = extract_uploaded_material(fpath, upload.content_type)
+        else:
+            upload.ocr_text = _extract_text_stub(fpath, upload.content_type) if _is_under_media_root(fpath) else ''
     else:
         upload.ocr_text = ''
     upload.save(update_fields=['ocr_text'])
+    resource = None
+    if material_kind:
+        try:
+            resource = create_project_material(
+                proposal=proposal,
+                owner=request.user,
+                material_kind=material_kind,
+                title=base,
+                text=upload.ocr_text,
+                original_filename=base,
+                mime_type=upload.content_type or 'application/octet-stream',
+                page_chunks=page_chunks,
+            )
+        except ProjectMaterialError as error:
+            return Response(
+                {
+                    'error': error.args[0] if error.args else 'material_ingestion_failed',
+                    'upload_id': upload.pk,
+                    'message': '无法读取该材料中的有效文字，请上传可解析的 PDF、DOCX 或文本文件。',
+                },
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
     return Response(
         {
             'id': upload.pk,
@@ -347,6 +380,8 @@ def upload(request):
             'ocr_text': upload.ocr_text[:2000],
             'organization_id': upload.organization_id,
             'proposal_id': upload.proposal_id,
+            'material_kind': material_kind or None,
+            'resource_id': resource.id if resource is not None else None,
         }
     )
 

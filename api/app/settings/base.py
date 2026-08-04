@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'app',
     'accounts',
-    'billing',
     'orgs',
     'proposals',
     'db_policies',
@@ -46,7 +45,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'accounts.middleware.RLSSessionMiddleware',
-    'billing.middleware.QuotaEnforcementMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -161,15 +159,6 @@ if not DEBUG:
     if CORS_ALLOW_ALL_ORIGINS:
         raise RuntimeError('SECURITY: CORS_ALLOW_ALL must be 0 in production')
 
-QUOTA_FREE_ACTIVE_CAP = int(os.getenv('QUOTA_FREE_ACTIVE_CAP', '1'))
-QUOTA_PRO_MONTHLY_CAP = int(os.getenv('QUOTA_PRO_MONTHLY_CAP', '20'))
-QUOTA_PRO_PER_SEAT = int(os.getenv('QUOTA_PRO_PER_SEAT', '10'))
-QUOTA_ENTERPRISE_MONTHLY_CAP = os.getenv('QUOTA_ENTERPRISE_MONTHLY_CAP')
-if QUOTA_ENTERPRISE_MONTHLY_CAP is not None and QUOTA_ENTERPRISE_MONTHLY_CAP != '':
-    QUOTA_ENTERPRISE_MONTHLY_CAP = int(QUOTA_ENTERPRISE_MONTHLY_CAP)
-else:
-    QUOTA_ENTERPRISE_MONTHLY_CAP = None
-
 FILE_UPLOAD_MAX_MEMORY_SIZE = int(os.getenv('FILE_UPLOAD_MAX_MEMORY_SIZE', str(10 * 1024 * 1024)))
 FILE_UPLOAD_MAX_BYTES = int(os.getenv('FILE_UPLOAD_MAX_BYTES', str(FILE_UPLOAD_MAX_MEMORY_SIZE)))
 TEXT_EXTRACTION_MAX_BYTES = int(os.getenv('TEXT_EXTRACTION_MAX_BYTES', str(8 * 1024 * 1024)))
@@ -201,13 +190,3 @@ DEFAULT_FROM_EMAIL = (
     or (f"no-reply@{os.getenv('MAILGUN_DOMAIN', '').strip()}" if os.getenv('MAILGUN_DOMAIN', '').strip() else None)
     or 'no-reply@localhost'
 )
-
-PRICE_PRO_MONTHLY = os.getenv('PRICE_PRO_MONTHLY', '').strip()
-PRICE_PRO_YEARLY = os.getenv('PRICE_PRO_YEARLY', '').strip()
-PRICE_BUNDLE_1 = os.getenv('PRICE_BUNDLE_1', '').strip()
-PRICE_BUNDLE_10 = os.getenv('PRICE_BUNDLE_10', '').strip()
-PRICE_BUNDLE_25 = os.getenv('PRICE_BUNDLE_25', '').strip()
-
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '').strip()
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '').strip()
-PUBLIC_BASE_URL = os.getenv('PUBLIC_BASE_URL', '').strip()

@@ -50,6 +50,12 @@ class FinalMarkdownExportTests(TestCase):
                 with default_storage.open(path, 'rb') as exported:
                     self.assertEqual(exported.read().decode('utf-8'), self.proposal.final_markdown)
 
+                download = self.api.get(response.json()['download_url'], HTTP_X_ORG_ID=str(self.org.id))
+                self.assertEqual(download.status_code, 200)
+                self.assertIn('Legacy title.md', download['Content-Disposition'])
+                self.assertEqual(b''.join(download.streaming_content).decode('utf-8'), self.proposal.final_markdown)
+                download.close()
+
     def test_all_export_formats_work_without_an_explicit_workspace_header(self):
         with tempfile.TemporaryDirectory() as media_root:
             with override_settings(MEDIA_ROOT=media_root):

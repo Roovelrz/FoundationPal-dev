@@ -1,0 +1,281 @@
+{
+  "pack_id": "cn.sichuan.swun.teaching_reform.2026",
+  "program": {
+    "family": "四川省高等教育高质量发展专项教学改革研究项目",
+    "year": 2026,
+    "issuer": "四川省教育厅",
+    "organization_overlay": "西南民族大学",
+    "status": "organization_overlay_incomplete"
+  },
+  "version": "2026.1-research-20260727",
+  "sources": [
+    "SCEDU-2026-TEACHING-GUIDE",
+    "SCEDU-2026-TEACHING-NOTICE-MIRROR",
+    "SCEDU-2026-TEACHING-APPLICATION",
+    "SCEDU-2026-TEACHING-SUMMARY",
+    "SWUN-2026-TEACHING-INTERNAL"
+  ],
+  "project_types": [
+    {
+      "code": "major",
+      "name": "重大项目",
+      "selection": "由教育厅从推荐的重点项目中遴选"
+    },
+    {
+      "code": "key",
+      "name": "重点项目",
+      "selection": "高校或平台推荐"
+    },
+    {
+      "code": "general",
+      "name": "一般项目",
+      "selection": "高校或平台推荐"
+    }
+  ],
+  "directions": [
+    {
+      "id": "TR-DIR-01",
+      "name": "高等教育发展战略与区域协同创新"
+    },
+    {
+      "id": "TR-DIR-02",
+      "name": "产教融合、科教融汇与特色学院建设"
+    },
+    {
+      "id": "TR-DIR-03",
+      "name": "人才培养模式与教育评价综合改革"
+    },
+    {
+      "id": "TR-DIR-04",
+      "name": "人工智能赋能教育教学改革创新"
+    },
+    {
+      "id": "TR-DIR-05",
+      "name": "专业课程教材一体化与教学质量保障"
+    },
+    {
+      "id": "TR-DIR-06",
+      "name": "教师教学能力发展与思政育人创新"
+    },
+    {
+      "id": "TR-DIR-07",
+      "name": "其他具有改革创新价值的选题"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "TR-REQ-001",
+      "type": "topic",
+      "severity": "soft",
+      "rule": "围绕人才培养真实问题、关键堵点和未来趋势开展具有突破性、示范性和推广价值的教学改革实践。",
+      "source": "SCEDU-2026-TEACHING-GUIDE"
+    },
+    {
+      "id": "TR-REQ-002",
+      "type": "quality",
+      "severity": "soft",
+      "rule": "突出系统性重构、集成式创新和制度化建设，并体现战略性、前瞻性、实践性和可推广性。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-003",
+      "type": "goals",
+      "severity": "blocking",
+      "rule": "项目应制定可量化、可考核的改革目标和任务清单。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-004",
+      "type": "applicant",
+      "severity": "blocking",
+      "rule": "负责人应为高校在岗教师或管理人员，同一负责人限报1项。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-005",
+      "type": "member_limit",
+      "severity": "blocking",
+      "rule": "项目组成员含负责人同期参与本类项目不得超过2项。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-006",
+      "type": "duplicate",
+      "severity": "blocking",
+      "rule": "近3年已有相同或相近立项且无重大创新与突破的项目原则上不予立项，在研国家级、省级教育科研课题组成员不得以相同或相近选题重复申报。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-007",
+      "type": "duration",
+      "severity": "blocking",
+      "rule": "建设周期为2年，确需延期可申请1年，总周期不超过3年。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-008",
+      "type": "review",
+      "severity": "blocking",
+      "rule": "申报单位应完成意识形态、保密、师德师风及必要的伦理审查。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    },
+    {
+      "id": "TR-REQ-009",
+      "type": "output",
+      "severity": "conditional",
+      "rule": "重大项目结题时应形成决策咨询、研究报告或制度方案等成果。",
+      "source": "SCEDU-2026-TEACHING-NOTICE-MIRROR"
+    }
+  ],
+  "section_schema": [
+    {
+      "section_key": "basic_information",
+      "title": "项目基本信息",
+      "status": "template_required"
+    },
+    {
+      "section_key": "team_information",
+      "title": "负责人及项目组信息",
+      "status": "template_required"
+    },
+    {
+      "section_key": "problem_and_basis",
+      "title": "拟解决的教学问题与改革基础",
+      "status": "derived_for_agent",
+      "notes": "正式标题需以申报书模板为准"
+    },
+    {
+      "section_key": "objectives_and_tasks",
+      "title": "改革目标与任务清单",
+      "status": "derived_for_agent"
+    },
+    {
+      "section_key": "reform_design",
+      "title": "改革内容、实施方案与进度",
+      "status": "derived_for_agent"
+    },
+    {
+      "section_key": "innovation",
+      "title": "创新点与示范推广价值",
+      "status": "derived_for_agent"
+    },
+    {
+      "section_key": "outputs",
+      "title": "预期成果及量化指标",
+      "status": "derived_for_agent"
+    },
+    {
+      "section_key": "institution_opinions",
+      "title": "单位审核和推荐意见",
+      "status": "template_required"
+    }
+  ],
+  "required_materials": [
+    {
+      "id": "TR-MAT-001",
+      "name": "2026年专项教学改革研究项目申报书",
+      "required": true,
+      "source": "省教育厅附件"
+    },
+    {
+      "id": "TR-MAT-002",
+      "name": "项目申报汇总表",
+      "required": true,
+      "source": "省教育厅附件",
+      "submission_owner": "学院或学校统一汇总"
+    },
+    {
+      "id": "TR-MAT-003",
+      "name": "网络填报联络人信息表",
+      "required": "学校组织网上填报时",
+      "source": "依托单位组织材料"
+    },
+    {
+      "id": "TR-MAT-004",
+      "name": "意识形态、保密、师德师风及伦理审核材料",
+      "required": "依托单位要求时"
+    },
+    {
+      "id": "TR-MAT-005",
+      "name": "已有教改项目、教学成果和实践基础佐证",
+      "required": "建议提供",
+      "source": "申请人"
+    },
+    {
+      "id": "TR-MAT-006",
+      "name": "西南民族大学教务函〔2026〕82号及其附件",
+      "required": true,
+      "source": "西南民族大学内部通知",
+      "status": "missing_from_public_pack"
+    }
+  ],
+  "organization_overlay": {
+    "organization": "西南民族大学",
+    "confirmed_public_facts": [
+      "校内申报依据为教务函〔2026〕82号。",
+      "公开学院页面显示流程包含教师个人申报、相关专家评审和学院推荐。"
+    ],
+    "unknown_or_unverified": [
+      "学校总推荐名额及各学院分配名额",
+      "西南民族大学校内截止时间",
+      "申报书中哪些签章栏在校内初报阶段暂不填写",
+      "校内材料命名、邮箱、系统入口和纸质份数",
+      "学校组织的意识形态、保密和师德师风审核表",
+      "后续网上申报时间及联系人"
+    ]
+  },
+  "validation_rules": [
+    {
+      "id": "TR-VAL-TYPE",
+      "checker": "project_type",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-DIRECTION",
+      "checker": "direction_or_self_topic",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-PI-LIMIT",
+      "checker": "pi_application_count",
+      "blocking": true,
+      "max": 1
+    },
+    {
+      "id": "TR-VAL-MEMBER-LIMIT",
+      "checker": "member_participation_count",
+      "blocking": true,
+      "max": 2
+    },
+    {
+      "id": "TR-VAL-DUPLICATE",
+      "checker": "similar_project_last_3_years",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-GOALS",
+      "checker": "measurable_objectives",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-PRACTICE",
+      "checker": "reform_practice_path",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-OUTPUTS",
+      "checker": "measurable_outputs",
+      "blocking": true
+    },
+    {
+      "id": "TR-VAL-SWUN-SUPPLEMENT",
+      "checker": "organization_overlay_complete",
+      "blocking": true
+    }
+  ],
+  "unresolved_items": [
+    "西南民族大学校级通知正文未在公开网页中检索到，当前只能确认其文号及学院推荐流程。",
+    "正式申报书和汇总表已定位到公开附件链接，但本包未复制二进制模板，使用时应从来源链接下载或由用户上传。",
+    "正式章节字段不得完全依赖本包的derived_for_agent结构，应在用户上传申报书后编译为最终SectionSchema。"
+  ]
+}

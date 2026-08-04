@@ -1,0 +1,410 @@
+{
+  "group": "规则适用性确认",
+  "required_count": 12,
+  "instruction": "确认12条规则映射是否符合业务规则包原文，并记录审核依据页码。",
+  "cases": [
+    {
+      "requirement_id": 11,
+      "required_fact": "ethics_or_technology_safety",
+      "business_confirmation": "映射正确。科技伦理和科技安全为并列触发事项，任一事项涉及时即适用，并应按相关科学部要求准备附件材料。",
+      "applicability_decision": "conditionally_applicable",
+      "applicability_condition": "项目研究内容涉及科技伦理或科技安全事项时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "NSFC-2026-APPLICATION-MATERIALS-6",
+      "severity": "conditional_blocking",
+      "rule_text": "涉及科技伦理与科技安全的项目申请，应严格执行相关法律法规和伦理准则，并按相关科学部要求上传相应附件材料扫描件。",
+      "source_file": "NSFC_2026_application_regulations.txt",
+      "source_pages": [
+        {
+          "page": 5,
+          "section": "一、申请条件与材料（二）申请材料第6项",
+          "line_start": 118,
+          "line_end": 120,
+          "source_locator": "涉及科技伦理与科技安全的项目申请"
+        }
+      ],
+      "exception_or_non_trigger": "研究内容不涉及科技伦理和科技安全事项时不触发本条附件义务。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "046cf4432bfe9233d1b28e28d8d7517c3c60b1f7cc2df3c7c753e9a753fd4dfd"
+    },
+    {
+      "requirement_id": 19,
+      "required_fact": "joint_application",
+      "business_confirmation": "映射正确。联合申报的核心事实是存在多单位联合申报关系，触发后合作协议和法人单位公章附件为阻断性材料要求。",
+      "applicability_decision": "conditionally_applicable",
+      "applicability_condition": "存在两个及以上申报或合作单位并构成联合申报关系时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-COMMON-005",
+      "severity": "conditional_blocking",
+      "rule_text": "多单位联合申报时须签订加盖法人单位公章的合作协议并作为附件上传。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 93,
+          "line_end": 99,
+          "json_path": "$.requirements[4]"
+        }
+      ],
+      "exception_or_non_trigger": "单一单位独立申报时不触发。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "04f9e337be2cab332506289dbecd6b2124ea6ce3e4e57bfd6f560461d07e86f2"
+    },
+    {
+      "requirement_id": 20,
+      "required_fact": "foreign_applicant_employment_contract",
+      "business_confirmation": "原映射不正确。原文不支持省外隶属事实，实际需要的事实是外籍负责人身份、聘用合同期限覆盖项目周期以及聘用合同扫描件。",
+      "applicability_decision": "conditionally_applicable",
+      "applicability_condition": "项目负责人为在川任职的外籍人员时触发。",
+      "mapping_assessment": "corrected_and_confirmed",
+      "rule_record_id": "SCNSF-COMMON-006",
+      "severity": "conditional_blocking",
+      "rule_text": "在川外籍负责人项目周期应处于聘用合同期限内，并上传聘用合同扫描件。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 100,
+          "line_end": 106,
+          "json_path": "$.requirements[5]"
+        }
+      ],
+      "exception_or_non_trigger": "负责人不是外籍人员时不触发。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "original_required_fact": "out_of_province_affiliation",
+      "mapping_correction_applied": true,
+      "correction_reason": "原 required_fact 与 SCNSF-COMMON-006 原文不一致，已按原文纠正。",
+      "electronic_signature": "05275aaaf5ab6f3ff1041a92757af58026b8cd9290fe782d43b418939c668dfa"
+    },
+    {
+      "requirement_id": 21,
+      "required_fact": "ethics_or_human_genetic_resource",
+      "business_confirmation": "映射正确。科研伦理和人类遗传资源为分别可触发的合规事项，触发后需上传对应审查或承诺材料。",
+      "applicability_decision": "conditionally_applicable",
+      "applicability_condition": "研究涉及科研伦理或我国人类遗传资源相关事项时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-COMMON-007",
+      "severity": "conditional_blocking",
+      "rule_text": "涉及科研伦理、人类遗传资源等事项时，应上传相应审查或承诺材料。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 107,
+          "line_end": 113,
+          "json_path": "$.requirements[6]"
+        }
+      ],
+      "exception_or_non_trigger": "研究不涉及上述事项时不触发。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "7efd6fdb3a141bcb4f266d053e553059eb7d0e087c6fb5a2d6d0e6c534eef226"
+    },
+    {
+      "requirement_id": 24,
+      "required_fact": "program_category=youth_a and qualification",
+      "business_confirmation": "映射正确。青年A类负责人必须同时满足职称或学位条件，以及主持过省部级及以上科研项目条件。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_a 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YA-001",
+      "severity": "blocking",
+      "rule_text": "负责人须具有高级职称或博士学位，并主持过省部级及以上科研项目。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 128,
+          "line_end": 135,
+          "json_path": "$.requirements[9]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年A类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "f2f65b422cd4ff6fc401a39c626d2a2b8502b3644ac62da05fb7a299456f17cd"
+    },
+    {
+      "requirement_id": 25,
+      "required_fact": "program_category=youth_a and prior_award_restriction",
+      "business_confirmation": "映射正确。需同时核验既往青年A类及历史对应项目主持经历，以及规定层次国家级人才计划资助记录。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_a 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YA-002",
+      "severity": "blocking",
+      "rule_text": "负责人不得主持过国家或四川省青年科学基金A类及其历史对应项目，不得获得规定层次的国家级人才计划资助。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 136,
+          "line_end": 143,
+          "json_path": "$.requirements[10]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年A类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "2359bc84b5599f84531b724ce90fe1d4f412999399e7ad3c4c29fd111bb9a4f2"
+    },
+    {
+      "requirement_id": 26,
+      "required_fact": "program_category=youth_a and age_and_birth_date",
+      "business_confirmation": "映射正确。年龄上限和出生日期下限均需按性别同时校验。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_a 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YA-003",
+      "severity": "blocking",
+      "rule_text": "男性未满45周岁且1981年1月1日及以后出生，女性未满48周岁且1978年1月1日及以后出生。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 144,
+          "line_end": 151,
+          "json_path": "$.requirements[11]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年A类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "694b6a725099d500bbd3dd4ec748c93305229964555828931990e6ee9770fe01"
+    },
+    {
+      "requirement_id": 27,
+      "required_fact": "program_category=youth_b and qualification",
+      "business_confirmation": "映射正确。职称、博士学位、硕士学位满3年为可替代资格路径，满足其中一条即可。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_b 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YB-001",
+      "severity": "blocking",
+      "rule_text": "负责人须具有高级或副高级职称或博士学位，或者获得硕士学位满3年。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 152,
+          "line_end": 159,
+          "json_path": "$.requirements[12]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年B类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "abab5d0f213ccd1923e3d15d466140a8a9255db5d45494490cf92fc924dd0808"
+    },
+    {
+      "requirement_id": 28,
+      "required_fact": "program_category=youth_b and prior_project_history",
+      "business_confirmation": "映射正确。需核验负责人是否主持过任何四川省自然科学基金项目，并纳入历史对应项目。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_b 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YB-002",
+      "severity": "blocking",
+      "rule_text": "负责人未主持过四川省自然科学基金项目，包括原应用基础自由探索类面上项目。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 160,
+          "line_end": 167,
+          "json_path": "$.requirements[13]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年B类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "4234a9a7fdebddd51268ae1284ce73efc2708020f72683fc5505fb7c5f2651ce"
+    },
+    {
+      "requirement_id": 29,
+      "required_fact": "program_category=youth_b and age_and_birth_date",
+      "business_confirmation": "映射正确。年龄上限和出生日期下限均需按性别同时校验。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_b 时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YB-003",
+      "severity": "blocking",
+      "rule_text": "男性未满35周岁且1991年1月1日及以后出生，女性未满40周岁且1986年1月1日及以后出生。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 168,
+          "line_end": 175,
+          "json_path": "$.requirements[14]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年B类项目不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "dab29d5755015ee5bee06ef563a9472653cf29b54043046f8449070e478c5586"
+    },
+    {
+      "requirement_id": 30,
+      "required_fact": "program_category=youth_b and research_direction_alignment",
+      "business_confirmation": "映射正确，但该条为方向性软规则，不应作为单独的不予受理条件。",
+      "applicability_decision": "category_specific_applicable",
+      "applicability_condition": "program_category 为 youth_b 时用于研究方向和项目定位审查。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "SCNSF-YB-004",
+      "severity": "soft",
+      "rule_text": "支持青年科研工作者自主选题，鼓励前沿交叉、基础性发现和发明，鼓励探索并宽容失败。",
+      "source_file": "pack.json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 176,
+          "line_end": 183,
+          "json_path": "$.requirements[15]"
+        }
+      ],
+      "exception_or_non_trigger": "非青年B类项目不适用；青年B类中也仅用于方向匹配和质量提示。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "951d939d647e1714d4f340f669fc9f3b759c8be57732b6ee579ff22c89bcb32e"
+    },
+    {
+      "requirement_id": 39,
+      "required_fact": "program_category=major and completion_review",
+      "business_confirmation": "映射正确。重大项目和结题审核为同时成立的条件，其他项目类别或非结题阶段不得触发。",
+      "applicability_decision": "conditionally_applicable",
+      "applicability_condition": "program_category 为 major 且流程阶段为 completion_review 时同时触发。",
+      "mapping_assessment": "confirmed",
+      "rule_record_id": "TR-REQ-009",
+      "severity": "conditional",
+      "rule_text": "重大项目结题时应形成决策咨询、研究报告或制度方案等成果。",
+      "source_file": "pack(1).json",
+      "source_pages": [
+        {
+          "page": 1,
+          "line_start": 122,
+          "line_end": 128,
+          "json_path": "$.requirements[8]"
+        }
+      ],
+      "exception_or_non_trigger": "一般项目、重点项目以及重大项目的非结题阶段不适用。",
+      "source_page_status": "verified",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "reviewer_role": "全权限数据审核管理员",
+      "review_date": "2026-07-28",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "business_signoff": true,
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "release_decision": "approved",
+      "mapping_correction_applied": false,
+      "electronic_signature": "9efcf4c9a76c12c04fea449308a447472846a73787b2830b47d62e6fe628044a"
+    }
+  ],
+  "completion_status": "administrator_rule_applicability_review_completed_and_released",
+  "completion_summary": {
+    "reviewed_count": 12,
+    "confirmed_count": 11,
+    "corrected_and_confirmed_count": 1,
+    "business_signoff_count": 12,
+    "source_verified_count": 12,
+    "release_blocked": false,
+    "release_decision": "approved"
+  },
+  "review_authority": {
+    "reviewer": "roovel",
+    "reviewer_role": "全权限数据审核管理员",
+    "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+    "signed_at": "2026-07-28T17:43:49+08:00"
+  }
+}

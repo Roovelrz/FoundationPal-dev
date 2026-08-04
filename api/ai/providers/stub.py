@@ -4,7 +4,7 @@ from .base import BaseProvider, AIResult
 
 
 class LocalStubProvider(BaseProvider):
-    def plan(self, *, grant_url: str | None, text_spec: str | None) -> Dict:
+    def plan(self, *, grant_url: str | None, text_spec: str | None, application_system: str = 'nsfc') -> Dict:
         sections = [
             {'section_key': 'summary', 'title': 'Executive Summary', 'questions': ['objective', 'impact']},
             {'section_key': 'narrative', 'title': 'Project Narrative', 'questions': ['background', 'approach']},
@@ -22,6 +22,7 @@ class LocalStubProvider(BaseProvider):
         evidence_context: str | None = None,
         rule_context: str | None = None,
         user_evidence_context: str | None = None,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         draft = f'Draft for {section_id}:\n' + '\n'.join(f'- {k}: {v}' for k, v in answers.items())
         if deterministic:
@@ -44,11 +45,30 @@ class LocalStubProvider(BaseProvider):
         change_request: str,
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         new_text = base_text + '\n\nRevisions applied: ' + change_request
         if deterministic:
             new_text = '[deterministic]\n' + new_text
         return AIResult(text=new_text, usage_tokens=0)
+
+    def pre_review(
+        self,
+        *,
+        section_title: str,
+        draft: str,
+        application_system: str = 'nsfc',
+    ) -> AIResult:
+        payload = {
+            'summary': f'已完成对{section_title}的章节预评审。',
+            'strengths': ['草稿已经围绕本章节主题展开，便于后续逐项完善。'],
+            'issues': [{
+                'problem': '需要进一步核对本章论证是否覆盖所有规划问题。',
+                'reason': f'当前草稿长度为{len(draft.strip())}个字符，尚未提供逐项覆盖证明。',
+                'direction': '逐项对照本章问题，补足缺失的论证依据和实施细节。',
+            }],
+        }
+        return AIResult(text=json.dumps(payload, ensure_ascii=False), usage_tokens=0)
 
     def format_final(
         self,
@@ -57,6 +77,7 @@ class LocalStubProvider(BaseProvider):
         template_hint: str | None = None,
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         header = '[stub:formatted]' + (f' template={template_hint}' if template_hint else '')
         if deterministic:

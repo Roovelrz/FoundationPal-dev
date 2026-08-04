@@ -3,6 +3,7 @@ from django.test import TestCase, override_settings
 
 from ai.embedding_service import embed_texts
 from ai.models import AIChunk, AIResource, EvidenceUsage
+from ai.writer_evidence import parse_writer_result
 from orgs.models import Organization
 from proposals.models import Proposal, ProposalSection
 
@@ -17,7 +18,7 @@ class WriterEvidenceTests(TestCase):
         self.section = ProposalSection.objects.create(proposal=self.proposal, key='intro')
         resource = AIResource.objects.create(
             organization_id=str(self.org.id),
-            proposal_id=None,
+            proposal_id=self.proposal.id,
             source_type='guideline',
             evidence_purpose='constraint',
             display_name='Guideline',
@@ -46,6 +47,7 @@ class WriterEvidenceTests(TestCase):
         evidence_response = self.client.get(f'/api/ai/sections/{self.section.id}/evidence', HTTP_X_ORG_ID=str(self.org.id))
         self.assertEqual(evidence_response.status_code, 200)
         self.assertEqual(len(evidence_response.json()['evidence']), 1)
+        self.assertEqual(evidence_response.json()['evidence'][0]['section_title'], '文本片段 1')
 
     def test_write_marks_missing_evidence_when_retrieval_is_empty(self):
         AIChunk.objects.all().delete()
@@ -58,3 +60,15 @@ class WriterEvidenceTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['evidence_ids'], [])
         self.assertEqual(response.json()['missing_evidence'], ['no_retrieved_evidence'])
+
+    def test_writer_result_keeps_draft_when_model_returns_an_unknown_citation(self):
+        parsed = parse_writer_result(
+            'intro',
+            '{"schema_version":"1.0","section_key":"other","draft_markdown":"可保存的草稿。","evidence_ids":["12",999],"warnings":"模型提示","missing_evidence":[]}',
+            [12],
+        )
+
+        self.assertEqual(parsed['schema_version'], 'v1')
+        self.assertEqual(parsed['section_key'], 'intro')
+        self.assertEqual(parsed['evidence_ids'], [12])
+        self.assertIn('unrecognized_evidence_ids_removed', parsed['warnings'])

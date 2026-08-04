@@ -1,0 +1,21 @@
+{
+  "phase": "3.0_p0_release_gate",
+  "release_ready": false,
+  "checks": {
+    "bge_backend": false,
+    "bge_model": false,
+    "bge_dimension": false,
+    "unpublished_pack_safety": true,
+    "citation_entailment_labels": true,
+    "user_evidence_bge": false,
+    "dual_domain_bge": false
+  },
+  "blocked_checks": [
+    "bge_backend",
+    "bge_model",
+    "bge_dimension",
+    "user_evidence_bge",
+    "dual_domain_bge"
+  ],
+  "note": "Citation labels are developer initial review and still require business sign-off before production release."
+}

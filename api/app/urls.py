@@ -11,8 +11,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from app.errors import error_response
 from accounts.views import MeView, DebugTokenObtainPairView, RegisterView, ThrottledTokenObtainPairView
-from billing.views import usage, customer_portal, checkout, cancel_subscription, resume_subscription
-from billing.webhooks import stripe_webhook
 from rest_framework.routers import DefaultRouter
 from proposals.views import ProposalViewSet
 from proposals.views import SectionPromotionView
@@ -83,21 +81,17 @@ urlpatterns = [
     path("api/register", RegisterView.as_view()),
     path("api/token", DebugTokenObtainPairView.as_view() if settings.DEBUG else ThrottledTokenObtainPairView.as_view()),
     path("api/token/refresh", TokenRefreshView.as_view()),
-    path("api/usage", usage),
-    path("api/billing/portal", customer_portal),
-    path("api/billing/checkout", checkout),
-    path("api/billing/cancel", cancel_subscription),
-    path("api/billing/resume", resume_subscription),
     path("api/oauth/google/start", google_start),
     path("api/oauth/google/callback", google_callback),
     path("api/oauth/github/start", github_start),
     path("api/oauth/github/callback", github_callback),
     path("api/oauth/facebook/start", facebook_start),
     path("api/oauth/facebook/callback", facebook_callback),
-    path("api/stripe/webhook", stripe_webhook),
     path("api/exports", export_views.create_export),
     path("api/exports/<int:job_id>", export_views.get_export),
+    path("api/exports/<int:job_id>/download", export_views.download_export),
     path("api/files", files_views.upload),
+    path("api/ai/proposals/<int:proposal_id>/setup", ai_views.project_setup),
     path("api/ai/plan", ai_views.plan),
     path("api/ai/grill", ai_views.grill),
     path("api/ai/intake", ai_views.intake),
@@ -116,9 +110,13 @@ urlpatterns = [
     path("api/ai/sections/<int:section_id>/review-revise", ai_views.section_review_revise),
     path("api/ai/workflow/run", ai_views.workflow_run),
     path("api/ai/human-tasks", ai_views.human_tasks),
+    path("api/ai/human-tasks/<int:task_id>/pre-review", ai_views.human_task_pre_review),
     path("api/ai/human-tasks/<int:task_id>/decision", ai_views.human_task_decision),
+    path("api/ai/proposals/<int:proposal_id>/full-draft", ai_views.full_draft),
     path("api/ai/write", ai_views.write),
     path("api/ai/sections/<int:section_id>/evidence", ai_views.section_evidence),
+    path("api/ai/sections/<int:section_id>/draft", ai_views.save_section_draft),
+    path("api/ai/sections/<int:section_id>/reopen", ai_views.reopen_section),
     path("api/ai/revise", ai_views.revise),
     path("api/ai/format", ai_views.format),
     path("api/ai/jobs/<int:job_id>", ai_views.job_status),

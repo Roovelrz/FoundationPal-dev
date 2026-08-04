@@ -44,6 +44,23 @@ class RevisePersistenceTests(TestCase):
         self.assertEqual(self.section.revisions[0]['to'], response.json()['draft_text'])
         self.assertIsInstance(response.json()['diff'], dict)
 
+    def test_direct_draft_save_keeps_only_the_immediate_previous_version(self):
+        first = self.client.patch(
+            f'/api/ai/sections/{self.section.id}/draft',
+            data={'draft_text': 'User edited draft'},
+            content_type='application/json',
+        )
+
+        self.assertEqual(first.status_code, 200, first.content)
+        self.assertEqual(first.json()['previous_draft'], 'Original draft')
+        self.section.refresh_from_db()
+        self.assertEqual(self.section.draft_content, 'User edited draft')
+        self.assertEqual(self.section.revisions[-1]['from'], 'Original draft')
+
+        detail = self.client.get(f'/api/proposals/{self.proposal.id}/')
+        self.assertEqual(detail.status_code, 200, detail.content)
+        self.assertEqual(detail.json()['sections'][0]['previous_draft'], 'Original draft')
+
     def test_async_revise_updates_same_section_by_proposal_and_key(self):
         job = AIJob.objects.create(
             type='revise',
@@ -95,7 +112,7 @@ class RevisePersistenceTests(TestCase):
         self.assertEqual(other_section.draft_content, 'Protected draft')
 
     @override_settings(PROPOSAL_SECTION_REVISION_CAP=1)
-    def test_sync_revise_enforces_cap_for_section_key(self):
+    def test_sync_revise_ignores_legacy_cap_for_section_key(self):
         self.section.revisions = [{'from': 'A', 'to': 'B'}]
         self.section.save(update_fields=['revisions', 'updated_at'])
 
@@ -105,13 +122,12 @@ class RevisePersistenceTests(TestCase):
                 'proposal_id': self.proposal.id,
                 'section_id': self.section.key,
                 'base_text': self.section.draft_content,
-                'change_request': 'One revision too many',
+                'change_request': '仍可继续修订',
             },
             content_type='application/json',
         )
 
-        self.assertEqual(response.status_code, 409)
-        self.assertEqual(response.json()['error'], 'revision_cap_reached')
+        self.assertEqual(response.status_code, 200, response.content)
         self.section.refresh_from_db()
-        self.assertEqual(self.section.draft_content, 'Original draft')
-        self.assertEqual(len(self.section.revisions), 1)
+        self.assertNotEqual(self.section.draft_content, 'Original draft')
+        self.assertEqual(len(self.section.revisions), 2)

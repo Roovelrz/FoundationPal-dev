@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     # Project-level utilities (management commands like env_doctor)
     'app',
     'accounts',
-    'billing',
     'orgs',
     'proposals',
     'db_policies',
@@ -54,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # App-specific middlewares
     'accounts.middleware.RLSSessionMiddleware',
-    'billing.middleware.QuotaEnforcementMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -192,16 +190,6 @@ if not DEBUG:
     if JWT_SIGNING_KEY == SECRET_KEY:
         raise RuntimeError('SECURITY: JWT_SIGNING_KEY must differ from SECRET_KEY for rotation isolation.')
 
-# Quota defaults (can be overridden via env)
-QUOTA_FREE_ACTIVE_CAP = int(os.getenv('QUOTA_FREE_ACTIVE_CAP', '1'))
-QUOTA_PRO_MONTHLY_CAP = int(os.getenv('QUOTA_PRO_MONTHLY_CAP', '20'))
-QUOTA_PRO_PER_SEAT = int(os.getenv('QUOTA_PRO_PER_SEAT', '10'))
-QUOTA_ENTERPRISE_MONTHLY_CAP = os.getenv('QUOTA_ENTERPRISE_MONTHLY_CAP')
-if QUOTA_ENTERPRISE_MONTHLY_CAP is not None and QUOTA_ENTERPRISE_MONTHLY_CAP != '':
-    QUOTA_ENTERPRISE_MONTHLY_CAP = int(QUOTA_ENTERPRISE_MONTHLY_CAP)
-else:
-    QUOTA_ENTERPRISE_MONTHLY_CAP = None
-
 # File uploads
 FILE_UPLOAD_MAX_MEMORY_SIZE = int(os.getenv('FILE_UPLOAD_MAX_MEMORY_SIZE', str(10 * 1024 * 1024)))  # 10 MB default
 # Hard cap for uploaded file size (in bytes). If not set, defaults to FILE_UPLOAD_MAX_MEMORY_SIZE
@@ -255,18 +243,3 @@ DEFAULT_FROM_EMAIL = (
     or (f"no-reply@{os.getenv('MAILGUN_DOMAIN', '').strip()}" if os.getenv('MAILGUN_DOMAIN', '').strip() else None)
     or 'no-reply@localhost'
 )
-
-# Stripe price configuration (optional; API can accept explicit price_id)
-PRICE_PRO_MONTHLY = os.getenv('PRICE_PRO_MONTHLY', '').strip()
-PRICE_PRO_YEARLY = os.getenv('PRICE_PRO_YEARLY', '').strip()
-# Overage bundles (extras) — optional price ids for 1/10/25 proposal packs
-PRICE_BUNDLE_1 = os.getenv('PRICE_BUNDLE_1', '').strip()
-PRICE_BUNDLE_10 = os.getenv('PRICE_BUNDLE_10', '').strip()
-PRICE_BUNDLE_25 = os.getenv('PRICE_BUNDLE_25', '').strip()
-
-# Stripe credentials and public base URL
-# Exposed so billing views can read them via django.conf.settings
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '').strip()
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '').strip()
-# Base URL used to compose success/cancel/return URLs (e.g., http://127.0.0.1:8000)
-PUBLIC_BASE_URL = os.getenv('PUBLIC_BASE_URL', '').strip()

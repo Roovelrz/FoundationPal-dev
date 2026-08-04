@@ -71,6 +71,40 @@ def _chunk_text(text: str, *, target_chars: int = TARGET_CHARS, max_chars: int =
     return chunks[:200]
 
 
+def _bounded_domain_chunks(chunks: list[str]) -> list[str]:
+    """Keep project-material evidence snippets small enough to inspect and cite."""
+    out: list[str] = []
+    for raw_chunk in chunks:
+        text = str(raw_chunk or '').strip()
+        if not text:
+            continue
+        if len(text) <= MAX_CHARS:
+            out.append(text)
+            continue
+        units = [item.strip() for item in re.split(r'(?<=[。！？；.!?])\s*|\n+', text) if item.strip()]
+        current = ''
+        for unit in units or [text]:
+            while len(unit) > MAX_CHARS:
+                if current:
+                    out.append(current)
+                    current = ''
+                out.append(unit[:MAX_CHARS])
+                unit = unit[MAX_CHARS:]
+            if current and len(current) + len(unit) + 1 > MAX_CHARS:
+                out.append(current)
+                current = ''
+            current = f'{current} {unit}'.strip()
+        if current:
+            out.append(current)
+    return out[:200]
+
+
+def _infer_section_title(text: str) -> str:
+    first_line = str(text or '').splitlines()[0].strip() if str(text or '').strip() else ''
+    match = re.match(r'^((?:第[一二三四五六七八九十百千0-9]+[章节]|[（(]?[一二三四五六七八九十]+[）)、.]).{0,100})', first_line)
+    return match.group(1).strip() if match else ''
+
+
 def _token_count(text: str) -> int:
     return max(1, len(re.findall(r'\S+', text)))
 
@@ -85,21 +119,39 @@ def _stable_chunk_id(resource_sha256: str, parser_version: str, index: int, norm
 
 @transaction.atomic
 def create_resource_with_chunks(*, type_: str, title: str, source_url: str, full_text: str, organization_id: str = '', proposal_id: int | None = None, evidence_purpose: str = 'fact', original_filename: str = '', mime_type: str = 'text/plain', parser_version: str = PARSER_VERSION, page_chunks: list[tuple[int, str, str]] | None = None, resource_sha256: str | None = None, knowledge_domain: str = 'unknown') -> AIResource:
-    full_text = _normalize_text(full_text)
-    if not full_text:
+    source_text = str(full_text or '').strip()
+    normalized_text = _normalize_text(source_text)
+    if not normalized_text:
         raise IngestionError('empty_document')
-    sha256 = resource_sha256 or AIResource.compute_sha256(full_text)
-    existing = AIResource.objects.filter(organization_id=organization_id, sha256=sha256, parser_version=parser_version).first()
+    sha256 = resource_sha256 or AIResource.compute_sha256(normalized_text)
+    existing = AIResource.objects.filter(
+        organization_id=organization_id,
+        proposal_id=proposal_id,
+        sha256=sha256,
+        parser_version=parser_version,
+    ).first()
     if existing:
+        if existing.is_deleted:
+            existing.is_deleted = False
+            existing.status = 'ready'
+            existing.save(update_fields=['is_deleted', 'status'])
         return existing
     if knowledge_domain in {'grant_rule', 'user_evidence'}:
         from .domain_indexing import chunk_text_for_domain
 
-        rows = page_chunks or [(1, chunk, '') for chunk in chunk_text_for_domain(text=full_text, knowledge_domain=knowledge_domain)]
+        raw_rows = page_chunks or [
+            (1, chunk, _infer_section_title(chunk))
+            for chunk in _bounded_domain_chunks(chunk_text_for_domain(text=source_text, knowledge_domain=knowledge_domain))
+        ]
     elif knowledge_domain == 'unknown':
-        rows = page_chunks or [(1, chunk, '') for chunk in _chunk_text(full_text)]
+        raw_rows = page_chunks or [(1, chunk, '') for chunk in _chunk_text(normalized_text)]
     else:
         raise IngestionError('knowledge_domain_invalid')
+    rows = [
+        (page, str(chunk).strip(), section_title or _infer_section_title(chunk))
+        for page, chunk, section_title in raw_rows
+        if str(chunk).strip()
+    ]
     if not rows:
         raise IngestionError('empty_document')
     service = EmbeddingService.instance()

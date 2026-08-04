@@ -1,0 +1,62 @@
+{
+  "validated_at": "2026-07-28T17:43:49+08:00",
+  "files": {
+    "01_original_evidence_admin_signed.json": {
+      "required_count": 18,
+      "actual_count": 18,
+      "duplicate_primary_keys": [],
+      "business_signoff_count": 18,
+      "electronic_signatures_valid": true,
+      "development_markers_found": [],
+      "release_blocked": false,
+      "passed": true
+    },
+    "02_citation_entailment_admin_signed.json": {
+      "required_count": 30,
+      "actual_count": 30,
+      "duplicate_primary_keys": [],
+      "business_signoff_count": 30,
+      "electronic_signatures_valid": true,
+      "development_markers_found": [],
+      "release_blocked": false,
+      "passed": true
+    },
+    "03_rule_applicability_admin_signed.json": {
+      "required_count": 12,
+      "actual_count": 12,
+      "duplicate_primary_keys": [],
+      "business_signoff_count": 12,
+      "electronic_signatures_valid": true,
+      "development_markers_found": [],
+      "release_blocked": false,
+      "passed": true
+    },
+    "04_dual_domain_admin_signed.json": {
+      "required_count": 24,
+      "actual_count": 24,
+      "duplicate_primary_keys": [],
+      "business_signoff_count": 24,
+      "electronic_signatures_valid": true,
+      "development_markers_found": [],
+      "release_blocked": false,
+      "passed": true
+    }
+  },
+  "cross_file_checks": {
+    "03_requirement_ids_unique": true,
+    "03_corrected_mapping": {
+      "requirement_id": 20,
+      "from": "out_of_province_affiliation",
+      "to": "foreign_applicant_employment_contract",
+      "status": "corrected_and_signed"
+    },
+    "02_label_distribution": {
+      "complete_support": 10,
+      "unsupported": 7,
+      "not_evaluable": 13
+    },
+    "all_groups_business_signed": true,
+    "all_groups_release_unblocked": true
+  },
+  "workflow_release_ready": true
+}

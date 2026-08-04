@@ -1,0 +1,117 @@
+{
+  "corpus_version": "phase11-bge-eval-v1",
+  "embedding": {
+    "backend": "bge",
+    "model": "bge-base-zh-v1.5",
+    "revision": "local",
+    "dim": 768,
+    "ready": true
+  },
+  "rule_requirement_mappings": 230,
+  "rule_requirement_seed_operations": 230,
+  "rule_corpus_original_chunk_count": 248,
+  "rule_corpus_gold_chunk_count": 154,
+  "rule_corpus_non_gold_chunk_count": 94,
+  "evidence_mappings_from_original_gold_chunks": 18,
+  "evidence_seed_operations": 18,
+  "manual_evidence_source_binding_external_ids": [],
+  "original_evidence_binding_file": "..\\data\\phase30_public_amr_eval\\phase30_original_evidence_bindings.json",
+  "synthetic_test_fixture_count": 0,
+  "missing_rule_chunks": [],
+  "missing_evidence_chunks": [],
+  "query_leak_observations": [
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:001",
+      "gold_chunk_id": 684
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:002",
+      "gold_chunk_id": 686
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:003",
+      "gold_chunk_id": 688
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:004",
+      "gold_chunk_id": 690
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:005",
+      "gold_chunk_id": 692
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:006",
+      "gold_chunk_id": 694
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:007",
+      "gold_chunk_id": 696
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:008",
+      "gold_chunk_id": 698
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:009",
+      "gold_chunk_id": 700
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:010",
+      "gold_chunk_id": 702
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:011",
+      "gold_chunk_id": 704
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:012",
+      "gold_chunk_id": 706
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:013",
+      "gold_chunk_id": 708
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:014",
+      "gold_chunk_id": 710
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:015",
+      "gold_chunk_id": 712
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:016",
+      "gold_chunk_id": 714
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:017",
+      "gold_chunk_id": 716
+    },
+    {
+      "domain": "user_evidence",
+      "case_id": "public_amr_evidence:018",
+      "gold_chunk_id": 718
+    }
+  ],
+  "rule_query_leak_observations": [],
+  "semantic_baseline_status": "ready_for_rule_only_bge_eval",
+  "user_evidence_semantic_baseline_status": "ready"
+}

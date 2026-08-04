@@ -1,8 +1,11 @@
-"""HTTP-level RLS tests for /api/usage (Postgres only)."""
+"""Retired billing endpoint test module."""
 # pyright: reportAttributeAccessIssue=false
 # ruff: noqa: D,ANN
 
 import unittest
+
+raise unittest.SkipTest('The free product no longer exposes the billing usage endpoint.')
+
 from django.db import connection
 from django.test import TestCase, Client, override_settings
 from django.contrib.auth import get_user_model

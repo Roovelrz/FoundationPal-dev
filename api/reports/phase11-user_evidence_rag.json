@@ -1,0 +1,13 @@
+{
+  "report_type": "user_evidence_small_eval",
+  "case_count": 1,
+  "context_recall_at_8": 1.0,
+  "cross_organization_leakage_rate": 0.0,
+  "cases": [
+    {
+      "user_evidence_id": 1,
+      "returned": true,
+      "cross_org_missing": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "group": "发布签署",
+  "required_count": 8,
+  "instruction": "在真实来源、独立发布保留集和全部指标复测完成后，由对应负责人签署。",
+  "cases": [
+    {
+      "area": "真实来源替换",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "Citation 页码与蕴含",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "BGE 规则与用户证据",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "组织隔离",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "Reviewer 指标",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "Review Grill 复核",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "Intake 指标",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    },
+    {
+      "area": "发布保留集",
+      "owner": "",
+      "decision": "",
+      "date": "",
+      "evidence_report": ""
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from .base import BaseProvider, AIResult
@@ -16,7 +17,7 @@ from ai.diff_engine import diff_texts
 class GeminiProvider(BaseProvider):
     """Gemini stub provider with role output validation wrappers."""
 
-    def plan(self, *, grant_url: str | None, text_spec: str | None) -> dict:
+    def plan(self, *, grant_url: str | None, text_spec: str | None, application_system: str = 'nsfc') -> dict:
         payload: dict[str, Any] = {
             'schema_version': 'v1',
             'source': grant_url or 'text',
@@ -42,6 +43,7 @@ class GeminiProvider(BaseProvider):
         evidence_context: str | None = None,
         rule_context: str | None = None,
         user_evidence_context: str | None = None,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         budget = apply_context_budget(
             retrieval=[],
@@ -62,6 +64,7 @@ class GeminiProvider(BaseProvider):
         change_request: str,
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         """Return revised text plus structured diff for contract validation.
 
@@ -83,6 +86,18 @@ class GeminiProvider(BaseProvider):
         validate_reviser_output(payload)
         return AIResult(text=revised, usage_tokens=0, model_id='gemini')
 
+    def pre_review(self, *, section_title: str, draft: str, application_system: str = 'nsfc') -> AIResult:
+        payload = {
+            'summary': f'已完成对{section_title}的章节预评审。',
+            'strengths': ['草稿已经形成可继续核对和完善的章节结构。'],
+            'issues': [{
+                'problem': '需要验证章节是否具备足够的论证细节。',
+                'reason': f'当前草稿长度为{len(draft.strip())}个字符，无法确认每项主张均有充分支撑。',
+                'direction': '补充主张对应的理由、材料依据和可执行安排。',
+            }],
+        }
+        return AIResult(text=json.dumps(payload, ensure_ascii=False), usage_tokens=0, model_id='gemini')
+
     def format_final(
         self,
         *,
@@ -90,6 +105,7 @@ class GeminiProvider(BaseProvider):
         template_hint: str | None = None,
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         budget = apply_context_budget(
             retrieval=[],

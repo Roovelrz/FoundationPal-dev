@@ -3,7 +3,7 @@ from django.test import TestCase
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
 from orgs.models import Organization
-from proposals.models import Proposal
+from proposals.models import Proposal, ProposalSection
 
 from ai.hitl import build_human_graph
 
@@ -13,7 +13,28 @@ class HumanInTheLoopTests(TestCase):
         self.user = get_user_model().objects.create_user(username='hitl-user', password='p')
         self.org = Organization.objects.create(name='hitl-org', admin=self.user)
         self.proposal = Proposal.objects.create(author=self.user, org=self.org, content={})
+        self.section = ProposalSection.objects.create(
+            proposal=self.proposal,
+            key='summary',
+            title='摘要',
+            draft_content='待审批草稿',
+        )
         self.client.force_login(self.user)
+
+    def _create_section_task(self, thread_id):
+        response = self.client.post('/api/ai/human-tasks', {
+            'proposal_id': self.proposal.id,
+            'node': 'section_approval',
+            'thread_id': thread_id,
+            'input': {
+                'section_key': self.section.key,
+                'section_title': self.section.title,
+                'draft_summary': self.section.draft_content,
+            },
+            'model_output': {'review_summary': '审查结论：approve'},
+        }, content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        return response.json()
 
     def test_inmemory_graph_pauses_and_resumes_after_graph_rebuild(self):
         saver = InMemorySaver()
@@ -61,3 +82,45 @@ class HumanInTheLoopTests(TestCase):
             'thread_id': task['thread_id'], 'action': 'approve',
         }, content_type='application/json')
         self.assertEqual(duplicate.status_code, 409)
+
+    def test_section_approval_locks_section_without_generating_final_draft(self):
+        task = self._create_section_task('section-approve')
+        decision = self.client.post('/api/ai/human-tasks/' + str(task['id']) + '/decision', {
+            'thread_id': task['thread_id'],
+            'action': 'approve',
+        }, content_type='application/json')
+        self.assertEqual(decision.status_code, 200)
+        self.assertEqual(decision.json()['status'], 'approved')
+        self.section.refresh_from_db()
+        self.assertTrue(self.section.locked)
+        self.assertEqual(self.section.state, 'approved')
+        self.proposal.refresh_from_db()
+        self.assertEqual(self.proposal.final_markdown, '')
+        duplicate = self.client.post('/api/ai/human-tasks/' + str(task['id']) + '/decision', {
+            'thread_id': task['thread_id'],
+            'action': 'approve',
+        }, content_type='application/json')
+        self.assertEqual(duplicate.status_code, 409)
+
+    def test_section_edit_and_reject_keep_draft_unlocked(self):
+        edit_task = self._create_section_task('section-edit')
+        edit = self.client.post('/api/ai/human-tasks/' + str(edit_task['id']) + '/decision', {
+            'thread_id': edit_task['thread_id'],
+            'action': 'edit',
+        }, content_type='application/json')
+        self.assertEqual(edit.status_code, 200)
+        self.assertEqual(edit.json()['status'], 'ready_after_edit')
+        self.section.refresh_from_db()
+        self.assertFalse(self.section.locked)
+        self.assertEqual(self.section.state, 'draft')
+
+        reject_task = self._create_section_task('section-reject')
+        reject = self.client.post('/api/ai/human-tasks/' + str(reject_task['id']) + '/decision', {
+            'thread_id': reject_task['thread_id'],
+            'action': 'reject',
+        }, content_type='application/json')
+        self.assertEqual(reject.status_code, 200)
+        self.assertEqual(reject.json()['status'], 'rejected')
+        self.section.refresh_from_db()
+        self.assertFalse(self.section.locked)
+        self.assertEqual(self.section.state, 'draft')

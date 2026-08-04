@@ -8,13 +8,13 @@ from .models import AIJob, AIMetric, AIJobContext, WorkflowRun, EvidenceUsage, H
 from .section_pipeline import get_section
 from .tasks import run_plan, run_write, run_revise, run_format
 from .provider import get_provider
+from .providers.base import normalize_application_system
 from .diff_engine import diff_texts
 from .validators import SchemaError, invalid_output_error, section_draft, validate_role_output
 from .workflow import persist_graph_result, resolve_run_id
 from django.db.models import QuerySet
 from typing import Optional
 from orgs.models import Organization
-from billing.quota import get_subscription_for_scope
 from django.utils import timezone
 from .decorators import ai_protected
 from django.db import models
@@ -23,14 +23,16 @@ from proposals.models import Proposal, ProposalSection
 from proposals.finalization import SectionsNotApproved, build_approved_markdown
 from .writer_evidence import parse_writer_result, persist_evidence_usage, render_writer_contexts, retrieve_writer_evidence
 from .query_router import persist_dual_retrieval_trace
-from .services import ServiceError, finalize_service, plan_service, revise_service, write_service
-from .grill import answer as answer_grill, confirm as confirm_grill, get_session, planning_context, serialize as serialize_grill
+from .services import ServiceError, finalize_service, plan_service, promote_service, revise_service, write_service
+from .grill import answer as answer_grill, confirm as confirm_grill, get_session, planning_context, previous as previous_grill, serialize as serialize_grill
 from .grill import finish as finish_grill
 from .intake import answer_node, consensus as intake_consensus, next_node, question_card, start_intake, work_plan_preview
 from .claim_planning import confirm_claim_plan, create_claim_plan, serialize_claim_plan
 from .reviewing import answer_review_grill, apply_local_revision, prepare_writer_run, run_review, start_review_grill
 from .models import ClaimPlan, GrillSession, ProposalIntakeProfile, GrantPackVersion
 from .phase12 import create_custom_pack_draft, decide_claim, serialize_evidence_review, serialize_pack_review, update_evidence_review, update_pack_review
+from .project_materials import ProjectMaterialError, project_planning_context, project_setup_status, repair_uploaded_material_pages, save_project_setup
+from .pre_review import create_draft_pre_review, create_section_pre_review
 from .proposal_graph import run_proposal_graph
 from .hitl import HUMAN_ACTIONS, HUMAN_NODES, resume_human_task, start_human_task
 from django.db import transaction
@@ -53,6 +55,30 @@ def _get_accessible_proposal(request, proposal_id: int) -> Optional[Proposal]:
     return qs.distinct().first()
 
 
+def _proposal_application_system(proposal: Optional[Proposal]) -> str:
+    meta = (proposal.content or {}).get('meta', {}) if proposal is not None else {}
+    return normalize_application_system(meta.get('application_system') if isinstance(meta, dict) else None)
+
+
+def _intake_choice_context(proposal: Proposal) -> str:
+    snapshot = dict((proposal.content or {}).get('meta', {}).get('intake_snapshot') or {})
+    task_mode = snapshot.get('task_mode')
+    quality_level = snapshot.get('quality_level')
+    task_labels = {
+        'polish_existing': '润色已有文本',
+        'refine_outline': '完善已有思路',
+        'plan_from_scratch': '从头规划并起草',
+    }
+    quality_labels = {
+        'quick': '快速成稿',
+        'standard': '标准完善',
+        'deep': '深度打磨',
+    }
+    if task_mode not in task_labels or quality_level not in quality_labels:
+        return ''
+    return f'用户写作目标：{task_labels[task_mode]}\n交付深度：{quality_labels[quality_level]}'
+
+
 class DebugOrAuthPermission(BasePermission):
     """Allow all when DEBUG is True; otherwise require authentication.
 
@@ -67,177 +93,32 @@ class DebugOrAuthPermission(BasePermission):
         return IsAuthenticated().has_permission(request, view)
 
 
-def _compute_rate_limits(tier: str) -> int:
-    """Return max requests per minute for the given tier.
+@api_view(['GET', 'POST'])
+@permission_classes([DebugOrAuthPermission])
+def project_setup(request, proposal_id: int):
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    if request.method == 'GET':
+        return Response(project_setup_status(proposal))
 
-    Defaults:
-      - free: 0 (blocked by gating already)
-      - pro: 20 rpm
-      - enterprise: 60 rpm
-    Overridable via settings: AI_RATE_PER_MIN_FREE/PRO/ENTERPRISE
-    """
-    tier_key = (tier or 'pro').lower()
-    if tier_key == 'enterprise':
-        return int(getattr(settings, 'AI_RATE_PER_MIN_ENTERPRISE', 60) or 60)
-    if tier_key == 'free':
-        return int(getattr(settings, 'AI_RATE_PER_MIN_FREE', 0) or 0)
-    return int(getattr(settings, 'AI_RATE_PER_MIN_PRO', 20) or 20)
-
-
-def _rate_limit_check(request, endpoint_type: str) -> Optional[Response]:
-    """Enforce AI usage limits (rpm + daily requests + monthly tokens) by tier.
-
-    Order:
-      1. Skip if DEBUG and no explicit enforcement.
-      2. Per-minute rate limit (existing behavior).
-      3. Daily request cap (if configured).
-      4. Monthly token cap (if configured) - evaluated on write/revise/format only.
-
-    Returns Response(429) when any limit exceeded; else None.
-    """
-    # Allow explicit enforcement in DEBUG when AI_ENFORCE_RATE_LIMIT_DEBUG=1
-    if settings.DEBUG and not getattr(settings, 'AI_ENFORCE_RATE_LIMIT_DEBUG', False):
-        return None
-    user = getattr(request, 'user', None)
-    if not getattr(user, 'is_authenticated', False):
-        return None  # gating handles unauthorized
-    # Determine org scope for tier
-    org: Optional[Organization] = None
-    org_id = request.META.get('HTTP_X_ORG_ID', '')
-    if org_id and str(org_id).isdigit():
-        try:
-            org = Organization.objects.filter(id=int(org_id)).first()
-        except Exception:
-            org = None
-    tier, _status = get_subscription_for_scope(user, org)
-    limit = _compute_rate_limits(tier)
-    if limit <= 0:
-        # No per-minute limit, still enforce daily/monthly caps below
-        pass
-    # Fast cache precheck (token bucket style approximate counter)
-    if limit > 0:
-        try:
-            from django.core.cache import cache
-
-            uid = getattr(user, 'id', None)
-            if uid is not None:
-                bucket_key = f'ai_rl:{endpoint_type}:{uid}:{int(time.time()//60)}'
-                current = cache.get(bucket_key)
-                if current is None:
-                    cache.add(bucket_key, 0, 65)  # expire slightly over 60s window
-                    current = 0
-                if isinstance(current, int) and current >= limit:
-                    resp = Response(
-                        {
-                            'error': 'rate_limited',
-                            'retry_after': 30,
-                            'message': t('errors.ai.rate_limited', retry_after=30),
-                        },
-                        status=429,
-                    )
-                    resp['Retry-After'] = '30'
-                    resp['X-Rate-Limit-Limit'] = str(limit)
-                    resp['X-Rate-Limit-Remaining'] = '0'
-                    return resp
-                # Increment optimistically (best-effort; ignore race conditions)
-                try:
-                    cache.incr(bucket_key)
-                except Exception:
-                    cache.set(bucket_key, int(current) + 1, 65)
-        except Exception:
-            pass  # fallback silently to DB metric counting
-    # Count metrics in the last 60 seconds for this user and endpoint type
-    from .models import AIMetric
-
-    now = timezone.now()
-    one_min_ago = now - timezone.timedelta(seconds=60)
-    if limit > 0:
-        recent = AIMetric.objects.filter(
-            created_by=user,
-            type=endpoint_type,
-            created_at__gte=one_min_ago,
-        ).count()
-        if recent >= limit:
-            retry_after = 30
-            resp = Response(
-                {
-                    'error': 'rate_limited',
-                    'retry_after': retry_after,
-                    'message': t('errors.ai.rate_limited', retry_after=retry_after),
-                },
-                status=429,
-            )
-            resp['Retry-After'] = str(retry_after)
-            resp['X-Rate-Limit-Limit'] = str(limit)
-            resp['X-Rate-Limit-Remaining'] = '0'
-            return resp
-        # Attach remaining header for observability
-        remaining = max(limit - recent - 1, 0)
-        request.META['AI_RATE_LIMIT_REMAINING'] = remaining  # can be surfaced later if needed
-
-    # --- Daily request cap ---
-    # Settings: AI_DAILY_REQUEST_CAP_FREE/PRO/ENTERPRISE (None/0 => disabled)
-    start_day = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
-    tier_lower = tier.lower()
-    daily_cap_setting = None
-    if tier_lower == 'free':
-        daily_cap_setting = getattr(settings, 'AI_DAILY_REQUEST_CAP_FREE', None)
-    elif tier_lower == 'enterprise':
-        daily_cap_setting = getattr(settings, 'AI_DAILY_REQUEST_CAP_ENTERPRISE', None)
-    else:
-        daily_cap_setting = getattr(settings, 'AI_DAILY_REQUEST_CAP_PRO', None)
     try:
-        daily_cap = int(daily_cap_setting) if daily_cap_setting not in (None, '') else None
-    except Exception:
-        daily_cap = None
-    if daily_cap and daily_cap > 0:
-        day_count = AIMetric.objects.filter(created_by=user, created_at__gte=start_day).count()
-        if day_count >= daily_cap:
-            resp = Response(
-                {
-                    'error': 'quota_exceeded',
-                    'reason': 'ai_daily_request_cap',
-                    'retry_after': 3600,
-                    'message': t('errors.ai.quota_daily_reached'),
-                },
-                status=429,
-            )
-            resp['X-AI-Daily-Cap'] = str(daily_cap)
-            resp['X-AI-Daily-Used'] = str(day_count)
-            return resp
-
-    # --- Monthly token cap --- (write/revise/format only; planning negligible)
-    if endpoint_type in ('write', 'revise', 'format'):
-        month_start = timezone.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        monthly_cap_setting = None
-        if tier_lower == 'enterprise':
-            monthly_cap_setting = getattr(settings, 'AI_MONTHLY_TOKENS_CAP_ENTERPRISE', None)
-        else:  # pro & free (free already blocked elsewhere)
-            monthly_cap_setting = getattr(settings, 'AI_MONTHLY_TOKENS_CAP_PRO', None)
-        try:
-            monthly_cap = int(monthly_cap_setting) if monthly_cap_setting not in (None, '') else None
-        except Exception:
-            monthly_cap = None
-        if monthly_cap and monthly_cap > 0:
-            token_sum = (
-                AIMetric.objects.filter(created_by=user, created_at__gte=month_start)
-                .aggregate(total=models.Sum('tokens_used'))  # type: ignore[name-defined]
-                .get('total')
-                or 0
-            )
-            if token_sum >= monthly_cap:
-                resp = Response(
-                    {
-                        'error': 'quota_exceeded',
-                        'reason': 'ai_monthly_tokens_cap',
-                        'message': t('errors.ai.quota_monthly_tokens_reached'),
-                    },
-                    status=429,
-                )
-                resp['X-AI-Monthly-Token-Cap'] = str(monthly_cap)
-                resp['X-AI-Monthly-Token-Used'] = str(token_sum)
-                return resp
-    return None
+        result = save_project_setup(
+            proposal=proposal,
+            owner=request.user,
+            research_direction=sanitize_text(request.data.get('research_direction'), max_len=4000),
+            core_problem=sanitize_text(request.data.get('core_problem'), max_len=4000),
+            guideline_text=sanitize_text(request.data.get('guideline_text'), max_len=20000),
+        )
+    except ProjectMaterialError as error:
+        code = error.args[0] if error.args else 'project_setup_invalid'
+        messages = {
+            'research_direction_required': '请填写研究方向与核心科学问题。',
+            'guideline_required': '请粘贴基金指南或先上传一份可解析的指南文件。',
+            'document_text_unavailable': '材料中未识别到可用文字，请改用可解析的 PDF、DOCX 或文本文件。',
+        }
+        return Response({'error': code, 'message': messages.get(code, '项目基础信息保存失败，请检查填写内容后重试。')}, status=400)
+    return Response(result)
 
 
 @api_view(['POST'])
@@ -257,9 +138,18 @@ def plan(request):
     proposal = _get_accessible_proposal(request, proposal_id)
     if proposal is None:
         return Response({'error': 'proposal_not_found'}, status=404)
+    if proposal.final_markdown:
+        return Response({'error': 'proposal_finalized'}, status=409)
+    application_system = _proposal_application_system(proposal)
     planning_session = dict((proposal.content or {}).get('grill', {}).get('planning') or {})
     if planning_session and not planning_session.get('confirmed'):
         return Response({'error': 'grill_confirmation_required'}, status=409)
+    setup_context = project_planning_context(proposal)
+    if setup_context:
+        text_spec = setup_context + ('\n\n补充说明：\n' + text_spec if text_spec else '')
+    intake_context = _intake_choice_context(proposal)
+    if intake_context:
+        text_spec = intake_context + ('\n\n' + text_spec if text_spec else '')
     confirmed_context = planning_context(proposal)
     if confirmed_context:
         text_spec = '\n\n[confirmed_grill_answers]\n' + confirmed_context + ('\n\n' + text_spec if text_spec else '')
@@ -272,6 +162,7 @@ def plan(request):
                 'proposal_id': proposal.id,
                 'grant_url': grant_url or None,
                 'text_spec': text_spec or None,
+                'application_system': application_system,
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
@@ -282,7 +173,11 @@ def plan(request):
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     t0 = time.time()
     try:
-        plan_result = provider.plan(grant_url=grant_url or None, text_spec=text_spec or None)
+        plan_result = provider.plan(
+            grant_url=grant_url or None,
+            text_spec=text_spec or None,
+            application_system=application_system,
+        )
     except Exception:  # noqa: BLE001
         logger.exception('AI provider.plan failed')
         return Response(
@@ -349,7 +244,19 @@ def grill(request):
             return Response({'error': 'section_not_found'}, status=404)
     session = get_session(proposal, mode=mode, section_key=section_key)
     if request.method == 'POST':
-        if data.get('finish'):
+        if data.get('previous'):
+            raw_answers = data.get('answers') or {}
+            if not isinstance(raw_answers, dict):
+                return Response({'error': 'grill_answers_invalid'}, status=400)
+            answers = {str(key): sanitize_text(value, max_len=1000) for key, value in raw_answers.items()}
+            previous_grill(session, answers)
+        elif data.get('finish'):
+            raw_answers = data.get('answers') or {}
+            if not isinstance(raw_answers, dict):
+                return Response({'error': 'grill_answers_invalid'}, status=400)
+            if raw_answers:
+                answers = {str(key): sanitize_text(value, max_len=1000) for key, value in raw_answers.items()}
+                answer_grill(session, answers)
             finish_grill(session)
         else:
             raw_answers = data.get('answers') or {}
@@ -636,12 +543,13 @@ def workflow_run(request):
     run_id = resolve_run_id(
         request.data.get('run_id'),
         proposal_id=proposal.id,
-        org_id=request.META.get('HTTP_X_ORG_ID', ''),
+        org_id=str(proposal.org_id),
     )
     state = run_proposal_graph({
         'run_id': str(run_id),
         'thread_id': sanitize_text(request.data.get('thread_id'), max_len=128) or f'proposal-{proposal.id}',
         'organization_id': str(proposal.org_id),
+        'actor_id': request.user.id if request.user.is_authenticated else proposal.author_id,
         'proposal_id': proposal.id,
         'section_key': section_key,
         'plan': plan,
@@ -650,7 +558,7 @@ def workflow_run(request):
         'draft': sanitize_text(request.data.get('draft'), max_len=20000, neutralize_injection=False),
         'review': request.data.get('review') if isinstance(request.data.get('review'), dict) else {},
         'review_queue': review_queue[:5],
-        'max_revisions': max(1, min(int(request.data.get('max_revisions', 2) or 2), 5)),
+        'max_revisions': max(1, min(int(request.data.get('max_revisions', 2) or 2), 2)),
         'resume_after_approval': bool(request.data.get('resume_after_approval')),
     })
     persist_graph_result(run_id, state)
@@ -662,6 +570,157 @@ def workflow_run(request):
         'trace': state['trace'],
         'final_markdown': state.get('final_markdown') or '',
     })
+
+
+_FULL_DRAFT_KEY = 'full_draft'
+_FULL_DRAFT_REVIEW_KEY = 'full_draft_review'
+
+
+def _proposal_meta(proposal: Proposal):
+    content = dict(proposal.content or {})
+    meta = dict(content.get('meta') or {})
+    content['meta'] = meta
+    return content, meta
+
+
+def _full_draft_state(proposal: Proposal, *, initialize: bool = False):
+    source_text = build_approved_markdown(proposal)
+    content, meta = _proposal_meta(proposal)
+    saved = meta.get(_FULL_DRAFT_KEY)
+    saved = dict(saved) if isinstance(saved, dict) else {}
+    draft_text = str(saved.get('text') or '').strip()
+    try:
+        version = int(saved.get('version') or 0)
+    except (TypeError, ValueError):
+        version = 0
+    if not draft_text:
+        version = max(version, 0) + 1
+        saved = {
+            'text': source_text,
+            'version': version,
+            'section_keys': [section.key for section in proposal.sections.all()],
+        }
+        if initialize:
+            meta[_FULL_DRAFT_KEY] = saved
+            meta[_FULL_DRAFT_REVIEW_KEY] = {'status': 'draft', 'version': version}
+            proposal.content = content
+            proposal.save(update_fields=['content', 'last_edited'])
+    else:
+        saved['text'] = draft_text
+        saved['version'] = max(version, 1)
+        saved.setdefault('section_keys', [section.key for section in proposal.sections.all()])
+    return saved
+
+
+def _full_draft_payload(proposal: Proposal):
+    state = _full_draft_state(proposal, initialize=True)
+    _, meta = _proposal_meta(proposal)
+    review = meta.get(_FULL_DRAFT_REVIEW_KEY)
+    review = dict(review) if isinstance(review, dict) else {}
+    try:
+        review_version = int(review.get('version') or 0)
+    except (TypeError, ValueError):
+        review_version = 0
+    approval_status = review.get('status') if review_version == state['version'] else 'draft'
+    return {
+        'draft_text': state['text'],
+        'version': state['version'],
+        'approval_status': approval_status or 'draft',
+        'section_keys': state.get('section_keys') or [],
+    }
+
+
+def _save_full_draft(proposal: Proposal, draft_text: str):
+    _full_draft_state(proposal)
+    content, meta = _proposal_meta(proposal)
+    current = meta.get(_FULL_DRAFT_KEY)
+    current = dict(current) if isinstance(current, dict) else {}
+    current_text = str(current.get('text') or '').strip()
+    try:
+        version = int(current.get('version') or 0)
+    except (TypeError, ValueError):
+        version = 0
+    changed = draft_text != current_text
+    if changed or version < 1:
+        version = max(version, 0) + 1
+    meta[_FULL_DRAFT_KEY] = {
+        'text': draft_text,
+        'version': version,
+        'section_keys': [section.key for section in proposal.sections.all()],
+    }
+    meta[_FULL_DRAFT_REVIEW_KEY] = {'status': 'draft', 'version': version}
+    proposal.content = content
+    proposal.final_markdown = ''
+    proposal.save(update_fields=['content', 'final_markdown', 'last_edited'])
+    if changed:
+        HumanApprovalTask.objects.filter(
+            proposal_id=proposal.id,
+            node='final_export_confirmation',
+            status='pending',
+        ).update(
+            status='ready_after_edit',
+            decision_json={'action': 'edit', 'reason': 'full_draft_changed'},
+            decided_at=timezone.now(),
+        )
+    payload = _full_draft_payload(proposal)
+    payload['previous_draft'] = current_text
+    return payload
+
+
+def _mark_full_draft_approval(proposal: Proposal, task: HumanApprovalTask, action: str):
+    state = _full_draft_state(proposal)
+    try:
+        task_version = int((task.input_json or {}).get('draft_version') or 0)
+    except (TypeError, ValueError):
+        task_version = 0
+    if task_version != state['version']:
+        raise ServiceError('full_draft_changed')
+    content, meta = _proposal_meta(proposal)
+    status = 'approved' if action == 'approve' else 'draft'
+    meta[_FULL_DRAFT_REVIEW_KEY] = {
+        'status': status,
+        'version': state['version'],
+        'task_id': task.id,
+    }
+    proposal.content = content
+    if status != 'approved':
+        proposal.final_markdown = ''
+        proposal.save(update_fields=['content', 'final_markdown', 'last_edited'])
+    else:
+        proposal.save(update_fields=['content', 'last_edited'])
+
+
+def _full_draft_is_approved(proposal: Proposal) -> bool:
+    try:
+        state = _full_draft_state(proposal)
+    except SectionsNotApproved:
+        return False
+    _, meta = _proposal_meta(proposal)
+    review = meta.get(_FULL_DRAFT_REVIEW_KEY)
+    if not isinstance(review, dict) or review.get('status') != 'approved':
+        return False
+    try:
+        return int(review.get('version') or 0) == int(state.get('version') or 0)
+    except (TypeError, ValueError):
+        return False
+
+
+def _invalidate_full_draft(proposal: Proposal, section_key: str):
+    content, meta = _proposal_meta(proposal)
+    meta.pop(_FULL_DRAFT_KEY, None)
+    meta[_FULL_DRAFT_REVIEW_KEY] = {'status': 'invalidated', 'section_key': section_key}
+    proposal.content = content
+    proposal.final_markdown = ''
+    proposal.save(update_fields=['content', 'final_markdown', 'last_edited'])
+    HumanApprovalTask.objects.filter(
+        proposal_id=proposal.id,
+        node='final_export_confirmation',
+        status='pending',
+    ).update(
+        status='ready_after_edit',
+        decision_json={'action': 'edit', 'reason': 'section_reopened'},
+        decided_at=timezone.now(),
+    )
 
 
 def _human_task_payload(task):
@@ -737,13 +796,177 @@ def human_task_decision(request, task_id: int):
         if action not in HUMAN_ACTIONS:
             return Response({'error': 'human_action_invalid'}, status=400)
         edited_input = request.data.get('edited_input') if isinstance(request.data.get('edited_input'), dict) else {}
+        section = None
+        is_section_approval = task.node == 'section_approval'
+        is_full_draft_approval = (
+            task.node == 'final_export_confirmation'
+            and (task.input_json or {}).get('kind') == 'full_draft'
+        )
+        full_draft_proposal = None
+        if is_section_approval and action == 'approve':
+            section_key = sanitize_text((task.input_json or {}).get('section_key'), max_len=128)
+            section = get_section(section_key, proposal_id=task.proposal_id)
+            if section is None:
+                return Response({'error': 'section_not_found'}, status=404)
+            if section.locked:
+                return Response({'error': 'section_locked'}, status=409)
+        if is_section_approval and action == 'edit' and not edited_input:
+            edited_input = {'return_to_editor': True}
+        if is_full_draft_approval:
+            full_draft_proposal = Proposal.objects.select_for_update().filter(id=task.proposal_id).first()
+            if full_draft_proposal is None:
+                return Response({'error': 'proposal_not_found'}, status=404)
+            if full_draft_proposal.final_markdown:
+                return Response({'error': 'proposal_finalized'}, status=409)
+            try:
+                state = _full_draft_state(full_draft_proposal)
+                task_version = int((task.input_json or {}).get('draft_version') or 0)
+            except (SectionsNotApproved, TypeError, ValueError):
+                return Response({'error': 'full_draft_unavailable'}, status=409)
+            if task_version != state['version']:
+                return Response({'error': 'full_draft_changed'}, status=409)
         result = resume_human_task(task.thread_id, {'action': action, 'edited_input': edited_input})
         task.status = result['status']
         task.decision_json = {'action': action, 'edited_input': edited_input}
         task.decided_by = request.user if request.user.is_authenticated else None
         task.decided_at = timezone.now()
         task.save(update_fields=['status', 'decision_json', 'decided_by', 'decided_at'])
+        if is_full_draft_approval:
+            _mark_full_draft_approval(full_draft_proposal, task, action)
+        if is_section_approval and action == 'approve':
+            promote_service(section=section)
+            task.workflow_run.status = 'completed'
+            task.workflow_run.fallback_mode = ''
+            task.workflow_run.completed_at = timezone.now()
+            task.workflow_run.save(update_fields=['status', 'fallback_mode', 'completed_at'])
+        if is_full_draft_approval and action == 'approve':
+            task.workflow_run.status = 'completed'
+            task.workflow_run.fallback_mode = ''
+            task.workflow_run.completed_at = timezone.now()
+            task.workflow_run.save(update_fields=['status', 'fallback_mode', 'completed_at'])
     return Response(_human_task_payload(task))
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def human_task_pre_review(request, task_id: int):
+    task = HumanApprovalTask.objects.select_related('workflow_run').filter(id=task_id).first()
+    if task is None or _get_accessible_proposal(request, task.proposal_id) is None:
+        return Response({'error': 'human_task_not_found'}, status=404)
+    is_section_task = task.node == 'section_approval'
+    is_full_draft_task = (
+        task.node == 'final_export_confirmation'
+        and (task.input_json or {}).get('kind') == 'full_draft'
+    )
+    if not (is_section_task or is_full_draft_task) or task.status != 'pending':
+        return Response({'error': 'section_pre_review_unavailable'}, status=409)
+
+    action = sanitize_text(request.data.get('action'), max_len=16)
+    output = dict(task.model_output_json or {})
+    if action == 'dismiss':
+        output.pop('pre_review', None)
+        output.pop('pre_review_status', None)
+        task.model_output_json = output
+        task.save(update_fields=['model_output_json'])
+        return Response(_human_task_payload(task))
+    if action == 'accept':
+        if not isinstance(output.get('pre_review'), dict):
+            return Response({'error': 'section_pre_review_not_found'}, status=409)
+        output['pre_review_status'] = 'accepted'
+        task.model_output_json = output
+        task.save(update_fields=['model_output_json'])
+        return Response(_human_task_payload(task))
+    if action:
+        return Response({'error': 'section_pre_review_action_invalid'}, status=400)
+    try:
+        if is_section_task:
+            section_key = sanitize_text((task.input_json or {}).get('section_key'), max_len=128)
+            section = get_section(section_key, proposal_id=task.proposal_id)
+            if section is None:
+                return Response({'error': 'section_not_found'}, status=404)
+            review = create_section_pre_review(
+                section=section,
+                provider=get_provider(getattr(settings, 'AI_PROVIDER', None)),
+                application_system=_proposal_application_system(section.proposal),
+            )
+        else:
+            proposal = Proposal.objects.filter(id=task.proposal_id).first()
+            if proposal is None:
+                return Response({'error': 'proposal_not_found'}, status=404)
+            state = _full_draft_state(proposal)
+            try:
+                task_version = int((task.input_json or {}).get('draft_version') or 0)
+            except (TypeError, ValueError):
+                task_version = 0
+            if task_version != state['version']:
+                return Response({'error': 'full_draft_changed'}, status=409)
+            review = create_draft_pre_review(
+                title=(task.input_json or {}).get('draft_title') or '审批后全文草稿',
+                draft=(task.input_json or {}).get('draft_text') or state['text'],
+                provider=get_provider(getattr(settings, 'AI_PROVIDER', None)),
+                application_system=_proposal_application_system(proposal),
+            )
+    except ValueError as error:
+        return Response({'error': str(error)}, status=409)
+    except Exception:
+        logger.exception('section pre-review failed')
+        return Response({'error': 'ai_provider_error', 'message': t('errors.ai.provider_failed')}, status=502)
+    output['pre_review'] = review
+    output['pre_review_status'] = 'pending'
+    try:
+        output['pre_review_request_count'] = int(output.get('pre_review_request_count') or 0) + 1
+    except (TypeError, ValueError):
+        output['pre_review_request_count'] = 1
+    task.model_output_json = output
+    task.save(update_fields=['model_output_json'])
+    return Response(_human_task_payload(task))
+
+
+@api_view(['GET', 'PATCH'])
+@permission_classes([DebugOrAuthPermission])
+def full_draft(request, proposal_id: int):
+    proposal = _get_accessible_proposal(request, proposal_id)
+    if proposal is None:
+        return Response({'error': 'proposal_not_found'}, status=404)
+    try:
+        if request.method == 'GET':
+            return Response(_full_draft_payload(proposal))
+        if proposal.final_markdown:
+            return Response({'error': 'proposal_finalized'}, status=409)
+        draft_text = sanitize_text(
+            request.data.get('draft_text'), max_len=100000, neutralize_injection=False,
+        )
+        if not draft_text:
+            return Response({'error': 'draft_required'}, status=400)
+        return Response(_save_full_draft(proposal, draft_text))
+    except SectionsNotApproved:
+        return Response({'error': 'sections_not_approved'}, status=409)
+
+
+@api_view(['POST'])
+@permission_classes([DebugOrAuthPermission])
+def reopen_section(request, section_id: int):
+    with transaction.atomic():
+        section = ProposalSection.objects.select_related('proposal').select_for_update().filter(id=section_id).first()
+        if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+            return Response({'error': 'section_not_found'}, status=404)
+        proposal = section.proposal
+        if proposal.final_markdown:
+            return Response({'error': 'proposal_finalized'}, status=409)
+        if not section.locked or section.state != 'approved':
+            return Response({'error': 'section_not_approved'}, status=409)
+        section.draft_content = section.approved_content or section.draft_content
+        section.state = 'draft'
+        section.locked = False
+        section.save(update_fields=['draft_content', 'state', 'locked', 'updated_at'])
+        _invalidate_full_draft(proposal, section.key)
+    return Response({
+        'section_id': section.id,
+        'section_key': section.key,
+        'state': section.state,
+        'locked': section.locked,
+        'draft_text': section.draft_content,
+    })
 
 
 @api_view(['POST'])
@@ -752,6 +975,7 @@ def human_task_decision(request, task_id: int):
 def write(request):
     section_id = sanitize_text(request.data.get('section_id'), max_len=128)
     proposal_id = None
+    proposal = None
     try:
         if request.data.get('proposal_id') is not None:
             proposal_id = int(request.data.get('proposal_id'))
@@ -767,6 +991,7 @@ def write(request):
             return Response({'error': 'section_not_found'}, status=404)
         if section.locked:
             return Response({'error': 'section_locked'}, status=409)
+    application_system = _proposal_application_system(proposal)
     run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal_id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     answers = sanitize_answers(request.data.get('answers', {}))
     file_refs = sanitize_file_refs(request.data.get('file_refs', []))
@@ -779,6 +1004,7 @@ def write(request):
                 'section_id': section_id,
                 'answers': answers,
                 'file_refs': file_refs,
+                'application_system': application_system,
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
@@ -790,7 +1016,12 @@ def write(request):
         except Exception:
             # Fallback: run synchronously if Celery misconfigured in test
             provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
-            provider.write(section_id=section_id, answers=answers, file_refs=file_refs or None)
+            provider.write(
+                section_id=section_id,
+                answers=answers,
+                file_refs=file_refs or None,
+                application_system=application_system,
+            )
         return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
     t0 = time.time()
@@ -827,7 +1058,7 @@ def write(request):
     if section is not None:
         review_evidence = list(EvidenceUsage.objects.filter(proposal_section=section, role='writer', used_in_prompt=True).order_by('-created_at', 'rank')[:5])
         if review_evidence:
-            change_request += '\n\n[review_evidence]\n' + '\n'.join(
+            answers['_review_evidence'] = '\n'.join(
                 f'[{item.chunk_id}] {item.document_name_snapshot} p.{item.page_start_snapshot}-{item.page_end_snapshot}: {item.snapshot_text}'
                 for item in review_evidence
             )
@@ -859,6 +1090,7 @@ def write(request):
             deterministic=deterministic,
             rule_context=rule_context,
             user_evidence_context=user_evidence_context,
+            application_system=application_system,
         )  # type: ignore[arg-type]
     except Exception:
         logger.exception('AI provider.write failed')
@@ -910,8 +1142,9 @@ def write(request):
         'chunk_id': item['chunk_id'],
         'rank': item['final_rank'],
         'document_name': item['document_name'],
-        'page_start': item['page_start'],
-        'page_end': item['page_end'],
+        'page_start': item['page_start'] if item.get('is_uploaded_material') else None,
+        'page_end': item['page_end'] if item.get('is_uploaded_material') else None,
+        'is_uploaded_material': bool(item.get('is_uploaded_material')),
         'section_title': item['section_title'],
         'text': item['text'],
         'cited_by_model': item['chunk_id'] in draft['evidence_ids'],
@@ -925,7 +1158,8 @@ def section_evidence(request, section_id: int):
     section = ProposalSection.objects.select_related('proposal').filter(id=section_id).first()
     if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
         return Response({'error': 'section_not_found'}, status=404)
-    usages = EvidenceUsage.objects.filter(proposal_section=section, role='writer').order_by('-created_at', 'rank')
+    repair_uploaded_material_pages(section.proposal)
+    usages = EvidenceUsage.objects.filter(proposal_section=section, role='writer').select_related('chunk__resource').order_by('-created_at', 'rank')
     return Response({
         'section_id': section.id,
         'evidence': [{
@@ -934,12 +1168,38 @@ def section_evidence(request, section_id: int):
             'used_in_prompt': usage.used_in_prompt,
             'cited_by_model': usage.cited_by_model,
             'document_name': usage.document_name_snapshot,
-            'page_start': usage.page_start_snapshot,
-            'page_end': usage.page_end_snapshot,
+            'page_start': usage.chunk.page_start if usage.chunk.resource.original_filename and usage.chunk.resource.proposal_id == section.proposal_id else None,
+            'page_end': usage.chunk.page_end if usage.chunk.resource.original_filename and usage.chunk.resource.proposal_id == section.proposal_id else None,
+            'is_uploaded_material': bool(usage.chunk.resource.original_filename and usage.chunk.resource.proposal_id == section.proposal_id),
             'section_title': usage.section_title_snapshot,
             'text': usage.snapshot_text,
         } for usage in usages],
     })
+
+
+@api_view(['PATCH'])
+@permission_classes([DebugOrAuthPermission])
+def save_section_draft(request, section_id: int):
+    section = ProposalSection.objects.select_related('proposal').filter(id=section_id).first()
+    if section is None or _get_accessible_proposal(request, section.proposal_id) is None:
+        return Response({'error': 'section_not_found'}, status=404)
+    if section.locked:
+        return Response({'error': 'section_locked'}, status=409)
+    draft_text = sanitize_text(
+        request.data.get('draft_text'), max_len=50000, neutralize_injection=False,
+    )
+    if not draft_text:
+        return Response({'error': 'draft_required'}, status=400)
+    previous_draft = section.draft_content or section.approved_content or ''
+    if draft_text != previous_draft:
+        revise_service(
+            section=section,
+            revised_text=draft_text,
+            user_id=getattr(request.user, 'id', None),
+            from_text=previous_draft,
+            diff=diff_texts(previous_draft, draft_text),
+        )
+    return Response({'draft_text': draft_text, 'previous_draft': previous_draft})
 
 
 @api_view(['POST'])
@@ -947,9 +1207,15 @@ def section_evidence(request, section_id: int):
 @ai_protected('revise', plan_gate=True)
 def revise(request):
     change_request = sanitize_text(request.data.get('change_request', ''), max_len=4000)
-    base_text = sanitize_text(request.data.get('base_text', ''), max_len=20000, neutralize_injection=False)
+    is_full_draft = sanitize_text(request.data.get('draft_scope'), max_len=16) == 'full'
+    base_text = sanitize_text(
+        request.data.get('base_text', ''),
+        max_len=100000 if is_full_draft else 20000,
+        neutralize_injection=False,
+    )
     section_id = sanitize_text(request.data.get('section_id'), max_len=128)
     proposal_id = None
+    proposal = None
     try:
         if request.data.get('proposal_id') is not None:
             proposal_id = int(request.data.get('proposal_id'))
@@ -960,13 +1226,24 @@ def revise(request):
         proposal = _get_accessible_proposal(request, proposal_id)
         if proposal is None:
             return Response({'error': 'proposal_not_found'}, status=404)
-        section = get_section(section_id, proposal_id=proposal.id)
-        if section is None:
-            return Response({'error': 'section_not_found'}, status=404)
+        if is_full_draft:
+            if proposal.final_markdown:
+                return Response({'error': 'proposal_finalized'}, status=409)
+            try:
+                _full_draft_state(proposal)
+            except SectionsNotApproved:
+                return Response({'error': 'sections_not_approved'}, status=409)
+        else:
+            section = get_section(section_id, proposal_id=proposal.id)
+            if section is None:
+                return Response({'error': 'section_not_found'}, status=404)
     elif section_id:
         section = get_section(section_id)
+        if section is not None:
+            proposal = section.proposal
     if section is not None and section.locked:
         return Response({'error': 'section_locked'}, status=409)
+    application_system = _proposal_application_system(proposal)
     run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal_id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     file_refs = sanitize_file_refs(request.data.get('file_refs', []))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
@@ -979,6 +1256,7 @@ def revise(request):
                 'base_text': base_text,
                 'change_request': change_request,
                 'file_refs': file_refs,
+                'application_system': application_system,
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
@@ -987,44 +1265,6 @@ def revise(request):
         run_revise.delay(job.id)  # type: ignore[attr-defined]
         return Response({'job_id': job.id, 'status': job.status, 'run_id': str(run_id)})  # type: ignore[attr-defined]
     provider = get_provider(getattr(settings, 'AI_PROVIDER', None))
-    # --- Revision cap pre-check (sync path only; async handled in task) ---
-    if section is not None:
-        try:
-            cap_raw = getattr(settings, 'PROPOSAL_SECTION_REVISION_CAP', 5)
-            try:
-                cap_val = int(cap_raw) if cap_raw not in (None, '') else 5
-            except Exception:
-                cap_val = 5
-            if cap_val <= 0:
-                cap_val = 5
-            current_count = len(section.revisions or [])
-            if current_count >= cap_val:
-                from .models import AIMetric
-
-                try:
-                    AIMetric.objects.create(
-                        type='revise',
-                        model_id='revision_cap_blocked',
-                        duration_ms=0,
-                        tokens_used=0,
-                        success=False,
-                        created_by=(request.user if request.user.is_authenticated else None),
-                        org_id=request.META.get('HTTP_X_ORG_ID', ''),
-                        section_id=section_id,
-                        error_text='revision_cap_reached',
-                    )
-                except Exception:
-                    pass
-                return Response(
-                    {
-                        'error': 'revision_cap_reached',
-                        'message': t('errors.revision.cap_reached', count=current_count, limit=cap_val),
-                        'remaining_revision_slots': 0,
-                    },
-                    status=409,
-                )
-        except Exception:
-            pass  # fall through on errors
     t0 = time.time()
     # (Memory suggestions reserved hook: intentionally skipped until provider contract extended)
     # Include memory context as additional signal appended to change_request (non-persistent)
@@ -1059,6 +1299,7 @@ def revise(request):
             change_request=change_request,
             file_refs=file_refs or None,
             deterministic=deterministic,
+            application_system=application_system,
         )  # type: ignore[arg-type]
     except Exception:
         logger.exception('AI provider.revise failed')
@@ -1121,11 +1362,15 @@ def format(request):
     proposal = _get_accessible_proposal(request, proposal_id)
     if proposal is None:
         return Response({'error': 'proposal_not_found'}, status=404)
+    application_system = _proposal_application_system(proposal)
     run_id = resolve_run_id(request.data.get('run_id'), proposal_id=proposal.id, org_id=request.META.get('HTTP_X_ORG_ID', ''), provider=getattr(settings, 'AI_PROVIDER', ''))
     try:
-        full_text = build_approved_markdown(proposal)
+        full_draft_state = _full_draft_state(proposal)
     except SectionsNotApproved:
         return Response({'error': 'sections_not_approved'}, status=409)
+    if not _full_draft_is_approved(proposal):
+        return Response({'error': 'full_draft_approval_required'}, status=409)
+    full_text = full_draft_state['text']
     file_refs = sanitize_file_refs(request.data.get('file_refs', []))
     async_enabled = getattr(settings, 'AI_ASYNC', False) and settings.CELERY_BROKER_URL
     if async_enabled:
@@ -1136,6 +1381,7 @@ def format(request):
                 'full_text': full_text,
                 'template_hint': template_hint or None,
                 'file_refs': file_refs,
+                'application_system': application_system,
             },
             created_by=(getattr(request, 'user', None) if request.user.is_authenticated else None),
             org_id=request.META.get('HTTP_X_ORG_ID', ''),
@@ -1165,6 +1411,7 @@ def format(request):
             template_hint=template_hint or None,
             file_refs=file_refs or None,
             deterministic=deterministic,
+            application_system=application_system,
         )
     except Exception:
         logger.exception('AI provider.format_final failed')

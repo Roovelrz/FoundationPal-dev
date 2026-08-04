@@ -1,0 +1,46 @@
+{
+  "groups": [
+    {
+      "group": "真实原始证据替换",
+      "count": 18,
+      "md": "01_original_evidence.md",
+      "json": "01_original_evidence.json"
+    },
+    {
+      "group": "Citation 业务复核",
+      "count": 30,
+      "md": "02_citation_entailment.md",
+      "json": "02_citation_entailment.json"
+    },
+    {
+      "group": "规则适用性确认",
+      "count": 12,
+      "md": "03_rule_applicability.md",
+      "json": "03_rule_applicability.json"
+    },
+    {
+      "group": "双域子问题与 Gold 审核",
+      "count": 24,
+      "md": "04_dual_domain.md",
+      "json": "04_dual_domain.json"
+    },
+    {
+      "group": "Reviewer 可执行风险样本",
+      "count": 608,
+      "md": "05_reviewer_risk_cases.md",
+      "json": "05_reviewer_risk_cases.json"
+    },
+    {
+      "group": "Intake 与 Grill 合同审核",
+      "count": 48,
+      "md": "06_intake_and_grill.md",
+      "json": "06_intake_and_grill.json"
+    },
+    {
+      "group": "发布签署",
+      "count": 8,
+      "md": "07_release_signoff.md",
+      "json": "07_release_signoff.json"
+    }
+  ]
+}

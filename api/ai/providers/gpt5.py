@@ -1,3 +1,4 @@
+import json
 from typing import Any
 from .base import BaseProvider, AIResult
 from ai.validators import (
@@ -14,7 +15,7 @@ from ai.diff_engine import diff_texts
 
 
 class Gpt5Provider(BaseProvider):
-    def plan(self, *, grant_url: str | None, text_spec: str | None) -> dict:
+    def plan(self, *, grant_url: str | None, text_spec: str | None, application_system: str = 'nsfc') -> dict:
         sections = [
             {'section_key': 'summary', 'title': 'Executive Summary', 'questions': ['objective', 'impact', 'outcomes']},
             {'section_key': 'narrative', 'title': 'Project Narrative', 'questions': ['background', 'approach', 'risks']},
@@ -38,6 +39,7 @@ class Gpt5Provider(BaseProvider):
         evidence_context: str | None = None,
         rule_context: str | None = None,
         user_evidence_context: str | None = None,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         # Placeholder: retrieval & memory not yet passed into provider; budget manager still invoked for future parity.
         budget = apply_context_budget(
@@ -58,6 +60,7 @@ class Gpt5Provider(BaseProvider):
         change_request: str,
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         """Return a revised text plus structured diff.
 
@@ -80,6 +83,18 @@ class Gpt5Provider(BaseProvider):
         validate_reviser_output(payload)
         return AIResult(text=revised, usage_tokens=0, model_id='gpt-5')
 
+    def pre_review(self, *, section_title: str, draft: str, application_system: str = 'nsfc') -> AIResult:
+        payload = {
+            'summary': f'已完成对{section_title}的章节预评审。',
+            'strengths': ['草稿已围绕章节主题组织内容。'],
+            'issues': [{
+                'problem': '需要核对章节内容是否完整回应规划问题。',
+                'reason': f'当前草稿长度为{len(draft.strip())}个字符，无法据此确认问题覆盖完整。',
+                'direction': '逐项补足问题对应的论证、依据和实施内容。',
+            }],
+        }
+        return AIResult(text=json.dumps(payload, ensure_ascii=False), usage_tokens=0, model_id='gpt-5')
+
     def format_final(
         self,
         *,
@@ -87,6 +102,7 @@ class Gpt5Provider(BaseProvider):
         template_hint: str | None = None,
         file_refs: list[dict[str, Any]] | None = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         budget = apply_context_budget(
             retrieval=[],

@@ -1,13 +1,12 @@
 from typing import Optional
 
 from rest_framework import viewsets, permissions, status
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, ValidationError
 from rest_framework.request import Request
 from rest_framework.response import Response
-from django.conf import settings
+from django.db import transaction
 from django.utils import timezone
 
-from billing.permissions import CanCreateProposal
 from orgs.models import Organization, OrgUser
 from .models import Proposal
 from .serializers import ProposalSerializer
@@ -15,7 +14,6 @@ from ai.section_pipeline import get_section
 from ai.services import promote_service
 from ai.models import AIMetric
 from rest_framework.views import APIView
-from billing.quota import can_unarchive
 
 
 class ProposalViewSet(viewsets.ModelViewSet):
@@ -23,20 +21,14 @@ class ProposalViewSet(viewsets.ModelViewSet):
     serializer_class = ProposalSerializer
 
     def get_permissions(self):
-        if self.action == 'create':
-            return [permissions.IsAuthenticated(), CanCreateProposal()]
-        # Read allowed for authenticated users for now; tighten as auth lands
-        return [permissions.IsAuthenticated()] if not settings.DEBUG else [permissions.AllowAny()]
+        return [permissions.IsAuthenticated()]
 
     def get_queryset(self):
         """Return proposals scoped to either a specific org (X-Org-ID) or all
         organizations the user belongs to (admin or member).
 
-        Previous logic attempted to support personal proposals with org=NULL.
-        The schema has since evolved to enforce org NOT NULL (RLS + policies),
-        so we expose a *personal organization* concept instead. Any legacy
-        references to org NULL are removed in favor of auto-provisioning a
-        personal org on first proposal creation (see perform_create).
+        A creation always needs an explicit X-Org-ID. Reads without that
+        header remain backward compatible for trusted internal callers.
         """
         qs = super().get_queryset()
         user = self.request.user
@@ -56,37 +48,24 @@ class ProposalViewSet(viewsets.ModelViewSet):
         return qs.filter(org_id__in=allowed_org_ids)
 
     def perform_create(self, serializer: ProposalSerializer):
-        """Create a proposal ensuring an org is always attached.
-
-        Behavior:
-          - If X-Org-ID provided and user is a member/admin → use that org.
-          - Else: use (or create) a per-user personal org (admin = user).
-            A membership row is also ensured for consistency with queries.
-        """
+        """Create a proposal only in the workspace explicitly selected by the user."""
         user = self.request.user
-        org: Optional[Organization] = None
-        org_id = self.request.headers.get('X-Org-ID')
-        if org_id and org_id.isdigit():
-            candidate = Organization.objects.filter(id=int(org_id)).first()
-            # Use getattr to avoid static type checker complaints; admin_id always present at runtime.
-            if candidate and (
-                getattr(candidate, 'admin_id', None) == getattr(user, 'id', None)
-                or OrgUser.objects.filter(
-                    org=candidate,
-                    user_id=getattr(user, 'id', None),
-                ).exists()
-            ):
-                org = candidate
-            else:
+        org_id = str(self.request.headers.get('X-Org-ID') or '').strip()
+        if not org_id or not org_id.isdigit():
+            raise ValidationError({'workspace': 'workspace_required'})
+
+        with transaction.atomic():
+            org = Organization.objects.select_for_update().filter(id=int(org_id)).first()
+            is_member = org and (
+                org.admin_id == user.id or OrgUser.objects.filter(org=org, user_id=user.id).exists()
+            )
+            if not is_member:
                 raise PermissionDenied('invalid_org_scope')
-        if org is None:
-            # Personal org provisioning path
-            org = Organization.objects.filter(admin=user).order_by('id').first()
-            if org is None:
-                org = Organization.objects.create(name='工作区 1', admin=user)
-            # Ensure membership record (idempotent)
-            OrgUser.objects.get_or_create(org=org, user=user, defaults={'role': 'admin'})
-        serializer.save(author=user, org=org)
+
+            workspace_number = max(int(org.next_proposal_number or 1), 1)
+            org.next_proposal_number = workspace_number + 1
+            org.save(update_fields=['next_proposal_number'])
+            serializer.save(author=user, org=org, workspace_number=workspace_number)
 
     def partial_update(self, request: Request, *args, **kwargs):
         instance: Proposal = self.get_object()
@@ -106,28 +85,9 @@ class ProposalViewSet(viewsets.ModelViewSet):
         requested_state = serializer.validated_data.get('state')
 
         if requested_state is not None:
-            # Archiving allowed for all tiers (privacy); does not change usage cap status
             if requested_state == 'archived' and instance.state != 'archived':
-                # set archived_at on transition to archived
                 instance.archived_at = timezone.now()
-            # Un-archiving should respect active caps only
-            elif instance.state == 'archived' and requested_state != 'archived':
-                allowed, details = can_unarchive(request.user, org, instance)
-                if not allowed:
-                    resp = Response(
-                        {
-                            'error': 'quota_exceeded',
-                            'reason': details.get('reason'),
-                            'tier': details.get('tier'),
-                            'limits': details.get('limits'),
-                            'usage': details.get('usage'),
-                        },
-                        status=402,
-                    )
-                    resp['X-Quota-Reason'] = details.get('reason', 'quota')
-                    return resp
 
-        # Clear archived_at if leaving archived state
         if instance.state == 'archived' and requested_state and requested_state != 'archived':
             instance.archived_at = None
         self.perform_update(serializer)
@@ -148,7 +108,7 @@ class ProposalViewSet(viewsets.ModelViewSet):
         if instance.state == 'archived':
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        # Allow archive for all tiers (privacy)
+        # All users may archive their own project.
         instance.state = 'archived'
         instance.archived_at = timezone.now()
         update_fields = ['state', 'archived_at']

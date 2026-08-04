@@ -16,7 +16,7 @@ describe('AuthorPanel workspace recovery', () => {
           key: 'summary',
           title: 'Summary',
           state: 'drafted',
-          inputs: ['Saved question'],
+          questions: ['Saved question'],
           answers: { 'Saved question': 'Saved answer' },
           draft_content: '# Saved draft',
           approved_content: '',

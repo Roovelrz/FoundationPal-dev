@@ -1,0 +1,21 @@
+{
+  "report_type": "rule_rag_small_eval",
+  "case_count": 2,
+  "recall_at_5": 1.0,
+  "wrong_year_rejection_rate": 1.0,
+  "citation_traceability_rate": 1.0,
+  "cases": [
+    {
+      "pack_version_id": 1,
+      "ok": true,
+      "traceable": true,
+      "wrong_year_rejected": true
+    },
+    {
+      "pack_version_id": 2,
+      "ok": true,
+      "traceable": true,
+      "wrong_year_rejected": true
+    }
+  ]
+}

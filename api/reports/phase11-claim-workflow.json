@@ -1,0 +1,58 @@
+{
+  "claim_case_count": 30,
+  "reviewer_execution": {
+    "reviewed_section_count": 16,
+    "actual_issue_codes": [
+      "cross_section_consistency",
+      "duplicate_claim",
+      "missing_budget_decision",
+      "missing_claim_evidence",
+      "numerical_conflict",
+      "overclaiming"
+    ],
+    "expected_review_grill_issue_codes_implemented": [
+      "completion_status_conflict",
+      "cross_section_consistency",
+      "duplicate_funding_conflict",
+      "human_decision_preserved",
+      "locked_claim_change_attempt",
+      "metric_definition_conflict",
+      "missing_attachment_evidence",
+      "missing_budget_decision",
+      "numerical_conflict",
+      "overclaiming",
+      "role_attribution_conflict",
+      "unsupported_claim"
+    ],
+    "expected_review_grill_issue_codes_observed": [
+      "cross_section_consistency",
+      "missing_budget_decision",
+      "numerical_conflict",
+      "overclaiming"
+    ],
+    "expected_review_grill_issue_codes_not_implemented": [],
+    "expected_review_grill_issue_codes_not_observed": [
+      "completion_status_conflict",
+      "duplicate_funding_conflict",
+      "human_decision_preserved",
+      "locked_claim_change_attempt",
+      "metric_definition_conflict",
+      "missing_attachment_evidence",
+      "role_attribution_conflict",
+      "unsupported_claim"
+    ]
+  },
+  "review_grill_execution": {
+    "fixture_case_count": 12,
+    "cases_with_actual_reviewer_issues": 10,
+    "sessions_created": 10,
+    "first_decisions_recorded": 2,
+    "reverification_successes": 0,
+    "direct_closures": 0
+  },
+  "intake_execution": {
+    "fixture_case_count": 36,
+    "routing_accuracy": 0.6111,
+    "question_budget_accuracy": 0.5556
+  }
+}

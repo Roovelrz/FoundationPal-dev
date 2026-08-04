@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GrantProgramPack",
+  "type": "object",
+  "required": [
+    "pack_id",
+    "program",
+    "version",
+    "sources",
+    "requirements",
+    "required_materials",
+    "validation_rules"
+  ],
+  "properties": {
+    "pack_id": {
+      "type": "string"
+    },
+    "program": {
+      "type": "object"
+    },
+    "version": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirements": {
+      "type": "array"
+    },
+    "required_materials": {
+      "type": "array"
+    },
+    "validation_rules": {
+      "type": "array"
+    },
+    "section_schema": {
+      "type": "array"
+    },
+    "unresolved_items": {
+      "type": "array"
+    }
+  }
+}

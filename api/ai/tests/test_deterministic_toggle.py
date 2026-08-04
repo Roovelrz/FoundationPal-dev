@@ -10,7 +10,11 @@ User = get_user_model()
 def login(client, username='detuser'):
     user = User.objects.create_user(username=username, password='test12345')
     org = Organization.objects.create(name=f'{username} Org', admin=user)
-    proposal = Proposal.objects.create(author=user, org=org, content={})
+    proposal = Proposal.objects.create(
+        author=user,
+        org=org,
+        content={'meta': {'full_draft_review': {'status': 'approved', 'version': 1}}},
+    )
     ProposalSection.objects.create(
         proposal=proposal,
         key='summary',

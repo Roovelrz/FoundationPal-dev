@@ -1,0 +1,3115 @@
+{
+  "group": "Intake 与 Grill 合同审核",
+  "required_count": 48,
+  "instruction": "为36条 Intake 和12条 Review Grill 夹具确认输入草稿、证据状态、预期路由、目标 Issue 与关闭条件。",
+  "cases": [
+    {
+      "case_id": "intake:001",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "quick",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "none",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 4,
+      "expected_blocking_topics": [
+        "core_problem",
+        "research_goal",
+        "minimum_user_evidence"
+      ],
+      "notes": "已加载有效规则包。只追问形成最小完整框架所需问题，目标ProposalBrief完成度约70%，非阻断细节转为假设。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "quick",
+        "rule_state": "verified_pack",
+        "draft_state": "none",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 4,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "core_problem",
+          "research_goal",
+          "minimum_user_evidence"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:002",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "quick",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 4,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation",
+        "core_problem"
+      ],
+      "notes": "先用上传材料编译出的候选规则辅助追问，规则事实不重复询问；发布规则包前要求一次确认。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "quick",
+        "rule_state": "uploaded_pending",
+        "draft_state": "rough_notes",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 4,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "rule_pack_confirmation",
+          "core_problem"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:003",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "quick",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "none",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "core_problem",
+        "research_goal",
+        "generic_rule_warning"
+      ],
+      "notes": "允许用户提前结束。回答最小问题后以通用结构成稿，记录无正式规则包和无证据假设，ProposalBrief预期完成度约55%。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "quick",
+        "rule_state": "generic_fallback",
+        "draft_state": "none",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "用户解决首个阻断项并明确结束后关闭，其余非阻断项写入AssumptionRegister。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "core_problem",
+          "research_goal",
+          "generic_rule_warning"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:004",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "quick",
+      "rule_readiness": "missing_blocking",
+      "content_maturity": "none",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 2,
+      "expected_blocking_topics": [
+        "program_type",
+        "rule_pack_required"
+      ],
+      "notes": "缺少项目类别且用户要求材料必须合规。先确认项目类型或上传规则包，阻断项未解决时不得进入Planner。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "quick",
+        "rule_state": "missing_blocking",
+        "draft_state": "none",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "EvidenceConfirmationNode",
+          "HumanNode"
+        ],
+        "terminal_outcome": "blocked_until_required_inputs",
+        "must_not_enter_planner_while_blocked": true
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap"
+      ],
+      "closure_condition": "项目类型、正式规则包和最小用户证据达到当前案例要求后关闭；否则保持HumanNode阻断。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 2,
+        "expected_grill_mode": "evidence_confirmation",
+        "blocking_topics": [
+          "program_type",
+          "rule_pack_required"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:005",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "none",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "expected_blocking_topics": [
+        "core_problem",
+        "research_goal",
+        "research_contents",
+        "methodology",
+        "evidence_gap"
+      ],
+      "notes": "标准模式建立问题、目标、内容、路线和基础证据的对应关系，ProposalBrief预期完成度不低于85%。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "none",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 7,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "core_problem",
+          "research_goal",
+          "research_contents",
+          "methodology",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:006",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "standard",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation",
+        "scientific_problem",
+        "methodology",
+        "evidence_gap"
+      ],
+      "notes": "先自动解析规则与零散笔记，再按依赖顺序追问。可由双RAG回答的事实不得再次询问。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "standard",
+        "rule_state": "uploaded_pending",
+        "draft_state": "rough_notes",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 7,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "rule_pack_confirmation",
+          "scientific_problem",
+          "methodology",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:007",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "standard",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "scientific_problem",
+        "research_goal",
+        "official_rule_gap"
+      ],
+      "notes": "用户事实较充分，可完成研究逻辑；因无正式规则包，合规结论保持未核验并要求后续补包。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "standard",
+        "rule_state": "generic_fallback",
+        "draft_state": "rough_notes",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "scientific_problem",
+          "research_goal",
+          "official_rule_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:008",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "none",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 7,
+      "expected_blocking_topics": [
+        "core_problem",
+        "research_goal",
+        "evidence_gap"
+      ],
+      "notes": "问题预算耗尽案例。第7问后若核心逻辑已完成但证据不足，允许进入Planner并生成EvidenceGap；若核心问题仍空则转HumanNode。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "none",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 7,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "core_problem",
+          "research_goal",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:009",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "deep",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "none",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 10,
+      "expected_blocking_topics": [
+        "core_problem",
+        "scientific_problem",
+        "goal_content_alignment",
+        "innovation_focus",
+        "evidence_gap",
+        "review_risk"
+      ],
+      "notes": "深度模式追问核心逻辑、创新、可行性和评审风险，关键决策全部确认后ProposalBrief预期完成度不低于95%。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "deep",
+        "rule_state": "verified_pack",
+        "draft_state": "none",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 10,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "core_problem",
+          "scientific_problem",
+          "goal_content_alignment",
+          "innovation_focus",
+          "evidence_gap",
+          "review_risk"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:010",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "deep",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 10,
+      "expected_blocking_topics": [
+        "rule_pack_conflict",
+        "scientific_problem",
+        "innovation_focus",
+        "evidence_gap"
+      ],
+      "notes": "候选规则存在冲突时先进入规则确认，再继续Discovery。冲突来源和用户决定写入DecisionLedger。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "deep",
+        "rule_state": "uploaded_pending",
+        "draft_state": "rough_notes",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 10,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "rule_pack_conflict",
+          "scientific_problem",
+          "innovation_focus",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:011",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "deep",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "none",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "discovery",
+      "expected_max_questions": 9,
+      "expected_blocking_topics": [
+        "official_rule_pack",
+        "scientific_problem",
+        "goal_content_alignment"
+      ],
+      "notes": "可以形成高质量研究框架，但深度模式不允许把通用结构标记为正式合规，最终确认前必须补充官方规则包。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "deep",
+        "rule_state": "generic_fallback",
+        "draft_state": "none",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "DiscoveryGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "proposal_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 9,
+        "expected_grill_mode": "discovery",
+        "blocking_topics": [
+          "official_rule_pack",
+          "scientific_problem",
+          "goal_content_alignment"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:012",
+      "annotation_status": "human_confirmed",
+      "task_mode": "plan_from_scratch",
+      "quality_level": "deep",
+      "rule_readiness": "missing_blocking",
+      "content_maturity": "none",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "program_type",
+        "official_rule_pack",
+        "minimum_user_evidence"
+      ],
+      "notes": "检查点恢复案例。会话在等待规则包时中断，上传后从同一thread恢复，已回答问题不得重复。",
+      "input_fixture": {
+        "task_mode": "plan_from_scratch",
+        "quality_level": "deep",
+        "rule_state": "missing_blocking",
+        "draft_state": "none",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "EvidenceConfirmationNode",
+          "HumanNode"
+        ],
+        "terminal_outcome": "blocked_until_required_inputs",
+        "must_not_enter_planner_while_blocked": true
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "项目类型、正式规则包和最小用户证据达到当前案例要求后关闭；否则保持HumanNode阻断。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "evidence_confirmation",
+        "blocking_topics": [
+          "program_type",
+          "official_rule_pack",
+          "minimum_user_evidence"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:013",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "quick",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "outline",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "goal_content_alignment"
+      ],
+      "notes": "保留用户原框架，只处理一处阻断性对应问题和明显缺口，避免重新进行Discovery。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "quick",
+        "rule_state": "verified_pack",
+        "draft_state": "outline",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "goal_content_alignment"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:014",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "quick",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "outline",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation",
+        "missing_required_section"
+      ],
+      "notes": "候选规则显示缺少必填章节，先确认规则包版本，再给出最小结构补丁。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "quick",
+        "rule_state": "uploaded_pending",
+        "draft_state": "outline",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap"
+      ],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "rule_pack_confirmation",
+          "missing_required_section"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:015",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "quick",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "outline",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 2,
+      "expected_blocking_topics": [
+        "generic_rule_warning"
+      ],
+      "notes": "用户只需快速优化框架。完成结构清理后继续，但输出明确未完成具体基金规则核验。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "quick",
+        "rule_state": "generic_fallback",
+        "draft_state": "outline",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 2,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "generic_rule_warning"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:016",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "quick",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "partial_draft",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 2,
+      "expected_blocking_topics": [
+        "single_logic_gap"
+      ],
+      "notes": "提前结束案例。用户解决首个关键逻辑缺口后选择结束，剩余非阻断问题进入AssumptionRegister。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "quick",
+        "rule_state": "verified_pack",
+        "draft_state": "partial_draft",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "用户解决首个阻断项并明确结束后关闭，其余非阻断项写入AssumptionRegister。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 2,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "single_logic_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:017",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "outline",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "goal_content_alignment",
+        "innovation_definition",
+        "evidence_gap"
+      ],
+      "notes": "系统检查规则覆盖、目标内容对应与创新证据，ProposalBrief预期完成度不低于90%。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "outline",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "goal_content_alignment",
+          "innovation_definition",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:018",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "standard",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation",
+        "outline_stability",
+        "evidence_gap"
+      ],
+      "notes": "先整理零散框架，再确认规则差异；不得因已有思路而跳过必要的结构核验。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "standard",
+        "rule_state": "uploaded_pending",
+        "draft_state": "rough_notes",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "rule_pack_confirmation",
+          "outline_stability",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:019",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "standard",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "outline",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 5,
+      "expected_blocking_topics": [
+        "official_rule_gap",
+        "minimum_user_evidence"
+      ],
+      "notes": "框架可优化，但事实性章节不能自由扩写。Writer前必须获得最小用户证据或保持missing_evidence。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "standard",
+        "rule_state": "generic_fallback",
+        "draft_state": "outline",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 5,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "official_rule_gap",
+          "minimum_user_evidence"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:020",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "outline",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "cross_section_consistency"
+      ],
+      "notes": "恢复案例。第三问后服务中断，恢复时从current_question继续，ProposalBrief和DecisionLedger均不重复写入。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "outline",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "cross_section_consistency"
+      ],
+      "closure_condition": "从current_question或原ReviewIssue恢复，已完成问题与DecisionLedger不得重复写入。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "cross_section_consistency"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:021",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "deep",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "outline",
+      "evidence_readiness": "verified",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "expected_blocking_topics": [
+        "innovation_focus",
+        "review_risk",
+        "cross_section_consistency"
+      ],
+      "notes": "规则与证据均已验证，问题集中在创新深度、评审风险和跨章节一致性，不重复询问基础事实。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "deep",
+        "rule_state": "verified_pack",
+        "draft_state": "outline",
+        "evidence_state": "verified"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "cross_section_consistency"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 8,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "innovation_focus",
+          "review_risk",
+          "cross_section_consistency"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:022",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "deep",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "outline",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "expected_blocking_topics": [
+        "rule_pack_conflict",
+        "innovation_focus",
+        "evidence_gap",
+        "review_risk"
+      ],
+      "notes": "深度优化前必须处理候选规则冲突，用户确认后锁定规则版本并继续。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "deep",
+        "rule_state": "uploaded_pending",
+        "draft_state": "outline",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 8,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "rule_pack_conflict",
+          "innovation_focus",
+          "evidence_gap",
+          "review_risk"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:023",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "deep",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "outline",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "expected_blocking_topics": [
+        "official_rule_pack",
+        "requirement_coverage",
+        "evidence_gap"
+      ],
+      "notes": "可完成逻辑深化，但正式Requirement覆盖率不可计算，官方规则包为最终确认阻断项。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "deep",
+        "rule_state": "generic_fallback",
+        "draft_state": "outline",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "PlannerNode"
+        ],
+        "terminal_outcome": "refined_brief_to_planner",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 8,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "official_rule_pack",
+          "requirement_coverage",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:024",
+      "annotation_status": "human_confirmed",
+      "task_mode": "refine_outline",
+      "quality_level": "deep",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "rough_notes",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "refinement",
+      "expected_max_questions": 8,
+      "expected_blocking_topics": [
+        "core_logic_gap",
+        "evidence_gap"
+      ],
+      "notes": "问题预算耗尽且核心逻辑仍不稳定时，不得假装完成。completion_reason为budget_exhausted_blocking并进入HumanNode。",
+      "input_fixture": {
+        "task_mode": "refine_outline",
+        "quality_level": "deep",
+        "rule_state": "verified_pack",
+        "draft_state": "rough_notes",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "RefinementGrillNode",
+          "HumanNode"
+        ],
+        "terminal_outcome": "budget_exhausted_blocking",
+        "must_not_enter_planner_while_blocked": true
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "问题预算耗尽后核心逻辑仍不稳定，记录completion_reason=budget_exhausted_blocking并转HumanNode。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 8,
+        "expected_grill_mode": "refinement",
+        "blocking_topics": [
+          "core_logic_gap",
+          "evidence_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:025",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "quick",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "verified",
+      "expected_grill_mode": "skip",
+      "expected_max_questions": 0,
+      "expected_blocking_topics": [],
+      "notes": "仅做语言润色且规则、事实均已验证，跳过规划前Grill，直接进入受保护事实的polish模式。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "quick",
+        "rule_state": "verified_pack",
+        "draft_state": "full_draft",
+        "evidence_state": "verified"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "WriterPolishNode"
+        ],
+        "terminal_outcome": "continue_without_grill",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "输入草稿完整，受保护事实保持不变，直接进入对应写作或润色节点。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 0,
+        "expected_grill_mode": "skip",
+        "blocking_topics": []
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:026",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "quick",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 1,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation"
+      ],
+      "notes": "只询问一个规则包确认问题，随后进行基础润色；不得扩大为多轮结构重写。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "quick",
+        "rule_state": "uploaded_pending",
+        "draft_state": "full_draft",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "阻断主题已解决或转为显式假设，且问题数不超过expected_max_questions。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 1,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "rule_pack_confirmation"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:027",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "quick",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "skip",
+      "expected_max_questions": 0,
+      "expected_blocking_topics": [
+        "generic_rule_warning"
+      ],
+      "notes": "用户只要求语言优化，可跳过Grill，但输出不得声称已通过具体基金合规检查。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "quick",
+        "rule_state": "generic_fallback",
+        "draft_state": "full_draft",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "WriterPolishNode"
+        ],
+        "terminal_outcome": "continue_without_grill",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "输入草稿完整，受保护事实保持不变，直接进入对应写作或润色节点。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 0,
+        "expected_grill_mode": "skip",
+        "blocking_topics": [
+          "generic_rule_warning"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:028",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "quick",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "partial_draft",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 2,
+      "expected_blocking_topics": [
+        "missing_section"
+      ],
+      "notes": "提前结束案例。解决缺失章节去留后即可继续，未补证据的事实保持原文锁定或标记缺口。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "quick",
+        "rule_state": "verified_pack",
+        "draft_state": "partial_draft",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [],
+      "closure_condition": "用户解决首个阻断项并明确结束后关闭，其余非阻断项写入AssumptionRegister。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 2,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "missing_section"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:029",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "unsupported_claim",
+        "terminology_consistency"
+      ],
+      "notes": "先运行Reviewer，再仅对高优先级问题追问，避免重复询问已由材料支持的事实。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "full_draft",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "unsupported_claim"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "unsupported_claim",
+          "terminology_consistency"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:030",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "standard",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 4,
+      "expected_blocking_topics": [
+        "rule_pack_confirmation",
+        "unsupported_claim",
+        "requirement_gap"
+      ],
+      "notes": "规则候选与正文结构同时核验，确认规则后再决定局部修订范围。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "standard",
+        "rule_state": "uploaded_pending",
+        "draft_state": "full_draft",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "unsupported_claim"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 4,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "rule_pack_confirmation",
+          "unsupported_claim",
+          "requirement_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:031",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "standard",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 3,
+      "expected_blocking_topics": [
+        "minimum_user_evidence",
+        "official_rule_gap"
+      ],
+      "notes": "有完整文本但没有授权证据。先确认哪些事实可保留，无法证明的Claim不得通过标准完善。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "standard",
+        "rule_state": "generic_fallback",
+        "draft_state": "full_draft",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "EvidenceConfirmationNode",
+          "ReviewerNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "continue_after_evidence_confirmation",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "核心逻辑、规则状态和证据缺口均形成结构化结论，未解决证据进入EvidenceGap。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 3,
+        "expected_grill_mode": "evidence_confirmation",
+        "blocking_topics": [
+          "minimum_user_evidence",
+          "official_rule_gap"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:032",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "standard",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 4,
+      "expected_blocking_topics": [
+        "high_risk_claim_evidence"
+      ],
+      "notes": "恢复案例。等待用户补证据时中断，上传后恢复到原ReviewIssue，不重新执行已完成的Reviewer节点。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "standard",
+        "rule_state": "verified_pack",
+        "draft_state": "full_draft",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "EvidenceConfirmationNode",
+          "ReviewerNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "continue_after_evidence_confirmation",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "从current_question或原ReviewIssue恢复，已完成问题与DecisionLedger不得重复写入。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 4,
+        "expected_grill_mode": "evidence_confirmation",
+        "blocking_topics": [
+          "high_risk_claim_evidence"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:033",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "deep",
+      "rule_readiness": "verified_pack",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "verified",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "overclaiming",
+        "cross_section_consistency",
+        "review_risk"
+      ],
+      "notes": "深度打磨运行Claim、规则、数值和跨章节核验，关键问题进入Review Grill，ProposalBrief保持锁定。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "deep",
+        "rule_state": "verified_pack",
+        "draft_state": "full_draft",
+        "evidence_state": "verified"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "cross_section_consistency",
+        "overclaiming"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "overclaiming",
+          "cross_section_consistency",
+          "review_risk"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:034",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "deep",
+      "rule_readiness": "uploaded_pending",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "sufficient",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "rule_pack_conflict",
+        "requirement_gap",
+        "review_risk"
+      ],
+      "notes": "先处理规则版本冲突，再针对正文高风险问题追问；规则事实不得让用户重复提供。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "deep",
+        "rule_state": "uploaded_pending",
+        "draft_state": "full_draft",
+        "evidence_state": "sufficient"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "rule_pack_conflict",
+          "requirement_gap",
+          "review_risk"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:035",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "deep",
+      "rule_readiness": "generic_fallback",
+      "content_maturity": "full_draft",
+      "evidence_readiness": "partial",
+      "expected_grill_mode": "review",
+      "expected_max_questions": 6,
+      "expected_blocking_topics": [
+        "official_rule_pack",
+        "unsupported_claim",
+        "cross_section_consistency"
+      ],
+      "notes": "可以完成事实和逻辑打磨，但正式合规结论被官方规则包缺失阻断。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "deep",
+        "rule_state": "generic_fallback",
+        "draft_state": "full_draft",
+        "evidence_state": "partial"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode"
+        ],
+        "terminal_outcome": "review_then_revise",
+        "must_not_enter_planner_while_blocked": false
+      },
+      "target_issue_codes": [
+        "cross_section_consistency",
+        "mandatory_requirement_gap",
+        "unsupported_claim"
+      ],
+      "closure_condition": "所有关键决策完成确认，评审风险与证据缺口均有关闭决定或HumanNode阻断记录。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 6,
+        "expected_grill_mode": "review",
+        "blocking_topics": [
+          "official_rule_pack",
+          "unsupported_claim",
+          "cross_section_consistency"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "intake:036",
+      "annotation_status": "human_confirmed",
+      "task_mode": "polish_existing",
+      "quality_level": "deep",
+      "rule_readiness": "missing_blocking",
+      "content_maturity": "partial_draft",
+      "evidence_readiness": "none",
+      "expected_grill_mode": "evidence_confirmation",
+      "expected_max_questions": 4,
+      "expected_blocking_topics": [
+        "program_type",
+        "official_rule_pack",
+        "critical_fact_evidence"
+      ],
+      "notes": "同时缺少适用规则和关键事实。会话可保存并恢复，但阻断项清零前不得进入深度Reviser闭环。",
+      "input_fixture": {
+        "task_mode": "polish_existing",
+        "quality_level": "deep",
+        "rule_state": "missing_blocking",
+        "draft_state": "partial_draft",
+        "evidence_state": "none"
+      },
+      "expected_route": {
+        "node_chain": [
+          "IntakeNode",
+          "EvidenceConfirmationNode",
+          "HumanNode"
+        ],
+        "terminal_outcome": "blocked_until_required_inputs",
+        "must_not_enter_planner_while_blocked": true
+      },
+      "target_issue_codes": [
+        "mandatory_requirement_gap",
+        "missing_claim_evidence"
+      ],
+      "closure_condition": "项目类型、正式规则包和最小用户证据达到当前案例要求后关闭；否则保持HumanNode阻断。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "max_questions": 4,
+        "expected_grill_mode": "evidence_confirmation",
+        "blocking_topics": [
+          "program_type",
+          "official_rule_pack",
+          "critical_fact_evidence"
+        ]
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "原案例task_mode、quality_level、rule_readiness、content_maturity与evidence_readiness",
+        "原案例notes中的路由、恢复、预算耗尽或提前结束决定",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:001",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "review_issue_code": "unsupported_claim",
+      "expected_question": "当前没有证据支持10篇SCI一区论文。你要补充可核验证明，还是删除该数量表述？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-011"
+      ],
+      "expected_resolution": "request_evidence_or_remove",
+      "notes": "只处理一个事实缺口。若用户无法补证据，Reviser删除具体数量并保留可支持范围。",
+      "input_fixture": {
+        "draft_claim": "申请人已发表10篇SCI一区论文。",
+        "evidence_state": "当前无证据支持10篇SCI一区论文。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-011"
+        ]
+      },
+      "target_issue_codes": [
+        "unsupported_claim"
+      ],
+      "closure_condition": "用户完成request_evidence_or_remove对应决定，Reviser仅修改受影响Claim，复核后unsupported_claim关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "request_evidence_or_remove",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:002",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "review_issue_code": "overclaiming",
+      "expected_question": "现有材料不能证明全部信噪比条件下均超过95%。是否将表述缩小为已有测试区间和实测结果？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-012"
+      ],
+      "expected_resolution": "narrow_claim_scope",
+      "notes": "用户确认后改为受测试集、信噪比范围和指标口径约束的陈述。",
+      "input_fixture": {
+        "draft_claim": "现有方法在全部信噪比条件下准确率均超过95%。",
+        "evidence_state": "证据仅覆盖特定数据集、信噪比区间和实测指标。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-012"
+        ]
+      },
+      "target_issue_codes": [
+        "overclaiming"
+      ],
+      "closure_condition": "用户完成narrow_claim_scope对应决定，Reviser仅修改受影响Claim，复核后overclaiming关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "narrow_claim_scope",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:003",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "team",
+      "review_issue_code": "role_attribution_conflict",
+      "expected_question": "资料显示数据集构建和模型训练由成员乙负责。是否将申请人表述改为总体统筹，并保留成员乙的实际职责？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-021",
+        "CLAIM-P11-027"
+      ],
+      "expected_resolution": "correct_role_attribution",
+      "notes": "不得把他人成果归给申请人；已锁定的成员乙角色优先。",
+      "input_fixture": {
+        "draft_claim": "申请人独立完成数据集构建和模型训练。",
+        "evidence_state": "成员乙负责数据集构建和模型训练，申请人负责总体统筹。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-021",
+          "CLAIM-P11-027"
+        ]
+      },
+      "target_issue_codes": [
+        "role_attribution_conflict"
+      ],
+      "closure_condition": "用户完成correct_role_attribution对应决定，Reviser仅修改受影响Claim，复核后role_attribution_conflict关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "correct_role_attribution",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:004",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "review_issue_code": "numerical_conflict",
+      "expected_question": "负18分贝梯度范数存在67.3与76.3两个数值，是否采用原始实验记录中的76.3？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-018"
+      ],
+      "expected_resolution": "replace_with_authoritative_numeric_value",
+      "notes": "选择76.3并重新核验同章节中的图表、摘要和结论。",
+      "input_fixture": {
+        "draft_claim": "负18分贝条件下的梯度范数为67.3。",
+        "evidence_state": "原始实验记录为76.3。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-018"
+        ]
+      },
+      "target_issue_codes": [
+        "numerical_conflict"
+      ],
+      "closure_condition": "用户完成replace_with_authoritative_numeric_value对应决定，Reviser仅修改受影响Claim，复核后numerical_conflict关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "replace_with_authoritative_numeric_value",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:005",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "preliminary_results",
+      "review_issue_code": "metric_definition_conflict",
+      "expected_question": "84.93%是最大准确率，82.88%是高信噪比平均准确率。当前句子要表达哪一种指标？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-019"
+      ],
+      "expected_resolution": "select_metric_definition_and_value",
+      "notes": "用户选择指标后，Claim必须同时保留指标名称、范围和值。",
+      "input_fixture": {
+        "draft_claim": "MCAP模型在高信噪比区间的平均准确率为84.93%。",
+        "evidence_state": "84.93%为最大准确率，82.88%为高信噪比平均准确率。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-019"
+        ]
+      },
+      "target_issue_codes": [
+        "metric_definition_conflict"
+      ],
+      "closure_condition": "用户完成select_metric_definition_and_value对应决定，Reviser仅修改受影响Claim，复核后metric_definition_conflict关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "select_metric_definition_and_value",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:006",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "research_foundation",
+      "review_issue_code": "completion_status_conflict",
+      "expected_question": "自采数据集适配目前是计划中。是否将已完成改为将在项目期内开展？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-020"
+      ],
+      "expected_resolution": "downgrade_to_planned",
+      "notes": "状态从completed修订为planned，不能通过润色改变事实完成状态。",
+      "input_fixture": {
+        "draft_claim": "团队已经完成自采数据集适配。",
+        "evidence_state": "自采数据集适配状态为planned。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-020"
+        ]
+      },
+      "target_issue_codes": [
+        "completion_status_conflict"
+      ],
+      "closure_condition": "用户完成downgrade_to_planned对应决定，Reviser仅修改受影响Claim，复核后completion_status_conflict关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "downgrade_to_planned",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:007",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "other_disclosures",
+      "review_issue_code": "duplicate_funding_conflict",
+      "expected_question": "用户资料显示无重复资助，但正文写成已经重复资助。是否以已核验的无重复资助结论为准？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-024",
+        "CLAIM-P11-029"
+      ],
+      "expected_resolution": "retain_verified_no_duplicate_funding",
+      "notes": "保留已锁定结论，并检查是否有相近项目需要说明区别。",
+      "input_fixture": {
+        "draft_claim": "拟申报研究内容已经获得其他来源重复资助。",
+        "evidence_state": "已核验事实为无重复资助。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-024",
+          "CLAIM-P11-029"
+        ]
+      },
+      "target_issue_codes": [
+        "duplicate_funding_conflict"
+      ],
+      "closure_condition": "用户完成retain_verified_no_duplicate_funding对应决定，Reviser仅修改受影响Claim，复核后duplicate_funding_conflict关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "retain_verified_no_duplicate_funding",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:008",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "completed_projects",
+      "review_issue_code": "locked_claim_change_attempt",
+      "expected_question": "前期项目经费30万元已经锁定。是否拒绝本次将其改为50万元的修订请求？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-026"
+      ],
+      "expected_resolution": "retain_locked_claim",
+      "notes": "预期人工决定为拒绝修改，Reviser只能调整语序和格式。",
+      "input_fixture": {
+        "draft_claim": "前期项目资助经费由30万元改为50万元。",
+        "evidence_state": "30万元数值已由用户确认并锁定。",
+        "decision_state": "locked"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-026"
+        ]
+      },
+      "target_issue_codes": [
+        "locked_claim_change_attempt"
+      ],
+      "closure_condition": "用户完成retain_locked_claim对应决定，Reviser仅修改受影响Claim，复核后locked_claim_change_attempt关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "retain_locked_claim",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:009",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "attachments",
+      "review_issue_code": "missing_attachment_evidence",
+      "expected_question": "当前没有附件清单证明代表作全文已全部上传。你要补充上传记录，还是将该句改为待核验？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-017"
+      ],
+      "expected_resolution": "request_attachment_evidence_or_mark_pending",
+      "notes": "深度模式下未补证据不得保留完成式表述。",
+      "input_fixture": {
+        "draft_claim": "全部代表作全文已经按要求上传。",
+        "evidence_state": "无完整附件清单与文件校验记录。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-017"
+        ]
+      },
+      "target_issue_codes": [
+        "missing_attachment_evidence"
+      ],
+      "closure_condition": "用户完成request_attachment_evidence_or_mark_pending对应决定，Reviser仅修改受影响Claim，复核后missing_attachment_evidence关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "request_attachment_evidence_or_mark_pending",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:010",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "budget",
+      "review_issue_code": "missing_budget_decision",
+      "expected_question": "当前没有50万元预算决策，且项目可能采用包干制。是否先确认项目类别和预算方式？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-016"
+      ],
+      "expected_resolution": "confirm_program_and_budget_policy",
+      "notes": "先查规则包，再确认预算数字；不得让模型自行给出申请金额。",
+      "input_fixture": {
+        "draft_claim": "本项目申请经费为50万元。",
+        "evidence_state": "项目类别、预算方式和50万元决策均未确认。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-016"
+        ]
+      },
+      "target_issue_codes": [
+        "missing_budget_decision"
+      ],
+      "closure_condition": "用户完成confirm_program_and_budget_policy对应决定，Reviser仅修改受影响Claim，复核后missing_budget_decision关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "confirm_program_and_budget_policy",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:011",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-GRANT-001",
+      "section_key": "eligibility",
+      "review_issue_code": "cross_section_consistency",
+      "expected_question": "资格部分写有1项在研，其他说明又写无在研项目。应以哪一项已核验事实为准？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-003",
+        "CLAIM-P11-029"
+      ],
+      "expected_resolution": "use_canonical_verified_fact",
+      "notes": "选择规范事实后同步修订所有受影响章节，避免只改当前段落。",
+      "input_fixture": {
+        "draft_claim": "资格部分有1项在研，其他说明部分无在研项目。",
+        "evidence_state": "规范项目事实需要按同一时间截点统一。",
+        "decision_state": "review_required"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-003",
+          "CLAIM-P11-029"
+        ]
+      },
+      "target_issue_codes": [
+        "cross_section_consistency"
+      ],
+      "closure_condition": "用户完成use_canonical_verified_fact对应决定，Reviser仅修改受影响Claim，复核后cross_section_consistency关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "use_canonical_verified_fact",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "case_id": "review_grill:012",
+      "annotation_status": "human_confirmed",
+      "proposal_id": "PROP-P11-AMR-001",
+      "section_key": "scientific_problem",
+      "review_issue_code": "human_decision_preserved",
+      "expected_question": "创新主线已锁定为低信噪比条件下的优化稳定性。是否保留该主线，仅优化论证顺序？",
+      "expected_affected_claim_ids": [
+        "CLAIM-P11-030"
+      ],
+      "expected_resolution": "preserve_locked_decision_and_refine_rationale",
+      "notes": "这是DecisionLedger中的人工决定，不允许Reviewer自行改成其他创新主题。",
+      "input_fixture": {
+        "draft_claim": "将创新主线改为数据规模扩展。",
+        "evidence_state": "DecisionLedger已锁定低信噪比条件下的优化稳定性主线。",
+        "decision_state": "locked"
+      },
+      "expected_route": {
+        "node_chain": [
+          "ReviewerNode",
+          "ReviewGrillNode",
+          "ReviserNode",
+          "ReviewerNode"
+        ],
+        "terminal_outcome": "resolved_or_human_blocked",
+        "must_preserve_affected_claim_ids": [
+          "CLAIM-P11-030"
+        ]
+      },
+      "target_issue_codes": [
+        "human_decision_preserved"
+      ],
+      "closure_condition": "用户完成preserve_locked_decision_and_refine_rationale对应决定，Reviser仅修改受影响Claim，复核后human_decision_preserved关闭且无新增冲突。",
+      "review_result": {
+        "contract_status": "administrator_confirmed",
+        "expected_resolution": "preserve_locked_decision_and_refine_rationale",
+        "expected_issue_count": 1,
+        "post_resolution_action": "recheck_affected_claims_and_cross_section_dependencies"
+      },
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_basis": [
+        "06_intake_and_grill.md",
+        "Phase 11 Claim Grounding冻结夹具",
+        "原案例expected_question、expected_affected_claim_ids与expected_resolution",
+        "管理员依据原案例业务约束完成路由与关闭合同复核"
+      ],
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "approved",
+        "input_fixture_confirmed": true,
+        "route_contract_confirmed": true,
+        "target_issue_codes_confirmed": true,
+        "question_budget_confirmed": true,
+        "closure_condition_confirmed": true,
+        "review_basis": "依据原案例字段、notes、预期路由和关闭条件完成合同级逻辑审核。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    }
+  ],
+  "schema_version": "intake_review_contract.v2.admin_reviewed",
+  "reviewer": "roovel",
+  "review_date": "2026-07-28",
+  "annotation_scope": "administrator_reviewed_workflow_contract",
+  "reviewer_role": "authorized_administrator",
+  "reviewed_at": "2026-07-28T17:42:29+08:00",
+  "review_status": "completed",
+  "external_source_verification": "not_required_for_contract_logic_review"
+}

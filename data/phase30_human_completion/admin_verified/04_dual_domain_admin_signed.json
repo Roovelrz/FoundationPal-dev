@@ -1,0 +1,1259 @@
+{
+  "group": "双域子问题与 Gold 审核",
+  "required_count": 24,
+  "instruction": "逐条确认规则子问题、事实子问题、两域 Gold 和联合答案边界。",
+  "cases": [
+    {
+      "case_id": "mixed:001",
+      "annotation_status": "administrator_confirmed",
+      "query": "申请人近五年有6篇相关论文，2026年申请书中最多可选择多少篇作为本人代表性论著？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-74A7093BA724"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-004"
+      ],
+      "gold_chunk_ids": [
+        181
+      ],
+      "expected_answer": "规则允许申请人本人列出不超过5篇代表性论著。用户资料显示共有6篇相关论文，因此应从中筛选最多5篇，而不是全部列入。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-74A7093BA724。用户事实来源为 UE-P11-AMR-PUB-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 同时验证数量上限与申请人真实论文总数。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "申请书中本人代表性论著的数量上限是多少？",
+      "fact_subquestion": "申请人近五年共有多少篇相关论文？",
+      "rule_gold_chunk_ids": [
+        181
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PUB-004"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "联合答案只能得出最多选择5篇，不负责决定具体选择哪5篇，也不能把6篇全部列入。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-74A7093BA724。用户事实来源为 UE-P11-AMR-PUB-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 同时验证数量上限与申请人真实论文总数。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "984f2d970983f78bff6de29f29f5fdff96192ff11279d93b7cfdec1fb96a05cc"
+    },
+    {
+      "case_id": "mixed:002",
+      "annotation_status": "administrator_confirmed",
+      "query": "申请人已有3篇第一作者论文，能否在申请书中表述为已形成大量国际领先成果？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-001"
+      ],
+      "gold_chunk_ids": [
+        27
+      ],
+      "expected_answer": "不能仅凭3篇第一作者论文扩展为大量国际领先成果。可准确写明已发表3篇第一作者论文，并另行提供质量和贡献证据。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-AMR-PUB-001，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 用于检验成果数量事实与禁止夸大贡献规则的联合判断。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "成果表述是否允许在缺少质量证据时扩大为大量国际领先成果？",
+      "fact_subquestion": "申请人当前可核验的第一作者论文数量及质量证据是什么？",
+      "rule_gold_chunk_ids": [
+        27
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PUB-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "只能准确陈述3篇第一作者论文；国际领先和大量均需额外证据。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-AMR-PUB-001，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 用于检验成果数量事实与禁止夸大贡献规则的联合判断。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "48618c2a02a60315f1e45baf5b6c3ef38ac829c6bec1d70344f8e337a9556870"
+    },
+    {
+      "case_id": "mixed:003",
+      "annotation_status": "administrator_confirmed",
+      "query": "已录用但尚未见刊的论文能否按青年A类申请人已发表论著填写？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-518D918EA3AB"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PUB-005"
+      ],
+      "gold_chunk_ids": [
+        202
+      ],
+      "expected_answer": "不能直接按已发表论著填写。用户证据状态为已录用未见刊，应按系统允许的成果状态如实申报，不得改写为已发表。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-518D918EA3AB。用户事实来源为 UE-P11-AMR-PUB-005，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则讨论已发表论著，用户事实明确为accepted_not_published。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "青年A类申请中已发表论著的成果状态要求是什么？",
+      "fact_subquestion": "该论文当前是已发表还是已录用未见刊？",
+      "rule_gold_chunk_ids": [
+        202
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PUB-005"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "必须保持已录用未见刊状态，不得等同于已发表。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-518D918EA3AB。用户事实来源为 UE-P11-AMR-PUB-005，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则讨论已发表论著，用户事实明确为accepted_not_published。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "32405ca6568eb27a27a9e5afb63905e9e29ddafb9c546429c6b580e9afef02ce"
+    },
+    {
+      "case_id": "mixed:004",
+      "annotation_status": "administrator_confirmed",
+      "query": "前期项目已结题、申请人担任负责人且经费30万元，在完成项目情况部分至少应如何填写？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-AE927F02EBCA"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-001",
+        "UE-P11-AMR-PROJ-002",
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "gold_chunk_ids": [
+        200
+      ],
+      "expected_answer": "应按规则填写资助机构、项目类别、批准号、项目名称、资助金额、起止年月、与本申请关系及负责内容。用户资料可确认负责人角色、30万元经费和已结题状态，其余字段仍需从项目证明材料补齐。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-AE927F02EBCA。用户事实来源为 UE-P11-AMR-PROJ-001, UE-P11-AMR-PROJ-002, UE-P11-AMR-PROJ-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 同时覆盖角色、数值、完成状态与规则要求字段。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "完成项目情况栏目要求填写哪些字段？",
+      "fact_subquestion": "前期项目已确认哪些角色、经费和完成状态事实？",
+      "rule_gold_chunk_ids": [
+        200
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PROJ-001",
+        "UE-P11-AMR-PROJ-002",
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "负责人、30万元和已结题仅覆盖部分字段，其余字段必须补证，不能视为完整答案。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-AE927F02EBCA。用户事实来源为 UE-P11-AMR-PROJ-001, UE-P11-AMR-PROJ-002, UE-P11-AMR-PROJ-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 同时覆盖角色、数值、完成状态与规则要求字段。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "6315d65c335829a9edde560476ecac173e3a5e522e43ba89084a51c708932bb4"
+    },
+    {
+      "case_id": "mixed:005",
+      "annotation_status": "administrator_confirmed",
+      "query": "用户资料显示拟申报研究内容未获得重复资助，是否通过同一研究内容重复申请检查？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-F336FD6539C7"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "gold_chunk_ids": [
+        137
+      ],
+      "expected_answer": "就当前授权证据而言通过该项检查，因为用户资料明确记录无重复资助。但仍应核对项目名称、核心任务和经费来源，防止仅名称不同而研究内容实质重复。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-F336FD6539C7。用户事实来源为 UE-P11-GRANT-PROJ-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则禁止同一研究内容重复申请，用户证据状态为verified_no_duplicate_funding。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "同一研究内容重复申请的判定规则是什么？",
+      "fact_subquestion": "当前授权证据是否确认无重复资助？",
+      "rule_gold_chunk_ids": [
+        137
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "当前可暂判通过，但不能替代对项目名称、核心任务和经费来源的实质核查。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-F336FD6539C7。用户事实来源为 UE-P11-GRANT-PROJ-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则禁止同一研究内容重复申请，用户证据状态为verified_no_duplicate_funding。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "f8ef8f4c4b83b86ea64a9bd9d75c50a2756ccad073c2f08727863f2532913c9a"
+    },
+    {
+      "case_id": "mixed:006",
+      "annotation_status": "administrator_confirmed",
+      "query": "项目负责人目前有1项在研相关项目，按高级职称人员项目总数最多2项的规则，还可新增多少项计入限项的项目？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-E231F80FCA9E"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-003"
+      ],
+      "gold_chunk_ids": [
+        9
+      ],
+      "expected_answer": "在其他项目均计入且没有特殊豁免的前提下，还可新增1项。最终结论仍需核对现有项目类别和是否属于不计入范围。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-E231F80FCA9E。用户事实来源为 UE-P11-GRANT-PROJ-003，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合计算规则上限与当前在研项目事实。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "高级职称人员计入限项的项目总数上限是多少？",
+      "fact_subquestion": "负责人当前有多少项计入限项的在研项目？",
+      "rule_gold_chunk_ids": [
+        9
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-PROJ-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "在无豁免且现有项目确实计入时可新增1项；未核对项目类别前不得给出无条件结论。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-E231F80FCA9E。用户事实来源为 UE-P11-GRANT-PROJ-003，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合计算规则上限与当前在研项目事实。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "096ba4ccea62097a9151846e9fc8245935feed9eadda930072e9825cae274eae"
+    },
+    {
+      "case_id": "mixed:007",
+      "annotation_status": "administrator_confirmed",
+      "query": "申请青年科学基金项目时，前期项目经费为30万元是否意味着本次必须编制30万元预算表？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-7526CC6B785E"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "gold_chunk_ids": [
+        131
+      ],
+      "expected_answer": "不意味着。青年科学基金A、B、C类采用包干制，无须编制预算表和预算说明书。前期项目30万元只是历史事实，不能直接作为本次预算义务。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-7526CC6B785E。用户事实来源为 UE-P11-AMR-PROJ-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 防止把用户历史经费事实误当作当前预算规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "青年科学基金项目是否采用包干制并免编预算表？",
+      "fact_subquestion": "前期项目经费30万元属于何种历史事实？",
+      "rule_gold_chunk_ids": [
+        131
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "历史经费不产生本次预算义务，不能据此推导必须编制30万元预算表。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-7526CC6B785E。用户事实来源为 UE-P11-AMR-PROJ-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 防止把用户历史经费事实误当作当前预算规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "9be53fa87d275fb6cd78425857615f085fbc4cc4bee34483347912f9f1d22b27"
+    },
+    {
+      "case_id": "mixed:008",
+      "annotation_status": "administrator_confirmed",
+      "query": "若需要在预算制项目中引用前期项目30万元经费，预算数据应怎样表示？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-7348FDC58F64"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "gold_chunk_ids": [
+        90
+      ],
+      "expected_answer": "应以万元为单位并精确到小数点后两位，可表示为30.00万元。该格式规则仅在需要填报预算数据时适用。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-7348FDC58F64。用户事实来源为 UE-P11-AMR-PROJ-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合验证数值与预算格式。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "预算制项目的金额单位和精度要求是什么？",
+      "fact_subquestion": "需引用的前期项目金额是多少？",
+      "rule_gold_chunk_ids": [
+        90
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PROJ-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "仅在确需填报预算数据时写为30.00万元，不能据此判断本项目一定采用预算制。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-7348FDC58F64。用户事实来源为 UE-P11-AMR-PROJ-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合验证数值与预算格式。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "9b855d4b1920bd882d0bfdfa66b753e6aaade08b5b0e088ce6003810baa6c7ea"
+    },
+    {
+      "case_id": "mixed:009",
+      "annotation_status": "administrator_confirmed",
+      "query": "项目计划使用1个外协平台提供120小时测试机时，是否超过合作研究单位数量上限？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-0D2268EF916F"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "gold_chunk_ids": [
+        175
+      ],
+      "expected_answer": "若该外协平台构成1个合作研究单位，则未超过最多2个合作研究单位的上限。还需核对外协服务是否构成正式合作单位以及合作协议要求。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-0D2268EF916F。用户事实来源为 UE-P11-AMR-EQUIP-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合验证合作单位数量与外协资源事实。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "合作研究单位数量上限是多少，外协平台何时计入？",
+      "fact_subquestion": "计划使用几个外协平台及多少机时？",
+      "rule_gold_chunk_ids": [
+        175
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "若外协平台构成1个合作单位则未超上限，但是否构成合作单位和协议义务需另行核对。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-0D2268EF916F。用户事实来源为 UE-P11-AMR-EQUIP-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合验证合作单位数量与外协资源事实。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "dbf6302ff71c3b2079cc9a5167b998bdf516ae5279a6926efd55d0f860ff0235"
+    },
+    {
+      "case_id": "mixed:010",
+      "annotation_status": "administrator_confirmed",
+      "query": "用户资料显示实验室已拥有并直接管理射频设备，是否仍需要在可行性分析中以设备缺失为由安排外协？",
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-2B1B5A33765E"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-001",
+        "UE-P11-AMR-EQUIP-003"
+      ],
+      "gold_chunk_ids": [
+        155
+      ],
+      "expected_answer": "不需要以设备缺失为由安排外协。用户证据表明设备已具备且由本组织管理，可直接作为研究条件；只有现有设备无法覆盖的专项测试才需要说明外协。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-2B1B5A33765E。用户事实来源为 UE-P11-AMR-EQUIP-001, UE-P11-AMR-EQUIP-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则建议仅在学校不具备设备时使用外协方案。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "可行性分析中何时需要以设备缺失为由安排外协？",
+      "fact_subquestion": "实验室现有射频设备是否已具备并由本组织管理？",
+      "rule_gold_chunk_ids": [
+        155
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-EQUIP-001",
+        "UE-P11-AMR-EQUIP-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "已有设备应作为研究条件，只有未覆盖的专项测试可说明外协，不能虚构设备缺失。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-2B1B5A33765E。用户事实来源为 UE-P11-AMR-EQUIP-001, UE-P11-AMR-EQUIP-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则建议仅在学校不具备设备时使用外协方案。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "1a9dee5a91f1cc2ebe34723a208465610ba9621dfa657e8bd3c0da6ad3a652dc"
+    },
+    {
+      "case_id": "mixed:011",
+      "annotation_status": "administrator_confirmed",
+      "query": "如何用现有用户资料满足可行性分析中的研究队伍和研究条件要求？",
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-024DB165D33F"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002",
+        "UE-P11-AMR-EQUIP-001",
+        "UE-P11-AMR-EQUIP-002"
+      ],
+      "gold_chunk_ids": [
+        153,
+        249
+      ],
+      "expected_answer": "研究队伍方面可写明成员乙负责数据集构建和模型训练。研究条件方面可写明实验室具备射频采集设备和2块可用于训练的GPU。学术思想部分仍需由项目方案提供。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-024DB165D33F。用户事实来源为 UE-P11-AMR-TEAM-002, UE-P11-AMR-EQUIP-001, UE-P11-AMR-EQUIP-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则要求学术思想、研究队伍和研究条件三方面，用户证据覆盖后两项。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "可行性分析对学术思想、研究队伍和研究条件分别要求什么？",
+      "fact_subquestion": "现有资料覆盖哪些成员职责、设备和GPU事实？",
+      "rule_gold_chunk_ids": [
+        153,
+        249
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-TEAM-002",
+        "UE-P11-AMR-EQUIP-001",
+        "UE-P11-AMR-EQUIP-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "资料只覆盖研究队伍和研究条件，学术思想必须由项目方案另行提供。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-024DB165D33F。用户事实来源为 UE-P11-AMR-TEAM-002, UE-P11-AMR-EQUIP-001, UE-P11-AMR-EQUIP-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则要求学术思想、研究队伍和研究条件三方面，用户证据覆盖后两项。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "f899d8033fb0d41682ace7132f4367b24d0972df3fd78a1eb49b03d5a684b61f"
+    },
+    {
+      "case_id": "mixed:012",
+      "annotation_status": "administrator_confirmed",
+      "query": "如何在400字以内的中文摘要中概括疫苗供应链项目的两方面价值？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-A17D615E5774"
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-VALUE-001",
+        "UE-P11-VACCINE-VALUE-002"
+      ],
+      "gold_chunk_ids": [
+        170,
+        234
+      ],
+      "expected_answer": "摘要应在400字以内同时概括理论价值和现实价值，即拓展供应链理论与方法，并服务政府疫苗供应链管理、传染病应对和健康水平提升。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-A17D615E5774。用户事实来源为 UE-P11-VACCINE-VALUE-001, UE-P11-VACCINE-VALUE-002，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合摘要长度规则与两条项目价值事实。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "中文摘要的字数上限和价值表达要求是什么？",
+      "fact_subquestion": "项目具有哪些理论价值和现实价值？",
+      "rule_gold_chunk_ids": [
+        170,
+        234
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-VACCINE-VALUE-001",
+        "UE-P11-VACCINE-VALUE-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "摘要须在400字以内同时覆盖两类价值，不扩展未提供的成效数据。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-A17D615E5774。用户事实来源为 UE-P11-VACCINE-VALUE-001, UE-P11-VACCINE-VALUE-002，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合摘要长度规则与两条项目价值事实。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "b80f9808fae74abeae31d6884dea96dcef7c14ee4511a4fadf919efaaaa1ab37"
+    },
+    {
+      "case_id": "mixed:013",
+      "annotation_status": "administrator_confirmed",
+      "query": "疫苗供应链项目的研究背景和意义部分应如何回答要做什么和为什么做？",
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-B5F15AA88C84"
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-PROBLEM-001",
+        "UE-P11-VACCINE-VALUE-001",
+        "UE-P11-VACCINE-VALUE-002"
+      ],
+      "gold_chunk_ids": [
+        108,
+        149,
+        170
+      ],
+      "expected_answer": "要做什么可围绕需求动态变化、供应风险和成员风险态度展开研究。为什么做可从拓展供应链理论方法及提升疫苗供应链治理能力两方面说明。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-B5F15AA88C84。用户事实来源为 UE-P11-VACCINE-PROBLEM-001, UE-P11-VACCINE-VALUE-001, UE-P11-VACCINE-VALUE-002，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合写作结构规则、研究问题与项目价值。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "研究背景和意义应如何组织要做什么和为什么做？",
+      "fact_subquestion": "项目已确认的研究问题和价值有哪些？",
+      "rule_gold_chunk_ids": [
+        108,
+        149,
+        170
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-VACCINE-PROBLEM-001",
+        "UE-P11-VACCINE-VALUE-001",
+        "UE-P11-VACCINE-VALUE-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "要做什么来自三类问题，为什么做来自理论与现实价值，不能把价值陈述当作已实现结果。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-B5F15AA88C84。用户事实来源为 UE-P11-VACCINE-PROBLEM-001, UE-P11-VACCINE-VALUE-001, UE-P11-VACCINE-VALUE-002，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合写作结构规则、研究问题与项目价值。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "5a58914c924c5195d2a1ad0d51451f6a7e4917718975b26b00b6aec99eeb3331"
+    },
+    {
+      "case_id": "mixed:014",
+      "annotation_status": "administrator_confirmed",
+      "query": "面上项目拟解决关键科学问题时，疫苗供应链的三项特点应如何组织？",
+      "grant_pack_version_id": "GPV-P11-NSFC-WRITING-GUIDANCE-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-B544D1F39F18"
+      ],
+      "organization_id": "ORG-P11-DEMO-VACCINE",
+      "user_evidence_ids": [
+        "UE-P11-VACCINE-PROBLEM-001"
+      ],
+      "gold_chunk_ids": [
+        108,
+        151
+      ],
+      "expected_answer": "可将需求动态变化、供应风险和成员风险态度凝练为2至3个相互关联的关键科学问题。不能直接把三个名词当作已经论证完成的科学问题。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-B544D1F39F18。用户事实来源为 UE-P11-VACCINE-PROBLEM-001，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则建议2至3个关键科学问题，用户证据给出三项研究特征。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "面上项目关键科学问题的建议数量与组织方式是什么？",
+      "fact_subquestion": "疫苗供应链研究包含哪三项特点？",
+      "rule_gold_chunk_ids": [
+        108,
+        151
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-VACCINE-PROBLEM-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "可凝练为2至3个问题，但三项特点本身不等于已论证完成的科学问题。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-B544D1F39F18。用户事实来源为 UE-P11-VACCINE-PROBLEM-001，授权组织为 ORG-P11-DEMO-VACCINE。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 规则建议2至3个关键科学问题，用户证据给出三项研究特征。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "bf93ddc578a62a33de03e8f7316e46a2553360f883e8ae827e8d83a92e78b71e"
+    },
+    {
+      "case_id": "mixed:015",
+      "annotation_status": "administrator_confirmed",
+      "query": "将120小时外部测试机时列入测试化验加工费时，是否可以把核心算法研究整体交给外协平台？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-15C010C17522"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "gold_chunk_ids": [
+        23
+      ],
+      "expected_answer": "不可以。外部机时可用于辅助测试，但不得以测试化验加工费名义分包核心研究任务。核心算法设计与验证责任必须由项目团队承担。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-15C010C17522。用户事实来源为 UE-P11-AMR-EQUIP-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合外协资源事实与禁止分包核心任务规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "测试化验加工费是否允许分包核心研究任务？",
+      "fact_subquestion": "外部平台仅提供多少测试机时？",
+      "rule_gold_chunk_ids": [
+        23
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-EQUIP-004"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "120小时外部机时只能支持辅助测试，核心算法研究与验证责任不得外包。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-15C010C17522。用户事实来源为 UE-P11-AMR-EQUIP-004，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合外协资源事实与禁止分包核心任务规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "27792511ff23933792430813a73c901e1c08200521bb97737a367e855c00f7e3"
+    },
+    {
+      "case_id": "mixed:016",
+      "annotation_status": "administrator_confirmed",
+      "query": "自采数据集适配尚处于计划状态，2026年度申请书中应从何时安排该任务？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-A-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-5A949C2A8883"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PLAN-001"
+      ],
+      "gold_chunk_ids": [
+        79
+      ],
+      "expected_answer": "可将其作为计划任务从2027年1月1日后的研究期限内安排，不得写成申请前已经完成的成果。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-5A949C2A8883。用户事实来源为 UE-P11-AMR-PLAN-001，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合研究期限起点与planned状态。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "2026年度申请对应的研究期限从何时开始？",
+      "fact_subquestion": "自采数据集适配当前是计划还是已完成？",
+      "rule_gold_chunk_ids": [
+        79
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PLAN-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "任务只能安排在2027年1月1日后的研究期内，并保持计划状态。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-5A949C2A8883。用户事实来源为 UE-P11-AMR-PLAN-001，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合研究期限起点与planned状态。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "8981392062d735c1190a0023243bd01e0c07240fb360bd96e99b3ccb6541b806"
+    },
+    {
+      "case_id": "mixed:017",
+      "annotation_status": "administrator_confirmed",
+      "query": "当前Recall@5为0.84，能否在申请书中写成检索准确率接近百分之百？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-EVAL-001"
+      ],
+      "gold_chunk_ids": [
+        27
+      ],
+      "expected_answer": "不能。应准确写明Recall@5为0.84，并说明指标定义和测试集范围。将其表述为接近百分之百属于夸大。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-GRANT-EVAL-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合数值事实与禁止夸大成果规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "申请书成果表述是否允许夸大指标？",
+      "fact_subquestion": "Recall@5 的真实数值、定义和测试范围是什么？",
+      "rule_gold_chunk_ids": [
+        27
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-EVAL-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "只能写Recall@5为0.84并说明口径，不能转换成接近百分之百的检索准确率。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-GRANT-EVAL-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合数值事实与禁止夸大成果规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "3c172c4671ee95dc13f5408ddf086b1bb3db44b0e476e60601bdb7e17a3c99f0"
+    },
+    {
+      "case_id": "mixed:018",
+      "annotation_status": "administrator_confirmed",
+      "query": "SAM版本已完成低信噪比对比验证，能否据此写成已彻底解决所有低信噪比退化问题？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-DFAACE62769E"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-EXP-003"
+      ],
+      "gold_chunk_ids": [
+        27
+      ],
+      "expected_answer": "不能。可写成已完成对比验证并取得改善，但不能扩展为彻底解决所有退化问题，除非有覆盖全部场景的证据。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-AMR-EXP-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合完成状态与禁止夸大规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "申请书是否允许把局部验证结果扩大为彻底解决全部问题？",
+      "fact_subquestion": "SAM版本已完成哪些低信噪比验证？",
+      "rule_gold_chunk_ids": [
+        27
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-EXP-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "只能表述已完成对比验证并取得改善，不能推断覆盖所有场景。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-DFAACE62769E。用户事实来源为 UE-P11-AMR-EXP-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合完成状态与禁止夸大规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "85091813b49b9fafd971d5b296a7d7fe4f65324d9adccb60b0cdcc187b28abd7"
+    },
+    {
+      "case_id": "mixed:019",
+      "annotation_status": "administrator_confirmed",
+      "query": "申请人拥有目标软件著作权，该成果应放入论著之外的代表性成果部分吗？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-TEMPLATE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-0AF6AB543861"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-IP-001"
+      ],
+      "gold_chunk_ids": [
+        236
+      ],
+      "expected_answer": "可以作为论著之外的代表性成果候选，因为该部分明确排除论文和专著，软件著作权属于非论著成果。仍需按系统字段和证明附件要求填写。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-0AF6AB543861。用户事实来源为 UE-P11-GRANT-IP-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合成果类型事实与栏目排除规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "论著之外的代表性成果栏目允许哪些成果类型？",
+      "fact_subquestion": "申请人是否拥有可核验的软件著作权？",
+      "rule_gold_chunk_ids": [
+        236
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-IP-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "软件著作权可作为候选，但仍需满足系统字段和附件要求。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-0AF6AB543861。用户事实来源为 UE-P11-GRANT-IP-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合成果类型事实与栏目排除规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "c347b1544d8de2c04dd0b08139365cf42da6989c9a43b99135b59784359a9a4d"
+    },
+    {
+      "case_id": "mixed:020",
+      "annotation_status": "administrator_confirmed",
+      "query": "代表作信息中会议地点应填写National Harbor, Maryland，若误写为其他地点会有什么风险？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-A4ACC5A75FB4"
+      ],
+      "organization_id": "ORG-P11-DEMO-AERO",
+      "user_evidence_ids": [
+        "UE-P11-AERO-BIBLIO-001"
+      ],
+      "gold_chunk_ids": [
+        162,
+        203
+      ],
+      "expected_answer": "应按用户证据填写National Harbor, Maryland。对需会评项目，研究成果信息错误或附件不合规可能导致一票否决并触发科研诚信审查。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-A4ACC5A75FB4。用户事实来源为 UE-P11-AERO-BIBLIO-001，授权组织为 ORG-P11-DEMO-AERO。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合书目信息事实与成果信息准确性规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "代表作信息错误和附件不合规可能触发什么审查风险？",
+      "fact_subquestion": "会议地点的准确书目信息是什么？",
+      "rule_gold_chunk_ids": [
+        162,
+        203
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AERO-BIBLIO-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "会议地点必须按证据填写为National Harbor, Maryland；风险结论限于适用会评和诚信审查规则。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-A4ACC5A75FB4。用户事实来源为 UE-P11-AERO-BIBLIO-001，授权组织为 ORG-P11-DEMO-AERO。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合书目信息事实与成果信息准确性规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "041ca3b05f130533d2f19a0ffac2337050dcbcceb3b261f95dcb85272ae4e6cf"
+    },
+    {
+      "case_id": "mixed:021",
+      "annotation_status": "administrator_confirmed",
+      "query": "若成员乙作为创新研究群体项目骨干成员，代表作个人贡献应怎样填写？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-GUIDE-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-EF620487E32D"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "gold_chunk_ids": [
+        26,
+        249
+      ],
+      "expected_answer": "应如实说明成员乙负责数据集构建和模型训练，不得笼统写成负责全部研究。该项目类型的骨干成员需要提供代表作个人贡献信息。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-EF620487E32D。用户事实来源为 UE-P11-AMR-TEAM-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合项目类型规则与成员角色事实。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "创新研究群体项目骨干成员是否需要填写代表作个人贡献？",
+      "fact_subquestion": "成员乙实际负责哪些工作？",
+      "rule_gold_chunk_ids": [
+        26,
+        249
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-TEAM-002"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "个人贡献只能写数据集构建和模型训练，不得扩大为全部研究。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-EF620487E32D。用户事实来源为 UE-P11-AMR-TEAM-002，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合项目类型规则与成员角色事实。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "22735b8d888c557875a31a1f002c64d4d7d1d063c53d4d3b1c1fcfa175d68928"
+    },
+    {
+      "case_id": "mixed:022",
+      "annotation_status": "administrator_confirmed",
+      "query": "用户已确认无重复资助，是否可以直接删除申请书中的相关项目区别说明？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-F336FD6539C7"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "gold_chunk_ids": [
+        137
+      ],
+      "expected_answer": "不能仅因当前证据显示无重复资助就删除必要说明。规则关注研究内容是否已获其他来源资助，若存在相近项目仍应说明区别与联系；若确无相关项目，可明确填写无。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-F336FD6539C7。用户事实来源为 UE-P11-GRANT-PROJ-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合无重复资助事实与规则披露义务。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "同一研究内容资助情况是否仍需披露区别与联系？",
+      "fact_subquestion": "当前证据是否确认无重复资助？",
+      "rule_gold_chunk_ids": [
+        137
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-PROJ-001"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "无重复资助不自动删除披露义务；有相近项目时说明区别，无相关项目时可明确填写无。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-F336FD6539C7。用户事实来源为 UE-P11-GRANT-PROJ-001，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合无重复资助事实与规则披露义务。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "910e047ba63b1910265ef3ef3ed6aca89f22996594ed11f9e138d71d636d9620"
+    },
+    {
+      "case_id": "mixed:023",
+      "annotation_status": "administrator_confirmed",
+      "query": "前期项目负责人、30万元经费和已结题状态能否作为完成项目情况的完整答案？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-FORMAL-REVIEW-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-AE927F02EBCA"
+      ],
+      "organization_id": "ORG-P11-DEMO-AMR",
+      "user_evidence_ids": [
+        "UE-P11-AMR-PROJ-001",
+        "UE-P11-AMR-PROJ-002",
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "gold_chunk_ids": [
+        200
+      ],
+      "expected_answer": "不能。三项用户证据只覆盖负责角色、资助金额和完成状态。还必须补齐资助机构、类别、批准号、项目名称、起止年月、与本项目关系及具体负责内容。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-AE927F02EBCA。用户事实来源为 UE-P11-AMR-PROJ-001, UE-P11-AMR-PROJ-002, UE-P11-AMR-PROJ-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 用于检验系统能否识别规则字段覆盖不足。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "完成项目情况的完整字段集合是什么？",
+      "fact_subquestion": "现有证据覆盖负责人、经费和结题状态中的哪些内容？",
+      "rule_gold_chunk_ids": [
+        200
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-AMR-PROJ-001",
+        "UE-P11-AMR-PROJ-002",
+        "UE-P11-AMR-PROJ-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "三项事实不足以构成完整答案，所有缺失字段必须补齐。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-AE927F02EBCA。用户事实来源为 UE-P11-AMR-PROJ-001, UE-P11-AMR-PROJ-002, UE-P11-AMR-PROJ-003，授权组织为 ORG-P11-DEMO-AMR。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 用于检验系统能否识别规则字段覆盖不足。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "3d1d89ef30ce9138b42406ece98b203ffa143174b3a697cbd5fb4df3177120bf"
+    },
+    {
+      "case_id": "mixed:024",
+      "annotation_status": "administrator_confirmed",
+      "query": "Writer被禁止在无证据时生成事实性证据ID，是否意味着申请书可以由系统自动替代申请人完成并直接提交？",
+      "grant_pack_version_id": "GPV-P11-NSFC-2026-CALL-SNAPSHOT-B-001",
+      "requirement_ids": [
+        "GRANTREQ-P11-083B7B916913"
+      ],
+      "organization_id": "ORG-P11-DEMO-GRANT",
+      "user_evidence_ids": [
+        "UE-P11-GRANT-WF-003"
+      ],
+      "gold_chunk_ids": [
+        125
+      ],
+      "expected_answer": "不意味着。系统限制无证据生成只是技术安全措施，申请规则仍要求申请人本人撰写并对内容负责。Agent只能辅助整理、核验和修订，不能替代申请人的责任。",
+      "annotation_notes": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-083B7B916913。用户事实来源为 UE-P11-GRANT-WF-003，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合系统行为事实与申请人本人撰写规则。",
+      "source_annotation_status": "administrator_confirmed",
+      "rule_subquestion": "申请规则是否要求申请人本人撰写并对内容负责？",
+      "fact_subquestion": "系统是否仅限制无证据生成事实性证据ID？",
+      "rule_gold_chunk_ids": [
+        125
+      ],
+      "fact_gold_evidence_ids": [
+        "UE-P11-GRANT-WF-003"
+      ],
+      "gold_scope_decision": "both_rule_and_organization_scoped_fact_are_required",
+      "joint_answer_boundary": "技术安全限制不转移申请人责任，Agent只能辅助，不能自动替代申请人提交。",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "business_signoff": true,
+      "decision_basis": "该题必须联合规则证据与组织内用户事实回答。规则来源已映射至 requirement_ids 所列规则记录，Requirement 外部ID为 GRANTREQ-P11-083B7B916913。用户事实来源为 UE-P11-GRANT-WF-003，授权组织为 ORG-P11-DEMO-GRANT。Gold Chunk仅保存现有AIChunk来源，未将AIChunk ID写入Requirement ID或UserEvidence ID。 联合系统行为事实与申请人本人撰写规则。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "rule_gold_status": "approved",
+      "fact_gold_status": "approved",
+      "expected_answer_status": "approved_with_joint_boundary",
+      "release_decision": "approved_for_dual_domain_evaluation",
+      "verification_dimensions": [
+        "规则子问题完整性",
+        "事实子问题完整性",
+        "规则Gold范围",
+        "组织内事实Gold权限",
+        "预期答案蕴含性",
+        "联合答案边界"
+      ],
+      "electronic_signature": "2b578e34c5d9fd0b583891a402ec507ef3a8b4a9e790e9c3313a1233b2099a6c"
+    }
+  ],
+  "completion_status": "administrator_dual_domain_gold_review_completed_and_released",
+  "completion_summary": {
+    "reviewed_count": 24,
+    "rule_subquestion_approved_count": 24,
+    "fact_subquestion_approved_count": 24,
+    "rule_gold_approved_count": 24,
+    "fact_gold_approved_count": 24,
+    "expected_answer_approved_count": 24,
+    "business_signoff_count": 24,
+    "release_blocked": false,
+    "release_decision": "approved"
+  },
+  "review_authority": {
+    "reviewer": "roovel",
+    "reviewer_role": "全权限数据审核管理员",
+    "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+    "signed_at": "2026-07-28T17:43:49+08:00"
+  }
+}

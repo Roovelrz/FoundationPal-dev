@@ -23,6 +23,7 @@ class Proposal(models.Model):
         related_name='proposals',
     )
     state = models.CharField(max_length=16, choices=STATE_CHOICES, default='draft')
+    workspace_number = models.PositiveIntegerField(null=True, blank=True, editable=False)
     last_edited = models.DateTimeField(auto_now=True)
     downloads = models.IntegerField(default=0)
     content = models.JSONField(default=dict)
@@ -38,6 +39,13 @@ class Proposal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['org', 'workspace_number'],
+                condition=models.Q(workspace_number__isnull=False),
+                name='proposal_org_workspace_number_unique',
+            ),
+        ]
         indexes = [
             models.Index(fields=['call_url'], name='proposal_call_url_idx'),
         ]
@@ -122,24 +130,6 @@ class ProposalSection(models.Model):
         We only persist blocks if provided AND total serialized length is reasonably small (<30k) to avoid bloat.
         """
         import datetime as _dt
-        from django.conf import settings as _settings  # local import to avoid at-import dependency churn
-
-        # --- Revision Cap Enforcement -------------------------------------------------
-        # A hard business rule: limit revisions retained (and effectively allowed)
-        # per section. Default: 5. Overridable via PROPOSAL_SECTION_REVISION_CAP.
-        # If the cap is reached we simply skip appending a new revision. This keeps
-        # the method idempotent for callers that don't handle exceptions while
-        # still enforcing an upper bound. Returning early avoids unnecessary DB writes.
-        try:
-            _cap_raw = getattr(_settings, 'PROPOSAL_SECTION_REVISION_CAP', 5)
-            revision_cap = int(_cap_raw) if _cap_raw not in (None, '') else 5
-            if revision_cap <= 0:
-                revision_cap = 5  # sanity fallback
-        except Exception:  # pragma: no cover - defensive
-            revision_cap = 5
-        existing = list(self.revisions or [])
-        if len(existing) >= revision_cap:
-            return  # silently ignore beyond-cap attempts
 
         # Build base entry with capped text sizes.
         entry = {
@@ -181,7 +171,7 @@ class ProposalSection(models.Model):
                 if norm_blocks:
                     entry['blocks'] = norm_blocks
 
-        # Mutate revision log with capped length (last 50 entries kept).
+        # Keep a bounded audit trail without limiting how often a user can revise.
         revs = list(self.revisions or [])
         revs.append(entry)
         if len(revs) > 50:

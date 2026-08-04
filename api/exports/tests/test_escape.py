@@ -2,6 +2,7 @@ from io import BytesIO
 import zipfile
 
 from django.test import TestCase
+from pdfminer.high_level import extract_text
 from exports.utils import proposal_json_to_markdown, render_pdf_from_text, render_docx_from_markdown
 
 
@@ -20,8 +21,8 @@ class ExportEscapeTests(TestCase):
         pdf, sum1 = render_pdf_from_text(text)
         self.assertTrue(isinstance(pdf, (bytes, bytearray)))
         self.assertEqual(len(sum1), 64)
-        self.assertIn(b'SimSun', pdf)
-        self.assertIn(b'TimesNewRoman', pdf)
+        self.assertIn(b'STSong-Light', pdf)
+        self.assertIn(b'Times-Roman', pdf)
         md = '# 中文标题 English Title\n\n中文正文 English body'
         docx, sum2 = render_docx_from_markdown(md)
         self.assertTrue(isinstance(docx, (bytes, bytearray)))
@@ -34,3 +35,14 @@ class ExportEscapeTests(TestCase):
         self.assertIn('w:sz w:val="24"', styles)
         self.assertIn('宋体', document)
         self.assertIn('Times New Roman', document)
+
+    def test_pdf_renders_markdown_without_markers(self):
+        pdf, _ = render_pdf_from_text('# Proposal title\n\n## Section title\n\n**Important** body\n\n- First item')
+        text = extract_text(BytesIO(pdf))
+
+        self.assertIn('Proposal title', text)
+        self.assertIn('Section title', text)
+        self.assertIn('Important body', text)
+        self.assertIn('First item', text)
+        self.assertNotIn('# Proposal title', text)
+        self.assertNotIn('**Important**', text)

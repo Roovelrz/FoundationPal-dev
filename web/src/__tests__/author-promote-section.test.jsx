@@ -20,11 +20,11 @@ function mockFetch(routes) {
   return fn
 }
 
-describe('Author section promotion', () => {
-  it('approves through the section promote endpoint without patching Proposal.content', async () => {
+describe('Author section approval workflow', () => {
+  it('submits the existing workflow before the human approval decision', async () => {
     const proposal = {
       id: 1,
-      content: { meta: { title: 'T' }, sections: {} },
+      content: { meta: { title: 'T', user_setup: { ready: true }, intake_snapshot: { task_mode: 'plan_from_scratch', quality_level: 'quick' } }, sections: {} },
       sections: [
         {
           id: 101,
@@ -40,9 +40,11 @@ describe('Author section promotion', () => {
       state: 'draft',
     }
     const serverState = { proposal: JSON.parse(JSON.stringify(proposal)) }
+    let workflowPayload = null
+    let pendingTasks = []
     const routes = {
       'GET /proposals/': async () => ({ body: [serverState.proposal] }),
-      'GET /usage': async () => ({ body: { tier: 'pro', status: 'active' } }),
+      'GET /ai/human-tasks?proposal_id=1': async () => ({ body: { tasks: pendingTasks } }),
       'POST /ai/plan': async () => ({
         body: {
           schema_version: 'v1',
@@ -54,12 +56,22 @@ describe('Author section promotion', () => {
         serverState.proposal.sections[0].draft_content = 'Persisted draft'
         return { body: { draft_text: 'Persisted draft' } }
       },
-      'POST /sections/101/promote': async () => {
-        const section = serverState.proposal.sections[0]
-        section.state = 'approved'
-        section.approved_content = section.draft_content
-        section.locked = true
-        return { body: { status: 'promoted', section_id: 101 } }
+      'PATCH /ai/sections/101/draft': async ({ body }) => {
+        serverState.proposal.sections[0].draft_content = body.draft_text
+        return { body: { draft_text: body.draft_text, previous_draft: '' } }
+      },
+      'POST /ai/workflow/run': async ({ body }) => {
+        workflowPayload = body
+        pendingTasks = [{
+          id: 11,
+          thread_id: 'workflow-1:section_approval',
+          node: 'section_approval',
+          status: 'pending',
+          input: { section_key: 'summary', section_title: 'Executive Summary', draft_summary: body.draft },
+          model_output: { review_summary: 'human_review' },
+          decision: {},
+        }]
+        return { body: { run_id: 'workflow-1', status: 'awaiting_human_approval', trace: [] } }
       },
     }
     const fetchSpy = mockFetch(routes)
@@ -72,13 +84,21 @@ describe('Author section promotion', () => {
     await screen.findByText(/第 1 章，共 1 章/i)
     fireEvent.click(await screen.findByRole('button', { name: '生成本章草稿' }))
     await screen.findByText(/Persisted draft/i)
-    fireEvent.click(await screen.findByRole('button', { name: '审批并保存' }))
+    fireEvent.click(screen.getByRole('tab', { name: /3 人工审核与修订/ }))
+    fireEvent.click(await screen.findByRole('button', { name: '提交章节审批' }))
 
     await waitFor(() => {
-      expect(fetchSpy.mock.calls.some(([url, opts]) => (
-        String(url).endsWith('/api/sections/101/promote') && opts?.method === 'POST'
-      ))).toBe(true)
+      expect(workflowPayload).toMatchObject({
+        proposal_id: 1,
+        section_key: 'summary',
+        draft: 'Persisted draft',
+        plan: [{ section_key: 'summary', title: 'Executive Summary', questions: [] }],
+      })
     })
+    expect(await screen.findByTestId('section-approval-tasks')).toBeInTheDocument()
+    expect(fetchSpy.mock.calls.some(([url, opts]) => (
+      String(url).endsWith('/api/sections/101/promote') && opts?.method === 'POST'
+    ))).toBe(false)
     expect(fetchSpy.mock.calls.some(([url, opts]) => (
       String(url).endsWith('/api/proposals/1/') && opts?.method === 'PATCH'
     ))).toBe(false)

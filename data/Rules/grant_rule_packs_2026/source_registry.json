@@ -1,0 +1,217 @@
+{
+  "generated_at": "2026-07-27",
+  "source_priority": [
+    "项目主管部门官网、正式通知和官方项目指南",
+    "主管部门申报系统导出的指南或模板",
+    "依托单位校级主管部门正式通知",
+    "依托单位学院公示或通知",
+    "其他高校官方镜像，仅用于补齐公开附件和交叉核验"
+  ],
+  "sources": [
+    {
+      "source_id": "NSFC-2026-NOTICE",
+      "title": "关于2026年度国家自然科学基金项目申请与结题等有关事项的通告",
+      "issuer": "国家自然科学基金委员会",
+      "date": "2026-01-14",
+      "url": "https://www.nsfc.gov.cn/p1/3381/2824/99667.html",
+      "authority_level": "official_primary",
+      "used_for": [
+        "集中接收时间",
+        "电子申请材料",
+        "经费包干制",
+        "参与者简历及代表作",
+        "人工智能使用要求",
+        "最新版申请书要求"
+      ]
+    },
+    {
+      "source_id": "NSFC-2026-REGULATIONS",
+      "title": "2026年度国家自然科学基金项目指南申请规定",
+      "issuer": "国家自然科学基金委员会",
+      "date": "2026-01",
+      "url": "https://www.nsfc.gov.cn/u/cms/www/202601/190844586k0w.pdf",
+      "authority_level": "official_primary",
+      "local_file": "nsfc_youth_c_2026/source_documents/NSFC_2026_application_regulations.pdf",
+      "used_for": [
+        "申请条件",
+        "附件材料",
+        "合作研究单位",
+        "限项",
+        "科研伦理",
+        "无纸化申请"
+      ],
+      "sha256": "1c6dcd3250e2dacf86f4aadeced4a455ec870d499e24d632f07ac00220741273"
+    },
+    {
+      "source_id": "NSFC-2026-YOUTH-C",
+      "title": "2026年度青年科学基金项目C类指南页",
+      "issuer": "国家自然科学基金委员会",
+      "date": "2026-01",
+      "url": "https://www.nsfc.gov.cn/p1/2931/3971/3977/qnkxjjxmCl.html",
+      "asset_url": "https://www.nsfc.gov.cn/u/cms/www/202601/16144438o7by.jpg",
+      "authority_level": "official_primary",
+      "used_for": [
+        "年龄条件",
+        "特殊资格",
+        "资助期限",
+        "平均资助强度",
+        "一次资助限制"
+      ]
+    },
+    {
+      "source_id": "NSFC-2026-REFORM",
+      "title": "2026年面上项目和青年科学基金项目C类申请书改版说明",
+      "issuer": "国家自然科学基金委员会",
+      "date": "2025-12-30",
+      "url": "https://www.nsfc.gov.cn/p1/3381/2821/99242.html",
+      "authority_level": "official_primary",
+      "used_for": [
+        "正文三部分结构",
+        "正文原则上不超过30页",
+        "简洁表达要求"
+      ]
+    },
+    {
+      "source_id": "SCNSF-2026-OFFICIAL-NOTICE",
+      "title": "四川省科学技术厅关于发布2026年四川省自然科学基金项目申报指南的通知",
+      "issuer": "四川省科学技术厅",
+      "date": "2025-09-17",
+      "document_no": "川科资〔2025〕28号",
+      "url": "https://kjt.sc.gov.cn/kjt/gstz/2025/9/17/0277f5e21b094fd69c282aeb6839f067.shtml",
+      "authority_level": "official_primary",
+      "used_for": [
+        "项目启动",
+        "通用申报要求",
+        "系统入口"
+      ]
+    },
+    {
+      "source_id": "SCNSF-2026-GUIDE",
+      "title": "2026年四川省自然科学基金项目申报指南",
+      "issuer": "四川省科学技术厅",
+      "date": "2025-09-19",
+      "url": "https://kyc.ncvcct.edu.cn/attachment/sites/item/2025_09/26_12/cb0b44a5fc568792.pdf",
+      "authority_level": "official_system_export_mirror",
+      "local_file": "sichuan_nsf_2026/source_documents/Sichuan_2026_NSF_application_guide.pdf",
+      "used_for": [
+        "六类项目",
+        "资助额度",
+        "实施周期",
+        "青年A和B资格",
+        "限项表",
+        "支持方向"
+      ],
+      "sha256": "475045032e8ecc29737f5ad0382e9176575d1f5f066037479d8a3f4ba879b18c"
+    },
+    {
+      "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+      "title": "四川省自然科学基金2026申报要求官方高校镜像",
+      "issuer": "四川文理学院科技处",
+      "date": "2025-09-18",
+      "url": "https://kjc.sasu.edu.cn/info/1015/6984.htm",
+      "authority_level": "official_institution_secondary",
+      "used_for": [
+        "申报单位与申请人条件",
+        "联合申报协议",
+        "年度限项",
+        "伦理和人类遗传资源",
+        "科研助理",
+        "涉密限制"
+      ]
+    },
+    {
+      "source_id": "SCNSF-2026-DEADLINE-MIRROR",
+      "title": "2026年四川省科技计划申报工作通知",
+      "issuer": "内江师范学院科技处",
+      "date": "2025-09-23",
+      "url": "https://kjc.njtc.edu.cn/info/1041/35891.htm",
+      "authority_level": "official_institution_secondary",
+      "used_for": [
+        "系统关闭时间交叉核验",
+        "在线材料类型",
+        "身份注册材料"
+      ]
+    },
+    {
+      "source_id": "SCNSF-2026-SWUN-QUOTA",
+      "title": "2026年四川省自然科学基金申报名额表中的西南民族大学条目",
+      "issuer": "四川省科学技术厅",
+      "date": "2025-09-19",
+      "url": "https://kyc.ncvcct.edu.cn/attachment/sites/item/2025_09/26_12/cb0b44a5fc568792.pdf",
+      "authority_level": "official_system_export_mirror",
+      "used_for": [
+        "西南民族大学面上项目限额25项",
+        "青年A类限额5项",
+        "青年B类不限项"
+      ]
+    },
+    {
+      "source_id": "SCEDU-2026-TEACHING-GUIDE",
+      "title": "2026年四川省高等教育高质量发展专项教学改革研究项目申报指南",
+      "issuer": "四川省教育厅",
+      "date": "2026-06",
+      "document_no": "川教函〔2026〕211号附件1",
+      "url": "https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260609/1780977459498030377.pdf",
+      "authority_level": "official_attachment_mirror",
+      "local_file": "swun_teaching_reform_2026/source_documents/Sichuan_2026_teaching_reform_guide.pdf",
+      "used_for": [
+        "七类申报方向",
+        "改革创新定位"
+      ],
+      "sha256": "1fc9d666b8b1f1b9ae38ae4afb21ead5d951211ecf9a40a4a52075d515d19e5f"
+    },
+    {
+      "source_id": "SCEDU-2026-TEACHING-NOTICE-MIRROR",
+      "title": "四川省2026年高等教育高质量发展专项教学改革研究项目校级通知镜像",
+      "issuer": "西南交通大学本科生院",
+      "date": "2026-06-09",
+      "url": "https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=8B664183242E4882&setAction=newsDetail&viewType=web",
+      "authority_level": "official_institution_secondary",
+      "used_for": [
+        "项目类别",
+        "负责人和成员限项",
+        "重复申报",
+        "建设周期",
+        "材料名称",
+        "网上申报"
+      ]
+    },
+    {
+      "source_id": "SCEDU-2026-TEACHING-APPLICATION",
+      "title": "2026年四川省高等教育高质量发展专项教学改革研究项目申报书",
+      "issuer": "四川省教育厅",
+      "date": "2026-06",
+      "url": "https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260609/1780977459557087079.doc",
+      "authority_level": "official_attachment_mirror",
+      "bundled": false,
+      "used_for": [
+        "正式申报模板"
+      ]
+    },
+    {
+      "source_id": "SCEDU-2026-TEACHING-SUMMARY",
+      "title": "2026年四川省高等教育高质量发展专项教学改革研究项目申报汇总表",
+      "issuer": "四川省教育厅",
+      "date": "2026-06",
+      "url": "https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260610/1781082229702088731.xls",
+      "authority_level": "official_attachment_mirror",
+      "bundled": false,
+      "used_for": [
+        "单位汇总报送"
+      ]
+    },
+    {
+      "source_id": "SWUN-2026-TEACHING-INTERNAL",
+      "title": "关于开展2026年四川省高等教育高质量发展专项教学改革研究项目申报工作的通知",
+      "issuer": "西南民族大学教务处",
+      "date": "2026-06",
+      "document_no": "教务函〔2026〕82号",
+      "authority_level": "organization_internal_not_publicly_retrieved",
+      "public_evidence_url": "https://sxxy.swun.edu.cn/info/1057/2933.htm",
+      "bundled": false,
+      "used_for": [
+        "西南民族大学校内流程和限额，需要用户补充全文"
+      ]
+    }
+  ]
+}

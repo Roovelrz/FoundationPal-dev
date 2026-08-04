@@ -7,16 +7,17 @@ from proposals.models import Proposal, ProposalSection
 
 from ai.agent_runner import run_agent_task
 from ai.proposal_graph import run_proposal_graph
-from ai.models import WorkflowRun
+from ai.models import HumanApprovalTask, ToolInvocation, WorkflowRun
+from ai.providers import AIResult
 
 
-def review(decision):
+def review(decision, required_changes=None):
     return {
         'schema_version': 'v1',
         'section_key': 'summary',
         'decision': decision,
         'issues': [],
-        'required_changes': [],
+        'required_changes': required_changes or [],
         'protected_facts': [],
         'evidence_gaps': [],
     }
@@ -70,6 +71,20 @@ class ProposalGraphTests(TestCase):
         self.assertEqual(nodes, ['planner', 'writer:0', 'reviewer:0', 'writer:1', 'reviewer:1', 'human'])
         self.assertEqual(result['revision_count'], 1)
 
+    def test_rewrite_uses_reviewer_required_changes_for_the_next_draft(self):
+        change = '补充创新点与可验证指标'
+        revised_draft = f'{self.state["draft"]}\n\n{change}'
+        with patch('ai.proposal_graph.get_provider') as get_provider:
+            get_provider.return_value.revise.return_value = AIResult(text=revised_draft)
+            result = run_proposal_graph({
+                **self.state,
+                'review_queue': [review('rewrite', [change]), review('approve')],
+            })
+        self.assertIn(change, result['draft'])
+        self.assertNotEqual(result['draft'], self.state['draft'])
+        self.section.refresh_from_db()
+        self.assertEqual(self.section.draft_content, result['draft'])
+
     def test_human_review_stops_without_finalizing(self):
         result = run_proposal_graph({**self.state, 'review': review('human_review')})
         self.assertEqual(result['status'], 'awaiting_human_approval')
@@ -80,11 +95,31 @@ class ProposalGraphTests(TestCase):
         self.assertEqual(result['status'], 'awaiting_human_approval')
         self.assertEqual([item['node'] for item in result['trace']], ['planner', 'writer:0', 'reviewer:0', 'human'])
 
-    def test_writer_failure_retries_once_then_continues(self):
-        from ai import proposal_graph
+    def test_workflow_endpoint_caps_rewrites_at_two(self):
+        self.client.force_login(self.proposal.author)
+        response = self.client.post(
+            '/api/ai/workflow/run',
+            data={
+                **self.state,
+                'review_queue': [review('rewrite'), review('rewrite'), review('rewrite')],
+                'max_revisions': 5,
+            },
+            content_type='application/json',
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['status'], 'awaiting_human_approval')
+        self.assertEqual(
+            [item['node'] for item in response.json()['trace'] if item['node'].startswith('writer')],
+            ['writer:0', 'writer:1'],
+        )
+        run = WorkflowRun.objects.get(run_id=response.json()['run_id'])
+        self.assertEqual(run.revision_count, 2)
 
-        original = proposal_graph.write_service
-        with patch('ai.proposal_graph.write_service', side_effect=[RuntimeError('temporary'), original]):
+    def test_writer_failure_retries_once_then_continues(self):
+        from ai import tools
+
+        original = tools.write_service
+        with patch('ai.tools.write_service', side_effect=[RuntimeError('temporary'), original]):
             result = run_proposal_graph({**self.state, 'review': review('approve')})
         writer_nodes = [item for item in result['trace'] if item['node'].startswith('writer')]
         self.assertEqual([item['status'] for item in writer_nodes], ['failed', 'completed'])
@@ -125,3 +160,14 @@ class ProposalGraphTests(TestCase):
         self.assertEqual(run.status, 'awaiting_human_approval')
         self.assertEqual(run.trace_json[-1]['node'], 'human')
         self.assertEqual(run.fallback_mode, 'human')
+        self.assertEqual([item['agent'] for item in run.handoffs_json], ['planner', 'writer', 'reviewer'])
+        self.assertEqual(
+            list(ToolInvocation.objects.filter(workflow_run=run).order_by('created_at').values_list('tool_name', 'caller_role')),
+            [('save_section_draft', 'writer'), ('submit_review', 'reviewer')],
+        )
+        task = HumanApprovalTask.objects.get(workflow_run=run, node='section_approval')
+        self.assertEqual(task.input_json['section_key'], self.section.key)
+        timeline = self.client.get(f'/api/ai/runs/{run.run_id}')
+        self.assertEqual(timeline.status_code, 200)
+        self.assertEqual([item['agent'] for item in timeline.json()['handoffs']], ['planner', 'writer', 'reviewer'])
+        self.assertEqual([item['tool_name'] for item in timeline.json()['tools']], ['save_section_draft', 'submit_review'])

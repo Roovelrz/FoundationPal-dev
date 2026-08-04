@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { api as coreApi, apiMaybeAsync as coreApiMaybeAsync, apiUpload as coreApiUpload, ROUTER_BASE as coreRouterBase } from './lib/core.js'
 import './app.css'
 
 // Inline flags fallback to avoid missing import
@@ -25,9 +26,8 @@ export function NotFound({ token }) {
   )
 }
 
-const apiBase = import.meta.env.VITE_API_BASE || '/api'
 // Router base is where the SPA is mounted. Default to '/app'.
-const ROUTER_BASE = import.meta.env.VITE_ROUTER_BASE || '/app'
+const ROUTER_BASE = coreRouterBase
 
 // Dev-time URL self-correction: ensure router base prefix exists so deep links work during dev
 // Only run when dev asset base is '/'; otherwise, let host serve its own base path (e.g., '/static/app/')
@@ -67,8 +67,7 @@ function sanitizeNext(dest) {
 // Lazy page chunks (route-level code splitting)
 const LazyAccountPage = React.lazy(() => import('./pages/AccountPage.jsx'))
 const LazyProposals = React.lazy(() => import('./pages/Dashboard.jsx').then(m => ({ default: (props) => <m.Proposals {...props} /> })))
-const LazyOrgs = React.lazy(() => import('./pages/Dashboard.jsx').then(m => ({ default: (props) => <m.Orgs {...props} /> })))
-const LazyOrgsPage = React.lazy(() => import('./pages/OrgsPage.jsx'))
+const LazyWorkspaceManager = React.lazy(() => import('./pages/OrgsPage.jsx'))
 
 // Opportunistic idle preloads for likely-next routes (no-op in tests)
 function useIdlePreloads() {
@@ -192,50 +191,30 @@ export function InviteBanner({ token }) {
 
 function useToken() {
   const [token, setToken] = useState(() => localStorage.getItem('jwt') || '')
-  const save = (t) => {
+  useEffect(() => {
+    const onRefreshed = (event) => setToken(event.detail?.access || '')
+    window.addEventListener('foundationpal:token-refreshed', onRefreshed)
+    return () => window.removeEventListener('foundationpal:token-refreshed', onRefreshed)
+  }, [])
+  const save = (t, refresh) => {
     setToken(t || '')
-    if (t) localStorage.setItem('jwt', t)
-    else localStorage.removeItem('jwt')
+    if (t) {
+      localStorage.setItem('jwt', t)
+      if (refresh) localStorage.setItem('jwt_refresh', refresh)
+    } else {
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('jwt_refresh')
+    }
   }
   return [token, save]
 }
 
 async function api(path, { method = 'GET', token, body, orgId } = {}) {
-  const res = await fetch(`${apiBase}${path}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(orgId ? { 'X-Org-ID': orgId } : {}),
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  })
-  let data = null
-  try { data = await res.json() } catch {}
-  if (!res.ok) {
-    const err = new Error(`${res.status}`)
-    err.status = res.status
-    err.data = data
-    throw err
-  }
-  return data
+  return coreApi(path, { method, token, body, orgId })
 }
 
 async function apiMaybeAsync(path, { method = 'POST', token, body, orgId } = {}) {
-  const data = await api(path, { method, token, body, orgId })
-  // If async mode is enabled server-side, AI endpoints return {job_id,status}
-  if (data && typeof data === 'object' && data.job_id) {
-    const id = data.job_id
-    // Poll with small backoff
-    for (let i = 0; i < 20; i++) {
-      await new Promise(r => setTimeout(r, 300))
-      const j = await api(`/ai/jobs/${id}`, { token, orgId })
-      if (j.status === 'done') return j.result
-      if (j.status === 'error') throw new Error(j.error || 'AI job failed')
-    }
-    throw new Error('AI job still processing; try again later')
-  }
-  return data
+  return coreApiMaybeAsync(path, { method, token, body, orgId })
 }
 // Simple account/profile page to edit username, email, first/last name
 export function AccountPage(props) {
@@ -247,26 +226,8 @@ export function AccountPage(props) {
 }
 
 // Multipart upload helper for files (no JSON headers)
-async function apiUpload(path, { token, orgId, file }) {
-  const fd = new FormData()
-  fd.append('file', file)
-  const res = await fetch(`${apiBase}${path}`, {
-    method: 'POST',
-    headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(orgId ? { 'X-Org-ID': orgId } : {}),
-    },
-    body: fd,
-  })
-  let data = null
-  try { data = await res.json() } catch {}
-  if (!res.ok) {
-    const err = new Error(`${res.status}`)
-    err.status = res.status
-    err.data = data
-    throw err
-  }
-  return data
+async function apiUpload(path, { token, orgId, file, fields = {} }) {
+  return coreApiUpload(path, { token, orgId, file, fields })
 }
 
 export function LoginPage({ token, setToken }) {
@@ -289,7 +250,8 @@ export function LoginPage({ token, setToken }) {
     setSubmitting(true)
     try {
       const data = await api('/token', { method: 'POST', body: { username, password } })
-      setToken(data.access)
+      if (data.refresh) setToken(data.access, data.refresh)
+      else setToken(data.access)
       try {
         const orgs = await api('/orgs/', { token: data.access })
         if (Array.isArray(orgs) && orgs.length === 0) {
@@ -364,14 +326,6 @@ export function Proposals(props) {
   )
 }
 
-export function Orgs(props) {
-  return (
-    <Suspense fallback={<div>Loading…</div>}>
-      <LazyOrgs {...props} />
-    </Suspense>
-  )
-}
-
 export function RegisterPage({ setToken }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -396,7 +350,8 @@ export function RegisterPage({ setToken }) {
         method: 'POST',
         body: { username, password },
       })
-      setToken(data.access)
+      if (data.refresh) setToken(data.access, data.refresh)
+      else setToken(data.access)
       if (data.org?.id) localStorage.setItem('orgId', String(data.org.id))
       navigate(safeNext, { replace: true })
     } catch (e2) {
@@ -500,39 +455,34 @@ export function RequireOrg({ token, children }) {
 function AppShell({ token, setToken }) {
   const [activeOrgId, setActiveOrgId] = useState(() => localStorage.getItem('orgId') || '')
   const [orgs, setOrgs] = useState([])
-  const [creatingWorkspace, setCreatingWorkspace] = useState(false)
+  const [workspaceManagerOpen, setWorkspaceManagerOpen] = useState(false)
+  const location = useLocation()
   useEffect(() => { if (activeOrgId) localStorage.setItem('orgId', activeOrgId); else localStorage.removeItem('orgId') }, [activeOrgId])
+  const applyOrgList = (list) => {
+    const nextOrgs = Array.isArray(list) ? list : []
+    setOrgs(nextOrgs)
+    setActiveOrgId(current => (
+      nextOrgs.some(org => String(org.id) === String(current))
+        ? String(current)
+        : String(nextOrgs[0]?.id || '')
+    ))
+    return nextOrgs
+  }
+  const refreshOrgs = async () => applyOrgList(await api('/orgs/', { token }))
   useEffect(() => {
-    (async () => {
-      try {
-        const list = await api('/orgs/', { token })
-        const nextOrgs = Array.isArray(list) ? list : []
-        setOrgs(nextOrgs)
-        setActiveOrgId(current => (
-          nextOrgs.some(org => String(org.id) === String(current))
-            ? String(current)
-            : String(nextOrgs[0]?.id || '')
-        ))
-      } catch {}
-    })()
+    refreshOrgs().catch(() => {})
   }, [token])
   const navigate = useNavigate()
-  const createWorkspace = async () => {
-    setCreatingWorkspace(true)
-    try {
-      const created = await api('/orgs/', {
-        method: 'POST',
-        token,
-        body: { name: '', description: '' },
-      })
-      const list = await api('/orgs/', { token })
-      setOrgs(Array.isArray(list) ? list : [])
-      if (created?.id) setActiveOrgId(String(created.id))
-    } catch (error) {
-      alert(`新建工作区失败：${error?.data?.error || error.message}`)
-    } finally {
-      setCreatingWorkspace(false)
-    }
+  useEffect(() => {
+    setWorkspaceManagerOpen(new URLSearchParams(location.search).get('dialog') === 'workspaces')
+  }, [location.search])
+  const openWorkspaceManager = () => {
+    setWorkspaceManagerOpen(true)
+    navigate('/?dialog=workspaces')
+  }
+  const closeWorkspaceManager = () => {
+    setWorkspaceManagerOpen(false)
+    navigate('/')
   }
   const logout = () => { setToken(''); navigate('/login', { replace: true }) }
   return (
@@ -562,19 +512,27 @@ function AppShell({ token, setToken }) {
               })}
             </select>
           </label>
-          <button disabled={creatingWorkspace} onClick={createWorkspace}>
-            {creatingWorkspace ? '正在新建' : '新建工作区'}
-          </button>
           <button onClick={() => navigate('/account')}>账户</button>
-          <button onClick={() => navigate('/orgs')}>工作区管理</button>
+          <button onClick={openWorkspaceManager}>工作区管理</button>
           <button onClick={logout}>退出</button>
         </nav>
       </header>
       <div className="fund-app-content">
         <Suspense fallback={<div className="fund-loading">正在加载基金工作区</div>}>
-          <LazyProposals key={activeOrgId || 'none'} token={token} selectedOrgId={activeOrgId} />
+          <LazyProposals token={token} selectedOrgId={activeOrgId} />
         </Suspense>
       </div>
+      {workspaceManagerOpen && (
+        <Suspense fallback={null}>
+          <LazyWorkspaceManager
+            token={token}
+            activeOrgId={activeOrgId}
+            onSelectOrg={setActiveOrgId}
+            onOrgsChanged={applyOrgList}
+            onClose={closeWorkspaceManager}
+          />
+        </Suspense>
+      )}
     </div>
   )
 }
@@ -613,9 +571,7 @@ function Root() {
           path="/orgs"
           element={
             <RequireAuth token={token}>
-              <Suspense fallback={<div>Loading…</div>}>
-                <LazyOrgsPage token={token} />
-              </Suspense>
+              <Navigate to="/?dialog=workspaces" replace />
             </RequireAuth>
           }
         />

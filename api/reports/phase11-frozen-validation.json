@@ -1,0 +1,35 @@
+{
+  "evaluation_scope": "frozen_human_annotated_only",
+  "embedding_comparison": "unchanged_embedding_only",
+  "accepted_case_count": 162,
+  "rejected_case_count": 3,
+  "domain_counts": {
+    "user_evidence": 8,
+    "mixed": 0,
+    "grant_rule": 154
+  },
+  "answer_state_counts": {
+    "answerable": 159,
+    "missing_evidence": 3,
+    "no_applicable_rule": 0
+  },
+  "excluded_pending_review_count": 3,
+  "ready_for_formal_comparison": true,
+  "rejections": [
+    {
+      "case_id": "synthetic:synthetic_0080",
+      "error": "excluded_pending_human_review",
+      "reason": "规则域题。依据项目指南，source_document_id 为 4，Gold AIChunk 为 51。确认答案要点为 前期研究基础较好、交叉性强、响应新兴应 贡献。 参考答案文本存在明显残缺，无法确认完整的优先资助特征，需回看 AIChunk 51 原文后修正。 上传模板未提供当前数据库 GrantRequirement 行的映射，requirement_ids 保持空数组，未以 AIChunk ID 冒充规则记录 ID。"
+    },
+    {
+      "case_id": "synthetic:synthetic_0145",
+      "error": "excluded_pending_human_review",
+      "reason": "规则域题。依据项目指南，source_document_id 为 3，Gold AIChunk 为 42。确认答案要点为 不少于50亿条。 问题询问环境标签数量，但参考答案为不少于50亿条，疑似将序列数据集规模误写为标签数量，需回看 AIChunk 42。 上传模板未提供当前数据库 GrantRequirement 行的映射，requirement_ids 保持空数组，未以 AIChunk ID 冒充规则记录 ID。"
+    },
+    {
+      "case_id": "synthetic:synthetic_0147",
+      "error": "excluded_pending_human_review",
+      "reason": "规则域题。依据申报通知或填报快照，source_document_id 为 5，Gold AIChunk 为 70。确认答案要点为 纸质文件邮寄至北京市海淀区双清路83号财务局经费管理处，电子文件发送至JFGLC@nsfc.g。。 参考答案中的电子邮箱被截断为 JFGLC@nsfc.g，无法确认完整提交地址，需回看 AIChunk 70。 上传模板未提供当前数据库 GrantRequirement 行的映射，requirement_ids 保持空数组，未以 AIChunk ID 冒充规则记录 ID。"
+    }
+  ]
+}

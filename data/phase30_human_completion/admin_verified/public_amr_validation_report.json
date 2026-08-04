@@ -1,0 +1,15 @@
+{
+  "validated_at": "2026-07-28T18:00:14+08:00",
+  "checks": {
+    "case_count": true,
+    "all_source_files_exist": true,
+    "all_source_paths_nonempty": true,
+    "all_pdfs_valid": true,
+    "all_file_hashes_unique": true,
+    "all_chunk_ids_unique": true,
+    "all_public_urls_present": true,
+    "all_ownership_disclosed": true,
+    "all_signoffs_scoped": true
+  },
+  "passed": true
+}

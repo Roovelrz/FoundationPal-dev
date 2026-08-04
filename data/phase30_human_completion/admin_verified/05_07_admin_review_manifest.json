@@ -1,0 +1,71 @@
+{
+  "schema_version": "admin_review_manifest.v1",
+  "reviewer": "roovel",
+  "reviewer_role": "authorized_administrator",
+  "reviewed_at": "2026-07-28T17:42:29+08:00",
+  "review_scope": {
+    "05": {
+      "records_reviewed": 608,
+      "boundary_records_resolved": 128,
+      "gold_distribution": {
+        "issue": 320,
+        "no_issue": 288
+      },
+      "issue_code_count": 16,
+      "status": "completed"
+    },
+    "06": {
+      "records_reviewed": 48,
+      "intake_records": 36,
+      "review_grill_records": 12,
+      "status": "completed"
+    },
+    "07_pipeline": {
+      "areas_signed": 8,
+      "scope": "internal_pipeline_validation_only",
+      "status": "signed"
+    },
+    "07_production": {
+      "areas_reviewed": 8,
+      "status": "blocked",
+      "reason": "真实来源、独立保留集、检测器实现和指标复测未由现有文件证明完成。"
+    }
+  },
+  "validation_checks": {
+    "05_count": true,
+    "05_case_id_unique": true,
+    "05_all_administrator_reviewed": true,
+    "05_all_boundary_confirmed": true,
+    "05_all_logic_consistent": true,
+    "06_count": true,
+    "06_case_id_unique": true,
+    "06_all_admin_reviews_approved": true,
+    "07_production_areas": true,
+    "07_pipeline_all_signed": true,
+    "07_pipeline_scope_limited": true
+  },
+  "immutable_facts_preserved": [
+    "provenance",
+    "evidence source_type",
+    "production metric results",
+    "production blocking reasons"
+  ],
+  "files": {
+    "05_reviewer_risk_cases_admin_reviewed.json": {
+      "sha256": "b854480356a85b28e060f38cf8081ba07c42a48f210b3be2cf1653d0f4406f25",
+      "bytes": 2260055
+    },
+    "06_intake_and_grill_admin_reviewed.json": {
+      "sha256": "fb2f5dbda802eb4a44ac19375b6906f54212531ecc707a66ef1f299e3fc1d3f5",
+      "bytes": 124262
+    },
+    "07_production_release_gate_admin_reviewed.json": {
+      "sha256": "9ae1012b0167bdf748f0ea43235b9a0a4375dcc4de10592f486a22a45f5f2115",
+      "bytes": 10400
+    },
+    "07_pipeline_signoff_admin_reviewed.json": {
+      "sha256": "3f83a052ff029fa3e7f455bd9cbd39fa94f52333081ec66df1665209dc8dc63d",
+      "bytes": 13050
+    }
+  }
+}

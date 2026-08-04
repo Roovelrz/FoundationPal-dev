@@ -54,6 +54,34 @@ class GrillApiTests(TestCase):
         self.section.refresh_from_db()
         self.assertEqual(self.section.draft_content, '原始草稿')
 
+    def test_planning_session_can_return_to_the_previous_question(self):
+        self.client.get(f'/api/ai/grill?proposal_id={self.proposal.id}&mode=planning')
+        response = self.client.post(
+            '/api/ai/grill',
+            data={
+                'proposal_id': self.proposal.id,
+                'mode': 'planning',
+                'answers': {'funding_category': '青年基金', 'research_direction': '智能信号处理'},
+            },
+            content_type='application/json',
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['question']['index'], 2)
+
+        response = self.client.post(
+            '/api/ai/grill',
+            data={
+                'proposal_id': self.proposal.id,
+                'mode': 'planning',
+                'answers': {'core_problem': '提高跨场景泛化能力'},
+                'previous': True,
+            },
+            content_type='application/json',
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['question']['index'], 1)
+        self.assertEqual(response.json()['collected_answers']['core_problem'], '提高跨场景泛化能力')
+
     def test_plan_receives_only_confirmed_answers(self):
         from unittest.mock import patch
 
@@ -84,3 +112,19 @@ class GrillApiTests(TestCase):
             response = self.client.post('/api/ai/plan', data={'proposal_id': self.proposal.id}, content_type='application/json')
         self.assertEqual(response.status_code, 200)
         self.assertIn('funding_category: 青年基金', factory.return_value.plan.call_args.kwargs['text_spec'])
+
+    def test_plan_without_grill_session_is_not_blocked(self):
+        from unittest.mock import patch
+
+        with patch('ai.views.get_provider') as factory:
+            factory.return_value.plan.return_value = {
+                'schema_version': 'v1',
+                'sections': [{'section_key': 'summary', 'title': '摘要', 'questions': ['请概述研究目标']}],
+            }
+            response = self.client.post(
+                '/api/ai/plan',
+                data={'proposal_id': self.proposal.id},
+                content_type='application/json',
+            )
+
+        self.assertEqual(response.status_code, 200)

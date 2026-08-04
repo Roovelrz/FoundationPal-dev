@@ -44,24 +44,39 @@ class ProposalsOrgScopeTests(TestCase):
         self.assertEqual(r.json()['org'], self.org.id)
         self.assertEqual(Proposal.objects.get(id=r.json()['id']).org_id, self.org.id)
 
-    def test_personal_org_reused_across_multiple_creations(self):
+    def test_create_requires_an_explicit_workspace(self):
         self.client.force_login(self.bob)
-        first = self.client.post(
+        response = self.client.post(
             '/api/proposals/',
             data={'content': {'meta': {'title': 'One'}}},
             content_type='application/json',
         )
-        self.assertIn(first.status_code, (200, 201))
-        first_org_id = first.json().get('org')
-        self.assertIsNotNone(first_org_id)
-        before_org_ids = set(OrgUser.objects.filter(user=self.bob).values_list('org_id', flat=True))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()['workspace'], 'workspace_required')
+
+    def test_workspace_numbers_are_independent(self):
+        second_org = Organization.objects.create(name='Beta', admin=self.alice)
+        OrgUser.objects.create(org=second_org, user=self.alice, role='admin')
+        self.client.force_login(self.alice)
+
+        first = self.client.post(
+            '/api/proposals/',
+            data={'content': {'meta': {'title': 'A1'}}},
+            content_type='application/json',
+            HTTP_X_ORG_ID=str(self.org.id),
+        )
         second = self.client.post(
             '/api/proposals/',
-            data={'content': {'meta': {'title': 'Two'}}},
+            data={'content': {'meta': {'title': 'B1'}}},
             content_type='application/json',
+            HTTP_X_ORG_ID=str(second_org.id),
         )
-        self.assertIn(second.status_code, (200, 201, 402))
-        after_org_ids = set(OrgUser.objects.filter(user=self.bob).values_list('org_id', flat=True))
-        self.assertEqual(before_org_ids, after_org_ids)
-        if second.status_code in (200, 201):
-            self.assertEqual(second.json().get('org'), first_org_id)
+        third = self.client.post(
+            '/api/proposals/',
+            data={'content': {'meta': {'title': 'A2'}}},
+            content_type='application/json',
+            HTTP_X_ORG_ID=str(self.org.id),
+        )
+
+        self.assertEqual([first.status_code, second.status_code, third.status_code], [201, 201, 201])
+        self.assertEqual([first.json()['workspace_number'], second.json()['workspace_number'], third.json()['workspace_number']], [1, 1, 2])

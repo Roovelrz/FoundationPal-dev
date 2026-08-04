@@ -1,7 +1,5 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
 import secrets
 from datetime import date
 from django.utils import timezone
@@ -12,6 +10,7 @@ class Organization(models.Model):
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='admin_organizations')
     description = models.TextField(blank=True, default='')
     files_meta = models.JSONField(default=dict, blank=True)
+    next_proposal_number = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:  # pragma: no cover
@@ -90,30 +89,3 @@ class OrgProposalAllocation(models.Model):
 
     class Meta:
         unique_together = ('admin', 'org', 'month')
-
-
-@receiver(pre_save, sender=Organization)
-def _capture_old_admin(sender, instance: Organization, **kwargs):  # pragma: no cover
-    if instance.pk:
-        try:
-            old = Organization.objects.get(pk=instance.pk)
-            instance._old_admin_id = old.admin_id
-        except Organization.DoesNotExist:
-            instance._old_admin_id = None
-    else:
-        instance._old_admin_id = None
-
-
-@receiver(post_save, sender=Organization)
-def _recompute_org_subscription(sender, instance: Organization, created: bool, **kwargs):
-    # Only act when admin changed or on create
-    changed = created or getattr(instance, '_old_admin_id', None) != instance.admin_id
-    if not changed:
-        return
-    try:
-        from billing.utils import upsert_org_subscription_from_admin
-
-        upsert_org_subscription_from_admin(instance)
-    except Exception:
-        # Non-fatal; avoid blocking org updates due to billing mirroring
-        pass

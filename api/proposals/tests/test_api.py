@@ -14,7 +14,7 @@ class ProposalsApiTests(TestCase):
         resp = self.client.get('/api/proposals/')
         self.assertIn(resp.status_code, (200, 302, 401, 403))
 
-    def test_create_one_proposal_allowed_then_blocked_by_free_cap(self):
+    def test_create_multiple_proposals_without_a_quota(self):
         self.client.force_login(self.user)
         resp1 = self.client.post(
             '/api/proposals/',
@@ -22,15 +22,16 @@ class ProposalsApiTests(TestCase):
             content_type='application/json',
             HTTP_X_ORG_ID=str(self.org.id),
         )
-        self.assertIn(resp1.status_code, (201, 200))
+        self.assertEqual(resp1.status_code, 201)
         resp2 = self.client.post(
             '/api/proposals/',
             data={'content': {'title': 'Test 2'}},
             content_type='application/json',
             HTTP_X_ORG_ID=str(self.org.id),
         )
-        self.assertEqual(resp2.status_code, 402)
-        self.assertEqual(resp2.json().get('error'), 'quota_exceeded')
+        self.assertEqual(resp2.status_code, 201)
+        self.assertEqual(resp1.json()['workspace_number'], 1)
+        self.assertEqual(resp2.json()['workspace_number'], 2)
 
     def test_call_url_write_once(self):
         self.client.force_login(self.user)

@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 from io import BytesIO
-from pathlib import Path
 import re
 import zipfile
 
 from reportlab.lib.pagesizes import LETTER
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -17,8 +15,8 @@ from docx.shared import Pt
 import html
 
 EXPORT_FONT_SIZE = 12
-PDF_CJK_FONT = 'NSFC-SimSun'
-PDF_LATIN_FONT = 'NSFC-TimesNewRoman'
+PDF_CJK_FONT = 'STSong-Light'
+PDF_LATIN_FONT = 'Times-Roman'
 
 
 def _escape_text(s: str) -> str:
@@ -55,30 +53,8 @@ def _normalize_pdf_for_checksum(data: bytes) -> bytes:
 
 def _register_pdf_fonts() -> tuple[str, str]:
     if PDF_CJK_FONT not in pdfmetrics.getRegisteredFontNames():
-        simsun_candidates = (
-            Path('C:/Windows/Fonts/simsun.ttc'),
-            Path('/usr/share/fonts/truetype/arphic/uming.ttc'),
-        )
-        for path in simsun_candidates:
-            if path.exists():
-                pdfmetrics.registerFont(TTFont(PDF_CJK_FONT, str(path)))
-                break
-        else:
-            pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
-
-    if PDF_LATIN_FONT not in pdfmetrics.getRegisteredFontNames():
-        times_candidates = (
-            Path('C:/Windows/Fonts/times.ttf'),
-            Path('/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf'),
-        )
-        for path in times_candidates:
-            if path.exists():
-                pdfmetrics.registerFont(TTFont(PDF_LATIN_FONT, str(path)))
-                break
-
-    cjk_font = PDF_CJK_FONT if PDF_CJK_FONT in pdfmetrics.getRegisteredFontNames() else 'STSong-Light'
-    latin_font = PDF_LATIN_FONT if PDF_LATIN_FONT in pdfmetrics.getRegisteredFontNames() else 'Times-Roman'
-    return cjk_font, latin_font
+        pdfmetrics.registerFont(UnicodeCIDFont(PDF_CJK_FONT))
+    return PDF_CJK_FONT, PDF_LATIN_FONT
 
 
 def _is_cjk(character: str) -> bool:
@@ -90,7 +66,7 @@ def _is_cjk(character: str) -> bool:
     )
 
 
-def _wrap_pdf_line(text: str, max_width: float, cjk_font: str, latin_font: str) -> list[str]:
+def _wrap_pdf_line(text: str, max_width: float, cjk_font: str, latin_font: str, font_size: int = EXPORT_FONT_SIZE) -> list[str]:
     if not text:
         return ['']
     lines = []
@@ -98,7 +74,7 @@ def _wrap_pdf_line(text: str, max_width: float, cjk_font: str, latin_font: str) 
     current_width = 0.0
     for character in text:
         font_name = cjk_font if _is_cjk(character) else latin_font
-        width = pdfmetrics.stringWidth(character, font_name, EXPORT_FONT_SIZE)
+        width = pdfmetrics.stringWidth(character, font_name, font_size)
         if current and current_width + width > max_width:
             lines.append(current)
             current = character
@@ -110,22 +86,53 @@ def _wrap_pdf_line(text: str, max_width: float, cjk_font: str, latin_font: str) 
     return lines
 
 
-def _draw_mixed_font_line(c, x: float, y: float, line: str, cjk_font: str, latin_font: str) -> None:
+def _draw_mixed_font_line(c, x: float, y: float, line: str, cjk_font: str, latin_font: str, font_size: int = EXPORT_FONT_SIZE) -> None:
     text_object = c.beginText(x, y)
     active_font = None
     buffer = ''
     for character in line:
         font_name = cjk_font if _is_cjk(character) else latin_font
         if active_font is not None and font_name != active_font:
-            text_object.setFont(active_font, EXPORT_FONT_SIZE)
+            text_object.setFont(active_font, font_size)
             text_object.textOut(buffer)
             buffer = ''
         active_font = font_name
         buffer += character
     if buffer:
-        text_object.setFont(active_font or latin_font, EXPORT_FONT_SIZE)
+        text_object.setFont(active_font or latin_font, font_size)
         text_object.textOut(buffer)
     c.drawText(text_object)
+
+
+def _strip_inline_markdown(text: str) -> str:
+    text = re.sub(r'!\[([^\]]*)\]\([^)]*\)', r'\1', text)
+    text = re.sub(r'\[([^\]]+)\]\([^)]*\)', r'\1', text)
+    return re.sub(r'(\*\*|__|~~|`)', '', text).strip()
+
+
+def _markdown_pdf_blocks(markdown: str):
+    for raw in str(markdown or '').splitlines():
+        line = raw.rstrip()
+        if not line.strip():
+            yield 'spacer', ''
+            continue
+        heading = re.match(r'^(#{1,3})\s+(.+)$', line)
+        if heading:
+            yield f'heading_{len(heading.group(1))}', _strip_inline_markdown(heading.group(2))
+            continue
+        bullet = re.match(r'^\s*[-*+]\s+(.+)$', line)
+        if bullet:
+            yield 'list', '• ' + _strip_inline_markdown(bullet.group(1))
+            continue
+        numbered = re.match(r'^\s*(\d+[.)])\s+(.+)$', line)
+        if numbered:
+            yield 'list', f'{numbered.group(1)} {_strip_inline_markdown(numbered.group(2))}'
+            continue
+        quote = re.match(r'^\s*>\s?(.+)$', line)
+        if quote:
+            yield 'quote', _strip_inline_markdown(quote.group(1))
+            continue
+        yield 'paragraph', _strip_inline_markdown(line)
 
 
 def render_pdf_from_text(text: str) -> tuple[bytes, str]:
@@ -145,14 +152,27 @@ def render_pdf_from_text(text: str) -> tuple[bytes, str]:
         pass
     width, height = LETTER
     y = height - 72
-    for line in text.splitlines():
-        for wrapped_line in _wrap_pdf_line(line, width - 144, cjk_font, latin_font):
-            if y < 72:
+    styles = {
+        'heading_1': (18, 25, 72),
+        'heading_2': (16, 23, 72),
+        'heading_3': (14, 21, 72),
+        'paragraph': (EXPORT_FONT_SIZE, 18, 72),
+        'list': (EXPORT_FONT_SIZE, 18, 88),
+        'quote': (EXPORT_FONT_SIZE, 18, 84),
+    }
+    for kind, line in _markdown_pdf_blocks(text):
+        if kind == 'spacer':
+            y -= 9
+            continue
+        font_size, line_height, x = styles[kind]
+        for wrapped_line in _wrap_pdf_line(line, width - x - 72, cjk_font, latin_font, font_size):
+            if y < 72 + line_height:
                 c.showPage()
                 y = height - 72
-            _draw_mixed_font_line(c, 72, y, wrapped_line, cjk_font, latin_font)
-            y -= 18
-    c.showPage()
+            _draw_mixed_font_line(c, x, y, wrapped_line, cjk_font, latin_font, font_size)
+            y -= line_height
+        if kind.startswith('heading'):
+            y -= 4
     c.save()
     data = buffer.getvalue()
     # Post-process raw PDF to enforce epoch Creation/Mod dates so raw bytes deterministic

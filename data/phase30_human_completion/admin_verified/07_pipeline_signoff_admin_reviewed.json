@@ -1,0 +1,267 @@
+{
+  "group": "发布签署",
+  "required_count": 8,
+  "instruction": "在真实来源、独立发布保留集和全部指标复测完成后，由对应负责人签署。",
+  "cases": [
+    {
+      "area": "真实来源替换",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "01_original_evidence.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_synthetic_fixture_only",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "缺少真实业务原始文件",
+          "缺少可核验原始页码与来源授权"
+        ],
+        "source_basis": "18条记录当前标记为synthetic_test_confirmed，reviewer为synthetic_test_generator，尚未替换为真实业务原始来源。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Citation 页码与蕴含",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "02_citation_entailment.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_non_business_evidence",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "需用真实原始证据页码复核",
+          "需由业务审核人完成最终蕴含签署"
+        ],
+        "source_basis": "复核记录使用synthetic_test_fixture，source_page_status为synthetic_test_fixture_not_business_evidence，不能作为正式业务签署依据。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "BGE 规则与用户证据",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "03_rule_applicability.json; phase11-formal-eval.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_rule_review_and_retest",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "12条规则适用性未完成业务确认",
+          "需在固定模型与正式数据上复测BGE双域指标"
+        ],
+        "source_basis": "03_rule_applicability.json的12条business_confirmation仍为空；现有Rule Recall@5为0.4935，User Evidence Context Recall@5为0.75。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "组织隔离",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "phase11-formal-eval.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "conditional_pass_fixture_only",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "结果仅覆盖现有夹具",
+          "需在独立发布保留集和真实权限数据上复测"
+        ],
+        "source_basis": "24条可运行夹具的Cross Organization Leakage Rate为0.0，但尚缺独立发布保留集复测。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Reviewer 指标",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "05_reviewer_risk_cases_filled.json; phase11-formal-eval.json; phase11-claim-workflow.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_missing_detectors",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "需实现并复测16类Issue检测",
+          "需在development调优后仅使用frozen集报告最终分类指标"
+        ],
+        "source_basis": "Reviewer运行时仅实际识别duplicate_claim与missing_claim_evidence；其余14类矩阵风险尚未形成对应检测闭环。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Review Grill 复核",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "06_intake_and_grill_filled.json; phase11-formal-eval.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_incomplete_execution",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "12条夹具未全部进入预期路由",
+          "关闭条件和决定持久化尚未全部复测"
+        ],
+        "source_basis": "12条Review Grill夹具中仅7条产生实际Reviewer Issue与Session，仅3条记录首个决定。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Intake 指标",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "06_intake_and_grill_filled.json; phase11-formal-eval.json",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_below_acceptance",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "需修复路由规则",
+          "需修复问题预算与停止条件",
+          "需复测恢复与幂等"
+        ],
+        "source_basis": "36条Intake夹具的routing_accuracy为0.6111，question_budget_accuracy为0.5556，尚未达到发布签署条件。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "发布保留集",
+      "owner": "authorized_administrator",
+      "decision": "approved_for_internal_pipeline_validation",
+      "date": "2026-07-28",
+      "evidence_report": "00_人工补充与审核总清单.md; 07_release_signoff.md",
+      "status": "signed",
+      "source_basis": "管理员已确认相关数据合同可用于内部端到端流水线验证；生产阻断信息保存在production_gate_snapshot中。",
+      "blocking_reasons": [],
+      "reviewer": "roovel",
+      "close_condition": "内部流水线完成数据读取、路由、Reviewer、Review Grill、Reviser和结果持久化后关闭。",
+      "production_gate_snapshot": {
+        "decision": "blocked_holdout_missing",
+        "status": "not_signed",
+        "blocking_reasons": [
+          "缺少独立发布保留集",
+          "缺少全部指标最终复测报告",
+          "前七项尚未全部签署"
+        ],
+        "source_basis": "总清单要求先完成真实来源替换、Citation复核和独立发布保留集，当前未提供独立保留集运行报告。"
+      },
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "signoff_scope": "internal_pipeline_validation_only",
+      "production_release_eligible": false,
+      "administrative_signoff": {
+        "status": "signed",
+        "scope": "internal_pipeline_validation_only",
+        "signed_by": "roovel",
+        "signed_at": "2026-07-28T17:42:29+08:00"
+      }
+    }
+  ],
+  "schema_version": "pipeline_signoff.v1.admin_reviewed",
+  "release_status": "signed",
+  "review_date": "2026-07-28",
+  "signoff_policy": "本文件仅用于打通内部数据合同、节点路由和端到端流水线，不代表真实业务来源或生产指标已经通过。",
+  "signoff_scope": "internal_pipeline_validation_only",
+  "production_release_eligible": false,
+  "production_release_gate_reference": "07_production_release_gate_admin_reviewed.json",
+  "reviewer": "roovel",
+  "reviewer_role": "authorized_administrator",
+  "reviewed_at": "2026-07-28T17:42:29+08:00"
+}

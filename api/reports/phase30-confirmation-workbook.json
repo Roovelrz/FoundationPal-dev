@@ -1,0 +1,354 @@
+{
+  "phase": "3.0_phase_1_to_3",
+  "auto_confirmed": {
+    "phase_1": [
+      "规则侧隔离语料为 BGE 768 维，154 条冻结规则查询均可执行。",
+      "隔离规则候选正文未复制冻结题干，且无 Hash 与 BGE 混合向量。"
+    ],
+    "phase_2": [
+      "规则查询已记录候选、过滤、适用性和可解释排序因素。",
+      "规则隔离语料 BGE Candidate Recall@20 为 1.0，Final Recall@5 为 0.961。",
+      "27条规则的 source_id 与非条件 severity 已确认仅作来源或风险展示，不参与适用性过滤。"
+    ],
+    "phase_3": [
+      "用户证据查询先执行组织、Proposal、所有者、授权、类型和时间范围过滤。",
+      "排序结果保留词法、已确认事实、类型与 Claim 意图等因素。"
+    ]
+  },
+  "pending_human_confirmation": {
+    "phase_1_original_source_bindings": [
+      {
+        "external_id": "UE-P11-AMR-DATA-001",
+        "case_id": "new_user_evidence:027",
+        "query": "团队是否已经获得目标数据集的合法使用授权？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-AMR-EXP-001",
+        "case_id": "new_user_evidence:015",
+        "query": "低信噪比实验在负18分贝条件下的梯度范数是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-AMR-EXP-002",
+        "case_id": "new_user_evidence:016",
+        "query": "MCAP模型在高信噪比区间的平均准确率是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-AMR-PROJ-004",
+        "case_id": "new_user_evidence:011",
+        "query": "团队成员乙参与过多少项与本申请直接相关的项目？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-AMR-PUB-002",
+        "case_id": "new_user_evidence:002",
+        "query": "申请人是否为论文《低信噪比调制识别方法》的通讯作者？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-AMR-PUB-003",
+        "case_id": "new_user_evidence:003",
+        "query": "团队成员甲在目标论文中的作者排序是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-DATA-001",
+        "case_id": "new_user_evidence:028",
+        "query": "当前用户资料包中有多少份可用于证据检索的PDF？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-DATA-002",
+        "case_id": "new_user_evidence:029",
+        "query": "这些PDF共生成多少个稳定Chunk？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-EVAL-002",
+        "case_id": "new_user_evidence:019",
+        "query": "当前检索基线的Recall@20是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-EVAL-003",
+        "case_id": "new_user_evidence:020",
+        "query": "证据Judge抽检的完整支持率是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-EVAL-004",
+        "case_id": "new_user_evidence:021",
+        "query": "当前固定评测集中包含多少道合成检索题？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-EVAL-005",
+        "case_id": "new_user_evidence:022",
+        "query": "人工锚点题数量是多少？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-IP-002",
+        "case_id": "new_user_evidence:007",
+        "query": "团队已有多少项授权发明专利可支撑本项目？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-PLAN-001",
+        "case_id": "new_user_evidence:031",
+        "query": "跨章节一致性检查器是否已经进入生产流程？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-PLAN-002",
+        "case_id": "new_user_evidence:032",
+        "query": "基金规则包编译器当前是否已经完成正式数据库接入？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-PROJ-002",
+        "case_id": "new_user_evidence:013",
+        "query": "合作单位在前期项目中承担的任务是否已完成？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-WF-001",
+        "case_id": "new_user_evidence:033",
+        "query": "LangGraph主工作流是否已经通过正常路径与回退路径测试？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      },
+      {
+        "external_id": "UE-P11-GRANT-WF-002",
+        "case_id": "new_user_evidence:034",
+        "query": "人工审批检查点是否支持服务重启后恢复？",
+        "required_confirmation": "选择同一事实的原始资料 Chunk stable_chunk_id，并确认组织、Proposal、授权范围与页码。",
+        "status": "pending_human_source_binding"
+      }
+    ],
+    "phase_2_scope_semantics": [
+      {
+        "requirement_id": 11,
+        "source_chunk_id": 254,
+        "scope": {
+          "source_id": "NSFC-2026-REGULATIONS",
+          "category": "",
+          "severity": "conditional_blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 19,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "category": "",
+          "severity": "conditional_blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 20,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "category": "",
+          "severity": "conditional_blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 21,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GENERAL-RULES-MIRROR",
+          "category": "",
+          "severity": "conditional_blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 24,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_a",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 25,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_a",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 26,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_a",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 27,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_b",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 28,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_b",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 29,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_b",
+          "severity": "blocking"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 30,
+        "source_chunk_id": 256,
+        "scope": {
+          "source_id": "SCNSF-2026-GUIDE",
+          "category": "youth_b",
+          "severity": "soft"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      },
+      {
+        "requirement_id": 39,
+        "source_chunk_id": 257,
+        "scope": {
+          "source_id": "SCEDU-2026-TEACHING-NOTICE-MIRROR",
+          "category": "",
+          "severity": "conditional"
+        },
+        "unsupported_scope_keys": [
+          "category",
+          "severity",
+          "source_id"
+        ],
+        "required_confirmation": "确认这些字段是否只用于展示，或应映射到项目类别、申请阶段、申请主体等可检索字段。",
+        "status": "pending_human_scope_semantics"
+      }
+    ],
+    "phase_3_extracted_fact_verification": []
+  },
+  "summary": {
+    "phase_1_pending_count": 18,
+    "phase_2_pending_count": 12,
+    "phase_2_auto_classified_display_metadata_count": 27,
+    "phase_3_pending_count": 0,
+    "scope_key_distribution": {
+      "category,severity,source_id": 39,
+      "program_type,region,year": 230,
+      "phase11_bge_eval,program_type,region,year": 222
+    }
+  }
+}

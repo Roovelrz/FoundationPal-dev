@@ -1,0 +1,517 @@
+{
+  "group": "Citation 业务复核",
+  "required_count": 30,
+  "instruction": "逐条以原始证据页码复核 Claim 蕴含标签，并由业务审核人签署。",
+  "cases": [
+    {
+      "case_id": "claim_grounding:001",
+      "claim_external_id": "CLAIM-P11-001",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "用户证据支持6篇总数，规则允许最多列5篇，Claim同时满足事实与数量上限。 Requirement外部ID来自synthetic:synthetic_0017，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:002",
+      "claim_external_id": "CLAIM-P11-002",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "用户证据明确为verified_no_duplicate_funding。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:003",
+      "claim_external_id": "CLAIM-P11-003",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "在未发现其他计入项目的前提下，1项未超过2项上限。 Requirement外部ID来自synthetic:synthetic_0015，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:004",
+      "claim_external_id": "CLAIM-P11-004",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "团队资料直接支持该角色归属，可用于研究队伍可行性说明。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:005",
+      "claim_external_id": "CLAIM-P11-005",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "数值与用户证据一致，且没有扩大为接近百分之百。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:006",
+      "claim_external_id": "CLAIM-P11-006",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "两条用户证据分别支持实验设备和GPU数量。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:007",
+      "claim_external_id": "CLAIM-P11-007",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "角色、经费和完成状态均有独立证据；其他项目字段仍由结构化项目记录补齐。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:008",
+      "claim_external_id": "CLAIM-P11-008",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "软件著作权事实已验证，且不属于该栏目排除的论文或专著。 Requirement外部ID来自synthetic:synthetic_0118，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:009",
+      "claim_external_id": "CLAIM-P11-009",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "用户证据支持1个平台和120小时，规则上限为2个合作研究单位。 Requirement外部ID来自synthetic:synthetic_0011，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:010",
+      "claim_external_id": "CLAIM-P11-010",
+      "label": "complete_support",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为事实与规则均有支持。",
+      "source_annotation": "用户证据状态为planned，Claim保持未来计划表述并符合研究期限起点。 Requirement外部ID来自synthetic:synthetic_0036，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:011",
+      "claim_external_id": "CLAIM-P11-011",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "现有授权证据仅覆盖部分论文数量，无法支持10篇SCI一区这一具体数量和分区。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:012",
+      "claim_external_id": "CLAIM-P11-012",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "没有覆盖全部信噪比的95%以上证据，且表述范围过大。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:013",
+      "claim_external_id": "CLAIM-P11-013",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "当前证据仅有2项团队专利记录，若Claim坚持5项则缺少额外证明。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:014",
+      "claim_external_id": "CLAIM-P11-014",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "没有授权的合作协议扫描件或签署状态证据。 Requirement外部ID来自synthetic:synthetic_0011，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:015",
+      "claim_external_id": "CLAIM-P11-015",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "没有采购合同、发票或资产登记证据，不能把计划购置写成已购置。 Requirement外部ID来自synthetic:synthetic_0069，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:016",
+      "claim_external_id": "CLAIM-P11-016",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "当前ProposalBrief没有50万元预算决策，且项目是否采用预算制尚需确认。 Requirement外部ID来自synthetic:synthetic_0033，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:017",
+      "claim_external_id": "CLAIM-P11-017",
+      "label": "unsupported",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为缺少必要用户证据。",
+      "source_annotation": "没有附件清单与文件校验记录，不能确认全部上传完成。 Requirement外部ID来自synthetic:synthetic_0139，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:018",
+      "claim_external_id": "CLAIM-P11-018",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据记录为76.3，Claim数值67.3与证据冲突，应修订为76.3。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:019",
+      "claim_external_id": "CLAIM-P11-019",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "84.93%是最大准确率口径，用户证据中的高信噪比平均准确率为82.88%。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:020",
+      "claim_external_id": "CLAIM-P11-020",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据状态为planned，Claim错误写成已完成，应降级为计划开展。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:021",
+      "claim_external_id": "CLAIM-P11-021",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据明确该职责属于成员乙，不能归属于申请人。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:022",
+      "claim_external_id": "CLAIM-P11-022",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据记录为6篇，Claim多写2篇。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:023",
+      "claim_external_id": "CLAIM-P11-023",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据记录为2块GPU。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:024",
+      "claim_external_id": "CLAIM-P11-024",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据明确为无重复资助，Claim与已验证事实相反。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:025",
+      "claim_external_id": "CLAIM-P11-025",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为证据冲突，不能推断蕴含结论。",
+      "source_annotation": "用户证据记录该项目已结题。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:026",
+      "claim_external_id": "CLAIM-P11-026",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为锁定状态，不能推断蕴含结论。",
+      "source_annotation": "该数值已经用户确认并锁定。Reviser不得根据语言优化请求将其改为50万元。 Requirement外部ID来自synthetic:synthetic_0092，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:027",
+      "claim_external_id": "CLAIM-P11-027",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为锁定状态，不能推断蕴含结论。",
+      "source_annotation": "角色归属已经人工确认并锁定，后续修订只能优化措辞。 Requirement外部ID来自synthetic:synthetic_0079，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:028",
+      "claim_external_id": "CLAIM-P11-028",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为锁定状态，不能推断蕴含结论。",
+      "source_annotation": "指标数值已人工确认并锁定，不允许改写为0.90或百分比近似。 Requirement外部ID来自synthetic:synthetic_0109，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:029",
+      "claim_external_id": "CLAIM-P11-029",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为锁定状态，不能推断蕴含结论。",
+      "source_annotation": "无重复资助结论已由用户确认并锁定，除非出现新冲突证据。 Requirement外部ID来自synthetic:synthetic_0050，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    },
+    {
+      "case_id": "claim_grounding:030",
+      "claim_external_id": "CLAIM-P11-030",
+      "label": "not_evaluable",
+      "review_status": "synthetic_test_developer_review",
+      "reviewer": "synthetic_test_developer_review",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "synthetic_test_fixture"
+        }
+      ],
+      "source_page_status": "synthetic_test_fixture_not_business_evidence",
+      "rationale": "冻结夹具标注为锁定状态，不能推断蕴含结论。",
+      "source_annotation": "该内容属于ProposalDecisionLedger中的人工确认决策，Planner和Reviser不得擅自更换主线。 Requirement外部ID来自synthetic:synthetic_0002，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。"
+    }
+  ]
+}

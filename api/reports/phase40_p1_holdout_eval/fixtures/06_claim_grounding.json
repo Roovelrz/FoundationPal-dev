@@ -1,0 +1,545 @@
+{
+  "target_count": 30,
+  "cases": [
+    {
+      "case_id": "public_amr_claim:001",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-001",
+      "claim_text": "CRML23覆盖不同载频上的多信号共存场景。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-516AEC6793C9"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:002",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-002",
+      "claim_text": "联合旋转与翻转可在较少训练数据下提升分类表现。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-B544D1F39F18"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:003",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-003",
+      "claim_text": "论文报告RadioML 2016.10a峰值准确率92.4%。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-B366DA96A071"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:004",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-004",
+      "claim_text": "方法面向实时边缘计算场景。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-A17D615E5774"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:005",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-005",
+      "claim_text": "定位网络可学习无线信号同步和归一化。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-B5F15AA88C84"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:006",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-006",
+      "claim_text": "PCA和子采样用于降低训练时间。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-C795748A352F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:007",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-007",
+      "claim_text": "网络参数量不依赖信号持续时间。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-85E8C6C7584B"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:008",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-008",
+      "claim_text": "研究讨论复杂度与可解释性问题。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-FBBC48F0F13F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:009",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-009",
+      "claim_text": "论文报告最高99.61%计算负载降低与8倍转换加速。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-A665736D0A93"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:010",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-010",
+      "claim_text": "论文提出四种Early Exit架构。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-75B6310BF54E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:011",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-011",
+      "claim_text": "论文执行系统消融分析。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-0D2268EF916F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:012",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-012",
+      "claim_text": "重点评估模型在数据分布变化下的泛化。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-E04A6974CEBB"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:013",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-013",
+      "claim_text": "类别激活向量表示各信号采样点的重要性。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-99E6C79C1AF4"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-013"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:014",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-014",
+      "claim_text": "方法结合多尺度注意力与元原型训练。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-30707F26C675"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-014"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:015",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-015",
+      "claim_text": "论文报告少量样本和较少训练轮次下的下游表现。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-E231F80FCA9E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-015"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:016",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-016",
+      "claim_text": "模型以调制信号星座图为输入。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-F7B4AFF0F9D9"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-016"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:017",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-017",
+      "claim_text": "可信元学习用于重新评估和纠正标签。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-74A7093BA724"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-017"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:018",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-018",
+      "claim_text": "论文在三套RadioML数据集上报告平均分类准确率。",
+      "claim_type": "factual",
+      "expected_status": "verified",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-9DED6F2D6DE0"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-018"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:019",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-019",
+      "claim_text": "CRML23覆盖不同载频上的多信号共存场景。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-41AC92735AB7"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-001"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:020",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-020",
+      "claim_text": "联合旋转与翻转可在较少训练数据下提升分类表现。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-5F862FAAB623"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-002"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:021",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-021",
+      "claim_text": "论文报告RadioML 2016.10a峰值准确率92.4%。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-28701ADD6385"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-003"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:022",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-022",
+      "claim_text": "方法面向实时边缘计算场景。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-450F9FE5AB4D"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-004"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:023",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-023",
+      "claim_text": "定位网络可学习无线信号同步和归一化。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-F2C6F0AA6DB0"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-005"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:024",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-024",
+      "claim_text": "PCA和子采样用于降低训练时间。，并且该结论已经在所有无线通信环境中完成部署验证。",
+      "claim_type": "factual",
+      "expected_status": "missing_evidence",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-7526CC6B785E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-006"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:025",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-025",
+      "claim_text": "网络参数量不依赖信号持续时间。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-2770FAC2510E"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-007"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:026",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-026",
+      "claim_text": "研究讨论复杂度与可解释性问题。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-47BE35F6D31F"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-008"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:027",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-027",
+      "claim_text": "论文报告最高99.61%计算负载降低与8倍转换加速。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-2485FE6BF07B"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-009"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:028",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-028",
+      "claim_text": "论文提出四种Early Exit架构。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-FD8277B44A0B"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-010"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:029",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-029",
+      "claim_text": "论文执行系统消融分析。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-E3652B9884EE"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-011"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    },
+    {
+      "case_id": "public_amr_claim:030",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-030",
+      "claim_text": "重点评估模型在数据分布变化下的泛化。，并证明该方法在全部调制数据集上达到百分之百准确率。",
+      "claim_type": "factual",
+      "expected_status": "conflicted",
+      "expected_review_issue_codes": [],
+      "proposal_id": "PROPOSAL-P30-PUBLIC-AMR",
+      "section_key": "public_amr_evidence_review",
+      "requirement_ids": [
+        "GRANTREQ-P11-039261EC6901"
+      ],
+      "user_evidence_ids": [
+        "UE-PUBLIC-AMR-012"
+      ],
+      "annotation_status": "public_source_human_verified",
+      "annotation_notes": "Claim label is traceable to the supplied public paper and explicit test scope."
+    }
+  ]
+}

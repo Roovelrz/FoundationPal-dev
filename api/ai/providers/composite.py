@@ -11,8 +11,12 @@ class CompositeProvider(BaseProvider):
         self.gpt = gpt or Gpt5Provider()
         self.gemini = gemini or GeminiProvider()
 
-    def plan(self, *, grant_url: str | None, text_spec: str | None) -> Dict:
-        return self.gpt.plan(grant_url=grant_url, text_spec=text_spec)
+    def plan(self, *, grant_url: str | None, text_spec: str | None, application_system: str = 'nsfc') -> Dict:
+        return self.gpt.plan(
+            grant_url=grant_url,
+            text_spec=text_spec,
+            application_system=application_system,
+        )
 
     def write(
         self,
@@ -24,8 +28,18 @@ class CompositeProvider(BaseProvider):
         evidence_context: str | None = None,
         rule_context: str | None = None,
         user_evidence_context: str | None = None,
+        application_system: str = 'nsfc',
     ) -> AIResult:
-        return self.gpt.write(section_id=section_id, answers=answers, file_refs=file_refs, deterministic=deterministic, evidence_context=evidence_context, rule_context=rule_context, user_evidence_context=user_evidence_context)
+        return self.gpt.write(
+            section_id=section_id,
+            answers=answers,
+            file_refs=file_refs,
+            deterministic=deterministic,
+            evidence_context=evidence_context,
+            rule_context=rule_context,
+            user_evidence_context=user_evidence_context,
+            application_system=application_system,
+        )
 
     def revise(
         self,
@@ -34,12 +48,21 @@ class CompositeProvider(BaseProvider):
         change_request: str,
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         return self.gemini.revise(
             base_text=base_text,
             change_request=change_request,
             file_refs=file_refs,
             deterministic=deterministic,
+            application_system=application_system,
+        )
+
+    def pre_review(self, *, section_title: str, draft: str, application_system: str = 'nsfc') -> AIResult:
+        return self.gpt.pre_review(
+            section_title=section_title,
+            draft=draft,
+            application_system=application_system,
         )
 
     def format_final(
@@ -49,10 +72,12 @@ class CompositeProvider(BaseProvider):
         template_hint: str | None = None,
         file_refs: Optional[List[Dict[str, Any]]] = None,
         deterministic: bool = False,
+        application_system: str = 'nsfc',
     ) -> AIResult:
         return self.gemini.format_final(
             full_text=full_text,
             template_hint=template_hint,
             file_refs=file_refs,
             deterministic=deterministic,
+            application_system=application_system,
         )

@@ -1,0 +1,67 @@
+{
+  "group": "规则适用性确认",
+  "required_count": 12,
+  "instruction": "确认12条规则映射是否符合业务规则包原文，并记录审核依据页码。",
+  "cases": [
+    {
+      "requirement_id": 11,
+      "required_fact": "ethics_or_technology_safety",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 19,
+      "required_fact": "joint_application",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 20,
+      "required_fact": "out_of_province_affiliation",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 21,
+      "required_fact": "ethics_or_human_genetic_resource",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 24,
+      "required_fact": "program_category=youth_a",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 25,
+      "required_fact": "program_category=youth_a",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 26,
+      "required_fact": "program_category=youth_a",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 27,
+      "required_fact": "program_category=youth_b",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 28,
+      "required_fact": "program_category=youth_b",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 29,
+      "required_fact": "program_category=youth_b",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 30,
+      "required_fact": "program_category=youth_b",
+      "business_confirmation": ""
+    },
+    {
+      "requirement_id": 39,
+      "required_fact": "program_category=major and completion_review",
+      "business_confirmation": ""
+    }
+  ]
+}

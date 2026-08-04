@@ -33,7 +33,16 @@ class FormatPersistenceTests(TestCase):
         self.api = APIClient()
         self.api.force_authenticate(user=self.user)
 
+    def _approve_full_draft(self):
+        content = dict(self.proposal.content or {})
+        meta = dict(content.get('meta') or {})
+        meta['full_draft_review'] = {'status': 'approved', 'version': 1}
+        content['meta'] = meta
+        self.proposal.content = content
+        self.proposal.save(update_fields=['content'])
+
     def test_sync_format_persists_final_markdown_from_approved_sections(self):
+        self._approve_full_draft()
         response = self.api.post(
             '/api/ai/format',
             {
@@ -88,4 +97,3 @@ class FormatPersistenceTests(TestCase):
 
         self.assertEqual(response.status_code, 409, response.content)
         self.assertEqual(response.json()['error'], 'sections_not_approved')
-

@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from orgs.models import Organization, OrgUser, OrgInvite
-from billing.models import Subscription
 from django.utils import timezone
 
 
@@ -17,8 +16,6 @@ class OrgInvitesTests(TestCase):
         # Admin and member in org
         OrgUser.objects.create(org=self.org, user=self.owner, role='admin')
         OrgUser.objects.create(org=self.org, user=self.member, role='member')
-        # Ensure admin has enough seats to allow invite acceptance in tests
-        Subscription.objects.create(owner_user=self.owner, tier='pro', status='active', seats=10)
         self.client = APIClient()
 
     def auth(self, user):

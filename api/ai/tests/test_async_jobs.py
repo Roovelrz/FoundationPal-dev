@@ -20,7 +20,11 @@ class AIAsyncJobTests(TestCase):
         User = get_user_model()
         self.user = User.objects.create_user(username='async', password='p')
         self.org = Organization.objects.create(name='Async Org', admin=self.user)
-        self.proposal = Proposal.objects.create(author=self.user, org=self.org, content={})
+        self.proposal = Proposal.objects.create(
+            author=self.user,
+            org=self.org,
+            content={'meta': {'full_draft_review': {'status': 'approved', 'version': 1}}},
+        )
         ProposalSection.objects.create(
             proposal=self.proposal,
             key='summary',

@@ -431,8 +431,8 @@ class AIResource(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['organization_id', 'sha256', 'parser_version'],
-                name='airesource_org_sha_parser_unique',
+                fields=['organization_id', 'proposal_id', 'sha256', 'parser_version'],
+                name='airesource_org_proposal_sha_parser_unique',
             ),
         ]
         indexes = [

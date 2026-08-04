@@ -11,9 +11,6 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Organization, OrgUser, OrgInvite
 from .serializers import OrganizationSerializer, OrgUserSerializer, OrgInviteSerializer
-from billing.utils import can_admin_add_seat
-from billing.quota import get_subscription_for_scope
-from .models import OrgProposalAllocation
 from django.utils import timezone
 
 
@@ -48,6 +45,12 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         org = self.get_object()
         if org.admin_id != request.user.id:
             return Response({'error': 'forbidden'}, status=status.HTTP_403_FORBIDDEN)
+        proposal_count = org.proposals.count()
+        if proposal_count:
+            return Response(
+                {'error': 'workspace_has_projects', 'proposal_count': proposal_count},
+                status=status.HTTP_409_CONFLICT,
+            )
         return super().destroy(request, *args, **kwargs)
 
     @action(detail=True, methods=['post'], url_path='transfer')
@@ -63,14 +66,10 @@ class OrganizationViewSet(viewsets.ModelViewSet):
             target = get_user_model().objects.get(id=int(to_user_id))
         except Exception:
             return Response({'error': 'user_not_found'}, status=404)
-        # Pro target cannot admin more than one org
-        tier, _ = get_subscription_for_scope(target, None)
-        if tier == 'pro' and Organization.objects.filter(admin=target).exclude(id=org.id).exists():
-            return Response({'error': 'pro_admin_single_org_limit'}, status=402)
         # Ensure target is at least a member
         OrgUser.objects.get_or_create(org=org, user=target, defaults={'role': 'admin'})
         org.admin_id = target.id
-        org.save(update_fields=['admin_id'])  # post_save hook mirrors subscription
+        org.save(update_fields=['admin_id'])
         return Response({'ok': True, 'admin_id': org.admin_id})
 
     @action(detail=True, methods=['get', 'post', 'delete'], url_path='members')
@@ -102,10 +101,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
                     return Response({'error': 'user_not_found_by_email'}, status=404)
             else:
                 return Response({'error': 'user_id_or_email_required'}, status=400)
-            # Seat enforcement across all orgs owned by this admin
-            allowed, details = can_admin_add_seat(request.user, user.id)
-            if not allowed:
-                return Response({'error': 'seats_exceeded', **details}, status=402)
             mu, _ = OrgUser.objects.update_or_create(org=org, user=user, defaults={'role': role or 'member'})
             return Response(OrgUserSerializer(mu).data, status=201)
         # DELETE: remove a member by user_id
@@ -143,11 +138,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
                 count = OrgInvite.objects.filter(org=org, created_at__gte=since).count()
                 if count >= max_per_hour:
                     return Response({'error': 'invite_rate_limited', 'retry_after_seconds': 3600}, status=429)
-            # Soft seat check: warn if over capacity; acceptance is still hard-enforced
-            seat_warn = None
-            allowed, details = can_admin_add_seat(request.user, None)
-            if not allowed:
-                seat_warn = {'warning': 'seats_exceeded_on_accept', **details}
             # Reuse existing active invite if present; update role
             inv = OrgInvite.objects.filter(org=org, email=email, accepted_at__isnull=True, revoked_at__isnull=True).first()
             if inv:
@@ -184,8 +174,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
                 pass
             data = OrgInviteSerializer(inv).data
             data['acceptance_url'] = accept_url
-            if seat_warn:
-                data['seats'] = seat_warn
             return Response(data, status=201)
         # DELETE: revoke by id
         invite_id = (request.data or {}).get('id')
@@ -202,30 +190,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         inv.revoked_at = timezone.now()
         inv.save(update_fields=['revoked_at'])
         return Response({'ok': True})
-
-    @action(detail=True, methods=['post'], url_path='allocation')
-    def set_allocation(self, request, pk=None):
-        """Enterprise-only: set this org's fixed monthly allocation for current month.
-        Body: { allocation: int }
-        """
-        org = self.get_object()
-        if org.admin_id != request.user.id:
-            return Response({'error': 'forbidden'}, status=status.HTTP_403_FORBIDDEN)
-        tier, _ = get_subscription_for_scope(request.user, None)
-        if tier != 'enterprise':
-            return Response({'error': 'not_enterprise'}, status=402)
-        try:
-            allocation = int((request.data or {}).get('allocation'))
-            if allocation < 0:
-                allocation = 0
-        except Exception:
-            return Response({'error': 'bad_allocation'}, status=400)
-        month = timezone.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        obj, _ = OrgProposalAllocation.objects.update_or_create(
-            admin=request.user, org=org, month=month, defaults={'allocation': allocation}
-        )
-        return Response({'ok': True, 'allocation': obj.allocation})
-
 
 class OrgInviteAcceptView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
@@ -250,11 +214,6 @@ class OrgInviteAcceptView(viewsets.ViewSet):
         # Ensure the accepting user's email matches the invite
         if (request.user.email or '').strip().lower() != (inv.email or '').strip().lower():
             return Response({'error': 'email_mismatch', 'expected': inv.email, 'actual': request.user.email}, status=400)
-        # Seat enforcement: check admin capacity before accepting
-        admin_user = inv.org.admin
-        allowed, details = can_admin_add_seat(admin_user, request.user.id)
-        if not allowed:
-            return Response({'error': 'seats_exceeded', **details}, status=402)
         OrgUser.objects.update_or_create(org=inv.org, user=request.user, defaults={'role': inv.role})
         inv.accepted_at = timezone.now()
         inv.save(update_fields=['accepted_at'])

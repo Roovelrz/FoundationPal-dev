@@ -1,5 +1,8 @@
 import json
+import re
 from dataclasses import dataclass
+
+from django.db.models import Q
 
 from ai.models import EvidenceUsage
 from ai.domain_retrieval import EvidenceQuery, RuleQuery
@@ -27,7 +30,9 @@ def _rule_candidates(result):
     return [{
         'chunk_id': item['chunk_id'], 'document_name': item['source_document'],
         'page_start': item['page_number'] or 1, 'page_end': item['page_number'] or 1,
-        'section_title': '', 'text': item['original_text'], 'final_rank': rank,
+        'is_uploaded_material': bool(item.get('is_uploaded_material')),
+        'section_title': _section_label(item.get('section_title'), item.get('chunk_index')),
+        'text': item['original_text'], 'final_rank': rank,
         'dense_score': item['retrieval_score'], 'domain': 'grant_rule',
     } for rank, item in enumerate((result or {}).get('results', []), start=1)]
 
@@ -36,9 +41,60 @@ def _user_evidence_candidates(result):
     return [{
         'chunk_id': item['chunk_id'], 'document_name': item['document_name'],
         'page_start': item['page_number'] or 1, 'page_end': item['page_number'] or 1,
-        'section_title': '', 'text': item['text'], 'final_rank': rank,
+        'is_uploaded_material': bool(item.get('is_uploaded_material')),
+        'section_title': _section_label(item.get('section_title'), item.get('chunk_index')),
+        'text': item['text'], 'final_rank': rank,
         'dense_score': item['retrieval_score'], 'domain': 'user_evidence',
     } for rank, item in enumerate((result or {}).get('results', []), start=1)]
+
+
+def _section_label(section_title, chunk_index=None):
+    title = str(section_title or '').strip()
+    if title:
+        return title
+    try:
+        return f'文本片段 {int(chunk_index) + 1}'
+    except (TypeError, ValueError):
+        return '文本片段'
+
+
+def _fallback_rule_candidates(*, organization_id, proposal_id, query):
+    """Use uploaded guideline chunks when a project has no compiled rule pack yet."""
+    from ai.models import AIChunk
+
+    if not organization_id:
+        return []
+    scope = Q(resource__proposal_id=proposal_id) if proposal_id is not None else Q(resource__proposal_id__isnull=True)
+    rows = list(
+        AIChunk.objects.select_related('resource')
+        .filter(
+            scope,
+            resource__organization_id=str(organization_id),
+            resource__source_type='guideline',
+            resource__is_deleted=False,
+        )
+        .order_by('resource_id', 'chunk_index')[:20]
+    )
+    terms = [term for term in re.split(r'\s+', query) if term]
+    ranked = sorted(
+        rows,
+        key=lambda item: (-sum(item.text.count(term) for term in terms), item.resource_id, item.chunk_index),
+    )[:3]
+    return [
+        {
+            'chunk_id': item.id,
+            'document_name': item.resource.display_name or item.resource.title or '用户上传指南',
+            'page_start': item.page_start or 1,
+            'page_end': item.page_end or 1,
+            'is_uploaded_material': bool(item.resource.original_filename and item.resource.proposal_id == proposal_id),
+            'section_title': _section_label(item.section_title, item.chunk_index),
+            'text': item.text,
+            'final_rank': index,
+            'dense_score': 0.0,
+            'domain': 'grant_rule',
+        }
+        for index, item in enumerate(ranked, start=1)
+    ]
 
 
 def retrieve_writer_evidence(section_id, answers, *, organization_id='', proposal_id=None, owner_id=None):
@@ -63,9 +119,16 @@ def retrieve_writer_evidence(section_id, answers, *, organization_id='', proposa
             section_key=section_id, user_question=query,
         ) if organization_id else None,
     )
+    rule_candidates = _rule_candidates({'results': result.context_budget['rule_context']})
+    if not rule_candidates:
+        rule_candidates = _fallback_rule_candidates(
+            organization_id=organization_id,
+            proposal_id=proposal_id,
+            query=query,
+        )
     return WriterEvidenceContexts(
         query=query,
-        rule_candidates=_rule_candidates({'results': result.context_budget['rule_context']}),
+        rule_candidates=rule_candidates,
         user_evidence_candidates=_user_evidence_candidates({'results': result.context_budget['evidence_context']}),
         result=result,
     )
@@ -73,13 +136,17 @@ def retrieve_writer_evidence(section_id, answers, *, organization_id='', proposa
 
 def render_evidence_context(candidates):
     if not candidates:
-        return '无可用证据。必须在 missing_evidence 中说明证据不足。'
+        return ''
     blocks = []
     for candidate in candidates:
+        page_line = (
+            f'页码：{candidate["page_start"]}-{candidate["page_end"]}\n'
+            if candidate.get('is_uploaded_material') else ''
+        )
         blocks.append(
             f'[evidence_id={candidate["chunk_id"]}]\n'
             f'文档：{candidate["document_name"]}\n'
-            f'页码：{candidate["page_start"]}-{candidate["page_end"]}\n'
+            f'{page_line}'
             f'章节：{candidate["section_title"] or "未识别"}\n'
             f'正文：{candidate["text"]}'
         )
@@ -94,29 +161,51 @@ def render_writer_contexts(contexts):
 
 
 def parse_writer_result(section_id, raw_text, allowed_chunk_ids):
+    text = str(raw_text or '').strip()
+    if text.startswith('```'):
+        text = re.sub(r'^```(?:json)?\s*|\s*```$', '', text, flags=re.IGNORECASE).strip()
     try:
-        value = json.loads(raw_text)
+        value = json.loads(text)
     except (TypeError, json.JSONDecodeError):
+        if text.startswith('{') or text.startswith('['):
+            raise SchemaError('writer_output_not_valid_json')
         return {
             'schema_version': 'v1',
             'section_key': section_id,
-            'draft_markdown': raw_text,
+            'draft_markdown': text,
             'evidence_ids': [],
             'warnings': ['provider_did_not_return_evidence_ids'],
             'missing_evidence': [],
         }
     if not isinstance(value, dict):
         raise SchemaError('writer_evidence_not_object')
+    if value.get('schema_version') in ('1.0', 1.0, 1):
+        value['schema_version'] = 'v1'
     value.setdefault('schema_version', 'v1')
-    value.setdefault('section_key', section_id)
-    value.setdefault('warnings', [])
-    value.setdefault('missing_evidence', [])
+    value['section_key'] = section_id
+    for key in ('warnings', 'missing_evidence'):
+        if not isinstance(value.get(key), list):
+            value[key] = [str(value[key])] if value.get(key) else []
+    raw_ids = value.get('evidence_ids')
+    if not isinstance(raw_ids, list):
+        raw_ids = []
+    normalized_ids = []
+    ignored_ids = False
+    allowed = set(allowed_chunk_ids)
+    for item in raw_ids:
+        if isinstance(item, bool):
+            ignored_ids = True
+            continue
+        if isinstance(item, str) and item.isdigit():
+            item = int(item)
+        if not isinstance(item, int) or item not in allowed:
+            ignored_ids = True
+            continue
+        normalized_ids.append(item)
+    value['evidence_ids'] = list(dict.fromkeys(normalized_ids))
+    if ignored_ids:
+        value['warnings'].append('unrecognized_evidence_ids_removed')
     validate_writer_output(value)
-    evidence_ids = value['evidence_ids']
-    if not all(isinstance(item, int) for item in evidence_ids):
-        raise SchemaError('evidence_ids must contain integers')
-    if not set(evidence_ids).issubset(set(allowed_chunk_ids)):
-        raise SchemaError('evidence_ids_not_in_retrieval_candidates')
     return value
 
 

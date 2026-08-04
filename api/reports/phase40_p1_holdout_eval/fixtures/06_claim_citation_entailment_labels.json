@@ -1,0 +1,517 @@
+{
+  "dataset": "phase30_public_amr_citation_entailment_labels",
+  "annotation_level": "public_source_human_verified",
+  "source_fixture": "01_public_amr_evidence_native_ids.json",
+  "cases": [
+    {
+      "case_id": "public_amr_claim:001",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-001",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Joint Signal Detection and Automatic Modulation Classification via Deep Learning"
+    },
+    {
+      "case_id": "public_amr_claim:002",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-002",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Data Augmentation for Deep Learning-based Radio Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:003",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-003",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:004",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-004",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers"
+    },
+    {
+      "case_id": "public_amr_claim:005",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-005",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems"
+    },
+    {
+      "case_id": "public_amr_claim:006",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-006",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Fast Deep Learning for Automatic Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:007",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-007",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "A Light Neural Network for Modulation Detection under Impairments"
+    },
+    {
+      "case_id": "public_amr_claim:008",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-008",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges"
+    },
+    {
+      "case_id": "public_amr_claim:009",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-009",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms"
+    },
+    {
+      "case_id": "public_amr_claim:010",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-010",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Using Early Exits for Fast Inference in Automatic Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:011",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-011",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Automatic Modulation Classification with Deep Neural Networks"
+    },
+    {
+      "case_id": "public_amr_claim:012",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-012",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data"
+    },
+    {
+      "case_id": "public_amr_claim:013",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-013",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Visualizing Deep Learning-based Radio Modulation Classifier"
+    },
+    {
+      "case_id": "public_amr_claim:014",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-014",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "FSOS-AMC: Few-Shot Open-Set Learning for Automatic Modulation Classification Over Multipath Fading Channels"
+    },
+    {
+      "case_id": "public_amr_claim:015",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-015",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "MCLRL: A Multi-Domain Contrastive Learning with Reinforcement Learning Framework for Few-Shot Modulation Recognition"
+    },
+    {
+      "case_id": "public_amr_claim:016",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-016",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "NMformer: A Transformer for Noisy Modulation Classification in Wireless Communication"
+    },
+    {
+      "case_id": "public_amr_claim:017",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-017",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Meta-Learning Guided Label Noise Distillation for Robust Signal Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:018",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-018",
+      "label": "complete_support",
+      "rationale": "The supplied verified public-paper record states this claim directly.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "A Lightweight Deep Learning Model for Automatic Modulation Classification using Dual Path Deep Residual Shrinkage Network"
+    },
+    {
+      "case_id": "public_amr_claim:019",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-019",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Joint Signal Detection and Automatic Modulation Classification via Deep Learning"
+    },
+    {
+      "case_id": "public_amr_claim:020",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-020",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Data Augmentation for Deep Learning-based Radio Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:021",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-021",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "High-Capacity Complex Convolutional Neural Networks for I/Q Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:022",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-022",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Enhancing Automatic Modulation Recognition for IoT Applications Using Transformers"
+    },
+    {
+      "case_id": "public_amr_claim:023",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-023",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Radio Transformer Networks: Attention Models for Learning to Synchronize in Wireless Systems"
+    },
+    {
+      "case_id": "public_amr_claim:024",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-024",
+      "label": "partial_support",
+      "rationale": "The source supports the paper-specific statement but does not establish universal deployment validation.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Fast Deep Learning for Automatic Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:025",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-025",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "A Light Neural Network for Modulation Detection under Impairments"
+    },
+    {
+      "case_id": "public_amr_claim:026",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-026",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Deep Learning Based Automatic Modulation Recognition: Models, Datasets, and Challenges"
+    },
+    {
+      "case_id": "public_amr_claim:027",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-027",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Modulation Classification Through Deep Learning Using Resolution Transformed Spectrograms"
+    },
+    {
+      "case_id": "public_amr_claim:028",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-028",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Using Early Exits for Fast Inference in Automatic Modulation Classification"
+    },
+    {
+      "case_id": "public_amr_claim:029",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-029",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "Automatic Modulation Classification with Deep Neural Networks"
+    },
+    {
+      "case_id": "public_amr_claim:030",
+      "claim_external_id": "PUBLIC-AMR-CLAIM-030",
+      "label": "unsupported",
+      "rationale": "The source does not support an all-dataset perfect-accuracy conclusion.",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "public_amr_pdf"
+        }
+      ],
+      "source_page_status": "human_verified_public_source",
+      "source_annotation": "On Deep Learning Classification of Digitally Modulated Signals Using Raw I/Q Data"
+    }
+  ]
+}

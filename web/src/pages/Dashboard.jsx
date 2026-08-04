@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { api, apiMaybeAsync, apiUpload, safeOpenExternal } from '../lib/core.js'
+import { useEffect, useRef, useState } from 'react'
+import { api, apiMaybeAsync, apiUpload, downloadExport, safeOpenExternal } from '../lib/core.js'
 import { t } from '../keys.generated'
 import { Phase12Workspace } from '../components/Phase12Workspace.jsx'
 
@@ -12,6 +12,17 @@ const normalizePlan = (raw) => ({
   })),
 })
 
+const APPLICATION_SYSTEM_OPTIONS = [
+  { value: 'nsfc', label: '国自然' },
+  { value: 'provincial', label: '省基金' },
+  { value: 'university', label: '校级项目' },
+  { value: 'other', label: '其他项目' },
+]
+
+const applicationSystemLabel = (value) => (
+  APPLICATION_SYSTEM_OPTIONS.find(option => option.value === value)?.label || '未设置'
+)
+
 const planFromProposal = (proposal) => {
   if (!proposal?.sections?.length) return null
   return normalizePlan({
@@ -19,9 +30,21 @@ const planFromProposal = (proposal) => {
     sections: proposal.sections.map(section => ({
       id: section.key,
       title: section.title,
-      inputs: section.inputs || [],
+      inputs: section.inputs || section.questions || [],
     })),
   })
+}
+
+const planningFieldLabels = {
+  funding_category: '申报类别',
+  research_direction: '研究方向',
+  core_problem: '核心科学问题',
+  research_foundation: '已有研究基础',
+  available_equipment: '可用设备',
+  project_duration: '计划周期',
+  budget_range: '预算范围',
+  expected_outcomes: '预期成果',
+  prohibited_content: '不得生成的内容',
 }
 
 function MarkdownPreview({ value, testId }) {
@@ -33,7 +56,7 @@ function MarkdownPreview({ value, testId }) {
   return (
     <div
       data-testid={testId}
-      style={{ padding: 16, border: '1px solid #d8dee9', borderRadius: 8, background: '#fff', minHeight: 120 }}
+      className="fund-markdown-preview"
     >
       {value ? value.split('\n').map((line, index) => {
         if (line.startsWith('### ')) return <h3 key={index}>{renderInline(line.slice(4))}</h3>
@@ -42,22 +65,64 @@ function MarkdownPreview({ value, testId }) {
         if (line.startsWith('- ')) return <div key={index}>• {renderInline(line.slice(2))}</div>
         if (!line.trim()) return <div key={index} style={{ height: 8 }} />
         return <p key={index}>{renderInline(line)}</p>
-      }) : <span style={{ color: '#777' }}>暂无内容</span>}
+      }) : <span className="fund-markdown-empty">暂无内容</span>}
     </div>
   )
 }
 
-function GenerationFeedback({ action, status }) {
-  if (status.action !== action) return null
+function FullDraftPreview({ value, sections, onSectionClick, disabled = false }) {
+  const renderInline = (line) => line.split(/(\*\*.*?\*\*)/g).map((part, index) => (
+    part.startsWith('**') && part.endsWith('**')
+      ? <strong key={index}>{part.slice(2, -2)}</strong>
+      : part
+  ))
+  const sectionForHeading = (heading) => sections.find(section => {
+    const title = String(section.title || section.id || '').trim()
+    return title && (heading === title || heading.includes(title))
+  })
+  return (
+    <div className='fund-markdown-preview fund-full-draft-preview' data-testid='full-draft-preview'>
+      {value ? value.split('\n').map((line, index) => {
+        if (line.startsWith('## ')) {
+          const heading = line.slice(3).trim()
+          const section = sectionForHeading(heading)
+          if (section) {
+            return (
+              <button
+                className='fund-full-draft-section-link'
+                type='button'
+                key={index}
+                onClick={() => onSectionClick(section)}
+                disabled={disabled}
+              >
+                {renderInline(heading)}
+              </button>
+            )
+          }
+          return <h2 key={index}>{renderInline(heading)}</h2>
+        }
+        if (line.startsWith('### ')) return <h3 key={index}>{renderInline(line.slice(4))}</h3>
+        if (line.startsWith('# ')) return <h1 key={index}>{renderInline(line.slice(2))}</h1>
+        if (line.startsWith('- ')) return <div key={index}>• {renderInline(line.slice(2))}</div>
+        if (!line.trim()) return <div key={index} style={{ height: 8 }} />
+        return <p key={index}>{renderInline(line)}</p>
+      }) : <span className='fund-markdown-empty'>暂无内容</span>}
+    </div>
+  )
+}
+
+function GenerationFeedback({ action, status, sectionId = '', hideDone = false }) {
+  if (status.action !== action || (sectionId && status.sectionId !== sectionId)) return null
   if (status.state === 'loading') {
     return (
       <span className="fund-generation-feedback" role="status">
         <span className="fund-spinner" aria-hidden="true" />
-        正在深度思考中
+        {status.message || '深度思考中，请稍候'}
       </span>
     )
   }
   if (status.state === 'done') {
+    if (hideDone) return null
     return <span className="fund-generation-feedback is-done" role="status">内容生成完毕！</span>
   }
   return null
@@ -70,8 +135,11 @@ function EvidencePanel({ evidence }) {
       <h4>本章节检索证据</h4>
       {evidence.map(item => (
         <details key={`${item.chunk_id}-${item.rank}`}>
-          <summary>{item.cited_by_model ? '已引用' : '已注入'} 路 {item.document_name} 路 第 {item.page_start}-{item.page_end} 页</summary>
-          <p>{item.section_title || '未识别章节标题'}</p>
+          <summary>
+            {item.cited_by_model ? '已引用' : '已注入'}  {item.document_name}
+            {item.is_uploaded_material && item.page_start ? `  第 ${item.page_start}-${item.page_end || item.page_start} 页` : ''}
+          </summary>
+          <p>{item.section_title || '证据片段'}</p>
           <p>{item.text}</p>
         </details>
       ))}
@@ -79,140 +147,200 @@ function EvidencePanel({ evidence }) {
   )
 }
 
-const grillFieldLabels = {
-  funding_category: '申报类别',
-  research_direction: '研究方向',
-  core_problem: '核心问题',
-  research_foundation: '已有研究基础',
-  available_equipment: '可使用设备',
-  project_duration: '项目周期',
-  budget_range: '预算范围',
-  expected_outcomes: '预期成果',
-  prohibited_content: '禁止生成的内容',
-  change_goal: '修改目标',
-  preserve: '必须保留的内容',
-  constraints: '修改限制',
-}
-
-function GrillPanel({ mode, proposal, section, token, orgId, onImport }) {
-  const [session, setSession] = useState(null)
-  const [answers, setAnswers] = useState({})
-  const [loading, setLoading] = useState(false)
-
-  const load = async () => {
-    if (!proposal?.id || (mode === 'revision' && !section?.key)) return
-    const query = new URLSearchParams({ proposal_id: proposal.id, mode })
-    if (mode === 'revision') query.set('section_key', section.key)
-    try {
-      const result = await api(`/ai/grill?${query.toString()}`, { token, orgId: orgId || undefined })
-      setSession(result)
-      setAnswers(result.collected_answers || {})
-    } catch {}
-  }
-
-  useEffect(() => { load() }, [mode, proposal?.id, section?.key, token, orgId])
-
-  const submit = async ({ skip = false, finish = false, confirm = false } = {}) => {
-    if (!proposal?.id) return
-    setLoading(true)
-    try {
-      const result = await api('/ai/grill', {
-        method: 'POST',
-        token,
-        orgId: orgId || undefined,
-        body: {
-          proposal_id: proposal.id,
-          mode,
-          section_key: mode === 'revision' ? section?.key : undefined,
-          answers,
-          skip,
-          finish,
-          confirm,
-        },
-      })
-      setSession(result)
-      setAnswers(result.collected_answers || {})
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const question = session?.question
+function UserIntentPanel({ taskMode, qualityLevel, onTaskModeChange, onQualityLevelChange, onConfirm, confirmed, loading }) {
   return (
-    <div className="fund-grill-panel" data-testid={`${mode}-grill`} style={{ margin: '12px 0', padding: 12, border: '1px solid #cbd5e1', borderRadius: 8, background: '#f8fafc' }}>
-      <strong>{mode === 'planning' ? '规划澄清' : '本章节修改澄清'}</strong>
-      {mode === 'revision' && <div style={{ marginTop: 4 }}>当前草稿已载入，仅生成修改建议。</div>}
-      {!session && <div style={{ marginTop: 6 }}>正在载入澄清状态</div>}
-      {question && (
-        <div style={{ marginTop: 8 }}>
-          <div>{question.index} / {session.max_questions}　{question.prompt}</div>
-          {question.fields.map(field => (
-            <label key={field} style={{ display: 'block', marginTop: 8 }}>
-              {grillFieldLabels[field] || field}
-              <textarea
-                style={{ display: 'block', width: '100%', marginTop: 4 }}
-                rows={2}
-                value={answers[field] || ''}
-                onChange={(event) => setAnswers(previous => ({ ...previous, [field]: event.target.value }))}
-              />
-            </label>
-          ))}
-          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-            <button onClick={() => submit()} disabled={loading}>保存并继续</button>
-            <button onClick={() => submit({ skip: true })} disabled={loading}>跳过本题</button>
-            <button onClick={() => submit({ finish: true })} disabled={loading}>结束澄清</button>
-          </div>
-        </div>
-      )}
-      {session?.completion_reason && (
-        <div style={{ marginTop: 8 }}>
-          <div>澄清结束：{session.completion_reason}</div>
-          {mode === 'planning' && !session.confirmed && <button onClick={() => submit({ confirm: true })} disabled={loading}>确认并用于章节规划</button>}
-          {mode === 'revision' && session.suggestion && (
-            <>
-              <textarea aria-label="修改建议" style={{ width: '100%', marginTop: 8 }} readOnly rows={4} value={session.suggestion} />
-              <button onClick={() => onImport?.(session.suggestion)} disabled={loading}>导入到整体修订要求</button>
-            </>
-          )}
-        </div>
-      )}
-    </div>
+    <section className="fund-user-intent-panel">
+      <h4>先确认你的写作目标</h4>
+      <p className="fund-field-hint">两项均为必填，用于确定起草方式和打磨深度。</p>
+      <fieldset>
+        <legend>你现在希望系统做什么 <b className="fund-required-marker" aria-hidden="true">*</b></legend>
+        <p className="fund-field-hint">本项为必填。请选择最符合当前情况的写作目标，系统会据此安排工作流程。</p>
+        <label><input type="radio" name="task-mode" value="polish_existing" checked={taskMode === 'polish_existing'} onChange={(event) => onTaskModeChange(event.target.value)} />润色已有文本</label>
+        <label><input type="radio" name="task-mode" value="refine_outline" checked={taskMode === 'refine_outline'} onChange={(event) => onTaskModeChange(event.target.value)} />完善已有思路</label>
+        <label><input type="radio" name="task-mode" value="plan_from_scratch" checked={taskMode === 'plan_from_scratch'} onChange={(event) => onTaskModeChange(event.target.value)} />从头规划并起草</label>
+      </fieldset>
+      <fieldset>
+        <legend>你希望做到什么程度 <b className="fund-required-marker" aria-hidden="true">*</b></legend>
+        <p className="fund-field-hint">本项为必填。请选择期望的完善程度，系统会据此调整生成与修订的侧重点。</p>
+        <label><input type="radio" name="quality-level" value="quick" checked={qualityLevel === 'quick'} onChange={(event) => onQualityLevelChange(event.target.value)} />快速成稿</label>
+        <label><input type="radio" name="quality-level" value="standard" checked={qualityLevel === 'standard'} onChange={(event) => onQualityLevelChange(event.target.value)} />标准完善</label>
+        <label><input type="radio" name="quality-level" value="deep" checked={qualityLevel === 'deep'} onChange={(event) => onQualityLevelChange(event.target.value)} />深度打磨</label>
+      </fieldset>
+      <button type="button" onClick={onConfirm} disabled={loading || !taskMode || !qualityLevel}>
+        {loading ? <><span className="fund-spinner" aria-hidden="true" />正在保存</> : (confirmed ? '已确认工作目标' : '确认工作目标')}
+      </button>
+    </section>
   )
 }
 
-function HumanTaskPanel({ tasks, onDecision, loading }) {
-  const [edits, setEdits] = useState({})
+function SectionApprovalPanel({ tasks, onDecision, onPreReview, onAcceptPreReview, onDismissPreReview, onApplyPreReview, loading, title = '待审批章节', testId = 'section-approval-tasks' }) {
+  const [dialog, setDialog] = useState(null)
+  const [preReviewProgress, setPreReviewProgress] = useState(null)
+  const [decisionProgress, setDecisionProgress] = useState(null)
+  const [dialogAction, setDialogAction] = useState('')
+
+  const decide = async (task, action) => {
+    setDecisionProgress({ taskId: task.id, action })
+    try {
+      await onDecision(task, action)
+    } finally {
+      setDecisionProgress(null)
+    }
+  }
+
+  const openPreReview = async (task) => {
+    const previousCount = Number(task.model_output?.pre_review_request_count || 0)
+    if (previousCount >= 1) window.alert('请谨慎采纳章节预审批意见！')
+    setPreReviewProgress({ taskId: task.id, phase: 'reviewing' })
+    try {
+      const next = await onPreReview(task)
+      if (next) setDialog({ task: next, mode: 'review' })
+    } finally {
+      setPreReviewProgress(null)
+    }
+  }
+
+  const applyPreReview = async (task) => {
+    setPreReviewProgress({ taskId: task.id, phase: 'applying' })
+    try {
+      const next = await onApplyPreReview(task)
+      if (next) setDialog(null)
+    } finally {
+      setPreReviewProgress(null)
+    }
+  }
+
+  const review = dialog?.task?.model_output?.pre_review
   if (!tasks.length) return null
   return (
-    <section style={{ margin: '12px 0', padding: 12, border: '1px solid #f59e0b', borderRadius: 8, background: '#fffbeb' }}>
-      <h4 style={{ marginTop: 0 }}>待人工确认</h4>
-      {tasks.map(task => (
-        <details key={task.id} open>
-          <summary>{task.node}</summary>
-          <div>中断前输入：{JSON.stringify(task.input)}</div>
-          <div>模型输出：{JSON.stringify(task.model_output)}</div>
-          <textarea
-            style={{ width: '100%', marginTop: 8 }}
-            rows={2}
-            placeholder="编辑后的确认内容，可选"
-            value={edits[task.id] || ''}
-            onChange={(event) => setEdits(previous => ({ ...previous, [task.id]: event.target.value }))}
-          />
-          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-            <button onClick={() => onDecision(task, 'approve')} disabled={loading}>批准</button>
-            <button onClick={() => onDecision(task, 'edit', { instruction: edits[task.id] || '' })} disabled={loading}>编辑后校验</button>
-            <button onClick={() => onDecision(task, 'reject')} disabled={loading}>拒绝</button>
-          </div>
-        </details>
-      ))}
+    <section className='fund-section-approval-tasks' data-testid={testId}>
+      <h4>{title}</h4>
+      {tasks.map(task => {
+        const input = task.input || {}
+        const modelOutput = task.model_output || {}
+        const preReview = modelOutput.pre_review
+        const isFullDraft = input.kind === 'full_draft'
+        const taskLabel = input.draft_title || input.section_title || input.section_key || '当前草稿'
+        const reviewLabel = isFullDraft ? '全文预评审' : '章节预评审'
+        return (
+          <article className='fund-section-approval-card' key={task.id}>
+            <strong>{taskLabel}</strong>
+            {preReviewProgress?.taskId === task.id && (
+              <p className='fund-pre-review-progress' role='status'>
+                <span className='fund-spinner' aria-hidden='true' />
+                {preReviewProgress.phase === 'reviewing'
+                  ? '深度思考中，请等待预审批结果。'
+                  : isFullDraft
+                    ? '正在根据预评审意见优化全文。'
+                    : '正在根据预评审意见优化草稿。'}
+              </p>
+            )}
+            {preReview && modelOutput.pre_review_status === 'accepted' && (
+              <section className='fund-pre-review-persisted'>
+                <strong>已采纳的{reviewLabel}</strong>
+                <p>{preReview.summary}</p>
+                <div>
+                  <b>优点</b>
+                  <ul>{(preReview.strengths || []).map((item, index) => <li key={index}>{item}</li>)}</ul>
+                </div>
+                <div>
+                  <b>改进建议</b>
+                  {(preReview.issues || []).map((item, index) => (
+                    <p key={index}><b>{item.problem}</b><br />理由：{item.reason}<br />改正方向：{item.direction}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+            <div className='fund-section-approval-actions'>
+              <button type='button' onClick={() => decide(task, 'approve')} disabled={loading}>
+                {decisionProgress?.taskId === task.id && decisionProgress.action === 'approve' ? <><span className='fund-spinner' aria-hidden='true' />正在审批</> : (isFullDraft ? '通过全文审批' : '通过并锁定章节')}
+              </button>
+              <button type='button' onClick={() => openPreReview(task)} disabled={loading}>
+                {preReviewProgress?.taskId === task.id && preReviewProgress.phase === 'reviewing' ? <><span className='fund-spinner' aria-hidden='true' />正在预评审</> : reviewLabel}
+              </button>
+              <button className='fund-return-edit' type='button' onClick={() => decide(task, 'edit')} disabled={loading}>
+                {decisionProgress?.taskId === task.id && decisionProgress.action === 'edit' ? <><span className='fund-spinner' aria-hidden='true' />正在退回</> : (isFullDraft ? '退回全文修改' : '退回修改')}
+              </button>
+            </div>
+          </article>
+        )
+      })}
+      {dialog && review && (
+        <div className='fund-dialog-backdrop' role='presentation'>
+          <section className='fund-dialog fund-pre-review-dialog' role='dialog' aria-modal='true' aria-labelledby='section-pre-review-title'>
+            <header className='fund-dialog-header'>
+              <div>
+                <h2 id='section-pre-review-title'>{dialog.task.input?.kind === 'full_draft' ? '全文预评审' : '章节预评审'}</h2>
+                <p>{dialog.task.input?.draft_title || dialog.task.input?.section_title || dialog.task.input?.section_key}</p>
+              </div>
+              <button type='button' onClick={() => setDialog(null)} disabled={loading}>关闭</button>
+            </header>
+            {dialog.mode === 'review' ? (
+              <>
+                <p className='fund-pre-review-summary'>{review.summary}</p>
+                <section className='fund-pre-review-section'>
+                  <h3>值得保留的优点</h3>
+                  <ul>{(review.strengths || []).map((item, index) => <li key={index}>{item}</li>)}</ul>
+                </section>
+                <section className='fund-pre-review-section'>
+                  <h3>需要改进的内容</h3>
+                  {(review.issues || []).map((item, index) => (
+                    <article key={index}>
+                      <strong>{item.problem}</strong>
+                      <p>理由：{item.reason}</p>
+                      <p>改正方向：{item.direction}</p>
+                    </article>
+                  ))}
+                </section>
+                <footer className='fund-dialog-actions'>
+                  <button type='button' onClick={async () => {
+                    setDialogAction('dismiss')
+                    try {
+                      const next = await onDismissPreReview(dialog.task)
+                      if (next) setDialog(null)
+                    } finally {
+                      setDialogAction('')
+                    }
+                  }} disabled={loading}>{dialogAction === 'dismiss' ? <><span className='fund-spinner' aria-hidden='true' />正在驳回</> : '驳回'}</button>
+                  <button type='button' onClick={async () => {
+                    setDialogAction('accept')
+                    try {
+                      const next = await onAcceptPreReview(dialog.task)
+                      if (next) setDialog({ task: next, mode: 'confirm' })
+                    } finally {
+                      setDialogAction('')
+                    }
+                  }} disabled={loading}>{dialogAction === 'accept' ? <><span className='fund-spinner' aria-hidden='true' />正在采纳</> : '采纳'}</button>
+                </footer>
+              </>
+            ) : (
+              <>
+                <p className='fund-pre-review-summary'>是否需要根据评审内容重新修改草稿？</p>
+                {dialog.task.input?.kind === 'full_draft' && preReviewProgress?.taskId === dialog.task.id && preReviewProgress.phase === 'applying' && (
+                  <p className='fund-pre-review-progress' role='status'>
+                    <span className='fund-spinner' aria-hidden='true' />
+                    已采纳全文预评审结果，正在根据建议重新优化全文。
+                  </p>
+                )}
+                <footer className='fund-dialog-actions'>
+                  <button type='button' onClick={() => applyPreReview(dialog.task)} disabled={loading}>{preReviewProgress?.taskId === dialog.task.id && preReviewProgress.phase === 'applying' ? <><span className='fund-spinner' aria-hidden='true' />正在优化</> : '是'}</button>
+                  <button type='button' onClick={() => setDialog(null)} disabled={loading}>否</button>
+                </footer>
+              </>
+            )}
+          </section>
+        </div>
+      )}
     </section>
   )
 }
 
 function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
+  const intakeSnapshot = proposal?.content?.meta?.intake_snapshot || {}
   const [plan, setPlan] = useState(() => planFromProposal(proposal))
   const [activeStage, setActiveStage] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [loadingMessage, setLoadingMessage] = useState('')
   const [error, setError] = useState('')
   const [sectionIndex, setSectionIndex] = useState(0)
   const [answersBySection, setAnswersBySection] = useState(() => Object.fromEntries(
@@ -221,26 +349,44 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   const [draftsBySection, setDraftsBySection] = useState(() => Object.fromEntries(
     (proposal?.sections || []).map(section => [section.key, section.draft_content || section.approved_content || ''])
   ))
+  const [previousDraftsBySection, setPreviousDraftsBySection] = useState(() => Object.fromEntries(
+    (proposal?.sections || []).map(section => [section.key, section.previous_draft || ''])
+  ))
   const [changeReq, setChangeReq] = useState('')
-  const [grantUrl, setGrantUrl] = useState('')
-  const [textSpec, setTextSpec] = useState('')
+  const [setupReady, setSetupReady] = useState(() => Boolean(proposal?.content?.meta?.user_setup?.ready))
+  const [taskMode, setTaskMode] = useState(intakeSnapshot.task_mode || '')
+  const [qualityLevel, setQualityLevel] = useState(intakeSnapshot.quality_level || '')
+  const [intentConfirmed, setIntentConfirmed] = useState(() => Boolean(intakeSnapshot.task_mode && intakeSnapshot.quality_level))
   const [lastSavedAt, setLastSavedAt] = useState(null)
   const [templateHint, setTemplateHint] = useState('')
   const [formattedText, setFormattedText] = useState('')
+  const [fullDraft, setFullDraft] = useState('')
+  const [previousFullDraft, setPreviousFullDraft] = useState('')
+  const [fullDraftApprovalStatus, setFullDraftApprovalStatus] = useState('draft')
+  const [fullDraftLoaded, setFullDraftLoaded] = useState(false)
+  const [fullChangeReq, setFullChangeReq] = useState('')
   const [filesBySection, setFilesBySection] = useState({})
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
   const [note, setNote] = useState('')
   const [proposalTitle, setProposalTitle] = useState(proposal?.content?.meta?.title || '')
   const [me, setMe] = useState(null)
-  const [generationStatus, setGenerationStatus] = useState({ action: '', state: '' })
+  const [generationStatus, setGenerationStatus] = useState({ action: '', state: '', sectionId: '' })
   const [evidenceBySection, setEvidenceBySection] = useState({})
   const [humanTasks, setHumanTasks] = useState([])
+  const [sectionOverrides, setSectionOverrides] = useState({})
+  const [planningInfo, setPlanningInfo] = useState(null)
+  const [planningAnswers, setPlanningAnswers] = useState({})
+  const [planningInfoVisible, setPlanningInfoVisible] = useState(false)
+  const [planningInfoLoading, setPlanningInfoLoading] = useState(false)
 
   const sections = plan?.sections || []
   const current = sections[sectionIndex]
   const persistedSections = proposal?.sections || []
-  const persistedByKey = Object.fromEntries(persistedSections.map(section => [section.key, section]))
+  const persistedByKey = Object.fromEntries(persistedSections.map(section => [
+    section.key,
+    { ...section, ...(sectionOverrides[section.key] || {}) },
+  ]))
   const currentSection = current ? persistedByKey[current.id] : null
   const answers = current ? (answersBySection[current.id] || currentSection?.answers || {}) : {}
   const draft = current ? (draftsBySection[current.id] || '') : ''
@@ -261,15 +407,75 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     }))
   }
   const approvedById = proposal?.content?.sections || {}
-  const prevText = currentSection?.approved_content
+  const persistedDraft = currentSection?.approved_content
     || currentSection?.draft_content
     || approvedById?.[current?.id]?.content
     || ''
+  const previousDraft = current ? (previousDraftsBySection[current.id] || currentSection?.previous_draft || '') : ''
   const approvedSectionCount = sections.filter(
     section => persistedByKey[section.id]?.state === 'approved'
   ).length
   const allApproved = sections.length > 0 && approvedSectionCount === sections.length
+  const sectionApprovalTasks = humanTasks.filter(task => task.node === 'section_approval')
+  const fullDraftApprovalTasks = humanTasks.filter(task => (
+    task.node === 'final_export_confirmation' && task.input?.kind === 'full_draft'
+  ))
+  const fullDraftApprovalPending = fullDraftApprovalTasks.length > 0
+  const fullDraftApproved = fullDraftApprovalStatus === 'approved'
+  const proposalFinalized = Boolean(formattedText || proposal?.final_markdown)
+  const currentApprovalPending = Boolean(current && humanTasks.some(
+    task => task.input?.section_key === current.id
+  ))
   const currentEvidence = current ? (evidenceBySection[current.id] || []) : []
+  const planningQuestion = planningInfo?.question
+  const planningFields = Array.isArray(planningQuestion?.fields) ? planningQuestion.fields : []
+  const planningAnswerValue = (field) => (
+    Object.prototype.hasOwnProperty.call(planningAnswers, field)
+      ? planningAnswers[field]
+      : (planningInfo?.collected_answers?.[field] || '')
+  )
+  const planningAnswerPayload = Object.fromEntries(
+    planningFields.map(field => [field, planningAnswerValue(field)])
+  )
+  const startLoading = (message) => {
+    setLoadingMessage(message)
+    setLoading(true)
+  }
+  const stopLoading = () => {
+    setLoading(false)
+    setLoadingMessage('')
+  }
+  const workflowErrorMessage = (requestError, fallback) => {
+    if (requestError?.status === 401) return '登录状态已失效，请重新登录后再试。'
+    if (requestError?.status === 403) return '你没有操作当前工作区的权限。'
+    if (requestError?.data?.message) return requestError.data.message
+    if (requestError?.data?.error?.error_code === 'invalid_provider_output') {
+      return '生成内容的格式异常，系统未保存该结果，请重新生成。'
+    }
+    if (requestError?.data?.error === 'ai_provider_error') return '模型服务暂时不可用，请检查密钥和网络后重试。'
+    return fallback
+  }
+
+  const refreshHumanTasks = async () => {
+    if (!proposal?.id) {
+      setHumanTasks([])
+      return
+    }
+    try {
+      const result = await api('/ai/human-tasks?proposal_id=' + proposal.id, { token, orgId: orgId || undefined })
+      setHumanTasks(result.tasks || [])
+    } catch {
+      setHumanTasks([])
+    }
+  }
+
+  const loadFullDraft = async () => {
+    const result = await api(`/ai/proposals/${proposal.id}/full-draft`, { token, orgId: orgId || undefined })
+    setFullDraft(result.draft_text || '')
+    setFullDraftApprovalStatus(result.approval_status || 'draft')
+    setFullDraftLoaded(true)
+    return result
+  }
 
   useEffect(() => {
     const restored = planFromProposal(proposal)
@@ -292,7 +498,20 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
       }
       return next
     })
+    setPreviousDraftsBySection(previous => {
+      const next = { ...previous }
+      for (const section of proposal?.sections || []) {
+        if (!Object.prototype.hasOwnProperty.call(next, section.key)) {
+          next[section.key] = section.previous_draft || ''
+        }
+      }
+      return next
+    })
   }, [proposal?.id, proposal?.sections])
+
+  useEffect(() => {
+    setSectionOverrides({})
+  }, [proposal?.sections])
 
   useEffect(() => {
     if (!currentSection?.id || !current) return
@@ -302,25 +521,46 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
   }, [current?.id, currentSection?.id, orgId, token])
 
   useEffect(() => {
+    refreshHumanTasks()
+  }, [proposal?.id, orgId, token])
+
+  useEffect(() => {
     // Initialize note from proposal.content.meta.note
     const n = proposal?.content?.meta?.note
     setNote(typeof n === 'string' ? n : '')
     setProposalTitle(proposal?.content?.meta?.title || '')
+    setSetupReady(Boolean(proposal?.content?.meta?.user_setup?.ready))
+    const snapshot = proposal?.content?.meta?.intake_snapshot || {}
+    setTaskMode(snapshot.task_mode || '')
+    setQualityLevel(snapshot.quality_level || '')
+    setIntentConfirmed(Boolean(snapshot.task_mode && snapshot.quality_level))
+    setPlanningInfo(null)
+    setPlanningAnswers({})
+    setPlanningInfoVisible(false)
+    setLoadingMessage('')
+    setGenerationStatus({ action: '', state: '', sectionId: '' })
+    setFullDraft('')
+    setPreviousFullDraft('')
+    setFullDraftApprovalStatus('draft')
+    setFullDraftLoaded(false)
+    setFullChangeReq('')
   }, [proposal?.id])
 
   useEffect(() => {
     setFormattedText(proposal?.final_markdown || '')
   }, [proposal?.id, proposal?.final_markdown])
 
-  const refreshHumanTasks = async () => {
-    if (!proposal?.id) return
-    try {
-      const result = await api(`/ai/human-tasks?proposal_id=${proposal.id}`, { token, orgId: orgId || undefined })
-      setHumanTasks(result.tasks || [])
-    } catch {}
-  }
-
-  useEffect(() => { refreshHumanTasks() }, [proposal?.id, token, orgId])
+  useEffect(() => {
+    if (!allApproved || !proposal?.id) {
+      setFullDraftLoaded(false)
+      return
+    }
+    let cancelled = false
+    loadFullDraft().catch(requestError => {
+      if (!cancelled) setError(workflowErrorMessage(requestError, '审批后全文草稿加载失败，请稍后重试。'))
+    })
+    return () => { cancelled = true }
+  }, [allApproved, proposal?.id, orgId, token])
 
   useEffect(() => {
     // Fetch current user (for display only)
@@ -338,7 +578,12 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     setUploading(true)
     setUploadError('')
     try {
-      const info = await apiUpload('/files', { token, orgId: orgId || undefined, file })
+      const info = await apiUpload('/files', {
+        token,
+        orgId: orgId || undefined,
+        file,
+        fields: { proposal_id: proposal.id, material_kind: 'evidence' },
+      })
       setFilesBySection(prev => ({
         ...prev,
         [current.id]: [ ...(prev[current.id] || []), { ...info, name: file.name } ],
@@ -357,15 +602,116 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     setChangeReq('')
   }
 
-  const startPlan = async () => {
-    setLoading(true)
+  const confirmIntent = async () => {
+    if (!taskMode || !qualityLevel) {
+      setError('请先完成两个带红色星号的写作目标选择。')
+      return
+    }
+    startLoading('正在保存写作目标。')
     setError('')
-    setGenerationStatus({ action: 'plan', state: 'loading' })
     try {
-      const body = grantUrl
-    ? { proposal_id: proposal.id, grant_url: grantUrl }
-    : { proposal_id: proposal.id, text_spec: textSpec || 'General grant' } // fallback literal stays internal
-      const p = await apiMaybeAsync('/ai/plan', { method: 'POST', token, orgId: orgId || undefined, body })
+      await api('/ai/intake', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          task_mode: taskMode,
+          quality_level: qualityLevel,
+          inputs: {},
+          user_overrides: {},
+        },
+      })
+      setIntentConfirmed(true)
+      await onSaved?.()
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '工作目标保存失败，请稍后重试。'))
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const loadPlanningInfo = async () => {
+    setPlanningInfoLoading(true)
+    try {
+      const next = await api('/ai/grill?proposal_id=' + proposal.id + '&mode=planning', {
+        token,
+        orgId: orgId || undefined,
+      })
+      setPlanningInfo(next)
+      setPlanningAnswers({})
+      return next
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '补充规划信息加载失败，请稍后重试。'))
+      return null
+    } finally {
+      setPlanningInfoLoading(false)
+    }
+  }
+
+  const openPlanningInfo = async () => {
+    setPlanningInfoVisible(true)
+    if (!planningInfo) await loadPlanningInfo()
+  }
+
+  const savePlanningInfo = async (body) => {
+    setPlanningInfoLoading(true)
+    setError('')
+    try {
+      const next = await api('/ai/grill', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { proposal_id: proposal.id, mode: 'planning', ...body },
+      })
+      setPlanningInfo(next)
+      setPlanningAnswers({})
+      return next
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '补充规划信息保存失败，请稍后重试。'))
+      return null
+    } finally {
+      setPlanningInfoLoading(false)
+    }
+  }
+
+  const answerPlanningQuestion = async (skip) => {
+    if (!planningQuestion) return
+    await savePlanningInfo({ answers: planningAnswerPayload, skip })
+  }
+
+  const previousPlanningQuestion = async () => {
+    if (!planningQuestion) return
+    await savePlanningInfo({ answers: planningAnswerPayload, previous: true })
+  }
+
+  const finishPlanningInfo = async () => {
+    await savePlanningInfo({ answers: planningAnswerPayload, finish: true, confirm: true })
+  }
+
+  const startPlan = async () => {
+    if (proposalFinalized) {
+      setError('最终定稿已生成，章节规划已锁定，不能重新生成。')
+      return
+    }
+    if (!setupReady) {
+      setError('请先完成上方带红色星号的项目基础信息。')
+      return
+    }
+    if (!intentConfirmed) {
+      setError('请先确认你的写作目标，再生成章节规划。')
+      return
+    }
+    startLoading('深度思考中，正在生成章节规划。')
+    setError('')
+    setGenerationStatus({ action: 'plan', state: 'loading', sectionId: '' })
+    try {
+      const p = await apiMaybeAsync('/ai/plan', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { proposal_id: proposal.id },
+      })
       const normalized = normalizePlan(p)
       setPlan(normalized)
       setSectionIndex(0)
@@ -378,20 +724,25 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
       const firstHasDraft = !!persistedByKey[normalized.sections[0]?.id]?.draft_content
       setActiveStage(plannedAllApproved ? 4 : firstHasDraft ? 3 : 2)
       await onSaved?.()
-      setGenerationStatus({ action: 'plan', state: 'done' })
-  } catch {
-  setGenerationStatus({ action: 'plan', state: 'error' })
-  setError(t('ui.errors.plan_load_failed'))
+      setGenerationStatus({ action: 'plan', state: 'done', sectionId: '' })
+    } catch (requestError) {
+      setGenerationStatus({ action: 'plan', state: 'error', sectionId: '' })
+      if (requestError?.status === 409 && requestError?.data?.error === 'grill_confirmation_required') {
+        await openPlanningInfo()
+        setError('请先完成补充规划信息并确认后，再生成章节规划。')
+        return
+      }
+      setError(workflowErrorMessage(requestError, '章节规划生成失败，请稍后重试。'))
     } finally {
-      setLoading(false)
+      stopLoading()
     }
   }
 
   const writeDraft = async () => {
     if (!current) return
-    setLoading(true)
+    startLoading('深度思考中，正在生成本章草稿。')
     setError('')
-    setGenerationStatus({ action: 'write', state: 'loading' })
+    setGenerationStatus({ action: 'write', state: 'loading', sectionId: current.id })
     try {
       const res = await apiMaybeAsync('/ai/write', {
         method: 'POST',
@@ -404,22 +755,26 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           file_refs: (current && filesBySection[current.id]) ? filesBySection[current.id] : [],
         },
       })
-      setDraft(res?.draft_text || '')
+      const before = draft || persistedDraft
+      const nextDraft = res?.draft_text || ''
+      setDraft(nextDraft)
+      if (before && nextDraft && before !== nextDraft) {
+        setPreviousDraftsBySection(previous => ({ ...previous, [current.id]: before }))
+      }
       if (res?.evidence) setEvidenceBySection(previous => ({ ...previous, [current.id]: res.evidence }))
       await onSaved?.()
-      setActiveStage(3)
-      setGenerationStatus({ action: 'write', state: 'done' })
-  } catch {
-  setGenerationStatus({ action: 'write', state: 'error' })
-  setError(t('ui.errors.write_failed'))
-    } finally { setLoading(false) }
+      setGenerationStatus({ action: 'write', state: 'done', sectionId: current.id })
+    } catch (requestError) {
+      setGenerationStatus({ action: 'write', state: 'error', sectionId: current.id })
+      setError(workflowErrorMessage(requestError, '本章草稿生成失败，请稍后重试。'))
+    } finally { stopLoading() }
   }
 
   const applyChanges = async () => {
     if (!current) return
-    setLoading(true)
+    startLoading('深度思考中，正在按照要求修订本章。')
     setError('')
-    setGenerationStatus({ action: 'revise', state: 'loading' })
+    setGenerationStatus({ action: 'revise', state: 'loading', sectionId: current.id })
     try {
       const res = await apiMaybeAsync('/ai/revise', {
         method: 'POST',
@@ -428,41 +783,103 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
         body: {
           proposal_id: proposal.id,
           section_id: current.id,
-          base_text: draft || prevText,
+          base_text: draft || persistedDraft,
           change_request: changeReq,
           file_refs: (current && filesBySection[current.id]) ? filesBySection[current.id] : [],
         },
       })
+      const before = draft || persistedDraft
       setDraft(res?.draft_text || draft)
+      setPreviousDraftsBySection(previous => ({ ...previous, [current.id]: before }))
+      setChangeReq('')
       await onSaved?.()
-      setGenerationStatus({ action: 'revise', state: 'done' })
-  } catch {
-  setGenerationStatus({ action: 'revise', state: 'error' })
-  setError(t('ui.errors.revise_failed'))
-    } finally { setLoading(false) }
+      setGenerationStatus({ action: 'revise', state: 'done', sectionId: current.id })
+    } catch (requestError) {
+      setGenerationStatus({ action: 'revise', state: 'error', sectionId: current.id })
+      setError(workflowErrorMessage(requestError, '本章修订失败，请稍后重试。'))
+    } finally { stopLoading() }
   }
 
-  const approveAndSave = async () => {
+  const saveCurrentDraft = async () => {
     if (!currentSection?.id) return
-    setLoading(true)
+    const currentDraft = draft || persistedDraft
+    if (!currentDraft.trim()) {
+      setError('当前草稿为空，无法保存。')
+      return
+    }
+    startLoading('正在保存当前草稿。')
     setError('')
     try {
-      await api(`/sections/${currentSection.id}/promote`, {
+      const result = await api(`/ai/sections/${currentSection.id}/draft`, {
+        method: 'PATCH',
+        token,
+        orgId: orgId || undefined,
+        body: { draft_text: currentDraft },
+      })
+      setDraft(result.draft_text || currentDraft)
+      setPreviousDraftsBySection(previous => ({
+        ...previous,
+        [current.id]: result.previous_draft || previous[current.id] || '',
+      }))
+      setLastSavedAt(new Date())
+      await onSaved?.()
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '当前草稿保存失败，请稍后重试。'))
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const submitForApproval = async () => {
+    if (!currentSection?.id) return
+    startLoading('正在提交章节审批。')
+    setError('')
+    try {
+      const currentDraft = draft || persistedDraft
+      if (currentDraft && currentDraft !== persistedDraft) {
+        const result = await api(`/ai/sections/${currentSection.id}/draft`, {
+          method: 'PATCH',
+          token,
+          orgId: orgId || undefined,
+          body: { draft_text: currentDraft },
+        })
+        setPreviousDraftsBySection(previous => ({
+          ...previous,
+          [current.id]: result.previous_draft || previous[current.id] || '',
+        }))
+      }
+      await api('/ai/workflow/run', {
         method: 'POST',
         token,
         orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          section_key: current.id,
+          plan: sections.map(section => ({
+            section_key: section.id,
+            title: section.title,
+            questions: section.inputs || [],
+          })),
+          answers,
+          draft: currentDraft,
+          review: {
+            schema_version: 'v1',
+            section_key: current.id,
+            decision: 'human_review',
+            issues: [],
+            required_changes: [],
+            protected_facts: [],
+            evidence_gaps: [],
+          },
+        },
       })
       setLastSavedAt(new Date())
+      await refreshHumanTasks()
       await onSaved?.()
-      if (sectionIndex < sections.length - 1) {
-        selectSection(sectionIndex + 1)
-        setActiveStage(2)
-      } else {
-        setActiveStage(4)
-      }
-  } catch {
-  setError(t('ui.errors.save_failed'))
-    } finally { setLoading(false) }
+      setActiveStage(3)
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '提交章节审批失败，请稍后重试。'))
+    } finally { stopLoading() }
   }
 
   const saveNote = async () => {
@@ -470,7 +887,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     const content = { ...(proposal.content || {}) }
     content.meta = { ...(content.meta || {}), note }
     const body = { content, schema_version: proposal.schema_version || plan?.schema_version || 'v1' }
-    setLoading(true)
+    startLoading('正在保存备注。')
     setError('')
     try {
       await api(`/proposals/${proposal.id}/`, { method: 'PATCH', token, orgId: orgId || undefined, body })
@@ -478,7 +895,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
       await onSaved?.()
     } catch {
   setError(t('ui.errors.save_note_failed'))
-    } finally { setLoading(false) }
+    } finally { stopLoading() }
   }
 
   const saveTitle = async () => {
@@ -489,7 +906,7 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     }
     const content = { ...(proposal.content || {}) }
     content.meta = { ...(content.meta || {}), title }
-    setLoading(true)
+    startLoading('正在保存项目标题。')
     setError('')
     try {
       await api(`/proposals/${proposal.id}/`, {
@@ -506,15 +923,188 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
     } catch {
       setError('项目标题保存失败')
     } finally {
-      setLoading(false)
+      stopLoading()
+    }
+  }
+
+  const persistFullDraft = async (draftText) => {
+    const result = await api(`/ai/proposals/${proposal.id}/full-draft`, {
+      method: 'PATCH',
+      token,
+      orgId: orgId || undefined,
+      body: { draft_text: draftText },
+    })
+    setFullDraft(result.draft_text || draftText)
+    setFullDraftApprovalStatus(result.approval_status || 'draft')
+    setFullDraftLoaded(true)
+    return result
+  }
+
+  const reviseFullDraft = async ({ baseText, changeRequest, source }) => {
+    const isPreReviewRevision = source === 'pre_review'
+    const action = isPreReviewRevision ? 'full-pre-review-revise' : 'full-manual-revise'
+    const message = isPreReviewRevision
+      ? '已采纳全文预评审结果，正在根据建议重新优化全文。'
+      : '深度思考中，正在按照要求修订全文。'
+    startLoading(isPreReviewRevision ? '正在根据全文预评审意见修订草稿。' : '正在修订全文。')
+    setError('')
+    setGenerationStatus({ action, state: 'loading', sectionId: '__full__', message })
+    try {
+      if (!allApproved) {
+        setError('请先完成所有章节的人工作审批，再修订全文。')
+        setGenerationStatus({ action, state: 'error', sectionId: '__full__', message: '' })
+        return null
+      }
+      if (!changeRequest?.trim()) {
+        setError('请先填写全文审核修改要求。')
+        setGenerationStatus({ action, state: 'error', sectionId: '__full__', message: '' })
+        return null
+      }
+      let resolvedBaseText = String(baseText || '').trim()
+      if (!resolvedBaseText) {
+        const restored = await loadFullDraft()
+        resolvedBaseText = String(restored?.draft_text || '').trim()
+      }
+      if (!resolvedBaseText) {
+        setError('审批后全文草稿尚未准备完成，请稍后重试。')
+        setGenerationStatus({ action, state: 'error', sectionId: '__full__', message: '' })
+        return null
+      }
+      const allFileRefs = []
+      for (const section of sections) {
+        if (filesBySection[section.id]?.length) allFileRefs.push(...filesBySection[section.id])
+      }
+      const result = await apiMaybeAsync('/ai/revise', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          draft_scope: 'full',
+          base_text: resolvedBaseText,
+          change_request: changeRequest,
+          file_refs: allFileRefs,
+        },
+      })
+      const nextDraft = result?.draft_text || ''
+      if (!nextDraft) {
+        setError('系统未返回修订后的全文草稿，请稍后重试。')
+        setGenerationStatus({ action, state: 'error', sectionId: '__full__', message: '' })
+        return null
+      }
+      const before = resolvedBaseText
+      await persistFullDraft(nextDraft)
+      setPreviousFullDraft(before)
+      if (!isPreReviewRevision) setFullChangeReq('')
+      await refreshHumanTasks()
+      await onSaved?.()
+      setGenerationStatus({ action, state: 'done', sectionId: '__full__', message: '' })
+      return true
+    } catch (requestError) {
+      setGenerationStatus({ action, state: 'error', sectionId: '__full__', message: '' })
+      setError(workflowErrorMessage(
+        requestError,
+        isPreReviewRevision ? '根据全文预评审修订草稿失败，请稍后重试。' : '全文草稿修订失败，请稍后重试。',
+      ))
+      return null
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const applyFullDraftChanges = async () => (
+    reviseFullDraft({
+      baseText: fullDraft,
+      changeRequest: fullChangeReq,
+      source: 'manual',
+    })
+  )
+
+  const applyFullPreReviewChanges = async (task) => {
+    const changeRequest = task.model_output?.pre_review?.revision_request || ''
+    if (!changeRequest.trim()) {
+      setError('当前全文预评审内容不可用，无法自动修订。')
+      return null
+    }
+    return reviseFullDraft({
+      baseText: fullDraft || task.input?.draft_text || '',
+      changeRequest,
+      source: 'pre_review',
+    })
+  }
+
+  const submitFullDraftForApproval = async () => {
+    if (!allApproved || !fullDraft.trim() || fullDraftApprovalPending) return
+    startLoading('正在提交全文审批。')
+    setError('')
+    try {
+      const state = await persistFullDraft(fullDraft)
+      await api('/ai/human-tasks', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          node: 'final_export_confirmation',
+          thread_id: `full-draft-${proposal.id}-${state.version}-${Date.now()}`,
+          input: {
+            kind: 'full_draft',
+            draft_title: '审批后全文草稿',
+            draft_version: state.version,
+            draft_text: state.draft_text,
+          },
+        },
+      })
+      setFullDraftApprovalStatus('pending')
+      await refreshHumanTasks()
+      await onSaved?.()
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '提交全文审批失败，请稍后重试。'))
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const reopenApprovedSection = async (section) => {
+    const persisted = persistedByKey[section.id]
+    if (!persisted?.id || proposalFinalized) return
+    startLoading('正在解除章节审批锁定。')
+    setError('')
+    try {
+      const result = await api(`/ai/sections/${persisted.id}/reopen`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+      })
+      setSectionOverrides(previous => ({
+        ...previous,
+        [section.id]: {
+          state: result.state || 'draft',
+          locked: Boolean(result.locked),
+          draft_content: result.draft_text || previous[section.id]?.draft_content || '',
+        },
+      }))
+      setDraftsBySection(previous => ({ ...previous, [section.id]: result.draft_text || previous[section.id] || '' }))
+      setFullDraft('')
+      setFullDraftLoaded(false)
+      setFullDraftApprovalStatus('draft')
+      const targetIndex = sections.findIndex(item => item.id === section.id)
+      await refreshHumanTasks()
+      await onSaved?.()
+      if (targetIndex >= 0) setSectionIndex(targetIndex)
+      setActiveStage(3)
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '解除章节审批锁定失败，请稍后重试。'))
+    } finally {
+      stopLoading()
     }
   }
 
   const runFinalFormatting = async () => {
-    if (!allApproved) return
-    setLoading(true)
+    if (!allApproved || !fullDraftApproved || proposalFinalized) return
+    startLoading('深度思考中，正在生成最终定稿。')
     setError('')
-    setGenerationStatus({ action: 'format', state: 'loading' })
+    setGenerationStatus({ action: 'format', state: 'loading', sectionId: '' })
     try {
       const allFileRefs = []
       for (const s of sections) {
@@ -534,39 +1124,194 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
       })
       setFormattedText(res?.formatted_text || '')
       await onSaved?.()
-      setGenerationStatus({ action: 'format', state: 'done' })
-  } catch {
-  setGenerationStatus({ action: 'format', state: 'error' })
-  setError(t('ui.errors.final_format_failed'))
-    } finally { setLoading(false) }
+      setGenerationStatus({ action: 'format', state: 'done', sectionId: '' })
+    } catch (requestError) {
+      setGenerationStatus({ action: 'format', state: 'error', sectionId: '' })
+      setError(workflowErrorMessage(requestError, '最终定稿生成失败，请稍后重试。'))
+    } finally { stopLoading() }
   }
 
-  const decideHumanTask = async (task, action, editedInput = {}) => {
-    setLoading(true)
+  const decideHumanTask = async (task, action) => {
+    startLoading(action === 'approve' ? '正在提交审批结果。' : '正在退回修改。')
     setError('')
     try {
-      await api(`/ai/human-tasks/${task.id}/decision`, {
+      const result = await api('/ai/human-tasks/' + task.id + '/decision', {
         method: 'POST',
         token,
         orgId: orgId || undefined,
-        body: { thread_id: task.thread_id, action, edited_input: editedInput },
+        body: { thread_id: task.thread_id, action },
       })
       await refreshHumanTasks()
-    } catch {
-      setError('人工决策提交失败')
+      await onSaved?.()
+      if (task.input?.kind === 'full_draft') {
+        setFullDraftApprovalStatus(action === 'approve' ? 'approved' : 'draft')
+        if (result?.status === 'approved' || action === 'edit') await loadFullDraft()
+        setActiveStage(4)
+      } else if (action === 'edit') {
+        const targetIndex = sections.findIndex(section => section.id === task.input?.section_key)
+        if (targetIndex >= 0) setSectionIndex(targetIndex)
+        setActiveStage(3)
+      } else if (action === 'approve') {
+        const targetIndex = sections.findIndex(section => section.id === task.input?.section_key)
+        if (targetIndex >= 0 && targetIndex < sections.length - 1) {
+          selectSection(targetIndex + 1)
+          setActiveStage(2)
+        } else {
+          setActiveStage(4)
+        }
+      }
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '人工审批提交失败，请稍后重试。'))
     } finally {
-      setLoading(false)
+      stopLoading()
+    }
+  }
+
+  const replaceHumanTask = (nextTask) => {
+    setHumanTasks(previous => previous.map(task => task.id === nextTask.id ? nextTask : task))
+    return nextTask
+  }
+
+  const runSectionPreReview = async (task) => {
+    startLoading('正在生成章节预评审。')
+    setError('')
+    try {
+      const next = await api(`/ai/human-tasks/${task.id}/pre-review`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+      })
+      return replaceHumanTask(next)
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '章节预评审生成失败，请稍后重试。'))
+      return null
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const acceptSectionPreReview = async (task) => {
+    startLoading('正在采纳预审批结果。')
+    setError('')
+    try {
+      const next = await api(`/ai/human-tasks/${task.id}/pre-review`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { action: 'accept' },
+      })
+      return replaceHumanTask(next)
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '章节预评审采纳失败，请稍后重试。'))
+      return null
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const dismissSectionPreReview = async (task) => {
+    startLoading('正在驳回预审批结果。')
+    setError('')
+    try {
+      const next = await api(`/ai/human-tasks/${task.id}/pre-review`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { action: 'dismiss' },
+      })
+      return replaceHumanTask(next)
+    } catch (requestError) {
+      setError(workflowErrorMessage(requestError, '章节预评审驳回失败，请稍后重试。'))
+      return null
+    } finally {
+      stopLoading()
+    }
+  }
+
+  const applySectionPreReview = async (task) => {
+    if (task.input?.kind === 'full_draft') {
+      const revised = await applyFullPreReviewChanges(task)
+      return revised ? task : null
+    }
+    const sectionKey = task.input?.section_key
+    const reviewRequest = task.model_output?.pre_review?.revision_request || ''
+    const targetIndex = sections.findIndex(section => section.id === sectionKey)
+    const targetSection = persistedByKey[sectionKey]
+    const baseText = draftsBySection[sectionKey] || targetSection?.draft_content || targetSection?.approved_content || ''
+    if (!sectionKey || !reviewRequest || !baseText) {
+      setError('当前章节或预评审内容不可用，无法自动修订。')
+      return null
+    }
+    if (targetIndex >= 0) setSectionIndex(targetIndex)
+    setActiveStage(3)
+    startLoading('正在根据评审建议修订本章。')
+    setError('')
+    setGenerationStatus({ action: 'revise', state: 'loading', sectionId: sectionKey, message: '已采纳审批结果，正在根据建议重新优化该章节。' })
+    try {
+      const result = await apiMaybeAsync('/ai/revise', {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: {
+          proposal_id: proposal.id,
+          section_id: sectionKey,
+          base_text: baseText,
+          change_request: reviewRequest,
+          file_refs: filesBySection[sectionKey] || [],
+        },
+      })
+      const nextDraft = result?.draft_text || ''
+      if (!nextDraft) {
+        setError('系统未返回修订后的草稿，请稍后重试。')
+        setGenerationStatus({ action: 'revise', state: 'error', sectionId: sectionKey, message: '' })
+        return null
+      }
+      setDraftsBySection(previous => ({ ...previous, [sectionKey]: nextDraft }))
+      setPreviousDraftsBySection(previous => ({ ...previous, [sectionKey]: baseText }))
+      const nextTask = await api(`/ai/human-tasks/${task.id}/pre-review`, {
+        method: 'POST',
+        token,
+        orgId: orgId || undefined,
+        body: { action: 'dismiss' },
+      })
+      replaceHumanTask(nextTask)
+      setGenerationStatus({ action: 'revise', state: 'done', sectionId: sectionKey, message: '' })
+      await onSaved?.()
+      return nextTask
+    } catch (requestError) {
+      setGenerationStatus({ action: 'revise', state: 'error', sectionId: sectionKey, message: '' })
+      setError(workflowErrorMessage(requestError, '根据章节预评审修订草稿失败，请稍后重试。'))
+      return null
+    } finally {
+      stopLoading()
     }
   }
 
   return (
-    <div className="fund-author-panel" style={{ marginTop: 16, padding: 20, border: '1px solid #d8dee9', borderRadius: 12, background: '#f7f9fc' }}>
-      <Phase12Workspace proposal={proposal} token={token} orgId={orgId} />
+    <div className="fund-author-panel">
+      <Phase12Workspace
+        proposal={proposal}
+        token={token}
+        orgId={orgId}
+        onReady={async status => {
+          setSetupReady(Boolean(status?.ready))
+          await onSaved?.()
+        }}
+        onContinue={() => {
+          setActiveStage(1)
+          document.getElementById(`proposal-planning-${proposal.id}`)?.scrollIntoView?.({ behavior: 'smooth', block: 'start' })
+        }}
+      />
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
         <div>
           <h3 style={{ margin: 0 }}>基金申请书工作区</h3>
           <div className="fund-title-editor">
+            <label className="fund-title-required-label" htmlFor={`proposal-title-${proposal.id}`}>
+              <span>项目标题 <b className="fund-required-marker" aria-hidden="true">*</b></span>
+              <small className="fund-field-hint">本项为必填。请填写能够概括申请主题的项目名称。</small>
+            </label>
             <input
+              id={`proposal-title-${proposal.id}`}
               aria-label="项目标题"
               value={proposalTitle}
               onChange={(e) => setProposalTitle(e.target.value)}
@@ -579,8 +1324,11 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           <div><strong>最近编辑</strong>：{proposal.last_edited ? new Date(proposal.last_edited).toLocaleString() : '暂无'}{me ? `，编辑者 ${me.username || '当前用户'}` : ''}{lastSavedAt ? '，刚刚保存' : ''}</div>
         </div>
         <div style={{ minWidth: 280 }}>
-          <div>内部备注</div>
-          <textarea style={{ width: '100%' }} data-testid="note-text" rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="添加供自己或协作者查看的备注" />
+          <label className="fund-inline-field">
+            <span>内部备注，可选</span>
+            <small className="fund-field-hint">仅供自己或协作者查看；如无需要记录的事项可留空。</small>
+            <textarea style={{ width: '100%' }} data-testid="note-text" rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="例如：待补充的材料或后续沟通事项" />
+          </label>
           <button data-testid="note-save" onClick={saveNote} disabled={loading}>保存备注</button>
         </div>
       </div>
@@ -604,28 +1352,90 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           </button>
         ))}
       </div>
-      <HumanTaskPanel tasks={humanTasks} onDecision={decideHumanTask} loading={loading} />
-      {generationStatus.state === 'done' && (
-        (generationStatus.action === 'plan' && activeStage !== 1)
-        || (generationStatus.action === 'write' && activeStage !== 2)
-        || (generationStatus.action === 'revise' && activeStage !== 3)
-        || (generationStatus.action === 'format' && activeStage !== 4)
-      ) && (
-        <div className="fund-generation-summary">
-          <GenerationFeedback action={generationStatus.action} status={generationStatus} />
-        </div>
+      <SectionApprovalPanel
+        tasks={sectionApprovalTasks}
+        onDecision={decideHumanTask}
+        onPreReview={runSectionPreReview}
+        onAcceptPreReview={acceptSectionPreReview}
+        onDismissPreReview={dismissSectionPreReview}
+        onApplyPreReview={applySectionPreReview}
+        loading={loading}
+      />
+      {loading && loadingMessage && (
+        <p className='fund-api-action-feedback' role='status'>
+          <span className='fund-spinner' aria-hidden='true' />
+          {loadingMessage}
+        </p>
       )}
 
       {activeStage === 1 && (
-        <div style={{ padding: 16, background: '#fff', borderRadius: 8 }}>
+        <div id={`proposal-planning-${proposal.id}`} style={{ padding: 16, background: '#fff', borderRadius: 8 }}>
           <h4>规划申请书章节</h4>
-          <input style={{ width: '100%', marginBottom: 8 }} value={grantUrl} onChange={(e) => setGrantUrl(e.target.value)} placeholder="基金指南网址，可选" />
-          <textarea style={{ width: '100%' }} rows={5} value={textSpec} onChange={(e) => setTextSpec(e.target.value)} placeholder="粘贴基金指南、申报要求或研究方向说明" />
-          <GrillPanel mode="planning" proposal={proposal} token={token} orgId={orgId} />
-          <div className="fund-generation-action">
-            <button onClick={startPlan} disabled={loading}>生成章节规划</button>
+          <p>系统将依据已保存的项目基础信息、基金指南和用户材料生成章节问题。</p>
+          {!setupReady && <p className="fund-status-message is-error">请先完成上方带红色星号的项目基础信息。</p>}
+          <UserIntentPanel
+            taskMode={taskMode}
+            qualityLevel={qualityLevel}
+            confirmed={intentConfirmed}
+            loading={loading}
+            onTaskModeChange={(value) => {
+              setTaskMode(value)
+              setIntentConfirmed(false)
+            }}
+            onQualityLevelChange={(value) => {
+              setQualityLevel(value)
+              setIntentConfirmed(false)
+            }}
+            onConfirm={confirmIntent}
+           />
+           {!intentConfirmed && <p className="fund-status-message">请完成上方两个写作目标选择后继续。</p>}
+           {intentConfirmed && !planningInfoVisible && (
+             <button type='button' onClick={openPlanningInfo} disabled={loading}>
+               补充规划信息，可选
+             </button>
+           )}
+           {planningInfoVisible && (
+             <section className='fund-planning-info' data-testid='planning-info'>
+               <strong>补充规划信息</strong>
+               <p>此步骤可选。补充已掌握的信息有助于章节规划更贴合项目；对暂时无法判断的问题，可留空或如实填写：不清楚，也可使用跳过此题。</p>
+               {planningInfoLoading && <p className='fund-api-action-feedback' role='status'><span className='fund-spinner' aria-hidden='true' />正在处理补充规划信息。</p>}
+               {planningInfo?.confirmed && <p>补充信息已确认，可以生成章节规划。</p>}
+               {!planningInfoLoading && planningQuestion && (
+                 <div className='fund-planning-question'>
+                   <p>第 {planningQuestion.index} 题，共 {planningInfo.max_questions} 题：{planningQuestion.prompt}</p>
+                   {planningFields.map(field => (
+                     <label className='fund-planning-answer' key={field}>
+                       <span>{planningFieldLabels[field] || '补充信息'}</span>
+                       <textarea
+                         aria-label={planningFieldLabels[field] || '补充信息'}
+                         rows={2}
+                         placeholder='请填写已掌握的信息；若无可提供信息，可留空或如实填写：不清楚'
+                         value={planningAnswerValue(field)}
+                         onChange={event => setPlanningAnswers(previous => ({ ...previous, [field]: event.target.value }))}
+                       />
+                     </label>
+                   ))}
+                   <div className='fund-planning-controls'>
+                     <button type='button' onClick={previousPlanningQuestion} disabled={planningQuestion.index <= 1 || planningInfoLoading}>上一题</button>
+                     <button type='button' onClick={() => answerPlanningQuestion(false)} disabled={planningInfoLoading}>下一题</button>
+                     <button type='button' onClick={() => answerPlanningQuestion(true)} disabled={planningInfoLoading}>跳过此题</button>
+                     <button type='button' onClick={finishPlanningInfo} disabled={planningInfoLoading}>结束补充</button>
+                   </div>
+                 </div>
+               )}
+               {!planningInfoLoading && !planningQuestion && !planningInfo?.confirmed && (
+                 <div className='fund-planning-controls'>
+                   <span>已完成固定问题，请确认后继续。</span>
+                   <button type='button' onClick={finishPlanningInfo}>结束补充</button>
+                 </div>
+               )}
+             </section>
+           )}
+           <div className="fund-generation-action">
+            <button onClick={startPlan} disabled={loading || !setupReady || !intentConfirmed || proposalFinalized}>生成章节规划</button>
             <GenerationFeedback action="plan" status={generationStatus} />
           </div>
+          {proposalFinalized && <p className='fund-final-approval-status'>最终定稿已生成，章节规划已锁定。</p>}
           {sections.length > 0 && (
             <div style={{ marginTop: 16 }}>
               <strong>已保存的章节</strong>
@@ -655,26 +1465,27 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
               <button onClick={() => selectSection(sectionIndex + 1)} disabled={loading || sectionIndex >= sections.length - 1}>下一章节</button>
             </div>
           )}
-
           {activeStage === 2 && (
             <div>
               <h4>逐题回答</h4>
-              {(current?.inputs || []).length === 0 && <p>当前章节没有规划问题，可以直接生成基础草稿。</p>}
+              <p className="fund-field-hint">逐题补充已掌握的事实、数据或方案，有助于提升本章内容质量。若无可提供信息，可留空或如实填写：不清楚。</p>
+              {(current?.inputs || []).length === 0 && <p className="fund-no-question-hint">当前章节没有规划问题，可以直接生成基础草稿。</p>}
               {(current?.inputs || []).slice(0, 20).map((key, index) => (
                 <div key={`${index}-${key}`} style={{ marginBottom: 14 }}>
                   <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>{index + 1}. {key}</label>
                   <textarea
                     style={{ width: '100%' }}
                     rows={3}
+                    placeholder="请填写与本章有关的事实、依据或已有方案；若无可提供信息，可留空或如实填写：不清楚"
                     value={answers[key] || ''}
                     onChange={(e) => setAnswers(previous => ({ ...previous, [key]: e.target.value }))}
                   />
                 </div>
               ))}
               <div style={{ margin: '16px 0' }}>
-                <label htmlFor={`file-${current?.id || 'section'}`}>上传本章参考材料</label>
-                <input id={`file-${current?.id || 'section'}`} type="file" accept=".pdf,.docx,.txt,image/*" onChange={onUploadFile} />
-                {uploading && <span> 正在上传</span>}
+                <label htmlFor={`file-${current?.id || 'section'}`}>上传本章补充材料，可选</label>
+                <input id={`file-${current?.id || 'section'}`} type="file" accept=".pdf,.docx,.txt" onChange={onUploadFile} />
+                {uploading && <span className='fund-api-action-feedback'><span className='fund-spinner' aria-hidden='true' />正在上传</span>}
                 {uploadError && <div>{uploadError}</div>}
                 {current && filesBySection[current.id]?.length > 0 && (
                   <ul>
@@ -694,11 +1505,11 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
               </div>
               <div className="fund-generation-action">
                 <button onClick={writeDraft} disabled={loading || currentSection?.locked}>生成本章草稿</button>
-                <GenerationFeedback action="write" status={generationStatus} />
+                <GenerationFeedback action="write" status={generationStatus} sectionId={current?.id} />
               </div>
               {currentSection?.locked && <span> 当前章节已审批锁定</span>}
               <h4>当前草稿</h4>
-              <MarkdownPreview value={draft || prevText} testId="draft-text" />
+              <MarkdownPreview value={draft || persistedDraft} testId="draft-text" />
               <EvidencePanel evidence={currentEvidence} />
             </div>
           )}
@@ -706,34 +1517,33 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
           {activeStage === 3 && (
             <div>
               <h4>人工审核修改要求</h4>
-              <textarea style={{ width: '100%' }} rows={3} placeholder="请输入需要修改、补充或删减的具体要求" value={changeReq} onChange={(e) => setChangeReq(e.target.value)} />
-              <details style={{ marginTop: 8 }}>
-                <summary>针对本章节澄清修改目标</summary>
-                <GrillPanel
-                  mode="revision"
-                  proposal={proposal}
-                  section={current}
-                  token={token}
-                  orgId={orgId}
-                  onImport={(suggestion) => setChangeReq(suggestion)}
-                />
-              </details>
+              <p className="fund-field-hint">可选。请说明需要修改、补充或删减的具体内容；暂无修改要求时可留空并直接提交章节审批。</p>
+              <textarea style={{ width: '100%' }} rows={3} placeholder="例如：补充前期基础，明确技术路线，并删减重复表述" value={changeReq} onChange={(e) => setChangeReq(e.target.value)} />
               <div style={{ display: 'flex', gap: 8, margin: '8px 0 16px' }}>
-                <button onClick={applyChanges} disabled={loading || currentSection?.locked || !(draft || prevText)}>按要求修订</button>
-                <GenerationFeedback action="revise" status={generationStatus} />
-                <button onClick={approveAndSave} disabled={loading || currentSection?.locked || !(draft || prevText)}>审批并保存</button>
+                <button onClick={applyChanges} disabled={loading || currentSection?.locked || !(draft || persistedDraft) || !changeReq.trim()}>按要求修订</button>
+                <button onClick={submitForApproval} disabled={loading || currentSection?.locked || currentApprovalPending || !(draft || persistedDraft)}>提交章节审批</button>
                 <button onClick={() => setActiveStage(2)}>返回问答</button>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12 }}>
-                <div>
-                  <h4>修改前</h4>
-                  <MarkdownPreview value={prevText} />
-                </div>
-                <div>
-                  <h4>修订后</h4>
-                  <MarkdownPreview value={draft || prevText} testId="draft-text" />
-                </div>
+              {currentApprovalPending && <p>当前章节已提交人工审批，请在上方待审批章节卡片中处理。</p>}
+              <div className='fund-draft-heading-row'>
+                <h4>当前草稿（可直接在下方进行编辑）</h4>
+                <GenerationFeedback action="revise" status={generationStatus} sectionId={current?.id} />
               </div>
+              <textarea
+                className="fund-current-draft-editor"
+                data-testid="current-draft-editor"
+                rows={18}
+                value={draft || persistedDraft}
+                onChange={(event) => setDraft(event.target.value)}
+                disabled={loading || currentSection?.locked}
+              />
+              <div className="fund-generation-action">
+                <button onClick={saveCurrentDraft} disabled={loading || currentSection?.locked || !(draft || persistedDraft)}>保存当前草稿</button>
+              </div>
+              <details className="fund-previous-draft">
+                <summary>查看修改前草稿</summary>
+                <MarkdownPreview value={previousDraft} />
+              </details>
             </div>
           )}
 
@@ -744,28 +1554,96 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
               {!allApproved && <p>所有章节完成人工审批后才能生成最终稿。</p>}
               {allApproved && (
                 <>
-                  <input style={{ width: '100%', margin: '12px 0' }} placeholder="排版模板要求，可选" value={templateHint} onChange={(e) => setTemplateHint(e.target.value)} />
-                  <div className="fund-generation-action">
-                    <button onClick={runFinalFormatting} disabled={loading}>生成最终定稿</button>
-                    <GenerationFeedback action="format" status={generationStatus} />
-                  </div>
+                  <p className='fund-final-approval-status'>所有章节均已人工审核完毕。请先完成全文草稿审批，再生成最终定稿。</p>
+                  {!fullDraftLoaded && <p className='fund-status-message'>正在载入审批后全文草稿。</p>}
+                  {fullDraftLoaded && !fullDraftApproved && (
+                    <>
+                      <section className='fund-full-draft-workspace'>
+                        <div className='fund-draft-heading-row'>
+                          <div>
+                            <h4>审批后全文草稿</h4>
+                            <p className='fund-field-hint'>点击章节标题可追溯到对应章节，解除该章节的旧审批锁定后继续修改与重新审批。</p>
+                          </div>
+                        </div>
+                        <FullDraftPreview
+                          value={fullDraft}
+                          sections={sections}
+                          onSectionClick={reopenApprovedSection}
+                          disabled={loading || proposalFinalized}
+                        />
+                        <h4>全文审核修改要求</h4>
+                        <p className='fund-field-hint'>可选。请说明需要调整的全文逻辑、章节衔接、重复内容或排版表达。</p>
+                        <textarea
+                          className='fund-current-draft-editor'
+                          rows={4}
+                          placeholder='例如：统一各章术语，补充章节衔接，并删除重复论述'
+                          value={fullChangeReq}
+                          onChange={event => setFullChangeReq(event.target.value)}
+                          disabled={loading || fullDraftApprovalPending}
+                        />
+                        <div className='fund-generation-action'>
+                          <button type='button' onClick={() => applyFullDraftChanges()} disabled={loading || fullDraftApprovalPending || !fullChangeReq.trim()}>
+                            {generationStatus.action === 'full-manual-revise' && generationStatus.state === 'loading'
+                              ? <><span className='fund-spinner' aria-hidden='true' />正在修订全文</>
+                              : '按要求修订全文'}
+                          </button>
+                          <GenerationFeedback action='full-manual-revise' status={generationStatus} sectionId='__full__' hideDone />
+                          <GenerationFeedback action='full-pre-review-revise' status={generationStatus} sectionId='__full__' hideDone />
+                          <button onClick={submitFullDraftForApproval} disabled={loading || fullDraftApprovalPending || !fullDraft.trim()}>提交全文审批</button>
+                        </div>
+                        {previousFullDraft && (
+                          <details className='fund-previous-draft'>
+                            <summary>查看修改前全文草稿</summary>
+                            <MarkdownPreview value={previousFullDraft} />
+                          </details>
+                        )}
+                      </section>
+                      <SectionApprovalPanel
+                        tasks={fullDraftApprovalTasks}
+                        title='待审批全文草稿'
+                        testId='full-draft-approval-tasks'
+                        onDecision={decideHumanTask}
+                        onPreReview={runSectionPreReview}
+                        onAcceptPreReview={acceptSectionPreReview}
+                        onDismissPreReview={dismissSectionPreReview}
+                        onApplyPreReview={applySectionPreReview}
+                        loading={loading}
+                      />
+                      {fullDraftApprovalPending && <p className='fund-status-message'>全文草稿已提交审批，请在上方审批卡片中处理。</p>}
+                    </>
+                  )}
+                  {fullDraftLoaded && fullDraftApproved && (
+                    <section className='fund-full-draft-workspace'>
+                      <h4>定稿预览</h4>
+                      <MarkdownPreview value={formattedText || fullDraft} testId='final-preview' />
+                      {formattedText && (
+                        <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+                          <button onClick={() => onExport?.(proposal.id, 'md')} disabled={exporting}>{exporting ? <><span className='fund-spinner' aria-hidden='true' />正在导出</> : '下载 Markdown'}</button>
+                          <button onClick={() => onExport?.(proposal.id, 'docx')} disabled={exporting}>{exporting ? <><span className='fund-spinner' aria-hidden='true' />正在导出</> : '下载 DOCX'}</button>
+                          <button onClick={() => onExport?.(proposal.id, 'pdf')} disabled={exporting}>{exporting ? <><span className='fund-spinner' aria-hidden='true' />正在导出</> : '下载 PDF'}</button>
+                        </div>
+                      )}
+                    </section>
+                  )}
+                  {fullDraftApproved && !proposalFinalized && (
+                    <>
+                      <label className="fund-inline-field">
+                        <span>排版模板要求，可选</span>
+                        <small className="fund-field-hint">可补充封面、字体、章节层级或单位模板要求；无明确要求可留空。</small>
+                        <input style={{ width: '100%', margin: '6px 0 12px' }} placeholder="例如：一级标题使用黑体四号，二级标题使用宋体小四号，英文使用Times New Roman小四号" value={templateHint} onChange={(e) => setTemplateHint(e.target.value)} />
+                      </label>
+                      <div className="fund-generation-action">
+                        <button onClick={runFinalFormatting} disabled={loading}>生成最终定稿</button>
+                        <GenerationFeedback action="format" status={generationStatus} hideDone />
+                      </div>
+                    </>
+                  )}
                 </>
-              )}
-              {formattedText && (
-                <div style={{ marginTop: 16 }}>
-                  <h4>定稿预览</h4>
-                  <MarkdownPreview value={formattedText} />
-                  <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-                    <button onClick={() => onExport?.(proposal.id, 'md')} disabled={exporting}>下载 Markdown</button>
-                    <button onClick={() => onExport?.(proposal.id, 'docx')} disabled={exporting}>下载 DOCX</button>
-                    <button onClick={() => onExport?.(proposal.id, 'pdf')} disabled={exporting}>下载 PDF</button>
-                  </div>
-                </div>
               )}
             </div>
           )}
 
-          {error && <div style={{ color: '#b42318', marginTop: 12 }}>{error}</div>}
+          {error && <div className="fund-status-message is-error" role="alert">{error}</div>}
         </div>
       )}
     </div>
@@ -774,10 +1652,13 @@ function AuthorPanel({ token, orgId, proposal, onSaved, onExport, exporting }) {
 
 export function Proposals({ token, selectedOrgId }) {
   const [items, setItems] = useState([])
+  const [loadedOrgId, setLoadedOrgId] = useState('')
   const [loading, setLoading] = useState(false)
   const [creating, setCreating] = useState(false)
   const [newTitle, setNewTitle] = useState('')
+  const [applicationSystem, setApplicationSystem] = useState('')
   const [exporting, setExporting] = useState(null)
+  const [mutatingProjectId, setMutatingProjectId] = useState(null)
   const [fmtById, setFmtById] = useState({})
   const [openAuthorForId, setOpenAuthorForId] = useState(null)
   const [showTrash, setShowTrash] = useState(false)
@@ -785,43 +1666,71 @@ export function Proposals({ token, selectedOrgId }) {
   const orgId = selectedOrgId !== undefined
     ? String(selectedOrgId || '')
     : (localStorage.getItem('orgId') || '')
+  const activeOrgIdRef = useRef(orgId)
+  activeOrgIdRef.current = orgId
   const archive = async (p) => {
+    setMutatingProjectId(p.id)
     try {
       await api(`/proposals/${p.id}/`, { method: 'PATCH', token, orgId: orgId || undefined, body: { state: 'archived' } })
       await refresh()
-      setActionMessage(`项目 ${p.content?.meta?.title || p.id} 已移入回收站`)
-  } catch (e) {
+      setActionMessage(`项目 ${p.content?.meta?.title || `编号 ${p.workspace_number || '待分配'}`} 已移入回收站`)
+    } catch (e) {
       setActionMessage(`归档失败：${e?.data?.error || e.message}`)
+    } finally {
+      setMutatingProjectId(null)
     }
   }
   const unarchive = async (p) => {
+    setMutatingProjectId(p.id)
     try {
       await api(`/proposals/${p.id}/`, { method: 'PATCH', token, orgId: orgId || undefined, body: { state: 'draft' } })
       await refresh()
-      setActionMessage(`项目 ${p.content?.meta?.title || p.id} 已恢复`)
-  } catch (e) {
-      if (e.status === 402) setActionMessage('当前申请书数量已达到限制，请先归档其他项目')
-      else setActionMessage(`恢复失败：${e?.data?.error || e.message}`)
+      setActionMessage(`项目 ${p.content?.meta?.title || `编号 ${p.workspace_number || '待分配'}`} 已恢复`)
+    } catch (e) {
+      setActionMessage(`恢复失败：${e?.data?.error || e.message}`)
+    } finally {
+      setMutatingProjectId(null)
     }
   }
+  const requestErrorMessage = (error, action) => {
+    if (error?.status === 401) return `${action}失败：登录状态已失效，请重新登录后再试。`
+    if (error?.status === 403) return `${action}失败：当前账号无权操作这个工作区，请重新选择后再试。`
+    if (error?.status === 400 && error?.data?.workspace === 'workspace_required') {
+      return `${action}失败：请先选择工作区。`
+    }
+    return `${action}失败：${error?.data?.error || error?.message || '请稍后重试。'}`
+  }
   const refresh = async () => {
+    const requestOrgId = orgId
     setLoading(true)
+    setActionMessage('')
     try {
-      const data = await api('/proposals/', { token, orgId: orgId || undefined })
+      const data = await api('/proposals/', { token, orgId: requestOrgId || undefined })
       const nextItems = Array.isArray(data) ? data : data.results || []
+      if (activeOrgIdRef.current !== requestOrgId) return null
       setItems(nextItems)
+      setLoadedOrgId(requestOrgId)
       setOpenAuthorForId(currentId => {
         if (currentId && nextItems.some(item => item.id === currentId)) return currentId
         return nextItems.find(item => item.state !== 'archived')?.id || null
       })
+      return nextItems
+    } catch (e) {
+      if (activeOrgIdRef.current !== requestOrgId) return null
+      setActionMessage(requestErrorMessage(e, '加载项目'))
+      return null
     } finally {
-      setLoading(false)
+      if (activeOrgIdRef.current === requestOrgId) setLoading(false)
     }
   }
   const doExport = async (proposalId, fmt='pdf') => {
     setExporting(proposalId)
     try {
       const job = await api('/exports', { method: 'POST', token, orgId: orgId || undefined, body: { proposal_id: proposalId, format: fmt } })
+      if (job.download_url) {
+        await downloadExport(job.download_url, { token, orgId: orgId || undefined })
+        return
+      }
       if (job.url) {
         safeOpenExternal(job.url)
         return
@@ -830,6 +1739,10 @@ export function Proposals({ token, selectedOrgId }) {
       for (let i = 0; i < 20; i++) {
         await new Promise(r => setTimeout(r, 500))
         const status = await api(`/exports/${id}`, { token, orgId: orgId || undefined })
+        if (status.download_url) {
+          await downloadExport(status.download_url, { token, orgId: orgId || undefined })
+          return
+        }
         if (status.url) {
           safeOpenExternal(status.url)
           return
@@ -848,6 +1761,10 @@ export function Proposals({ token, selectedOrgId }) {
       alert('请先输入项目标题')
       return
     }
+    if (!applicationSystem) {
+      alert('请选择申报体系')
+      return
+    }
     setCreating(true)
     try {
       const created = await api('/proposals/', {
@@ -855,19 +1772,16 @@ export function Proposals({ token, selectedOrgId }) {
         token,
         orgId: orgId || undefined,
         body: {
-          content: { meta: { title }, sections: {} },
+          content: { meta: { title, application_system: applicationSystem }, sections: {} },
           schema_version: 'v1',
         },
       })
       if (created?.id) setOpenAuthorForId(created.id)
       setNewTitle('')
+      setApplicationSystem('')
       await refresh()
-  } catch (e) {
-      if (e.status === 402 && e.data) {
-        alert('当前申请书数量已达到限制，请先归档旧项目后再创建')
-      } else {
-        alert('Create failed: ' + e.message) // keep literal for dev error
-      }
+    } catch (e) {
+      setActionMessage(requestErrorMessage(e, '新建申请'))
     } finally {
       setCreating(false)
     }
@@ -882,35 +1796,59 @@ export function Proposals({ token, selectedOrgId }) {
     try { localStorage.setItem('exportFormats', JSON.stringify(fmtById)) } catch {}
   }, [fmtById])
   useEffect(() => { refresh() }, [token, orgId])
-  const activeProposal = items.find(item => item.id === openAuthorForId)
-  const activeItems = items.filter(item => item.state !== 'archived')
-  const archivedItems = items.filter(item => item.state === 'archived')
+  const currentItems = loadedOrgId === orgId ? items : []
+  const activeProposal = currentItems.find(item => item.id === openAuthorForId)
+  const activeItems = currentItems.filter(item => item.state !== 'archived')
+  const archivedItems = currentItems.filter(item => item.state === 'archived')
   return (
     <section className="fund-workspace">
       <aside className="fund-project-sidebar">
         <div className="fund-sidebar-heading">
           <div>
             <h2>我的基金申请</h2>
-            <p>选择申请书后直接进入撰写流程</p>
+            <p></p>
           </div>
-          <button className="fund-primary-button fund-new-button" disabled={creating} onClick={createOne}>新建申请</button>
+          <button className="fund-primary-button fund-new-button" disabled={creating} onClick={createOne}>{creating ? <><span className="fund-spinner" aria-hidden="true" />正在新建</> : '新建申请'}</button>
         </div>
 
-        <input
-          className="fund-new-title"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          placeholder="输入新项目标题"
-        />
+        <div className="fund-new-proposal-fields">
+          <label className="fund-new-title-label" htmlFor="new-proposal-title">
+            <span>项目标题 <b className="fund-required-marker" aria-hidden="true">*</b></span>
+            <small className="fund-field-hint"></small>
+            <input
+              id="new-proposal-title"
+              className="fund-new-title"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="输入新项目标题"
+            />
+          </label>
+          <fieldset className="fund-application-system" aria-required="true">
+            <legend>申报体系 <b className="fund-required-marker" aria-hidden="true">*</b></legend>
+            <p className="fund-field-hint">本项为必填。选择后，系统会按对应申报体系调整写作侧重点。</p>
+            {APPLICATION_SYSTEM_OPTIONS.map(option => (
+              <label key={option.value}>
+                <input
+                  type="radio"
+                  name="application-system"
+                  value={option.value}
+                  checked={applicationSystem === option.value}
+                  onChange={(event) => setApplicationSystem(event.target.value)}
+                />
+                {option.label}
+              </label>
+            ))}
+          </fieldset>
+        </div>
 
-        {loading && <div className="fund-loading">正在加载</div>}
+        {loading && <div className="fund-loading" role="status"><span className="fund-spinner" aria-hidden="true" />正在加载</div>}
         {actionMessage && <div className="fund-action-message" role="status">{actionMessage}</div>}
         <div className="fund-project-list">
           {activeItems.map(p => (
             <article className={`fund-project-card ${openAuthorForId === p.id ? 'is-active' : ''}`} key={p.id}>
               <button className="fund-project-open" onClick={() => setOpenAuthorForId(p.id)}>
                 <strong>{(p.content?.meta?.title) || t('ui.common.untitled')}</strong>
-                <span>编号 {p.id} · {p.state === 'archived' ? '已归档' : '草稿'}</span>
+                <span>编号 {p.workspace_number || '待分配'} · {applicationSystemLabel(p.content?.meta?.application_system)} · {p.state === 'archived' ? '已归档' : '草稿'}</span>
               </button>
               <div className="fund-project-actions">
                 <select aria-label={`format-${p.id}`} value={fmtById[p.id] || 'pdf'} onChange={(e) => setFmtById(s => ({ ...s, [p.id]: e.target.value }))}>
@@ -922,13 +1860,13 @@ export function Proposals({ token, selectedOrgId }) {
                   disabled={exporting === p.id || !p.sections?.length || p.sections.some(section => section.state !== 'approved')}
                   onClick={() => doExport(p.id, fmtById[p.id] || 'pdf')}
                 >
-                  {exporting === p.id ? '正在导出' : '导出'}
+                  {exporting === p.id ? <><span className="fund-spinner" aria-hidden="true" />正在导出</> : '导出'}
                 </button>
                 <button onClick={() => setOpenAuthorForId(p.id)}>打开撰写区</button>
                 {p.state !== 'archived' ? (
-                  <button onClick={() => archive(p)}>归档</button>
+                  <button className="fund-danger-button" disabled={mutatingProjectId === p.id} onClick={() => archive(p)}>{mutatingProjectId === p.id ? <><span className="fund-spinner" aria-hidden="true" />正在归档</> : '归档'}</button>
                 ) : (
-                  <button onClick={() => unarchive(p)}>取消归档</button>
+                  <button disabled={mutatingProjectId === p.id} onClick={() => unarchive(p)}>{mutatingProjectId === p.id ? <><span className="fund-spinner" aria-hidden="true" />正在恢复</> : '取消归档'}</button>
                 )}
               </div>
             </article>
@@ -951,7 +1889,7 @@ export function Proposals({ token, selectedOrgId }) {
                 <article className="fund-project-card" key={p.id}>
                   <strong>{p.content?.meta?.title || t('ui.common.untitled')}</strong>
                   <div className="fund-project-actions">
-                    <button onClick={() => unarchive(p)}>恢复项目</button>
+                    <button disabled={mutatingProjectId === p.id} onClick={() => unarchive(p)}>{mutatingProjectId === p.id ? <><span className="fund-spinner" aria-hidden="true" />正在恢复</> : '恢复项目'}</button>
                   </div>
                 </article>
               ))}
@@ -977,115 +1915,11 @@ export function Proposals({ token, selectedOrgId }) {
             <h2>开始撰写基金申请书</h2>
             <p>新建申请后，系统将引导你依次完成规划、逐章写作、人工修订和定稿导出。</p>
             <button className="fund-primary-button" disabled={creating} onClick={createOne}>
-              新建第一份申请
+              {creating ? <><span className="fund-spinner" aria-hidden="true" />正在新建</> : '新建第一份申请'}
             </button>
           </div>
         )}
       </main>
-    </section>
-  )
-}
-
-export function Orgs({ token, onSelectOrg }) {
-  const [items, setItems] = useState([])
-  const [name, setName] = useState('')
-  const [desc, setDesc] = useState('')
-  const [selectedId, setSelectedId] = useState('')
-  const [membersByOrg, setMembersByOrg] = useState({})
-  const [inviteEmail, setInviteEmail] = useState('')
-  const [inviteRole, setInviteRole] = useState('member')
-  const [invitesByOrg, setInvitesByOrg] = useState({})
-  const [transferUserId, setTransferUserId] = useState('')
-
-  const refresh = async () => { try { setItems(await api('/orgs/', { token })) } catch {} }
-  const loadMembers = async (orgId) => { try { const m = await api(`/orgs/${orgId}/members/`, { token }); setMembersByOrg(s => ({ ...s, [orgId]: m })) } catch {} }
-  const loadInvites = async (orgId) => { try { const m = await api(`/orgs/${orgId}/invites/`, { token }); setInvitesByOrg(s => ({ ...s, [orgId]: m })) } catch {} }
-  useEffect(() => { refresh() }, [token])
-  const createOrg = async () => { await api('/orgs/', { method: 'POST', token, body: { name, description: desc } }); setName(''); setDesc(''); refresh() }
-  const removeOrg = async (orgId) => { if (!confirm('Delete this organization?')) return; await api(`/orgs/${orgId}/`, { method: 'DELETE', token }); refresh() }
-  const inviteMember = async (orgId) => { if (!inviteEmail) return; const inv = await api(`/orgs/${orgId}/invites/`, { method: 'POST', token, body: { email: inviteEmail, role: inviteRole } }); setInviteEmail(''); await loadInvites(orgId); alert(`Invite created. Token (dev): ${inv.token}`) }
-  const removeMember = async (orgId, userId) => { await api(`/orgs/${orgId}/members/`, { method: 'DELETE', token, body: { user_id: userId } }); loadMembers(orgId) }
-  const revokeInvite = async (orgId, id) => { await api(`/orgs/${orgId}/invites/`, { method: 'DELETE', token, body: { id } }); await loadInvites(orgId) }
-  const transfer = async (orgId) => { if (!transferUserId) return; await api(`/orgs/${orgId}/transfer/`, { method: 'POST', token, body: { user_id: Number(transferUserId) } }); setTransferUserId(''); refresh() }
-  const acceptInvite = async () => {
-    if (!import.meta.env.VITE_UI_EXPERIMENTS) return
-    const tokenStr = typeof window !== 'undefined' ? window.prompt('Paste invite token (dev flow)') : ''
-    if (!tokenStr) return
-    const res = await api('/orgs/invites/accept', { method: 'POST', token, body: { token: tokenStr } })
-    alert('Joined organization #' + res.org_id)
-    await refresh()
-  }
-
-  return (
-    <section>
-      <div>
-        <h2>{t('ui.orgs.heading')}</h2>
-        <div>
-          <input placeholder="工作区名称，留空自动编号" value={name} onChange={e => setName(e.target.value)} />
-          <input placeholder={t('ui.orgs.description_placeholder')} value={desc} onChange={e => setDesc(e.target.value)} />
-          <button onClick={createOrg}>{t('ui.orgs.create_button')}</button>
-        </div>
-      </div>
-      <ul>
-        {items.map(org => (
-          <li key={org.id}>
-            <div>
-              <strong>#{org.id}</strong> {org.name}
-              <span> {org.description}</span>
-              <span> admin: {org.admin?.username}</span>
-              <button onClick={() => onSelectOrg(String(org.id))}>{t('ui.orgs.use_button')}</button>
-              <button onClick={() => { const open = selectedId === String(org.id); setSelectedId(open ? '' : String(org.id)); if (!open) { loadMembers(org.id); loadInvites(org.id) } }}>{selectedId === String(org.id) ? t('ui.orgs.hide_button') : t('ui.orgs.manage_button')}</button>
-              <button onClick={() => removeOrg(org.id)}>{t('ui.orgs.delete_button')}</button>
-            </div>
-            {selectedId === String(org.id) && (
-              <div>
-                <div>
-                  <div>{t('ui.orgs.members_heading')}</div>
-                  <div>{t('ui.orgs.invite_heading')}</div>
-                  <input placeholder={t('ui.orgs.invite_email_placeholder')} value={inviteEmail} onChange={e => setInviteEmail(e.target.value)} />
-                  <select value={inviteRole} onChange={e => setInviteRole(e.target.value)}>
-                    <option value="member">{t('ui.orgs.member_role_member')}</option>
-                    <option value="admin">{t('ui.orgs.member_role_admin')}</option>
-                  </select>
-                  <button onClick={() => inviteMember(org.id)}>{t('ui.orgs.invite_button')}</button>
-                </div>
-                <ul>
-                  {(membersByOrg[org.id] || []).map(m => (
-                    <li key={m.user.id}>
-                      {m.user.username} ({m.user.id}) — {m.role}
-                      <button onClick={() => removeMember(org.id, m.user.id)}>Remove</button>
-                    </li>
-                  ))}
-                </ul>
-                <div>
-                  <div>{t('ui.orgs.pending_invites_heading')}</div>
-                  <ul>
-                    {(invitesByOrg[org.id] || []).map(inv => (
-                      <li key={inv.id}>
-                        {inv.email} — {inv.role} {inv.accepted_at ? t('ui.orgs.accepted') : inv.revoked_at ? t('ui.orgs.revoked') : t('ui.orgs.pending')}
-                        {!inv.accepted_at && !inv.revoked_at && (
-                          <>
-                            <button onClick={() => revokeInvite(org.id, inv.id)}>{t('ui.orgs.revoke_button')}</button>
-                            <span> {t('ui.orgs.token_label',{value: inv.token})}</span>
-                          </>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div>{t('ui.orgs.transfer_heading')}</div>
-                  <input placeholder={t('ui.orgs.new_admin_placeholder')} value={transferUserId} onChange={e => setTransferUserId(e.target.value)} />
-                  <button onClick={() => transfer(org.id)}>{t('ui.orgs.transfer_button')}</button>
-                </div>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-      <div>
-        <button onClick={acceptInvite}>{t('ui.orgs.accept_invite_button')}</button>
-      </div>
     </section>
   )
 }
@@ -1095,7 +1929,6 @@ export default function Dashboard({ token, selectedOrgId, onSelectOrg }) {
     <div>
       <div>
         <Proposals token={token} selectedOrgId={selectedOrgId} />
-        <Orgs token={token} onSelectOrg={onSelectOrg} />
       </div>
     </div>
   )

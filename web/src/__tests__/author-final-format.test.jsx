@@ -23,7 +23,7 @@ describe('Author final-format flow', () => {
     const token = 't'
   const proposal = {
     id: 1,
-    content: { meta: { title: 'T' }, sections: {} },
+    content: { meta: { title: 'T', user_setup: { ready: true }, intake_snapshot: { task_mode: 'plan_from_scratch', quality_level: 'quick' } }, sections: {} },
     sections: [
       { id: 101, key: 'summary', title: 'Executive Summary', state: 'draft', draft_content: 'S', approved_content: '', locked: false },
       { id: 102, key: 'narrative', title: 'Project Narrative', state: 'draft', draft_content: '', approved_content: '', locked: false },
@@ -32,23 +32,74 @@ describe('Author final-format flow', () => {
     state: 'draft',
   }
   const serverState = { proposal: JSON.parse(JSON.stringify(proposal)) }
+    let pendingTasks = []
+    const fullDraft = {
+      draft_text: '# T\n\n## Executive Summary\nS\n\n## Project Narrative\nDraft...',
+      version: 1,
+      approval_status: 'draft',
+      section_keys: ['summary', 'narrative'],
+    }
+    const approveTask = (sectionKey) => {
+      const section = serverState.proposal.sections.find(item => item.key === sectionKey)
+      Object.assign(section, {
+        state: 'approved',
+        approved_content: section.draft_content,
+        locked: true,
+      })
+      pendingTasks = []
+      return { body: { status: 'completed' } }
+    }
     const routes = {
-  'GET /proposals/': async () => ({ body: [serverState.proposal] }),
-      'GET /usage': async () => ({ body: { tier: 'pro', status: 'active' } }),
+      'GET /proposals/': async () => ({ body: [serverState.proposal] }),
+      'GET /ai/human-tasks?proposal_id=1': async () => ({ body: { tasks: pendingTasks } }),
+      'GET /ai/proposals/1/full-draft': async () => ({ body: fullDraft }),
+      'PATCH /ai/proposals/1/full-draft': async ({ body }) => ({
+        body: { ...fullDraft, draft_text: body.draft_text, previous_draft: fullDraft.draft_text },
+      }),
       'POST /ai/plan': async () => ({ body: { schema_version: 'v1', sections: [ { id: 'summary', title: 'Executive Summary', inputs: [] }, { id: 'narrative', title: 'Project Narrative', inputs: [] } ] } }),
       'POST /ai/write': async () => {
         serverState.proposal.sections[1].draft_content = 'Draft...'
         return { body: { draft_text: 'Draft...' } }
       },
-      'POST /sections/101/promote': async () => {
-        Object.assign(serverState.proposal.sections[0], { state: 'approved', approved_content: 'S', locked: true })
-        return { body: { status: 'promoted', section_id: 101 } }
+      'PATCH /ai/sections/102/draft': async ({ body }) => {
+        serverState.proposal.sections[1].draft_content = body.draft_text
+        return { body: { draft_text: body.draft_text, previous_draft: '' } }
       },
-      'POST /sections/102/promote': async () => {
-        Object.assign(serverState.proposal.sections[1], { state: 'approved', approved_content: 'Draft...', locked: true })
-        return { body: { status: 'promoted', section_id: 102 } }
+      'POST /ai/workflow/run': async ({ body }) => {
+        const taskId = body.section_key === 'summary' ? 11 : 12
+        const section = serverState.proposal.sections.find(item => item.key === body.section_key)
+        pendingTasks = [{
+          id: taskId,
+          thread_id: `workflow-${taskId}:section_approval`,
+          node: 'section_approval',
+          status: 'pending',
+          input: { section_key: body.section_key, section_title: section.title, draft_summary: body.draft },
+          model_output: { review_summary: 'human_review' },
+          decision: {},
+        }]
+        return { body: { run_id: `workflow-${taskId}`, status: 'awaiting_human_approval', trace: [] } }
       },
-      'POST /ai/format': async ({ body }) => ({ body: { formatted_text: `[gemini:final_format]\n\n${body.full_text}` } }),
+      'POST /ai/human-tasks/11/decision': async () => approveTask('summary'),
+      'POST /ai/human-tasks/12/decision': async () => approveTask('narrative'),
+      'POST /ai/human-tasks': async () => {
+        const task = {
+          id: 13,
+          thread_id: 'full-draft-1-1',
+          node: 'final_export_confirmation',
+          status: 'pending',
+          input: { kind: 'full_draft', draft_title: '审批后全文草稿', draft_version: 1, draft_text: fullDraft.draft_text },
+          model_output: {},
+          decision: {},
+        }
+        pendingTasks = [task]
+        return { body: task, status: 201 }
+      },
+      'POST /ai/human-tasks/13/decision': async () => {
+        fullDraft.approval_status = 'approved'
+        pendingTasks = []
+        return { body: { id: 13, status: 'approved' } }
+      },
+      'POST /ai/format': async () => ({ body: { formatted_text: '[gemini:final_format]\n\nFormatted final draft' } }),
     }
     const fetchSpy = mockFetch(routes)
 
@@ -67,8 +118,9 @@ describe('Author final-format flow', () => {
   await screen.findByText(/第 1 章，共 2 章/i)
 
     // Approve first section
-  const approveBtn = await screen.findByRole('button', { name: '审批并保存' })
+  const approveBtn = await screen.findByRole('button', { name: '提交章节审批' })
   fireEvent.click(approveBtn)
+  fireEvent.click(await screen.findByRole('button', { name: '通过并锁定章节' }))
   // After save, UI advances to section 2
   await screen.findByText(/第 2 章，共 2 章/i)
 
@@ -77,9 +129,14 @@ describe('Author final-format flow', () => {
   fireEvent.click(writeBtn)
   // Wait for draft to be available which enables Approve & Save
   await screen.findByTestId('draft-text')
-  const approveBtn2 = await screen.findByRole('button', { name: '审批并保存' })
+  fireEvent.click(screen.getByRole('tab', { name: /3 人工审核与修订/ }))
+  const approveBtn2 = await screen.findByRole('button', { name: '提交章节审批' })
     fireEvent.click(approveBtn2)
+    fireEvent.click(await screen.findByRole('button', { name: '通过并锁定章节' }))
 
+  // The approved full draft requires its own human approval before final formatting.
+  fireEvent.click(await screen.findByRole('button', { name: '提交全文审批' }))
+  fireEvent.click(await screen.findByRole('button', { name: '通过全文审批' }))
   // Final-format controls should now be visible
   const runBtn = await screen.findByRole('button', { name: /生成最终定稿/i })
     fireEvent.click(runBtn)

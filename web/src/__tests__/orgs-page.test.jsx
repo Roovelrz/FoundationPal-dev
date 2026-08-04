@@ -1,7 +1,6 @@
 import React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import OrgsPage from '../pages/OrgsPage.jsx'
 
 // Simple Response polyfill for Node test env
@@ -14,48 +13,52 @@ class Response {
   async json() { try { return JSON.parse(this._body || '{}') } catch { return {} } }
 }
 
-describe('OrgsPage (standalone view)', () => {
-  it('renders organizations list and supports basic actions UI', async () => {
-    // Mock list orgs and nested calls to avoid network
+describe('OrgsPage', () => {
+  it('uses local workspace order, keeps the future members entry, and confirms deletion', async () => {
+    const onSelectOrg = vi.fn()
+    const onOrgsChanged = vi.fn()
     global.fetch = vi.fn((url, opts) => {
       const u = url.toString()
       if (u.endsWith('/api/orgs/')) {
         return Promise.resolve(new Response(JSON.stringify([
-          { id: 1, name: 'Acme', description: 'A', admin: { username: 'owner1' } },
-          { id: 2, name: 'Beta', description: 'B', admin: { username: 'owner2' } }
+          { id: 4, name: '国自然', description: 'A' },
+          { id: 9, name: '省基金', description: 'B' }
         ]), { status: 200 }))
       }
       if (u.includes('/api/orgs/') && u.endsWith('/members/')) {
         return Promise.resolve(new Response(JSON.stringify([{ user: { id: 7, username: 'm1' }, role: 'member' }]), { status: 200 }))
       }
-      if (u.includes('/api/orgs/') && u.endsWith('/invites/')) {
-        if (opts && opts.method === 'POST') {
-          return Promise.resolve(new Response(JSON.stringify({ id: 10, token: 'tok', email: 'x@y.z', role: 'member' }), { status: 200 }))
-        }
-        return Promise.resolve(new Response(JSON.stringify([]), { status: 200 }))
+      if (u.endsWith('/api/orgs/4/') && opts?.method === 'DELETE') {
+        return Promise.resolve(new Response('', { status: 204 }))
       }
       return Promise.resolve(new Response('{}', { status: 200 }))
     })
 
     render(
-      <MemoryRouter initialEntries={[ '/app/orgs' ]}>
-        <Routes>
-          <Route path="/app/orgs" element={<OrgsPage token="t" />} />
-        </Routes>
-      </MemoryRouter>
+      <OrgsPage
+        token="t"
+        activeOrgId="4"
+        onSelectOrg={onSelectOrg}
+        onOrgsChanged={onOrgsChanged}
+        onClose={vi.fn()}
+      />
     )
 
-    // Heading present
-    expect(await screen.findByText('Organizations')).toBeInTheDocument()
-    // Create controls present
-    expect(screen.getByRole('button', { name: 'Create' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: '工作区管理' })).toBeInTheDocument()
+    expect(screen.getByText('工作区 1：国自然')).toBeInTheDocument()
+    expect(screen.getByText('工作区 2：省基金')).toBeInTheDocument()
+    expect(screen.queryByText(/Pending invites|Transfer ownership/i)).not.toBeInTheDocument()
 
-    // Expand manage for first org to trigger nested fetches
-    const manage = screen.getAllByRole('button', { name: 'Manage' })[0]
-    fireEvent.click(manage)
+    fireEvent.click(screen.getAllByRole('button', { name: '成员' })[0])
+    expect(await screen.findByText('m1')).toBeInTheDocument()
+
+    fireEvent.click(screen.getAllByRole('button', { name: '删除' })[0])
+    expect(screen.getByRole('heading', { name: '确认删除工作区' })).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: '确认删除' }))
 
     await waitFor(() => {
-      expect(screen.getByText(/Members/i)).toBeInTheDocument()
+      expect(global.fetch).toHaveBeenCalledWith('/api/orgs/4/', expect.objectContaining({ method: 'DELETE' }))
+      expect(onOrgsChanged).toHaveBeenCalled()
     })
   })
 })

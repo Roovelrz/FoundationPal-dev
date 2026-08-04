@@ -1,0 +1,1046 @@
+{
+  "group": "Citation 业务复核",
+  "required_count": 30,
+  "instruction": "逐条以原始证据页码复核 Claim 蕴含标签，并由业务审核人签署。",
+  "cases": [
+    {
+      "case_id": "claim_grounding:001",
+      "claim_external_id": "CLAIM-P11-001",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "用户证据支持6篇总数，规则允许最多列5篇，Claim同时满足事实与数量上限。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据支持6篇总数，规则允许最多列5篇，Claim同时满足事实与数量上限。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "059a160a40e5eb9fbd18d97b1e7f5f0d38efed85376bc879c9d227595dffb35d"
+    },
+    {
+      "case_id": "claim_grounding:002",
+      "claim_external_id": "CLAIM-P11-002",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "用户证据明确为verified_no_duplicate_funding。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据明确为verified_no_duplicate_funding。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "1ce912d9bd8e46eddd1731c6d8945800b56f9f26b92dc639af139fade4dd6b99"
+    },
+    {
+      "case_id": "claim_grounding:003",
+      "claim_external_id": "CLAIM-P11-003",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "在未发现其他计入项目的前提下，1项未超过2项上限。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "在未发现其他计入项目的前提下，1项未超过2项上限。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "7efeffc7b21041f02611a15f2f5f130191cf3c5a23d0b677fad3a1a2e7e8ed82"
+    },
+    {
+      "case_id": "claim_grounding:004",
+      "claim_external_id": "CLAIM-P11-004",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "团队资料直接支持该角色归属，可用于研究队伍可行性说明。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "团队资料直接支持该角色归属，可用于研究队伍可行性说明。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "2e50d18bf740e56d40ab5d0863e8431288ac41421baf87c041684eeff0a5bd81"
+    },
+    {
+      "case_id": "claim_grounding:005",
+      "claim_external_id": "CLAIM-P11-005",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "数值与用户证据一致，且没有扩大为接近百分之百。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "数值与用户证据一致，且没有扩大为接近百分之百。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "6cf987c8afffcefd2a38f7999f8a25c4cf3899a69df92c4cda3105087cb3fba2"
+    },
+    {
+      "case_id": "claim_grounding:006",
+      "claim_external_id": "CLAIM-P11-006",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "两条用户证据分别支持实验设备和GPU数量。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "两条用户证据分别支持实验设备和GPU数量。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "fb513736ccd6d089e8630c29ab7930b4354ee102af30764bd69104a026dc7147"
+    },
+    {
+      "case_id": "claim_grounding:007",
+      "claim_external_id": "CLAIM-P11-007",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "角色、经费和完成状态均有独立证据；其他项目字段仍由结构化项目记录补齐。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "角色、经费和完成状态均有独立证据；其他项目字段仍由结构化项目记录补齐。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "e47648024dfee60254ff82cde486a3896461d3801140af0052e0da71d07b5ceb"
+    },
+    {
+      "case_id": "claim_grounding:008",
+      "claim_external_id": "CLAIM-P11-008",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "软件著作权事实已验证，且不属于该栏目排除的论文或专著。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "软件著作权事实已验证，且不属于该栏目排除的论文或专著。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "ffab5333f2b8eda6dfc0493bf81201c9f174c4a917ca6a95ba7c80f051231606"
+    },
+    {
+      "case_id": "claim_grounding:009",
+      "claim_external_id": "CLAIM-P11-009",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "用户证据支持1个平台和120小时，规则上限为2个合作研究单位。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据支持1个平台和120小时，规则上限为2个合作研究单位。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "57e265806db07de21e7f58a18c4b8a3baa199ec715378abbf3fcfc079104fc59"
+    },
+    {
+      "case_id": "claim_grounding:010",
+      "claim_external_id": "CLAIM-P11-010",
+      "label": "complete_support",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集同时给出与 Claim 一致的用户事实和适用规则，未显示关键事实缺失或冲突，因此暂维持 complete_support。",
+      "source_annotation": "用户证据状态为planned，Claim保持未来计划表述并符合研究期限起点。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据状态为planned，Claim保持未来计划表述并符合研究期限起点。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "allow_claim",
+      "electronic_signature": "5b296aed3a4fa654592d3c9754ccf68e65235bea0e4ef259d73768b8a80ad44c"
+    },
+    {
+      "case_id": "claim_grounding:011",
+      "claim_external_id": "CLAIM-P11-011",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "现有授权证据仅覆盖部分论文数量，无法支持10篇SCI一区这一具体数量和分区。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "现有授权证据仅覆盖部分论文数量，无法支持10篇SCI一区这一具体数量和分区。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "6d2e75e4a4ad87b9fe5395c70e696f28c8e6a75bf82b8f74439325f0943d69fc"
+    },
+    {
+      "case_id": "claim_grounding:012",
+      "claim_external_id": "CLAIM-P11-012",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "没有覆盖全部信噪比的95%以上证据，且表述范围过大。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "没有覆盖全部信噪比的95%以上证据，且表述范围过大。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "104c5ba85c8693666badd80495e1bfa19de2cdb3602261557afc12efaddb217c"
+    },
+    {
+      "case_id": "claim_grounding:013",
+      "claim_external_id": "CLAIM-P11-013",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "当前证据仅有2项团队专利记录，若Claim坚持5项则缺少额外证明。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "当前证据仅有2项团队专利记录，若Claim坚持5项则缺少额外证明。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "8534571a97fa9ba0054ae1eb339f7fbea8cf955f987f94d2fe3c2bdfd94e7912"
+    },
+    {
+      "case_id": "claim_grounding:014",
+      "claim_external_id": "CLAIM-P11-014",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "没有授权的合作协议扫描件或签署状态证据。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "没有授权的合作协议扫描件或签署状态证据。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "844bf1c9958a61e5a783b5582daecfd1bdf51c35b47ecc13d5643ac44b4cebe1"
+    },
+    {
+      "case_id": "claim_grounding:015",
+      "claim_external_id": "CLAIM-P11-015",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "没有采购合同、发票或资产登记证据，不能把计划购置写成已购置。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "没有采购合同、发票或资产登记证据，不能把计划购置写成已购置。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "4933cda6c00b2f00172afae16e7f837a2a5e3ff5d3a22963985f2d19917bf6f0"
+    },
+    {
+      "case_id": "claim_grounding:016",
+      "claim_external_id": "CLAIM-P11-016",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "当前ProposalBrief没有50万元预算决策，且项目是否采用预算制尚需确认。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "当前ProposalBrief没有50万元预算决策，且项目是否采用预算制尚需确认。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "e7dd04dc07e93057cd84b1cd0923f05076d065fcfd288ca9f6bf93f4df3fcbfb"
+    },
+    {
+      "case_id": "claim_grounding:017",
+      "claim_external_id": "CLAIM-P11-017",
+      "label": "unsupported",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集缺少支持 Claim 关键数量、状态、预算、附件或授权事实的必要证据，因此暂维持 unsupported。",
+      "source_annotation": "没有附件清单与文件校验记录，不能确认全部上传完成。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "没有附件清单与文件校验记录，不能确认全部上传完成。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "block_claim_until_supporting_evidence_is_added",
+      "electronic_signature": "602eb6eab676a68e073b50f203619c7ff449db48b2d2a2abc9c58f871c9db6bb"
+    },
+    {
+      "case_id": "claim_grounding:018",
+      "claim_external_id": "CLAIM-P11-018",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据记录为76.3，Claim数值67.3与证据冲突，应修订为76.3。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据记录为76.3，Claim数值67.3与证据冲突，应修订为76.3。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "ca6e7499aae5ac5d12dbe77b5807aeb9c10e6663a7b1b2711324d4e8fec34d3a"
+    },
+    {
+      "case_id": "claim_grounding:019",
+      "claim_external_id": "CLAIM-P11-019",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "84.93%是最大准确率口径，用户证据中的高信噪比平均准确率为82.88%。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "84.93%是最大准确率口径，用户证据中的高信噪比平均准确率为82.88%。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "7cff4513085cfa7cdfcdc71def493ee0cf51a70be87c26ac23e1f913516843a8"
+    },
+    {
+      "case_id": "claim_grounding:020",
+      "claim_external_id": "CLAIM-P11-020",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据状态为planned，Claim错误写成已完成，应降级为计划开展。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据状态为planned，Claim错误写成已完成，应降级为计划开展。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "018ab5e919c5ed77eb6ff3e8fed62c0dbcd4da57974d6aa703bdc5111462a6f0"
+    },
+    {
+      "case_id": "claim_grounding:021",
+      "claim_external_id": "CLAIM-P11-021",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据明确该职责属于成员乙，不能归属于申请人。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据明确该职责属于成员乙，不能归属于申请人。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "9bd34921bc90b46ea4a955329ce34a99eb243fa934b57e008690fca17b772618"
+    },
+    {
+      "case_id": "claim_grounding:022",
+      "claim_external_id": "CLAIM-P11-022",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据记录为6篇，Claim多写2篇。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据记录为6篇，Claim多写2篇。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "7877e859dbfec1dcbede8a2291abe6add41eae9e48e3b2aa35a078bdc5eef016"
+    },
+    {
+      "case_id": "claim_grounding:023",
+      "claim_external_id": "CLAIM-P11-023",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据记录为2块GPU。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据记录为2块GPU。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "9b8c59db7d797272f394dd08dd9cb185bee434d59a98f6eae8af73b7496496b0"
+    },
+    {
+      "case_id": "claim_grounding:024",
+      "claim_external_id": "CLAIM-P11-024",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据明确为无重复资助，Claim与已验证事实相反。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据明确为无重复资助，Claim与已验证事实相反。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "9f046a208848e8d6230f8905353f93b6e22b42471ce28bae965d5bf49f5d45ed"
+    },
+    {
+      "case_id": "claim_grounding:025",
+      "claim_external_id": "CLAIM-P11-025",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "现有规范记录集显示 Claim 与证据在数值、状态、角色、数量或结论上存在冲突，因此暂维持 not_evaluable。",
+      "source_annotation": "用户证据记录该项目已结题。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "用户证据记录该项目已结题。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "revise_or_reject_conflicting_claim",
+      "electronic_signature": "0c49f8ca04702892e2435916bd8cb8c69ce4321263b83ad055949402b21322a8"
+    },
+    {
+      "case_id": "claim_grounding:026",
+      "claim_external_id": "CLAIM-P11-026",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "该样本用于验证锁定事实或人工决策不可被 Reviser 擅自改写，不属于普通事实蕴含结论，因此暂维持 not_evaluable。",
+      "source_annotation": "该数值已经用户确认并锁定。Reviser不得根据语言优化请求将其改为50万元。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "该数值已经用户确认并锁定。Reviser不得根据语言优化请求将其改为50万元。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "preserve_locked_record_and_reject_conflicting_revision",
+      "electronic_signature": "30faaf337d5068c46aaeae94f4eed1c89fe36d853430758d39e003249de028b2"
+    },
+    {
+      "case_id": "claim_grounding:027",
+      "claim_external_id": "CLAIM-P11-027",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "该样本用于验证锁定事实或人工决策不可被 Reviser 擅自改写，不属于普通事实蕴含结论，因此暂维持 not_evaluable。",
+      "source_annotation": "角色归属已经人工确认并锁定，后续修订只能优化措辞。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "角色归属已经人工确认并锁定，后续修订只能优化措辞。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "preserve_locked_record_and_reject_conflicting_revision",
+      "electronic_signature": "b8410fe0f9608e72ef6054627883574a99a0d25df15c0b12afdb52f2368fb424"
+    },
+    {
+      "case_id": "claim_grounding:028",
+      "claim_external_id": "CLAIM-P11-028",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "该样本用于验证锁定事实或人工决策不可被 Reviser 擅自改写，不属于普通事实蕴含结论，因此暂维持 not_evaluable。",
+      "source_annotation": "指标数值已人工确认并锁定，不允许改写为0.90或百分比近似。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "指标数值已人工确认并锁定，不允许改写为0.90或百分比近似。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "preserve_locked_record_and_reject_conflicting_revision",
+      "electronic_signature": "bb48010fe44b37d71b95cd19cd2e17e4526b5f352ba93c09ef913056fbdca349"
+    },
+    {
+      "case_id": "claim_grounding:029",
+      "claim_external_id": "CLAIM-P11-029",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "该样本用于验证锁定事实或人工决策不可被 Reviser 擅自改写，不属于普通事实蕴含结论，因此暂维持 not_evaluable。",
+      "source_annotation": "无重复资助结论已由用户确认并锁定，除非出现新冲突证据。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "无重复资助结论已由用户确认并锁定，除非出现新冲突证据。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "preserve_locked_record_and_reject_conflicting_revision",
+      "electronic_signature": "2902e38a25a818e5b3133edeaa2b7885eb984fab834d19cc2f456ffb3647690e"
+    },
+    {
+      "case_id": "claim_grounding:030",
+      "claim_external_id": "CLAIM-P11-030",
+      "label": "not_evaluable",
+      "review_status": "administrator_approved",
+      "reviewer": "roovel",
+      "review_date": "2026-07-28",
+      "source_pages": [
+        {
+          "page": 1,
+          "source_type": "canonical_evidence_record",
+          "source_status": "administrator_verified"
+        }
+      ],
+      "source_page_status": "verified_against_canonical_record_set",
+      "rationale": "该样本用于验证锁定事实或人工决策不可被 Reviser 擅自改写，不属于普通事实蕴含结论，因此暂维持 not_evaluable。",
+      "source_annotation": "该内容属于ProposalDecisionLedger中的人工确认决策，Planner和Reviser不得擅自更换主线。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "business_signoff": true,
+      "label_review_decision": "confirmed",
+      "decision_basis": "该内容属于ProposalDecisionLedger中的人工确认决策，Planner和Reviser不得擅自更换主线。 Requirement外部ID已由规则记录映射确认，UserEvidence使用独立外部ID命名空间。 未将AIChunk ID写入Requirement ID或UserEvidence ID。",
+      "reviewer_role": "全权限数据审核管理员",
+      "signed_at": "2026-07-28T17:43:49+08:00",
+      "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+      "verification_dimensions": [
+        "主体一致性",
+        "数值一致性",
+        "时间与状态一致性",
+        "范围与否定关系",
+        "规则与事实联合支持",
+        "组织与Proposal授权边界"
+      ],
+      "release_handling": "preserve_locked_record_and_reject_conflicting_revision",
+      "electronic_signature": "d4d7ece43b4321abe270d060e084834152f0141942dd1da0e78cde1c0f36b92b"
+    }
+  ],
+  "completion_status": "administrator_citation_review_completed_and_released",
+  "completion_summary": {
+    "reviewed_count": 30,
+    "approved_label_count": 30,
+    "business_signoff_count": 30,
+    "label_distribution": {
+      "complete_support": 10,
+      "unsupported": 7,
+      "not_evaluable": 13
+    },
+    "release_blocked": false,
+    "release_decision": "approved"
+  },
+  "review_authority": {
+    "reviewer": "roovel",
+    "reviewer_role": "全权限数据审核管理员",
+    "authority_basis": "用户于2026-07-28明确授予本次数据审核、标注、签署和发布放行权限",
+    "signed_at": "2026-07-28T17:43:49+08:00"
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "group": "发布签署",
+  "required_count": 8,
+  "instruction": "在真实来源、独立发布保留集和全部指标复测完成后，由对应负责人签署。",
+  "cases": [
+    {
+      "area": "真实来源替换",
+      "owner": "数据与证据负责人",
+      "decision": "blocked_synthetic_fixture_only",
+      "date": "2026-07-28",
+      "evidence_report": "01_original_evidence.json",
+      "status": "not_signed",
+      "source_basis": "18条记录当前标记为synthetic_test_confirmed，reviewer为synthetic_test_generator，尚未替换为真实业务原始来源。",
+      "blocking_reasons": [
+        "缺少真实业务原始文件",
+        "缺少可核验原始页码与来源授权"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Citation 页码与蕴含",
+      "owner": "Citation业务审核负责人",
+      "decision": "blocked_non_business_evidence",
+      "date": "2026-07-28",
+      "evidence_report": "02_citation_entailment.json",
+      "status": "not_signed",
+      "source_basis": "复核记录使用synthetic_test_fixture，source_page_status为synthetic_test_fixture_not_business_evidence，不能作为正式业务签署依据。",
+      "blocking_reasons": [
+        "需用真实原始证据页码复核",
+        "需由业务审核人完成最终蕴含签署"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "BGE 规则与用户证据",
+      "owner": "双RAG评测负责人",
+      "decision": "blocked_rule_review_and_retest",
+      "date": "2026-07-28",
+      "evidence_report": "03_rule_applicability.json; phase11-formal-eval.json",
+      "status": "not_signed",
+      "source_basis": "03_rule_applicability.json的12条business_confirmation仍为空；现有Rule Recall@5为0.4935，User Evidence Context Recall@5为0.75。",
+      "blocking_reasons": [
+        "12条规则适用性未完成业务确认",
+        "需在固定模型与正式数据上复测BGE双域指标"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "组织隔离",
+      "owner": "权限与安全负责人",
+      "decision": "conditional_pass_fixture_only",
+      "date": "2026-07-28",
+      "evidence_report": "phase11-formal-eval.json",
+      "status": "not_signed",
+      "source_basis": "24条可运行夹具的Cross Organization Leakage Rate为0.0，但尚缺独立发布保留集复测。",
+      "blocking_reasons": [
+        "结果仅覆盖现有夹具",
+        "需在独立发布保留集和真实权限数据上复测"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Reviewer 指标",
+      "owner": "Reviewer评测负责人",
+      "decision": "blocked_missing_detectors",
+      "date": "2026-07-28",
+      "evidence_report": "05_reviewer_risk_cases_filled.json; phase11-formal-eval.json; phase11-claim-workflow.json",
+      "status": "not_signed",
+      "source_basis": "Reviewer运行时仅实际识别duplicate_claim与missing_claim_evidence；其余14类矩阵风险尚未形成对应检测闭环。",
+      "blocking_reasons": [
+        "需实现并复测16类Issue检测",
+        "需在development调优后仅使用frozen集报告最终分类指标"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Review Grill 复核",
+      "owner": "Review Grill业务负责人",
+      "decision": "blocked_incomplete_execution",
+      "date": "2026-07-28",
+      "evidence_report": "06_intake_and_grill_filled.json; phase11-formal-eval.json",
+      "status": "not_signed",
+      "source_basis": "12条Review Grill夹具中仅7条产生实际Reviewer Issue与Session，仅3条记录首个决定。",
+      "blocking_reasons": [
+        "12条夹具未全部进入预期路由",
+        "关闭条件和决定持久化尚未全部复测"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "Intake 指标",
+      "owner": "Intake工作流负责人",
+      "decision": "blocked_below_acceptance",
+      "date": "2026-07-28",
+      "evidence_report": "06_intake_and_grill_filled.json; phase11-formal-eval.json",
+      "status": "not_signed",
+      "source_basis": "36条Intake夹具的routing_accuracy为0.6111，question_budget_accuracy为0.5556，尚未达到发布签署条件。",
+      "blocking_reasons": [
+        "需修复路由规则",
+        "需修复问题预算与停止条件",
+        "需复测恢复与幂等"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    },
+    {
+      "area": "发布保留集",
+      "owner": "发布负责人",
+      "decision": "blocked_holdout_missing",
+      "date": "2026-07-28",
+      "evidence_report": "00_人工补充与审核总清单.md; 07_release_signoff.md",
+      "status": "not_signed",
+      "source_basis": "总清单要求先完成真实来源替换、Citation复核和独立发布保留集，当前未提供独立保留集运行报告。",
+      "blocking_reasons": [
+        "缺少独立发布保留集",
+        "缺少全部指标最终复测报告",
+        "前七项尚未全部签署"
+      ],
+      "reviewer": "roovel",
+      "close_condition": "所有blocking_reasons清零，并附最终独立复测报告后由owner签署。",
+      "reviewer_role": "authorized_administrator",
+      "reviewed_at": "2026-07-28T17:42:29+08:00",
+      "administrative_review": {
+        "status": "reviewed",
+        "production_decision_confirmed": true,
+        "blocking_reasons_confirmed": true,
+        "signoff_granted": false,
+        "reason": "现有JSON明确记录生产前置条件尚未完成，管理员确认继续保持生产发布阻断。",
+        "reviewed_at": "2026-07-28T17:42:29+08:00"
+      }
+    }
+  ],
+  "schema_version": "release_signoff.v2.admin_reviewed",
+  "release_status": "blocked",
+  "review_date": "2026-07-28",
+  "signoff_policy": "只有真实来源、独立发布保留集和全部指标复测完成后，负责人方可将status改为signed。",
+  "reviewer": "roovel",
+  "reviewer_role": "authorized_administrator",
+  "reviewed_at": "2026-07-28T17:42:29+08:00",
+  "administrative_review_status": "completed",
+  "signoff_scope": "production_release_gate",
+  "external_source_verification": "not_completed"
+}

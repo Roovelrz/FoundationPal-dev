@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../lib/core.js'
 import { t } from '../keys.generated'
 
@@ -7,6 +8,7 @@ export default function AccountPage({ token }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [ok, setOk] = useState(false)
+  const navigate = useNavigate()
   useEffect(() => { (async () => {
     try {
       const me = await api('/me', { token })
@@ -38,9 +40,16 @@ export default function AccountPage({ token }) {
     } finally { setLoading(false) }
   }
   return (
-    <section>
-      <h2>{t('ui.account.heading')}</h2>
-      <form onSubmit={save}>
+    <main className="fund-account-screen">
+      <section className="fund-account-card">
+        <header className="fund-account-header">
+          <div>
+            <h2>{t('ui.account.heading')}</h2>
+            <p>管理你的登录资料和联系方式。</p>
+          </div>
+          <button type="button" onClick={() => navigate('/')}>返回工作区</button>
+        </header>
+        <form className="fund-account-form" onSubmit={save}>
         <div>
           <label htmlFor="pf-username">{t('ui.account.labels.username')}</label>
           <input id="pf-username" data-testid="pf-username" value={profile.username} onChange={(e) => setProfile(p => ({ ...p, username: e.target.value }))} />
@@ -58,9 +67,10 @@ export default function AccountPage({ token }) {
           <input id="pf-last" data-testid="pf-last" value={profile.last_name} onChange={(e) => setProfile(p => ({ ...p, last_name: e.target.value }))} />
         </div>
         <button type="submit" data-testid="pf-save" disabled={loading}>{t('ui.account.buttons.save')}</button>
-      </form>
-      {ok && <div data-testid="pf-ok">{t('ui.account.status.saved')}</div>}
-      {error && <div role="alert">{error}</div>}
-    </section>
+        </form>
+        {ok && <div className="fund-status-message is-success" data-testid="pf-ok">{t('ui.account.status.saved')}</div>}
+        {error && <div className="fund-status-message is-error" role="alert">{error}</div>}
+      </section>
+    </main>
   )
 }

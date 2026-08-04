@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from rest_framework.test import APIClient
 
-from billing.models import Subscription
 from orgs.models import Organization
 
 
@@ -26,9 +25,7 @@ class OrganizationAutoNamingTests(TestCase):
             ['工作区 1', '工作区 2'],
         )
 
-    def test_pro_user_can_create_multiple_workspaces(self):
-        Subscription.objects.create(owner_user=self.user, tier='pro', status='active')
-
+    def test_ordinary_user_can_create_multiple_workspaces(self):
         first = self.api.post('/api/orgs/', {}, format='json')
         second = self.api.post('/api/orgs/', {}, format='json')
 

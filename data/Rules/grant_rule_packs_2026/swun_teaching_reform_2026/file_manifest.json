@@ -1,0 +1,31 @@
+{
+  "pack": "swun_teaching_reform_2026",
+  "generated_at": "2026-07-27",
+  "files": [
+    {
+      "path": "swun_teaching_reform_2026/README.md",
+      "size_bytes": 1772,
+      "sha256": "6bafd09d496ff8253ea7d6dd9db2fb5eab7eed803853afb8d46cdf121ebe413f"
+    },
+    {
+      "path": "swun_teaching_reform_2026/missing_source_request.json",
+      "size_bytes": 779,
+      "sha256": "5a21b3f8d1884452db5ea042e1e1de051a5cc28ef4cd078d2ec73b74e39a9de0"
+    },
+    {
+      "path": "swun_teaching_reform_2026/pack.json",
+      "size_bytes": 8520,
+      "sha256": "ccc2a13f30136f316c97378e5137b32c16d071fe9808290097326669d9aaa648"
+    },
+    {
+      "path": "swun_teaching_reform_2026/source_documents/Sichuan_2026_teaching_reform_guide.pdf",
+      "size_bytes": 250314,
+      "sha256": "1fc9d666b8b1f1b9ae38ae4afb21ead5d951211ecf9a40a4a52075d515d19e5f"
+    },
+    {
+      "path": "swun_teaching_reform_2026/source_documents/Sichuan_2026_teaching_reform_guide.txt",
+      "size_bytes": 2932,
+      "sha256": "1f599fd81a1e106976ecf1c9e2f08d1e2229a6bff84ec9308bd935816a300824"
+    }
+  ]
+}
